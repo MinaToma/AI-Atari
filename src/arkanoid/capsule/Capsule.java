@@ -1,5 +1,18 @@
 package arkanoid.capsule;
 
-public class Capsule {
+import atariCore.BaseObject;
+import java.awt.Image;
 
+
+public abstract class Capsule extends BaseObject {
+
+	
+	
+
+	Capsule(int x, int y, Image image) {
+		super(x,y,image);
+
+	}
+
+	abstract CAPSULES effect();
 }
