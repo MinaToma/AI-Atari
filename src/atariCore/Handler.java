@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Handler {
 
-    protected ArrayList<BaseObject> object = new ArrayList<>();
+    public ArrayList<BaseObject> object = new ArrayList<>();
     public void tick() {
 
         for(BaseObject o : object) {

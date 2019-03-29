@@ -3,7 +3,7 @@ package atariCore;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable  {
 
     Thread thread;
     protected Handler handler;

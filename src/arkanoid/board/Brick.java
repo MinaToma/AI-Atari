@@ -11,10 +11,11 @@ public class Brick extends BaseObject {
     private int power ;
 
 
-    public Brick(int xPostion,int yPostion,Image image, String color ){
+    public Brick(int xPostion,int yPostion,Image image, String color , int power ){
         super(xPostion, yPostion, image);
         this.destroyed = false ;
         this.color = color;
+        this.power = power;
         power = 10 ;// we can change it
 
 
@@ -27,18 +28,13 @@ public class Brick extends BaseObject {
     }
 
     public void render(Graphics g){
+
+        if(power > 0)
         g.drawImage(super.img, super.x ,super.y, null);
 
     }
-    public boolean isDestroyed(){
-        return destroyed;
+
+    public int getPower() {
+        return power;
     }
-
-    public void setDestroyed(boolean destroyed) {
-        this.destroyed = destroyed;
-    }
-
-
-
-
 }

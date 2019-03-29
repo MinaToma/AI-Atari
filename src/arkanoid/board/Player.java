@@ -5,9 +5,10 @@ import java.awt.*;
 public class Player {
     private int score ;
     private String name ;
-
-    public Player(String Name ){
+    private int lives;
+    public Player(String Name , int lives ){
         this.name = Name ;
+        this.lives = lives;
         score = 0 ;
     }
 

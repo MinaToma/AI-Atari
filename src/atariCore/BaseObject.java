@@ -80,7 +80,7 @@ abstract public class BaseObject {
         this.velX = velX;
     }
 
-    protected Rectangle getRectangle() {
+    public Rectangle getRectangle() {
         return new Rectangle(x, y, imageWidth, imageHeight);
     }
 
