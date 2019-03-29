@@ -3,80 +3,90 @@ package atariCore;
 
 import java.awt.*;
 
-public class BaseObject {
+abstract public class BaseObject {
 
-    protected int xPostion, yPostion;
-    protected int imageWidth, imageHight;
-    protected int yVelocity, xVelocity;
-    protected Image image;
+    protected int x, y;
+    protected int imageWidth, imageHeight;
+    protected int velY, velX;
+    protected Image img;
 
-    public BaseObject(int xPostion , int yPostion , Image image )
+
+    public BaseObject(int x , int y , Image img )
     {
-        this.xPostion = xPostion;
-        this.yPostion = yPostion;
-        this.image = image;
-        this.imageHight = image.getHeight(null);
-        this.imageWidth = image.getWidth(null);
-        this.xVelocity = 0;
-        this.yVelocity = 0;
+        this.x = x;
+        this.y = y;
+        this.img = img;
+        this.imageHeight = img.getHeight(null);
+        this.imageWidth = img.getWidth(null);
+        this.velX = 0;
+        this.velY = 0;
 
     }
-    public  BaseObject(int xPostion , int yPostion , Image image , int xVelocity , int yVelocity)
+    public  BaseObject(int x , int y , Image img , int velX , int velY)
     {
-        this(xPostion,yPostion,image);
-        this.xVelocity = xVelocity;
-        this.yVelocity = yVelocity;
+        this(x,y,img);
+        this.velX = velX;
+        this.velY = velY;
     }
-    protected void setxPostion(int xPostion)
-    {
-        this.xPostion = xPostion;
+
+    public int getX() {
+        return x;
     }
-    protected void setyPostion(int yPostion)
-    {
-        this.yPostion = yPostion;
+
+    public int getY() {
+        return y;
     }
-    protected void setxVelocity(int xVelocity)
-    {
-        this.xVelocity = xVelocity;
+
+    public int getVelY() {
+        return velY;
     }
-    protected void setyVelocity(int yVelocity)
-    {
-        this.yVelocity = yVelocity;
+
+    public int getVelX() {
+        return velX;
     }
-    protected int getxPostion()
-    {
-        return xPostion;
+
+    public Image getImg() {
+        return img;
     }
-    protected int getyPostion()
-    {
-        return yPostion;
+
+    public void setX(int x) {
+        this.x = x;
     }
-    protected int getxVelocity()
-    {
-        return xVelocity;
+
+    public void setY(int y) {
+        this.y = y;
     }
-    protected int getyVelocity()
-    {
-        return yVelocity;
-    }
-    protected int getImageWidth()
-    {
+
+    public int getImageWidth() {
         return imageWidth;
     }
-    protected int getImageHight()
-    {
-        return imageHight;
+
+    public int getImageHeight() {
+        return imageHeight;
+    }
+
+    public void setImageWidth(int imageWidth) {
+        this.imageWidth = imageWidth;
+    }
+
+    public void setImageHeight(int imageHight) {
+        this.imageHeight = imageHight;
+    }
+
+    public void setVelY(int velY) {
+        this.velY = velY;
+    }
+
+    public void setVelX(int velX) {
+        this.velX = velX;
     }
 
     protected Rectangle getRectangle()
     {
-        return new Rectangle(xPostion,yPostion,imageWidth,imageHight);
+        return new Rectangle(x,y,imageWidth,imageHeight);
     }
 
-    protected void move()
-    {
-        xPostion+=xVelocity;
-        yPostion+=yVelocity;
-    }
+    public abstract void tick();
+    public abstract void render(Graphics g);
 
 }
