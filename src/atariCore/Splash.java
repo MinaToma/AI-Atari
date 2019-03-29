@@ -7,15 +7,8 @@ import java.awt.event.ActionListener;
 
 public class Splash {
 
-    /*
-    * jframe
-    * butttons
-    * game object, title
-    */
-
     protected JFrame frame;
     protected Panel panel;
-    protected int width = 640 , height = width / 9 * 12;
     protected Dimension btnDim = new Dimension(100 , 100);
     protected int xStart = 100 , yStart = 100 , bOffset = 150;
 
@@ -26,11 +19,11 @@ public class Splash {
         frame = new JFrame(title);
         panel = new Panel();
         panel.setLayout(null);
-        panel.setSize(width , height);
+        panel.setSize(Helper.screenWidth , Helper.screenHeight);
 
-        frame.setPreferredSize(new Dimension(width , height));
-        frame.setMaximumSize(new Dimension(width , height));
-        frame.setMinimumSize(new Dimension(width , height));
+        frame.setPreferredSize(new Dimension(Helper.screenWidth , Helper.screenHeight));
+        frame.setMaximumSize(new Dimension(Helper.screenWidth , Helper.screenHeight));
+        frame.setMinimumSize(new Dimension(Helper.screenWidth , Helper.screenHeight));
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);

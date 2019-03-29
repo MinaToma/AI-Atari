@@ -28,12 +28,10 @@ public class Ball extends BaseObject {
 		y += velY;
 		x += velX;
 
-	if(common.getHEIGTH()-imageHeight<=y || y<=0)
-	{
+	if(Common.WIDTH - imageHeight <= y || y <= 0) {
 		velY*=-1;
 	}
-	if(common.getWIDTH()-imageWidth<=x || x<=0)
-	{
+	if(common.HEIGTH - imageWidth <= x || x <= 0) {
 		velX*=-1;
 	}
 

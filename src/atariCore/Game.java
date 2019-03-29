@@ -1,23 +1,24 @@
 package atariCore;
 
-import arkanoid.board.Paddle;
-
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.awt.image.BufferStrategy;
+import java.security.Key;
 
 public class Game extends Canvas implements Runnable  {
 
     Thread thread;
     protected Handler handler;
     protected boolean running = false;
-    protected static final int WIDTH = 640 , HEIGHT = WIDTH / 12 * 9;
 
-    public Game(String title) {
-
-        new Window(WIDTH, HEIGHT, title, this);
-
+    public Game(String title , KeyInput keyInput) {
         handler = new Handler();
-     }
+        keyInput.setHandler(handler);
+        this.addKeyListener(keyInput);
+
+        new Window(Helper.screenWidth , Helper.screenHeight, title, this);
+    }
 
     protected synchronized void start() {
 
@@ -91,7 +92,7 @@ public class Game extends Canvas implements Runnable  {
         Graphics g = bs.getDrawGraphics();
 
         g.setColor(Color.BLACK);
-        g.fillRect(0 , 0 , WIDTH , HEIGHT);
+        g.fillRect(0 , 0 , Helper.screenWidth , Helper.screenHeight);
 
         handler.render(g);
 
@@ -100,6 +101,6 @@ public class Game extends Canvas implements Runnable  {
     }
 
     public static void main(String []args) {
-        new Game("HI");
+       // new Game("HI");
     }
 }

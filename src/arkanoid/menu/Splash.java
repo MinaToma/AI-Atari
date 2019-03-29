@@ -3,6 +3,7 @@ package arkanoid.menu;
 import arkanoid.Arkanoid;
 
 import javax.swing.*;
+import java.awt.event.WindowEvent;
 
 public class Splash extends atariCore.Splash {
 

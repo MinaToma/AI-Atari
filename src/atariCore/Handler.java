@@ -30,4 +30,8 @@ public class Handler {
 
         this.object.remove(object);
     }
+
+    public ArrayList<BaseObject> getObject() {
+        return object;
+    }
 }
