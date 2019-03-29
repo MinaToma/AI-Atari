@@ -1,5 +1,7 @@
 package atariCore;
 
+import arkanoid.board.Paddle;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
@@ -15,7 +17,7 @@ public class Game extends Canvas implements Runnable  {
         new Window(WIDTH, HEIGHT, title, this);
 
         handler = new Handler();
-    }
+     }
 
     protected synchronized void start() {
 
@@ -47,7 +49,7 @@ public class Game extends Canvas implements Runnable  {
         while(running) {
 
             long now = System.nanoTime();
-            delta = (now - lastTime) / ns;
+            delta += (now - lastTime) / ns;
             lastTime = now;
 
             while (delta >= 1) {
@@ -62,8 +64,9 @@ public class Game extends Canvas implements Runnable  {
             frames++;
 
             if(System.currentTimeMillis() - timer > 1000) {
+
                 timer += 1000;
-                System.out.println("FPS + frames");
+                System.out.println("FPS " + frames);
                 frames = 0;
             }
         }
@@ -87,8 +90,8 @@ public class Game extends Canvas implements Runnable  {
 
         Graphics g = bs.getDrawGraphics();
 
-      //  g.setColor(Color.green);
-       // g.fillRect(0 , 0 , WIDTH , HEIGHT);
+        g.setColor(Color.BLACK);
+        g.fillRect(0 , 0 , WIDTH , HEIGHT);
 
         handler.render(g);
 

@@ -6,6 +6,7 @@ public class Settings {
 
     protected boolean music, sounds;
 
+    public JFrame frame;
     JButton musicButton, soundButton, controlsButton;
     int musicVolume, soundVolume;
 
@@ -30,8 +31,9 @@ public class Settings {
         controlsButton.setText("Controls");
     }
 
-    public Settings()
+    public Settings(JFrame frame)
     {
+        this.frame = frame;
         music = true;
         sounds = true;
         musicVolume = 100;
@@ -46,13 +48,3 @@ public class Settings {
         this.soundVolume = soundVolume;
     }
 }
-
-
-/*
-
-*
-*
-*
-*
-
-*/

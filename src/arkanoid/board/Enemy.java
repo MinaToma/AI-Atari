@@ -21,8 +21,8 @@ public class Enemy extends BaseObject {
 
     public void render(Graphics g){
         g.drawImage(super.img, super.x ,super.y, null);
-
     }
+
     public void tick() {
         super.x += super.velX;
         super.y += super.velY;
