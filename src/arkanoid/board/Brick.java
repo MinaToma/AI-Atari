@@ -19,7 +19,9 @@ public class Brick extends BaseObject {
 
 
     }
-
+    public void hit(){
+        power -= 1 ;
+    }
     public void tick(){
         super.y += super.velY;
     }
