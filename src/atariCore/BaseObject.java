@@ -6,25 +6,24 @@ import java.awt.*;
 abstract public class BaseObject {
 
     protected int x, y;
-    protected int imageWidth, imageHeight;
-    protected int velY, velX;
     protected Image img;
+    protected int velY, velX;
+    protected int imageWidth, imageHeight;
 
+    public BaseObject(int x, int y, Image img) {
 
-    public BaseObject(int x , int y , Image img )
-    {
         this.x = x;
         this.y = y;
+        this.velX = 0;
+        this.velY = 0;
         this.img = img;
         this.imageHeight = img.getHeight(null);
         this.imageWidth = img.getWidth(null);
-        this.velX = 0;
-        this.velY = 0;
 
     }
-    public  BaseObject(int x , int y , Image img , int velX , int velY)
-    {
-        this(x,y,img);
+
+    public BaseObject(int x, int y, Image img, int velX, int velY) {
+        this(x, y, img);
         this.velX = velX;
         this.velY = velY;
     }
@@ -81,12 +80,12 @@ abstract public class BaseObject {
         this.velX = velX;
     }
 
-    protected Rectangle getRectangle()
-    {
-        return new Rectangle(x,y,imageWidth,imageHeight);
+    protected Rectangle getRectangle() {
+        return new Rectangle(x, y, imageWidth, imageHeight);
     }
 
     public abstract void tick();
+
     public abstract void render(Graphics g);
 
 }
