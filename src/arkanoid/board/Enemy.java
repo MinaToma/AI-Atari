@@ -23,8 +23,8 @@ public class Enemy extends BaseObject  implements Common {
 
         if (super.y <= 0 || super.y >= HEIGTH - super.imageHeight)
             super.velY *= -1;
-        if (super.x <= 0 || super.x >= HEIGTH - super.imageHeight)
-            super.velY *= -1;
+        if (super.x <= 0 || super.x >= WIDTH - super.imageHeight)
+            super.velX *= -1;
     }
 
     public void setPower(int power) {
