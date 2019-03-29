@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Handler {
 
     protected ArrayList<BaseObject> object = new ArrayList<>();
-
     public void tick() {
 
         for(BaseObject o : object) {
@@ -21,6 +20,7 @@ public class Handler {
 
             o.render(g);
         }
+
     }
 
     public void addObject(BaseObject object) {
