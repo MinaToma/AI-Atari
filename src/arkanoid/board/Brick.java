@@ -6,12 +6,12 @@ import atariCore.BaseObject;
 import java.awt.*;
 
 public class Brick extends BaseObject {
-    private boolean destroyed ;
-    private String color ;
-    private int power ;
 
+    private boolean destroyed;
+    private String color;
+    private int power;
 
-    public Brick(int xPostion,int yPostion,Image image, String color ){
+    public Brick(int xPostion,int yPostion,Image image, String color) {
         super(xPostion, yPostion, image);
         this.destroyed = false ;
         this.color = color;
@@ -37,8 +37,5 @@ public class Brick extends BaseObject {
     public void setDestroyed(boolean destroyed) {
         this.destroyed = destroyed;
     }
-
-
-
 
 }

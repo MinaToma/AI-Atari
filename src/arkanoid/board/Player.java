@@ -6,7 +6,7 @@ public class Player {
     private int score ;
     private String name ;
 
-    public Player(String Name ){
+    public Player(String Name){
         this.name = Name ;
         score = 0 ;
     }
@@ -21,6 +21,4 @@ public class Player {
     public void render(Graphics g){
         g.drawString(name,10 , 10);
     }
-
-
 }

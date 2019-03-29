@@ -17,9 +17,10 @@ abstract public class BaseObject {
         this.velX = 0;
         this.velY = 0;
         this.img = img;
-        this.imageHeight = img.getHeight(null);
-        this.imageWidth = img.getWidth(null);
 
+
+        // this.imageHeight = img.getHeight(null);
+        //this.imageWidth = img.getWidth();
     }
 
     public BaseObject(int x, int y, Image img, int velX, int velY) {

@@ -9,28 +9,24 @@ import java.awt.event.KeyEvent;
 
 public class Paddle extends BaseObject implements Common {
 
-
     public Paddle(int xPostion , int yPostion , Image image, int velX, int velY){
         super(xPostion,yPostion,image, velX ,0);
-
-
     }
 
-    public void tick(){
-        super.x += super.velX ;
+    public void tick() {
+        x += velX ;
 
-        if(super.x<=0)
+       /* if(super.x<=0)
             x= 0 ;
         if(super.x >= WIDTH - imageWidth )
-            x = WIDTH - imageWidth;
+            x = WIDTH - imageWidth;*/
     }
 
     public void render(Graphics g){
-        g.drawImage(super.img, super.x ,super.y, null);
-
+        g.setColor(Color.green);
+        g.fillRect(x , y , 50 , 50);
+        //g.drawImage(super.img, super.x ,super.y, null);
     }
-
-
 
     public void keyPressed(KeyEvent e) {
 
@@ -45,7 +41,6 @@ public class Paddle extends BaseObject implements Common {
         }
     }
 
-
     public void keyReleased(KeyEvent e) {
 
         int key = e.getKeyCode();
@@ -58,9 +53,6 @@ public class Paddle extends BaseObject implements Common {
             super.velX = 0;
         }
     }
-
-
-
 }
 
 

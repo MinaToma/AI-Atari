@@ -20,7 +20,6 @@ public class Handler {
 
             o.render(g);
         }
-
     }
 
     public void addObject(BaseObject object) {

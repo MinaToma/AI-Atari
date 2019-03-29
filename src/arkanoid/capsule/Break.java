@@ -18,12 +18,11 @@ public class Break extends Capsule {
 
 	@Override
 	public void tick() {
-	y+=4;	
+		y+=4;
 	}
 
 	@Override
 	public void render(Graphics g) {
-	//
+		//
 	}
-
 }
