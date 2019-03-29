@@ -1,12 +1,13 @@
 
 
 package arkanoid.board;
+import arkanoid.Common;
 import atariCore.BaseObject;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Paddle extends BaseObject{
+public class Paddle extends BaseObject implements Common {
 
 
     public Paddle(int xPostion , int yPostion , Image image, int velX, int velY){
@@ -20,8 +21,8 @@ public class Paddle extends BaseObject{
 
         if(super.x<=0)
             x= 0 ;
-//        if(super.x >= " " - super.imageWidth )
-//            x = " " - super.imageWidth  ;
+        if(super.x >= WIDTH - imageWidth )
+            x = WIDTH - imageWidth;
     }
 
     public void render(Graphics g){
