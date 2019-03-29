@@ -18,7 +18,6 @@ abstract public class BaseObject {
         this.velY = 0;
         this.img = img;
 
-
         // this.imageHeight = img.getHeight(null);
         //this.imageWidth = img.getWidth();
     }
@@ -88,5 +87,4 @@ abstract public class BaseObject {
     public abstract void tick();
 
     public abstract void render(Graphics g);
-
 }

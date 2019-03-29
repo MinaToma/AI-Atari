@@ -2,22 +2,22 @@ package atariCore;
 
 import java.awt.*;
 
-public class Score{
+public class Score {
 
-   private int score;
-   private int x, y ;
+    private int score;
+    private int x, y;
 
-   public Score(int score , int x , int y)
-   {
-       this.score = score;
-       this.x = x;
-       this.y = y;
+    public Score(int score, int x, int y) {
+        this.score = score;
+        this.x = x;
+        this.y = y;
 
-   }
+    }
 
     public void setX(int x) {
         this.x = x;
     }
+
     public void setY(int y) {
         this.y = y;
     }
@@ -38,10 +38,7 @@ public class Score{
         return y;
     }
 
-    public void drawScore(Graphics g)
-   {
-       g.drawString("Score : "+score , x ,y);
-   }
-
-
+    public void drawScore(Graphics g) {
+        g.drawString("Score : " + score, x, y);
+    }
 }

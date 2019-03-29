@@ -2,105 +2,44 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.image.BufferStrategy;
-import java.security.Key;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.TimerTask;
+import java.util.Timer;
 
-public class Game extends Canvas implements Runnable  {
+abstract public class Game extends JPanel implements KeyListener {
 
-    Thread thread;
     protected Handler handler;
-    protected boolean running = false;
+    protected Timer timer;
 
-    public Game(String title , KeyInput keyInput) {
+    public Game(String title) {
+
         handler = new Handler();
-        keyInput.setHandler(handler);
-        this.addKeyListener(keyInput);
+        addKeyListener(this);
+        setFocusable(true);
 
-        new Window(Helper.screenWidth , Helper.screenHeight, title, this);
-    }
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                handler.tick();
+                revalidate();
+                repaint();
+            }
+        }, Helper.DELAY, Helper.PERIOD);
 
-    protected synchronized void start() {
-
-        thread = new Thread(this);
-        thread.start();
-        running = true;
-    }
-
-    protected synchronized void stop() {
-
-        try {
-            thread.join();
-            running = false;
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+        new Window(Helper.screenWidth, Helper.screenHeight, title, this);
     }
 
     @Override
-    public void run() {
+    abstract public void keyPressed(KeyEvent keyEvent);
 
-        long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
-        double ns = 1e9 / amountOfTicks;
-        double delta = 0;
-        long timer = System.currentTimeMillis();
-        int frames = 0;
+    @Override
+    abstract public void keyReleased(KeyEvent keyEvent);
 
-        while(running) {
-
-            long now = System.nanoTime();
-            delta += (now - lastTime) / ns;
-            lastTime = now;
-
-            while (delta >= 1) {
-
-                tick();
-                delta--;
-            }
-
-            if(running)
-                render();
-
-            frames++;
-
-            if(System.currentTimeMillis() - timer > 1000) {
-
-                timer += 1000;
-                System.out.println("FPS " + frames);
-                frames = 0;
-            }
-        }
-
-        stop();
-    }
-
-    protected void tick() {
-        handler.tick();
-    }
-
-    protected void render() {
-
-        BufferStrategy bs = this.getBufferStrategy();
-
-        if(bs == null) {
-
-            this.createBufferStrategy(3);
-            return;
-        }
-
-        Graphics g = bs.getDrawGraphics();
-
-        g.setColor(Color.BLACK);
-        g.fillRect(0 , 0 , Helper.screenWidth , Helper.screenHeight);
-
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         handler.render(g);
-
-        g.dispose();
-        bs.show();
-    }
-
-    public static void main(String []args) {
-       // new Game("HI");
     }
 }

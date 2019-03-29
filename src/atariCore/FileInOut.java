@@ -1,13 +1,12 @@
 package atariCore;
 
 import java.io.*;
+
 public class FileInOut {
 
-    public String getLeaderboardData(String path) throws IOException
-    {
+    public String getLeaderboardData(String path) throws IOException {
         String Data = new String();
         FileReader in = null;
-
 
         try {
             in = new FileReader(path);
@@ -15,9 +14,9 @@ public class FileInOut {
 
             int c;
             while ((c = in.read()) != -1) {
-                Data+=((char)c);
+                Data += ((char) c);
             }
-        }finally {
+        } finally {
             if (in != null) {
                 in.close();
             }
@@ -25,28 +24,21 @@ public class FileInOut {
         }
         return Data;
     }
-    public void addNewScoreToLeadboard(String path , String playerName , String Score)throws IOException
-    {
+
+    public void addNewScoreToLeadboard(String path, String playerName, String Score) throws IOException {
         FileWriter out = null;
 
         try {
 
             out = new FileWriter(path);
-            out.write(playerName+"$"+Score+"@");
+            out.write(playerName + "$" + Score + "@");
 
 
-        }
-        finally {
+        } finally {
 
             if (out != null) {
                 out.close();
             }
         }
     }
-
-
-
-
-
-
 }

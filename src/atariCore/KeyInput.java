@@ -16,5 +16,6 @@ abstract public class KeyInput extends KeyAdapter {
     }
 
     public abstract void keyPressed(KeyEvent e);
+
     public abstract void keyReleased(KeyEvent e);
 }

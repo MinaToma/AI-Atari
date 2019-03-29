@@ -16,7 +16,7 @@ public class Splash extends atariCore.Splash {
         });
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         new Splash();
     }
 }

@@ -2,13 +2,11 @@
 
 package arkanoid.board;
 
-import arkanoid.Common;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Paddle extends BaseObject {
@@ -16,21 +14,20 @@ public class Paddle extends BaseObject {
     public Handler handler;
 
 
-    public Paddle(int xPostion, int yPostion, Image image, int velX, int velY , Handler handler) {
-        super(xPostion, yPostion, image, velX, 0);
+    public Paddle(int xPosition, int yPosition, Image image, int velX, int velY, Handler handler) {
+        super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
     }
 
     public void tick() {
-        super.x += super.velX;
+        x += velX;
 
-        if (super.x <= 0)
+       /* if (x <= 0)
             x = 0;
-        if (super.x >= Common.WIDTH - imageWidth)
+        if (x >= Common.WIDTH - imageWidth)
             x = Common.WIDTH - imageWidth;
-
+        */
         collision();
-
     }
 
     private void collision() {
@@ -50,9 +47,8 @@ public class Paddle extends BaseObject {
                     baseObject.setVelY(baseObject.getVelY() * -1);
                 }
             }
-
-
         }
+
         for (BaseObject bas : object) {
             handler.object.remove(bas);
         }
@@ -62,14 +58,6 @@ public class Paddle extends BaseObject {
         g.setColor(Color.green);
         g.fillRect(x, y, 50, 50);
         //g.drawImage(super.img, super.x ,super.y, null);
-    }
-
-    public void moveRight() {
-        x += 5;
-    }
-
-    public void moveLeft() {
-        x -= 5;
     }
 }
 

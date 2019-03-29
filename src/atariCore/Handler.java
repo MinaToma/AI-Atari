@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Handler {
 
     public ArrayList<BaseObject> object = new ArrayList<>();
+
     public void tick() {
 
-        for(BaseObject o : object) {
+        for (BaseObject o : object) {
 
             o.tick();
         }
@@ -16,7 +17,7 @@ public class Handler {
 
     public void render(Graphics g) {
 
-        for(BaseObject o : object) {
+        for (BaseObject o : object) {
 
             o.render(g);
         }
