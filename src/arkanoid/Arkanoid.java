@@ -44,6 +44,8 @@ public class Arkanoid extends atariCore.Game {
 
         Paddle p = new Paddle(Helper.screenWidth / 3, Helper.screenHeight / 3, null, 0, 0, handler);
         handler.addObject(p);
+        p = new Paddle(Helper.screenWidth / 3, Helper.screenHeight / 2, null, 0, 0, handler);
+        handler.addObject(p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {
