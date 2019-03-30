@@ -5,6 +5,7 @@ package arkanoid.board;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
+import atariCore.Helper;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ public class Paddle extends BaseObject {
     public void tick() {
         x += velX;
 
-       /* if (x <= 0)
+        if (x <= 0)
             x = 0;
-        if (x >= Common.WIDTH - imageWidth)
-            x = Common.WIDTH - imageWidth;
-        */
+        if (x >= Helper.WIDTH - imageWidth)
+            x = Helper.WIDTH - imageWidth;
+
         collision();
     }
 
