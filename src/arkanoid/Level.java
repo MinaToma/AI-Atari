@@ -21,6 +21,7 @@ public class Level {
         this.paddle = paddle;
         this.ball = ball;
         this.handler = handler;
+        handler.addObject(paddle);
     }
 
     public Level(boolean[] dim, Player player, int numOfBricks, Paddle paddle,  Ball ball,Handler handler,Enemy enemy) {

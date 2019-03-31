@@ -2,6 +2,8 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class Helper {
 
@@ -27,4 +29,14 @@ public class Helper {
         return btn;
     }
 
+    public Image getImage(String filename)
+    {
+        ImageIcon ii = new ImageIcon(filename);
+
+        Image image = ii.getImage();
+        int width = image.getWidth(null)/5;
+        int height = image.getHeight(null)/5;
+
+        return image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+    }
 }

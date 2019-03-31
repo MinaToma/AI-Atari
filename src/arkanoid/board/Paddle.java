@@ -19,7 +19,7 @@ public class Paddle extends BaseObject {
     public Paddle(int xPosition, int yPosition, Image image, int velX, int velY, Handler handler) {
         super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
-        loadImage();
+       // loadImage();
     }
 
     public void tick() {

@@ -17,6 +17,7 @@ public class Arkanoid extends atariCore.Game {
         super("Arkanoid");
 
         //  setBall();
+        new arkHelper();
         setEnemy();
         setPlayer();
         setPaddle();
@@ -39,7 +40,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         boolean[] dim = new boolean[5];
-        Level l = new Level(dim, new Player("ahmed", 2), 30, new Paddle(0, 0, null, 0, 0, handler), new Ball(0, 0, null, 0, 0, handler), handler);
+        Level l = new Level(dim, new Player("ahmed", 2), 30, new Paddle(0, 0, arkHelper.paddle[0], 0, 0, handler), new Ball(0, 0, null, 0, 0, handler), handler);
         l.loadBricks();
     }
 
