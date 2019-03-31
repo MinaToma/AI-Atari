@@ -64,6 +64,7 @@ public class Paddle extends BaseObject {
         setImageHeight(img.getHeight(null));
         setImageWidth(img.getWidth(null));
     }
+
     public void render(Graphics g) {
         //g.setColor(Color.green);
         //g.fillRect(x, y, 50, 50);
