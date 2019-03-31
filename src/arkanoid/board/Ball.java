@@ -4,6 +4,7 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 import atariCore.Helper;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class Ball extends BaseObject {
     public Ball(int xPostion, int yPostion, Image image, int xVelocity, int yVelocity, Handler handler) {
         super(xPostion, yPostion, image, xVelocity, yVelocity);
         this.handler = handler;
+        loadImage();
     }
 
     public void move() {
@@ -57,6 +59,14 @@ public class Ball extends BaseObject {
         for (BaseObject bas : object) {
             handler.object.remove(bas);
         }
+    }
+    private void loadImage() {
+
+        ImageIcon ii = new ImageIcon("src/Resources/image/58-Breakout-Tiles.png");
+        this.img = ii.getImage();
+        this.img = this.img.getScaledInstance(img.getWidth(null)/5, img.getHeight(null)/5,  Image.SCALE_DEFAULT);
+        setImageHeight(img.getHeight(null));
+        setImageWidth(img.getWidth(null));
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Splash {
     public Splash(String title) {
 
         frame = new JFrame(title);
-        panel = new Panel();
+        panel = new Panel(new GridLayout(0, 1));
         panel.setLayout(null);
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 

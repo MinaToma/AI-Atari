@@ -18,8 +18,8 @@ abstract public class BaseObject {
         this.velY = 0;
         this.img = img;
 
-        // this.imageHeight = img.getHeight(null);
-        //this.imageWidth = img.getWidth();
+        this.imageHeight = 0;
+        this.imageWidth = 0;
     }
 
     public BaseObject(int x, int y, Image img, int velX, int velY) {
@@ -48,6 +48,10 @@ abstract public class BaseObject {
         return img;
     }
 
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -68,8 +72,8 @@ abstract public class BaseObject {
         this.imageWidth = imageWidth;
     }
 
-    public void setImageHeight(int imageHight) {
-        this.imageHeight = imageHight;
+    public void setImageHeight(int imageHeight) {
+        this.imageHeight = imageHeight;
     }
 
     public void setVelY(int velY) {
