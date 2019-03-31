@@ -64,6 +64,10 @@ abstract public class BaseObject {
         return imageWidth;
     }
 
+    public void setImg(Image img) {
+        this.img = img;
+    }
+
     public int getImageHeight() {
         return imageHeight;
     }
