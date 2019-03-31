@@ -17,7 +17,7 @@ public class Helper {
     public static final int INIT_BALL_X = 230;
     public static final int INIT_BALL_Y = 355;
     public static final int DELAY = 1000;
-    public static final int PERIOD = 10;
+    public static final int PERIOD = 5;
 
     public static JButton btnHelper(JButton btn, String txt, int x, int y, Dimension dim, Panel panel) {
         btn = new JButton(txt);
@@ -29,14 +29,12 @@ public class Helper {
         return btn;
     }
 
-    public Image getImage(String filename)
-    {
-        ImageIcon ii = new ImageIcon(filename);
+    public Image getImage(String filename) {
 
-        Image image = ii.getImage();
-        int width = image.getWidth(null)/5;
-        int height = image.getHeight(null)/5;
+        ImageIcon icon = new ImageIcon(filename);
+        Image image = icon.getImage();
 
-        return image.getScaledInstance(width, height, Image.SCALE_DEFAULT);
+        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 5,
+                image.getHeight(null) / 5, Image.SCALE_SMOOTH))).getImage();
     }
 }

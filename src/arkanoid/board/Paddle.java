@@ -11,63 +11,89 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static arkanoid.arkHelper.*;
+
 public class Paddle extends BaseObject {
 
     public Handler handler;
 
-
     public Paddle(int xPosition, int yPosition, Image image, int velX, int velY, Handler handler) {
+
         super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
-       // loadImage();
     }
 
     public void tick() {
         x += velX;
 
-        if (x <= 0)
-            x = 0;
-        if (x >= Helper.WIDTH - imageWidth)
-            x = Helper.WIDTH - imageWidth;
-
         collision();
+        clamp();
     }
 
     private void collision() {
 
         ArrayList<BaseObject> object = new ArrayList<>();
 
-        for (int i = 0; i < handler.object.size(); i++) {
-            BaseObject baseObject = handler.object.get(i);
-            if (baseObject instanceof Capsule) {
-                if (baseObject.getRectangle().intersects(super.getRectangle())) {
+        for (BaseObject o : handler.getObject()) {
+            if (o instanceof Capsule) {
+                if (o.getRectangle().intersects(getRectangle())) {
                     // han3ml 7aga hena
-                    object.add(baseObject);
+
                 }
             }
-            if (baseObject instanceof Ball) {
-                if (baseObject.getRectangle().intersects(super.getRectangle())) {
-                    baseObject.setVelY(baseObject.getVelY() * -1);
+
+            if (o instanceof Ball) {
+                if (o.getRectangle().intersects(getRectangle())) {
+
+                    int paddleLPos = (int) getRectangle().getMinX();
+                    int ballLPos = (int) o.getRectangle().getMinX();
+
+                    int first = paddleLPos + 8;
+                    int second = paddleLPos + 16;
+                    int third = paddleLPos + 24;
+                    int fourth = paddleLPos + 32;
+
+                    if (ballLPos < first) {
+
+                        o.setVelX(-xSpeed);
+                        o.setVelY(-ySpeed);
+                    }
+
+                    if (ballLPos >= first && ballLPos < second) {
+
+                        o.setVelX(-xSpeed);
+                        o.setVelY(-1 * o.getVelY());
+                    }
+
+                    if (ballLPos >= second && ballLPos < third) {
+
+                        o.setVelX(0);
+                        o.setVelY(-ySpeed);
+                    }
+
+                    if (ballLPos >= third && ballLPos < fourth) {
+
+                        o.setVelX(xSpeed);
+                        o.setVelY(-1 * o.getVelY());
+                    }
+
+                    if (ballLPos > fourth) {
+
+                        o.setVelX(xSpeed);
+                        o.setVelY(-ySpeed);
+                    }
                 }
             }
+
+            object.add(o);
         }
 
-        for (BaseObject bas : object) {
-            handler.object.remove(bas);
-        }
-    }
-    private void loadImage() {
-
-        ImageIcon ii = new ImageIcon("src/Resources/image/49-Breakout-Tiles.png");
-        this.img = ii.getImage();
-        this.img = this.img.getScaledInstance(img.getWidth(null)/5, img.getHeight(null)/5,  Image.SCALE_DEFAULT);
-        setImageHeight(img.getHeight(null));
-        setImageWidth(img.getWidth(null));
+        handler.object = object;
     }
 
     public void render(Graphics g) {
 
-        g.drawImage(super.img, super.x ,super.y,null);
+        g.drawImage(super.img, super.x, super.y, null);
     }
 }
 

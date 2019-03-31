@@ -11,6 +11,7 @@ public class Leaderboards {
     public String data;
 
     public Leaderboards(String path) throws IOException {
+
         FileInOut file = new FileInOut();
         data = file.getLeaderboardData(path);
         String[] rec = data.split("@");

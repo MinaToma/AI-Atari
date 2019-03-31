@@ -17,7 +17,7 @@ public class Brick extends BaseObject {
         this.destroyed = false;
         this.color = color;
         this.power = power;
-        loadImage();
+        //loadImage();
         power = 10;// we can change it
 
 
@@ -33,18 +33,20 @@ public class Brick extends BaseObject {
 
     public void render(Graphics g) {
 
-        if (power > 0)
+     //   if (power > 0)
             g.drawImage( this.img, this.x, this.y, null );
 
     }
     private void loadImage() {
 
         ImageIcon ii = new ImageIcon("src/Resources/image/11-Breakout-Tiles.png");
-        this.setImg( ii.getImage());
-        setImageWidth(img.getWidth(null)/5);
-        setImageHeight(img.getHeight(null)/5);
 
-        this.setImg( this.img.getScaledInstance(getImageWidth(), getImageHeight(),  Image.SCALE_DEFAULT));
+        Image i = ii.getImage();
+
+        Image n = (new ImageIcon(i.getScaledInstance(i.getWidth(null) / 5 , i.getHeight(null) / 5 , Image.SCALE_SMOOTH))).getImage();
+        img = n;
+
+        System.out.println(img.getWidth(null) + " " + img.getHeight(null));
 
     }
 

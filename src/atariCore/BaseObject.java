@@ -18,8 +18,8 @@ abstract public class BaseObject {
         this.velY = 0;
         this.img = img;
 
-        this.imageHeight = 0;
-        this.imageWidth = 0;
+        this.imageHeight = img.getHeight(null);
+        this.imageWidth = img.getWidth(null);
     }
 
     public BaseObject(int x, int y, Image img, int velX, int velY) {
@@ -49,7 +49,14 @@ abstract public class BaseObject {
         return img;
     }
 
+    public void clamp() {
 
+        x = Math.min(x , Helper.screenWidth - imageWidth);
+        x = Math.max(x , 0);
+
+        y = Math.min(y , Helper.screenHeight - imageHeight);
+        y = Math.max(y , 0);
+    }
 
     public void setX(int x) {
         this.x = x;

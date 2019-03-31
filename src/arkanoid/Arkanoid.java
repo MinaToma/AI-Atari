@@ -1,33 +1,40 @@
 package arkanoid;
 
 import arkanoid.board.Ball;
-import arkanoid.board.Brick;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.Helper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
+import static arkanoid.arkHelper.xSpeed;
+import static arkanoid.arkHelper.ySpeed;
+
 public class Arkanoid extends atariCore.Game {
+
+    Paddle p;
+    Ball b;
 
     public Arkanoid() {
 
         super("Arkanoid");
-
-        //  setBall();
         new arkHelper();
-        setEnemy();
-        setPlayer();
+
+        setBall();
+        //setEnemy();
+        //setPlayer();
         setPaddle();
         setBricks();
     }
 
     private void setBall() {
 
-        //    Ball ball = new Ball();
-        //    handler.addObject(ball);
+        b = new Ball(Helper.screenWidth * 45 / 100 , Helper.screenHeight * 82 / 100 , arkHelper.ball , xSpeed , -ySpeed , handler);
+
+        handler.addObject(b);
     }
 
     private void setPlayer() {
@@ -40,17 +47,18 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         boolean[] dim = new boolean[5];
-        Level l = new Level(dim, new Player("ahmed", 2), 30, new Paddle(0, 0, arkHelper.paddle[0], 0, 0, handler), new Ball(0, 0, null, 0, 0, handler), handler);
+        Level l = new Level(dim, new Player("ahmed", 2), 30, p , b , handler);
         l.loadBricks();
     }
 
     private void setPaddle() {
+         ImageIcon ii = new ImageIcon("src/Resources/image/49-Breakout-Tiles.png");
+         Image i = ii.getImage();
 
-        // Paddle p = new Paddle(Helper.screenWidth / 3, Helper.screenHeight / 3, null, 0, 0, handler);
-        // handler.addObject(p);
-        //Brick brick = new Brick(0,0,null,"red",1);
-        //handler.addObject(brick);
+         Image n = (new ImageIcon(i.getScaledInstance(i.getWidth(null) / 5 , i.getHeight(null) / 5 , Image.SCALE_SMOOTH))).getImage();
 
+        p = new Paddle(Helper.screenWidth * 45 / 100 , Helper.screenHeight * 85 / 100 , n , 0, 0, handler);
+         handler.addObject(p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {
@@ -67,9 +75,9 @@ public class Arkanoid extends atariCore.Game {
             if (o instanceof Paddle) {
 
                 if (key == KeyEvent.VK_LEFT) {
-                    o.setVelX(-5);
+                    o.setVelX(-2);
                 } else if (key == KeyEvent.VK_RIGHT) {
-                    o.setVelX(5);
+                    o.setVelX(2);
                 }
             }
         }

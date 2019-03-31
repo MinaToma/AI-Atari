@@ -2,10 +2,13 @@ package atariCore;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class Handler {
 
-    public ArrayList<BaseObject> object = new ArrayList<>();
+    public List<BaseObject> object = Collections.synchronizedList(new ArrayList<>());
 
     public void tick() {
 
@@ -20,6 +23,10 @@ public class Handler {
         for (BaseObject o : object) {
 
             o.render(g);
+
+           // Rectangle r = o.getRectangle();
+           // g.fillRect(r.x , r.y , r.width , r.height);
+           // g.drawRect(r.x , r.y , r.width , r.height);
         }
     }
 
@@ -32,7 +39,7 @@ public class Handler {
         this.object.remove(object);
     }
 
-    public ArrayList<BaseObject> getObject() {
+    public List<BaseObject> getObject() {
         return object;
     }
 }

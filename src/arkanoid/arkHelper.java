@@ -30,19 +30,21 @@ public class arkHelper extends Helper {
     public static Image star;
     public static Image life;
     public static Image bullet;
+    public static int xSpeed = 1;
+    public static int ySpeed = 1;
 
     String path = "src/Resources/image/";
 
     public arkHelper()
     {
+        paddle = new Image[3];
+        capsule100 = new Image[7];
+        paddleWeapon = new Image[3];
         normalBricks = new Image[10];
         brokenBricks = new Image[10];
         smallSquares = new Image[10];
-        capsule100 = new Image[7];
-        paddle = new Image[3];
-        paddleWeapon = new Image[3];
-        loadImages();
 
+        loadImages();
     }
 
     private void loadImages()
@@ -53,7 +55,6 @@ public class arkHelper extends Helper {
                 normalBricks[i/2] = getImage(path + (i < 10 ? "0" + i : i) +"-Breakout-Tiles.png");
             else
                 brokenBricks[i/2 - 1] = getImage(path + (i < 10 ? "0" + i : i) +"-Breakout-Tiles.png");
-
         }
 
         for(int i = 21; i <= 30; i++)
@@ -89,8 +90,5 @@ public class arkHelper extends Helper {
         star = getImage(path + "59-Breakout-Tiles.png");
         life = getImage(path + "60-Breakout-Tiles.png");
         bullet = getImage(path + "61-Breakout-Tiles.png");
-
     }
-
-
 }
