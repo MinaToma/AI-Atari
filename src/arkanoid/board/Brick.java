@@ -34,7 +34,7 @@ public class Brick extends BaseObject {
     public void render(Graphics g) {
 
         if (power > 0)
-            g.drawImage(this.img, this.x, this.y, null);
+            g.drawImage( this.img, this.x, this.y, null );
 
     }
     private void loadImage() {
@@ -43,13 +43,9 @@ public class Brick extends BaseObject {
         this.setImg( ii.getImage());
         setImageWidth(img.getWidth(null)/5);
         setImageHeight(img.getHeight(null)/5);
-       // System.out.println(this.img.getHeight(null));
+
         this.setImg( this.img.getScaledInstance(getImageWidth(), getImageHeight(),  Image.SCALE_DEFAULT));
 
-        //System.out.println(this.img.getHeight(null));
-        //System.out.println(getImageHeight());
-
-        //System.out.println(getImageWidth());
     }
 
     public int getPower() {

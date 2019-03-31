@@ -66,8 +66,7 @@ public class Paddle extends BaseObject {
     }
 
     public void render(Graphics g) {
-        //g.setColor(Color.green);
-        //g.fillRect(x, y, 50, 50);
+
         g.drawImage(super.img, super.x ,super.y,null);
     }
 }

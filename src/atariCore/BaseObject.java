@@ -49,9 +49,7 @@ abstract public class BaseObject {
         return img;
     }
 
-    public void setImg(Image img) {
-        this.img = img;
-    }
+
 
     public void setX(int x) {
         this.x = x;
