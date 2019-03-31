@@ -23,6 +23,7 @@ abstract public class BaseObject {
     }
 
     public BaseObject(int x, int y, Image img, int velX, int velY) {
+
         this(x, y, img);
         this.velX = velX;
         this.velY = velY;

@@ -38,14 +38,14 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setBricks() {
-        boolean [] dim = new boolean[5];
-        Level l = new Level(dim,new Player("ahmed",2),30, new Paddle(0,0,null,0,0,handler),new Ball(0,0,null,0,0,handler),handler );
+        boolean[] dim = new boolean[5];
+        Level l = new Level(dim, new Player("ahmed", 2), 30, new Paddle(0, 0, null, 0, 0, handler), new Ball(0, 0, null, 0, 0, handler), handler);
         l.loadBricks();
     }
 
     private void setPaddle() {
 
-       // Paddle p = new Paddle(Helper.screenWidth / 3, Helper.screenHeight / 3, null, 0, 0, handler);
+        // Paddle p = new Paddle(Helper.screenWidth / 3, Helper.screenHeight / 3, null, 0, 0, handler);
         // handler.addObject(p);
         //Brick brick = new Brick(0,0,null,"red",1);
         //handler.addObject(brick);

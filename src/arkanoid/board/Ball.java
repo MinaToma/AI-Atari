@@ -1,9 +1,8 @@
 package arkanoid.board;
 
+import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.Handler;
-import atariCore.Helper;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -28,10 +27,10 @@ public class Ball extends BaseObject {
         y += velY;
         x += velX;
 
-        if (Helper.WIDTH - imageHeight <= y || y <= 0) {
+        if (arkHelper.WIDTH - imageHeight <= y || y <= 0) {
             velY *= -1;
         }
-        if (Helper.HEIGTH - imageWidth <= x || x <= 0) {
+        if (arkHelper.HEIGTH - imageWidth <= x || x <= 0) {
             velX *= -1;
         }
 
