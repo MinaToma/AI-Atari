@@ -1,6 +1,8 @@
 package atariCore;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileInOut {
 
@@ -40,5 +42,66 @@ public class FileInOut {
                 out.close();
             }
         }
+    }
+    public ArrayList<ArrayList<Integer>> getLevel(String level)
+    {
+        ArrayList<ArrayList<Integer>> dim = new ArrayList<>();
+
+
+            List<String> records = new ArrayList<String>();
+            try
+            {
+                BufferedReader reader = new BufferedReader(new FileReader("src/Resources/Files/levels.txt"));
+                String line;
+                boolean ok = false;
+                while ((line = reader.readLine()) != null)
+                {
+                    //System.out.println(line);
+                    if(level.equals(line))
+                    {
+
+                        ok = true;
+                    }
+                    else if(ok && line.equals("end"))
+                    {
+                        break;
+                    }
+                    else if(ok)
+                    {
+                        //System.out.println(1);
+                        records.add(line);
+                    }
+
+                }
+                reader.close();
+
+                for(String str :records)
+                {
+                    String[] field =str.split(" ");
+                    ArrayList<Integer>di = new ArrayList<>();
+                    for(int i=0 ; i<field.length ; i++)
+                    {
+                       // System.out.println(field[i]);
+                        di.add(Integer.valueOf(field[i]));
+                    }
+                    if(field.length>1)
+                    {
+                        for(int i=field.length-1 ; i>=0 ; i--)
+                        {
+                            // System.out.println(field[i]);
+                            di.add(Integer.valueOf(field[i]));
+                        }
+                    }
+                    dim.add(di);
+                }
+            }
+            catch (Exception e)
+            {
+                System.err.format("Exception occurred trying to read '%s'.", "src/Resources/Files/levels.txt");
+                e.printStackTrace();
+                return null;
+            }
+
+        return dim;
     }
 }

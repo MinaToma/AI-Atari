@@ -4,63 +4,85 @@ import arkanoid.board.*;
 import atariCore.Handler;
 import atariCore.Helper;
 
-import javax.swing.*;
-import java.awt.*;
+import java.util.ArrayList;
 
 public class Level {
 
-   public boolean[] dim;
+   public ArrayList < ArrayList < Integer > > dimensions;
    public Player player;
    public Brick[] bricks;
    public Paddle paddle;
-   public Enemy enemy;
    public Ball ball;
    public Handler handler;
+   public Enemy enemy;
 
-    public Level(boolean[] dim, Player player, int numOfBricks, Paddle paddle, Ball ball ,Handler handler) {
-        this.dim = dim;
+
+    public Level(ArrayList<ArrayList<Integer>> dimensions,Player player, Paddle paddle, Ball ball, Handler handler) {
+        this.dimensions = dimensions;
         this.player = player;
-        this.bricks = new Brick[numOfBricks];
         this.paddle = paddle;
         this.ball = ball;
         this.handler = handler;
-        //handler.addObject(paddle);
+        this.bricks = new Brick[dimensions.get(0).get(0)];
     }
 
-    public Level(boolean[] dim, Player player, int numOfBricks, Paddle paddle,  Ball ball,Handler handler,Enemy enemy) {
-        this(dim,player,numOfBricks,paddle,ball,handler);
-        this.enemy = enemy;
-    }
-
-    public void loadBricks()
+    public void setBricks()
     {
-        int numOfBricksInWidth = 5, iniheight = Helper.screenHeight/2;
+        int initialHeight = Helper.screenHeight/2;
+        int index=0;
+        int ok=0;
 
-
-        ImageIcon ii = new ImageIcon("src/Resources/image/11-Breakout-Tiles.png");
-        Image l = ii.getImage();
-
-        Image n = (new ImageIcon(l.getScaledInstance(l.getWidth(null) / 5 , l.getHeight(null) / 5 , Image.SCALE_SMOOTH))).getImage();
-
-
-        bricks[0] = new Brick(0,iniheight,n,"red",1);
-        int number = bricks.length, bricksWidth = bricks[0].getImageWidth();
-        int iniWidth = (Helper.screenWidth-(numOfBricksInWidth*bricksWidth))/2;
-
-
-
-        bricks[0].setX(iniWidth);
-        System.out.println(bricksWidth);
-        for(int j=0 ; number>0 ; j++)
+        for(ArrayList<Integer> arrayList : dimensions)
         {
-            for(int i = 0; i < numOfBricksInWidth  && number > 0; i++)
+            int sumOfWidth = 0 ;
+            if(ok==0)
             {
-                bricks[j*numOfBricksInWidth + i] = new Brick(iniWidth+(i*(bricksWidth) ) , iniheight , n , "red", 1);
-                handler.addObject(bricks[j*numOfBricksInWidth + i]);
-                number--;
+                ok=1;
+                continue;
             }
-            iniheight -= (60);
+            for(int x : arrayList)
+            {
+                if(x<20 && x>0)
+                {
+                    sumOfWidth += arkHelper.normalBricks[0].getWidth(null);
+                }
+                else
+                {
+                    sumOfWidth += arkHelper.smallSquares[0].getWidth(null);
+                }
+            }
+            int initialWidth = (Helper.screenWidth - sumOfWidth)/2;
+            System.out.println(initialWidth);
+            for(int x : arrayList)
+            {
 
+                if(x>0 && x<20)
+                {
+                    //System.out.println(x);
+                    bricks[index] = new Brick(initialWidth,initialHeight,arkHelper.normalBricks[(x-1)/2],"red",2);
+                    initialWidth += arkHelper.normalBricks[0].getWidth(null);
+                    handler.addObject(bricks[index]);
+                    index++;
+                }
+                else if(x>=20)
+                {
+                    bricks[index] = new Brick(initialWidth,initialHeight,arkHelper.smallSquares[x-20],"red",1);
+                    initialWidth += arkHelper.smallSquares[0].getWidth(null);
+                    handler.addObject(bricks[index]);
+                    index++;
+                }
+                else
+                {
+                    initialWidth += arkHelper.smallSquares[0].getWidth(null);;
+                }
+
+            }
+
+            initialHeight -= (3+arkHelper.normalBricks[0].getHeight(null));
         }
+
+
     }
+
+
 }
