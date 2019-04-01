@@ -77,6 +77,8 @@ public class Paddle extends BaseObject {
     public void expand() {
 
         this.img = paddleExpanded;
+        this.setImageHeight(paddleExpanded.getHeight(null));
+        this.setImageWidth(paddleExpanded.getWidth(null));
     }
 
     private void updateCapsules() {

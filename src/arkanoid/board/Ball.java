@@ -54,14 +54,23 @@ public class Ball extends BaseObject {
                 if (o.getRectangle().intersects(getRectangle())) {
                     calcScore++;
 
-                    if( ((Brick)o).capsule != null ){
+                    if( o instanceof Brick)
+                    {
+                        ((Brick)o).hit();
+                        if(((Brick)o).getPower()<=0)
+                        {
+                            if( ((Brick)o).capsule != null ){
 
-                        Capsule capsule = ((Brick)o).capsule;
-                        capsule.setX(o.getX());
-                        capsule.setY(o.getY());
+                                Capsule capsule = ((Brick)o).capsule;
+                                capsule.setX(o.getX());
+                                capsule.setY(o.getY());
 
-                        handler.removeObject(o);
-                        handler.addObject(capsule);
+
+                                handler.addObject(capsule);
+                            }
+                            handler.removeObject(o);
+                        }
+                        System.out.println(((Brick)o).getPower());
                     }
 
                     int hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
@@ -73,8 +82,8 @@ public class Ball extends BaseObject {
                     if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
 
 
-                    System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
-                    System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
+                    //System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
+                    //System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
 
 
                     reflected = true;
