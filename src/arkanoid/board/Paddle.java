@@ -2,17 +2,21 @@
 
 package arkanoid.board;
 
+import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
+import atariCore.Helper;
+
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
 
 public class Paddle extends BaseObject {
 
-    public ArrayList<Capsule> capsules;
+    public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
     public boolean sticky, laser;
     int normalImageIdx = 0;
@@ -21,18 +25,28 @@ public class Paddle extends BaseObject {
 
         super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
-        capsules = new ArrayList<>();
+        capsules = new CopyOnWriteArrayList<>();
     }
 
     public void tick() {
 
-        updateNormalImage();
-        updateCapsules();
+        if(img != paddleExpanded) {
+            updateNormalImage();
+        }
+
+        if(laser) {
+            updateLaserImage();
+        }
 
         x += velX;
 
         collision();
         clamp();
+    }
+
+    private void updateLaserImage() {
+        img = paddleWeapon[normalImageIdx++];
+        normalImageIdx %= 3;
     }
 
     public void splitBall() {
@@ -67,18 +81,13 @@ public class Paddle extends BaseObject {
 
     private void updateCapsules() {
 
-        ArrayList<Capsule> currentCapsules = new ArrayList<>();
-
         for (Capsule c : capsules) {
 
-            if (!c.hit()) {
-                currentCapsules.add(c);
-            }
-
             c.effect(this);
+            if (!c.hit()) {
+                capsules.remove(c);
+            }
         }
-
-        capsules = currentCapsules;
     }
 
     private void updateNormalImage() {
@@ -89,8 +98,9 @@ public class Paddle extends BaseObject {
 
     public void hitLaser() {
 
-        Bullet bulletL = new Bullet(x , y , null , handler);
-        Bullet bulletR = new Bullet(x + getImageWidth() , y , null , handler);
+        updateCapsules();
+        Bullet bulletL = new Bullet(x , y , bullet , handler);
+        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100 , y , bullet , handler);
 
         handler.addObject(bulletL);
         handler.addObject(bulletR);
@@ -106,15 +116,16 @@ public class Paddle extends BaseObject {
 
     private void collision() {
 
-        ArrayList<BaseObject> object = new ArrayList<>();
-
         for (BaseObject o : handler.getObject()) {
+
             if (o instanceof Capsule) {
 
                 if (o.getRectangle().intersects(getRectangle())) {
 
-                    //updateCapsules();
+                    System.out.println("HIH");
                     capsules.add(((Capsule) o));
+                    updateCapsules();
+                    handler.removeObject(o);
                 }
             }
 
@@ -123,27 +134,27 @@ public class Paddle extends BaseObject {
 
                     if (!sticky) {
                         o.setVelY(ySpeed * -1);
-                        int dir = (o.getVelX() >= 0) ? 1 : -1;
-
-                        if ((o.getVelX() > 0 && getVelX() >= 0) || (o.getVelX() < 0 && getVelX() <= 0)) {
-                            o.setVelX(dir * getNewVx(o.getX() + o.getImageWidth() / 2));
-                        } else {
-                            o.setVelX(-dir * getNewVx(o.getX() + o.getImageWidth() / 2));
-                        }
-
-                        //updateCapsules();
-                        System.out.println(o.getVelX());
                     }
+                    else {
+                        o.setVelY(0);
+                    }
+
+                    int dir = (o.getVelX() >= 0) ? 1 : -1;
+
+                    if ((o.getVelX() > 0 && getVelX() >= 0) || (o.getVelX() < 0 && getVelX() <= 0)) {
+                        o.setVelX(dir * getNewVx(o.getX() + o.getImageWidth() / 2));
+                    } else {
+                        o.setVelX(-dir * getNewVx(o.getX() + o.getImageWidth() / 2));
+                    }
+
+                    System.out.println(o.getVelX());
                 }
             }
-
-            object.add(o);
         }
-
-        handler.object = object;
     }
 
     public int getNewVx(int currX) {
+
         int newVX = xSpeed;
 
         int q1 = x + getImageWidth() / 5;
@@ -156,10 +167,10 @@ public class Paddle extends BaseObject {
         System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
 
         if (currX < q1 || currX >= q5) newVX = xSpeed + 3;
-        else if (currX >= q1 && currX < q2) newVX = xSpeed + 2;
-        else if (currX >= q2 && currX < q3) newVX = xSpeed;
-        else if (currX >= q3 && currX < q4) newVX = xSpeed;
-        else if (currX >= q4 && currX < q5) newVX = xSpeed + 2;
+        else if (currX < q2) newVX = xSpeed + 2;
+        else if ( currX < q3) newVX = xSpeed;
+        else if (currX < q4) newVX = xSpeed;
+        else newVX = xSpeed + 2;
 
         return newVX;
     }

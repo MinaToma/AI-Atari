@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Laser extends Capsule {
 
-    Laser(int x, int y, int life , Image image) {
+    public Laser(int x, int y, int life , Image image) {
         super(x, y, life , image);
     }
 

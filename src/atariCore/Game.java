@@ -27,7 +27,7 @@ abstract public class Game extends JPanel implements KeyListener {
                 revalidate();
                 repaint();
             }
-        }, Helper.DELAY, Helper.PERIOD);
+        } , Helper.DELAY, Helper.PERIOD);
 
         new Window(Helper.screenWidth, Helper.screenHeight, title, this);
     }

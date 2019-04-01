@@ -1,6 +1,9 @@
 package arkanoid;
 
 import arkanoid.board.*;
+import arkanoid.capsule.Capsule;
+import arkanoid.capsule.Expand;
+import arkanoid.capsule.Laser;
 import atariCore.Handler;
 import atariCore.Helper;
 
@@ -32,9 +35,11 @@ public class Level {
         int index=0;
         int ok=0;
 
+        Capsule capsule = new Expand(0 , 0 , 4 , arkHelper.capsuleExpand);
+
         for(ArrayList<Integer> arrayList : dimensions)
         {
-            int sumOfWidth = 0 ;
+            int sumOfWidth = 0;
             if(ok==0)
             {
                 ok=1;
@@ -61,21 +66,21 @@ public class Level {
                 if(x>0 && x<20)
                 {
                     //System.out.println(x);
-                    bricks[index] = new Brick(initialWidth,initialHeight,arkHelper.normalBricks[(x-1)/2],"red",2);
+                    bricks[index] = new Brick(initialWidth,initialHeight,arkHelper.normalBricks[(x-1)/2],"red",2 , capsule);
                     initialWidth += arkHelper.normalBricks[0].getWidth(null);
                     handler.addObject(bricks[index]);
                     index++;
                 }
                 else if(x>=20)
                 {
-                    bricks[index] = new Brick(initialWidth,initialHeight,arkHelper.smallSquares[x-20],"red",1);
+                    bricks[index] = new Brick(initialWidth,initialHeight,arkHelper.smallSquares[x-20],"red",1, capsule);
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);
                     handler.addObject(bricks[index]);
                     index++;
                 }
                 else
                 {
-                    initialWidth += arkHelper.smallSquares[0].getWidth(null);;
+                    initialWidth += arkHelper.smallSquares[0].getWidth(null);
                 }
 
             }

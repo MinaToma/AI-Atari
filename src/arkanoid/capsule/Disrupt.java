@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Disrupt extends Capsule {
 
-    Disrupt(int x, int y, int life , Image image) {
+    public Disrupt(int x, int y, int life , Image image) {
         super(x, y, life , image);
     }
 

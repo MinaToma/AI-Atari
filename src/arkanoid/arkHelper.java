@@ -1,8 +1,6 @@
 package arkanoid;
 
 import atariCore.Helper;
-
-import javax.swing.*;
 import java.awt.*;
 
 public class arkHelper extends Helper {
@@ -18,6 +16,7 @@ public class arkHelper extends Helper {
     public static int paddleSpeed = 5;
     public static int xSpeed = 2;
     public static int ySpeed = 2;
+    public static int capsuleSpeed = 1;
 
     public static Image[] normalBricks;
     public static Image[] brokenBricks;

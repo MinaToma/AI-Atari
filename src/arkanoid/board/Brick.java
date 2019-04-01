@@ -10,11 +10,10 @@ import java.awt.*;
 
 public class Brick extends BaseObject {
 
-    public Handler handler;
     private boolean destroyed;
     private String color;
     private int power;
-    Capsule capsule;
+    public Capsule capsule;
 
     public Brick(int xPostion, int yPostion, Image image, String color, int power) {
 
@@ -24,19 +23,16 @@ public class Brick extends BaseObject {
         this.power = power;
     }
 
-    public Brick(int xPostion, int yPostion, Image image, String color, int power, Capsule capsule, Handler handler) {
+    public Brick(int xPostion, int yPostion, Image image, String color, int power, Capsule capsule) {
 
         this(xPostion, yPostion, image, color, power);
         this.capsule = capsule;
-        this.handler = handler;
     }
 
-    public void hit() {
+    public boolean hit() {
         power -= 1;
 
-        if (power == 0 && capsule != null) {
-            handler.object.add(capsule);
-        }
+        return  (power == 0);
     }
 
     public void tick() {

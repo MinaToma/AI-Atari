@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class Break extends Capsule {
 
-    Break(int x, int y, int life , Image image) {
+    public Break(int x, int y, int life , Image image) {
         super(x, y, life , image);
     }
 

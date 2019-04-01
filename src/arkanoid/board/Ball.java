@@ -1,11 +1,13 @@
 package arkanoid.board;
 
 import arkanoid.arkHelper;
+import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ball extends BaseObject {
 
@@ -38,24 +40,28 @@ public class Ball extends BaseObject {
 
         if (arkHelper.screenWidth <= x + getImageWidth() || x <= 0) velX *= -1;
         if (y <= 0) velY *= -1;
+        if (y > arkHelper.screenHeight) handler.removeObject(this);
     }
 
     private void collision() {
 
         int calcScore = 0;
-        ArrayList<BaseObject> object = new ArrayList<>();
+
         boolean reflected = false;
 
         for (BaseObject o : handler.getObject()) {
             if ((o instanceof Brick || o instanceof Enemy) && !reflected) {
                 if (o.getRectangle().intersects(getRectangle())) {
                     calcScore++;
-                    ((Brick) o).hit();
 
-                    int pow = ((Brick) o).getPower();
-                    if (pow != 0) {
+                    if( ((Brick)o).capsule != null ){
 
-                        object.add(o);
+                        Capsule capsule = ((Brick)o).capsule;
+                        capsule.setX(o.getX());
+                        capsule.setY(o.getY());
+
+                        handler.removeObject(o);
+                        handler.addObject(capsule);
                     }
 
                     int hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
@@ -76,11 +82,7 @@ public class Ball extends BaseObject {
                     continue;
                 }
             }
-
-            object.add(o);
         }
-
-        handler.object = object;
     }
 
     @Override

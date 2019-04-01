@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Slow extends Capsule {
 
-    Slow(int x, int y, int life , Image image) {
+    public Slow(int x, int y, int life , Image image) {
         super(x, y, life , image);
     }
 

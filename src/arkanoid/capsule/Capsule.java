@@ -1,21 +1,18 @@
 package arkanoid.capsule;
 
+import arkanoid.arkHelper;
 import arkanoid.board.Paddle;
 import atariCore.BaseObject;
-import javafx.util.Pair;
-import org.omg.CORBA.INTERNAL;
-import org.omg.PortableInterceptor.INACTIVE;
-
 import java.awt.*;
 
-import static arkanoid.arkHelper.paddleSpeed;
+import static arkanoid.arkHelper.*;
 
 public abstract class Capsule extends BaseObject {
 
     Paddle p;
     int life;
 
-    Capsule(int x, int y, int life , Image image) {
+    public Capsule(int x, int y, int life , Image image) {
         super(x, y, image);
         this.life = life;
     }
@@ -24,13 +21,14 @@ public abstract class Capsule extends BaseObject {
 
     public boolean hit() {
         life--;
+        if(y > arkHelper.screenHeight) life = 0;
         return life == 0;
     }
 
     @Override
     public void tick() {
 
-        y += paddleSpeed;
+        y += capsuleSpeed;
     }
 
     @Override

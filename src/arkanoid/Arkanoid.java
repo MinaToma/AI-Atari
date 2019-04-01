@@ -45,7 +45,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",3), p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level2"),new Player("m7m7",2), p , b ,handler);
         level.setBricks();
     }
 
@@ -53,9 +53,6 @@ public class Arkanoid extends atariCore.Game {
 
          p = new Paddle(Helper.screenWidth * 40 / 100 , Helper.screenHeight * 90 / 100 , arkHelper.paddle[0], 0, 0, handler);
          handler.addObject(p);
-        //Brick brick = new Brick(0,0,null,"red",1);
-        //handler.addObject(brick);
-
     }
 
     public void keyTyped(KeyEvent keyEvent) {
@@ -77,9 +74,11 @@ public class Arkanoid extends atariCore.Game {
                     o.setVelX(5);
                 }
                 else if (key == KeyEvent.VK_SPACE) {
+
                     for (BaseObject p : handler.getObject()) {
-                        if(p instanceof  Paddle)
-                            ((Paddle)p).hitLaser();
+                        if(p instanceof Paddle)
+                            if(((Paddle) p).laser)
+                                ((Paddle)p).hitLaser();
                     }
                 }
             }

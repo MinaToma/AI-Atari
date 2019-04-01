@@ -1,14 +1,15 @@
 package atariCore;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import arkanoid.arkHelper.*;
+
+import static arkanoid.arkHelper.bullet;
 
 public class Handler {
 
-    public List<BaseObject> object = Collections.synchronizedList(new ArrayList<>());
+    public CopyOnWriteArrayList<BaseObject> object = new CopyOnWriteArrayList<>();
 
     public void tick() {
 
@@ -24,6 +25,7 @@ public class Handler {
 
             o.render(g);
 
+            g.drawImage(bullet , 50, 50, null);
            // Rectangle r = o.getRectangle();
            // g.fillRect(r.x , r.y , r.width , r.height);
            // g.drawRect(r.x , r.y , r.width , r.height);

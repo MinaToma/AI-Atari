@@ -6,8 +6,9 @@ import atariCore.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import static arkanoid.arkHelper.paddleSpeed;
+import static arkanoid.arkHelper.*;
 
 public class Bullet extends BaseObject {
 
@@ -20,7 +21,7 @@ public class Bullet extends BaseObject {
     @Override
     public void tick() {
 
-        y -= paddleSpeed;
+        y -= capsuleSpeed;
 
         collision();
     }
@@ -29,36 +30,32 @@ public class Bullet extends BaseObject {
 
         int calcScore = 0;
 
-        ArrayList<BaseObject> object = new ArrayList<>();
         boolean dead = false;
 
         for (BaseObject o : handler.getObject()) {
+
             if ((o instanceof Brick || o instanceof Enemy)) {
                 if (o.getRectangle().intersects(getRectangle())) {
 
                     dead = true;
                     calcScore++;
-                    ((Brick) o).hit();
 
-                    int pow = ((Brick) o).getPower();
-                    if (pow != 0) {
-
-                        object.add(o);
+                    if(((Brick) o).hit()) {
+                        handler.removeObject(o);
+                        if(((Brick) o).capsule != null) {
+                            handler.addObject(((Brick) o).capsule);
+                        }
                     }
                 }
             }
-
-            if(o == this) continue;
-            object.add(o);
         }
 
-        if (!dead) object.add(this);
-
-        handler.object = object;
+        if(dead)
+            handler.removeObject(this);
     }
 
     @Override
     public void render(Graphics g) {
-
+        g.drawImage(super.img, super.x, super.y, null);
     }
 }

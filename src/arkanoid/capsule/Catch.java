@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Catch extends Capsule {
 
-    Catch(int x, int y, int life , Image image) {
+    public Catch(int x, int y, int life , Image image) {
         super(x, y, life , image);
     }
 

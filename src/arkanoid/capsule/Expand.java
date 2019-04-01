@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Expand extends Capsule {
 
-    Expand(int x, int y, int life , Image image) {
+    public Expand(int x, int y, int life , Image image) {
         super(x, y, life , image);
     }
 
