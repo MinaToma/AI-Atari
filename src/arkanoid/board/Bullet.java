@@ -40,7 +40,7 @@ public class Bullet extends BaseObject {
                     dead = true;
                     calcScore++;
 
-                    if(((Brick) o).hit()) {
+                    if(((Brick) o).hit() && o.getY()>=0 ) {
                         handler.removeObject(o);
                         if(((Brick) o).capsule != null) {
 

@@ -68,6 +68,8 @@ public class Paddle extends BaseObject {
     public void updateLaser() {
 
         laser = true;
+        setImageWidth(paddleWeapon[0].getWidth(null));
+        setImageHeight(paddleWeapon[0].getHeight(null));
     }
 
     public void expand() {
