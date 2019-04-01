@@ -15,6 +15,10 @@ public class arkHelper extends Helper {
     public static final int INIT_PADDLE_Y = 360;
     public static final int INIT_BALL_X = 230;
     public static final int INIT_BALL_Y = 355;
+    public static int paddleSpeed = 2;
+    public static int xSpeed = 1;
+    public static int ySpeed = 1;
+
     public static Image[] normalBricks;
     public static Image[] brokenBricks;
     public static Image[] smallSquares;
@@ -39,8 +43,6 @@ public class arkHelper extends Helper {
     public static Image star;
     public static Image life;
     public static Image bullet;
-    public static int xSpeed = 1;
-    public static int ySpeed = 1;
 
     String path = "src/Resources/image/";
 

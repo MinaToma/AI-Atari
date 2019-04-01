@@ -1,30 +1,42 @@
 
 package arkanoid.board;
 
+import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
+import atariCore.Handler;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Brick extends BaseObject {
+
+    public Handler handler;
     private boolean destroyed;
     private String color;
     private int power;
-
+    Capsule capsule;
 
     public Brick(int xPostion, int yPostion, Image image, String color, int power) {
+
         super(xPostion, yPostion, image);
         this.destroyed = false;
         this.color = color;
         this.power = power;
-        //loadImage();
-        power = 10;// we can change it
+    }
 
+    public Brick(int xPostion, int yPostion, Image image, String color, int power, Capsule capsule, Handler handler) {
 
+        this(xPostion, yPostion, image, color, power);
+        this.capsule = capsule;
+        this.handler = handler;
     }
 
     public void hit() {
         power -= 1;
+
+        if (power == 0 && capsule != null) {
+            handler.object.add(capsule);
+        }
     }
 
     public void tick() {
@@ -33,21 +45,7 @@ public class Brick extends BaseObject {
 
     public void render(Graphics g) {
 
-     //   if (power > 0)
-            g.drawImage( this.img, this.x, this.y, null );
-
-    }
-    private void loadImage() {
-
-        ImageIcon ii = new ImageIcon("src/Resources/image/11-Breakout-Tiles.png");
-
-        Image i = ii.getImage();
-
-        Image n = (new ImageIcon(i.getScaledInstance(i.getWidth(null) / 5 , i.getHeight(null) / 5 , Image.SCALE_SMOOTH))).getImage();
-        img = n;
-
-        System.out.println(img.getWidth(null) + " " + img.getHeight(null));
-
+        g.drawImage(this.img, this.x, this.y, null);
     }
 
     public int getPower() {

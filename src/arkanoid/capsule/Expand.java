@@ -1,26 +1,20 @@
 package arkanoid.capsule;
 
+import arkanoid.board.Paddle;
+import javafx.util.Pair;
+
 import java.awt.Graphics;
 import java.awt.*;
 
 public class Expand extends Capsule {
 
-    Expand(int x, int y, Image image) {
-        super(x, y, image);
+    Expand(int x, int y, int life , Image image) {
+        super(x, y, life , image);
     }
 
     @Override
-    CAPSULES effect() {
-        return CAPSULES.EXPAND;
-    }
+    public void effect(Paddle p) {
 
-    @Override
-    public void tick() {
-        y += 4;
-    }
-
-    @Override
-    public void render(Graphics g) {
-//
+        p.expand();
     }
 }

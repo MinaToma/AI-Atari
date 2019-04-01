@@ -3,14 +3,9 @@ package arkanoid.board;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.Handler;
-import atariCore.Helper;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Line;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Ball extends BaseObject {
 
@@ -19,8 +14,8 @@ public class Ball extends BaseObject {
     int xOffset = 3;
     int yOffset = 3;
 
-    public Ball(int xPostion, int yPostion, Image image, int xVelocity, int yVelocity, Handler handler) {
-        super(xPostion, yPostion, image, xVelocity, yVelocity);
+    public Ball(int xPosition, int yPosition, Image image, int xVelocity, int yVelocity, Handler handler) {
+        super(xPosition, yPosition, image, xVelocity, yVelocity);
         this.handler = handler;
     }
 

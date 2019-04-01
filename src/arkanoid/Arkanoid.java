@@ -76,6 +76,12 @@ public class Arkanoid extends atariCore.Game {
                 } else if (key == KeyEvent.VK_RIGHT) {
                     o.setVelX(5);
                 }
+                else if (key == KeyEvent.VK_SPACE) {
+                    for (BaseObject p : handler.getObject()) {
+                        if(p instanceof  Paddle)
+                            ((Paddle)p).hitLaser();
+                    }
+                }
             }
         }
     }
