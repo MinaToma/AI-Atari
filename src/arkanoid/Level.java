@@ -79,13 +79,13 @@ public class Level {
                 if(x>0 && x<20)
                 {
                     if(index == capsul.get(indexOfCapsul)) {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2, getCaps(Math.abs(random.nextInt() % 11 + 1)));
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2, getCaps(Math.abs(random.nextInt() % 11 + 1)) , player);
                         indexOfCapsul++;
                         indexOfCapsul%=numberOfCapsule;
                     }
                     else
                     {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2);
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2 , player);
                     }
                     initialWidth += arkHelper.normalBricks[0].getWidth(null);
                     handler.addObject(bricks[index]);
@@ -94,13 +94,13 @@ public class Level {
                 else if(x>=20)
                 {
                     if(index == capsul.get(indexOfCapsul)) {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20, getCaps(Math.abs(random.nextInt() % 11 + 1)));
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20, getCaps(Math.abs(random.nextInt() % 11 + 1)) , player);
                         indexOfCapsul++;
                         indexOfCapsul%=numberOfCapsule;
                     }
                     else
                     {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20);
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20 , player);
                     }
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);
                     handler.addObject(bricks[index]);

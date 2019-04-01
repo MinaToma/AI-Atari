@@ -11,6 +11,7 @@ public class Score extends Capsule {
     public int score;
     int changePhoto;
     int timer;
+
     public Score(int x, int y, int life, Image image, int score) {
         super(x, y, life, image);
         this.score = score;
@@ -20,6 +21,8 @@ public class Score extends Capsule {
     @Override
     public void effect(Paddle p) {
 
+        p.getPlayer().increaseScore(score);
+        p.capsules.remove(this);
     }
 
     @Override

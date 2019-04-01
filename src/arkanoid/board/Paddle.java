@@ -16,11 +16,13 @@ public class Paddle extends BaseObject {
     public Handler handler;
     public boolean sticky, laser = true;
     int normalImageIdx = 0;
+    Player player;
 
-    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler) {
+    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler , Player player) {
 
         super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
+        this.player = player;
         capsules = new CopyOnWriteArrayList<>();
     }
 
@@ -54,8 +56,8 @@ public class Paddle extends BaseObject {
                 Ball ball = (Ball)o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX() , ball.getY() , ball.getImg() , xSpeed , ball.getVelY() , handler);
-                Ball newBallR = new Ball(ball.getX() , ball.getY() , ball.getImg() , -xSpeed , ball.getVelY(), handler);
+                Ball newBallL = new Ball(ball.getX() , ball.getY() , ball.getImg() , xSpeed , ball.getVelY() , handler , player);
+                Ball newBallR = new Ball(ball.getX() , ball.getY() , ball.getImg() , -xSpeed , ball.getVelY(), handler , player);
 
                 handler.addObject(newBallL);
                 handler.addObject(newBallR);
@@ -174,6 +176,10 @@ public class Paddle extends BaseObject {
         else newVX = xSpeed + xSpeed * 10 / 100;
 
         return newVX;
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     public void render(Graphics g) {

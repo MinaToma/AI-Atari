@@ -9,6 +9,8 @@ import atariCore.Handler;
 import javax.swing.*;
 import java.awt.*;
 
+import static arkanoid.arkHelper.BRICKHITREWARD;
+
 public class Brick extends BaseObject {
 
     private boolean isSmallSquares;
@@ -16,11 +18,13 @@ public class Brick extends BaseObject {
     public Capsule capsule;
     private int color;
     public int timer;
+    private Player player;
 
-    public Brick(int xPostion, int yPostion, Image image,  int power, int color) {
+    public Brick(int xPostion, int yPostion, Image image,  int power, int color , Player player) {
 
         super(xPostion, yPostion, image);
         this.power = power;
+        this.player = player;
         this.color = color;
         if(power > 1)
         {
@@ -31,16 +35,17 @@ public class Brick extends BaseObject {
         timer =0 ;
     }
 
-    public Brick(int xPostion, int yPostion, Image image,  int power,int color ,Capsule capsule) {
+    public Brick(int xPostion, int yPostion, Image image,  int power,int color ,Capsule capsule , Player player) {
 
-        this(xPostion, yPostion, image,power , color);
+        this(xPostion, yPostion, image,power , color , player);
         this.capsule = capsule;
     }
 
     public boolean hit() {
+
+        player.increaseScore(BRICKHITREWARD);
         power -= 1;
-        if(power == 1 && !isSmallSquares)
-        {
+        if(power == 1 && !isSmallSquares) {
 
             this.setImg(arkHelper.brokenBricks[color]);
         }
