@@ -45,7 +45,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level10"),new Player("m7m7",2), p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",2), p , b ,handler);
         level.setBricks();
     }
 

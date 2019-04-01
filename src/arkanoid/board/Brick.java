@@ -41,7 +41,7 @@ public class Brick extends BaseObject {
         power -= 1;
         if(power == 1 && !isSmallSquares)
         {
-            //System.out.println(11111);
+
             this.setImg(arkHelper.brokenBricks[color]);
         }
         return  (power == 0);
@@ -60,7 +60,7 @@ public class Brick extends BaseObject {
     }
 
     public void render(Graphics g) {
-
+        if(y>0)
         g.drawImage(this.img, this.x, this.y, null);
     }
 

@@ -70,7 +70,7 @@ public class Ball extends BaseObject {
                             }
                             handler.removeObject(o);
                         }
-                        System.out.println(((Brick)o).getPower());
+
                     }
 
                     int hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
