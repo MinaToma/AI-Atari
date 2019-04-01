@@ -14,12 +14,14 @@ public class Ball extends BaseObject {
 
 
     Handler handler;
+    Player player;
     float xOffset = xSpeed * 3 / 2;
     float yOffset = ySpeed * 3 / 2;
 
-    public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Handler handler) {
+    public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Handler handler , Player player) {
         super(xPosition, yPosition, image, xVelocity, yVelocity);
         this.handler = handler;
+        this.player = player;
     }
 
     @Override
@@ -50,6 +52,7 @@ public class Ball extends BaseObject {
                     calcScore++;
 
                     if( o instanceof Brick)  {
+
                         if(((Brick)o).hit() && o.getY()>=0) {
 
                             if( ((Brick)o).capsule != null ){
@@ -72,8 +75,8 @@ public class Ball extends BaseObject {
                     if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
                     else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
 
-                    System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
-                    System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
+                    //System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
+                    //System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
 
                     break;
                 }

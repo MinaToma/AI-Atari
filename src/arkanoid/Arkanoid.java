@@ -9,32 +9,35 @@ import atariCore.Helper;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static arkanoid.arkHelper.paddleSpeed;
+import static arkanoid.arkHelper.*;
 
 public class Arkanoid extends atariCore.Game {
 
     Ball b;
     Paddle p;
+    Player player;
 
     public Arkanoid() {
         super("Arkanoid");
 
         new arkHelper();
+        setPlayer();
         setBall();
         setEnemy();
-        setPlayer();
         setPaddle();
         setBricks();
     }
 
     private void setBall() {
 
-        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 1, -1 , handler);
+        b = new Ball(INIT_BALL_X, INIT_BALL_Y , arkHelper.ball, xSpeed , ySpeed , handler , player);
         handler.addObject(b);
     }
 
     private void setPlayer() {
 
+        player = new Player("Gazra" , 1);
+        handler.addObject(player);
     }
 
     private void setEnemy() {
@@ -44,13 +47,13 @@ public class Arkanoid extends atariCore.Game {
     private void setBricks() {
 
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level12"),new Player("m7m7",2), p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level12"),player, p , b ,handler);
         level.setBricks();
     }
 
     private void setPaddle() {
 
-         p = new Paddle(Helper.screenWidth * 40 / 100 , Helper.screenHeight * 90 / 100 , arkHelper.paddle[0], 0, 0, handler);
+         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, handler , player);
          handler.addObject(p);
     }
 
@@ -66,9 +69,11 @@ public class Arkanoid extends atariCore.Game {
         if (key == KeyEvent.VK_LEFT) {
 
             p.setVelX(-paddleSpeed) ;
+            //System.out.print(1);
         } else if (key == KeyEvent.VK_RIGHT) {
 
             p.setVelX(paddleSpeed);
+            //System.out.print(2);
         }
         else if (key == KeyEvent.VK_SPACE) {
 
@@ -125,8 +130,10 @@ public class Arkanoid extends atariCore.Game {
 
         if (key == KeyEvent.VK_LEFT) {
             p.setVelX(0);
+            //System.out.print(3);
         } else if (key == KeyEvent.VK_RIGHT) {
             p.setVelX(0);
+           // System.out.print(4);
         }
     }
 }

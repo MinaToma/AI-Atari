@@ -11,10 +11,11 @@ public class arkHelper extends Helper {
 
     public static final int BOTTOM_EDGE = 390;
     public static final int N_OF_BRICKS = 30;
-    public static final int INIT_PADDLE_X = 200;
-    public static final int INIT_PADDLE_Y = 360;
-    public static final int INIT_BALL_X = 230;
-    public static final int INIT_BALL_Y = 355;
+    public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
+    public static final int INIT_PADDLE_Y = screenHeight * 85 / 100;
+    public static final int INIT_BALL_X = screenWidth * 43 / 100;
+    public static final int INIT_BALL_Y = screenHeight * 82 / 100;
+    public static int BRICKHITREWARD = 10;
     public static float paddleSpeed = 5;
     public static float xSpeed = 2f;
     public static float ySpeed = 2f;
@@ -56,7 +57,6 @@ public class arkHelper extends Helper {
         smallSquares = new Image[10];
 
         loadImages();
-
     }
 
     private void loadImages() {

@@ -18,8 +18,11 @@ abstract public class BaseObject {
         this.velY = 0;
         this.img = img;
 
-        this.imageHeight = img.getHeight(null);
-        this.imageWidth = img.getWidth(null);
+        if(img != null) {
+
+            this.imageHeight = img.getHeight(null);
+            this.imageWidth = img.getWidth(null);
+        }
     }
 
     public BaseObject(float x, float y, Image img, float velX, float velY) {
