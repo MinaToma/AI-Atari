@@ -9,6 +9,8 @@ import atariCore.Handler;
 import atariCore.Helper;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -181,6 +183,8 @@ public class Paddle extends BaseObject {
 
         g.drawImage(super.img, super.x, super.y, null);
     }
+
+
 }
 
 

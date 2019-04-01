@@ -15,6 +15,7 @@ public class Brick extends BaseObject {
     private int power;
     public Capsule capsule;
     private int color;
+    public int timer;
 
     public Brick(int xPostion, int yPostion, Image image,  int power, int color) {
 
@@ -27,6 +28,7 @@ public class Brick extends BaseObject {
         }
         else
             isSmallSquares = true;
+        timer =0 ;
     }
 
     public Brick(int xPostion, int yPostion, Image image,  int power,int color ,Capsule capsule) {
@@ -46,7 +48,15 @@ public class Brick extends BaseObject {
     }
 
     public void tick() {
-        super.y += super.velY;
+        super.y +=0;
+        timer++;
+        if(timer>=10000) {
+           timer=0;
+           super.y += getImageHeight()+3;
+
+        }
+
+
     }
 
     public void render(Graphics g) {
