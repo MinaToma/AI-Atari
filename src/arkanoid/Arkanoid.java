@@ -9,7 +9,7 @@ import atariCore.Helper;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import static arkanoid.arkHelper.paddleSpeed;
+import static arkanoid.arkHelper.*;
 
 public class Arkanoid extends atariCore.Game {
 
@@ -30,7 +30,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBall() {
 
-        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 1, -1 , handler , player);
+        b = new Ball(INIT_BALL_X, INIT_BALL_Y , arkHelper.ball, xSpeed , ySpeed , handler , player);
         handler.addObject(b);
     }
 
@@ -53,7 +53,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setPaddle() {
 
-         p = new Paddle(Helper.screenWidth * 40 / 100 , Helper.screenHeight * 90 / 100 , arkHelper.paddle[0], 0, 0, handler , player);
+         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, handler , player);
          handler.addObject(p);
     }
 
