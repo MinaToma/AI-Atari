@@ -21,6 +21,7 @@ public class Splash {
         panel.setLayout(null);
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
+
         frame.setPreferredSize(new Dimension(Helper.screenWidth, Helper.screenHeight));
         frame.setMaximumSize(new Dimension(Helper.screenWidth, Helper.screenHeight));
         frame.setMinimumSize(new Dimension(Helper.screenWidth, Helper.screenHeight));

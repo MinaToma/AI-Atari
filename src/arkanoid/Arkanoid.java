@@ -26,7 +26,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBall() {
 
-        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 2, -2 , handler);
+        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 1, -1 , handler);
     /*    Ball b2 = new Ball(Helper.screenWidth * 20 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 2, -1 , handler);
         Ball b3 = new Ball(Helper.screenWidth * 20 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 3, -1 , handler);
 
@@ -45,7 +45,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level2"),new Player("m7m7",2), p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",2), p , b ,handler);
         level.setBricks();
     }
 
@@ -69,9 +69,11 @@ public class Arkanoid extends atariCore.Game {
             if (o instanceof Paddle) {
 
                 if (key == KeyEvent.VK_LEFT) {
-                    o.setVelX(-5);
+                    o.setVelX(-4) ;
+                    o.setX(o.getX()-1);
                 } else if (key == KeyEvent.VK_RIGHT) {
-                    o.setVelX(5);
+                    o.setVelX(4);
+                    o.setX(o.getX()+1);
                 }
                 else if (key == KeyEvent.VK_SPACE) {
 

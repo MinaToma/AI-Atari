@@ -147,7 +147,7 @@ public class Paddle extends BaseObject {
                         o.setVelX(-dir * getNewVx(o.getX() + o.getImageWidth() / 2));
                     }
 
-                    System.out.println(o.getVelX());
+                    //System.out.println(o.getVelX());
                 }
             }
         }
@@ -163,8 +163,8 @@ public class Paddle extends BaseObject {
         int q4 = q3 + getImageWidth() / 5;
         int q5 = q4 + getImageWidth() / 5;
 
-        System.out.println(currX);
-        System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
+        //System.out.println(currX);
+        //System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
 
         if (currX < q1 || currX >= q5) newVX = xSpeed + 3;
         else if (currX < q2) newVX = xSpeed + 2;

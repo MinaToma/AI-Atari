@@ -11,21 +11,19 @@ import java.awt.*;
 public class Brick extends BaseObject {
 
     private boolean destroyed;
-    private String color;
     private int power;
     public Capsule capsule;
 
-    public Brick(int xPostion, int yPostion, Image image, String color, int power) {
+    public Brick(int xPostion, int yPostion, Image image,  int power) {
 
         super(xPostion, yPostion, image);
         this.destroyed = false;
-        this.color = color;
         this.power = power;
     }
 
-    public Brick(int xPostion, int yPostion, Image image, String color, int power, Capsule capsule) {
+    public Brick(int xPostion, int yPostion, Image image,  int power, Capsule capsule) {
 
-        this(xPostion, yPostion, image, color, power);
+        this(xPostion, yPostion, image,power);
         this.capsule = capsule;
     }
 

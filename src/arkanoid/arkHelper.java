@@ -1,12 +1,13 @@
 package arkanoid;
 
 import atariCore.Helper;
+
+import javax.swing.*;
 import java.awt.*;
 
 public class arkHelper extends Helper {
 
-    public static final int WIDTH = 640;
-    public static final int HEIGTH = WIDTH / 12 * 9;
+
     public static final int BOTTOM_EDGE = 390;
     public static final int N_OF_BRICKS = 30;
     public static final int INIT_PADDLE_X = 200;
@@ -14,8 +15,8 @@ public class arkHelper extends Helper {
     public static final int INIT_BALL_X = 230;
     public static final int INIT_BALL_Y = 355;
     public static int paddleSpeed = 5;
-    public static int xSpeed = 2;
-    public static int ySpeed = 2;
+    public static int xSpeed = 1;
+    public static int ySpeed = 1;
     public static int capsuleSpeed = 1;
 
     public static Image[] normalBricks;
@@ -42,7 +43,6 @@ public class arkHelper extends Helper {
     public static Image star;
     public static Image life;
     public static Image bullet;
-
     String path = "src/Resources/image/";
 
     public arkHelper() {
@@ -55,6 +55,7 @@ public class arkHelper extends Helper {
         smallSquares = new Image[10];
 
         loadImages();
+
     }
 
     private void loadImages() {
@@ -99,4 +100,6 @@ public class arkHelper extends Helper {
         life = getImage(path + "60-Breakout-Tiles.png");
         bullet = getImage(path + "61-Breakout-Tiles.png");
     }
+
+
 }
