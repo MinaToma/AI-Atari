@@ -2,14 +2,13 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 
 public class Helper {
 
     public static int screenWidth = 1280, screenHeight = 720;
     public static final int DELAY = 1000;
     public static final int PERIOD = 5;
+
     public static JButton btnHelper(JButton btn, String txt, int x, int y, Dimension dim, Panel panel) {
         btn = new JButton(txt);
         btn.setLayout(null);
@@ -25,9 +24,7 @@ public class Helper {
         ImageIcon icon = new ImageIcon(filename);
         Image image = icon.getImage();
 
-        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 4 ,
-                image.getHeight(null) / 4 , Image.SCALE_SMOOTH))).getImage();
+        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 4,
+                image.getHeight(null) / 4, Image.SCALE_SMOOTH))).getImage();
     }
-
-
 }

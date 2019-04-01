@@ -65,18 +65,19 @@ public class Arkanoid extends atariCore.Game {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
+
             p.setVelX(-4) ;
             p.setX(p.getX()-1);
         } else if (key == KeyEvent.VK_RIGHT) {
+
             p.setVelX(4);
             p.setX(p.getX()+1);
         }
         else if (key == KeyEvent.VK_SPACE) {
+
             if(p.laser)
                 p.hitLaser();
         }
-
-
     }
 
     @Override
@@ -84,15 +85,10 @@ public class Arkanoid extends atariCore.Game {
 
         int key = e.getKeyCode();
 
-
-
-
-                if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-                    p.setVelX(0);
-                } else if (key == KeyEvent.VK_RIGHT) {
-                    p.setVelX(0);
-                }
-
-
+        if (key == KeyEvent.VK_LEFT) {
+            p.setVelX(0);
+        } else if (key == KeyEvent.VK_RIGHT) {
+            p.setVelX(0);
+        }
     }
 }

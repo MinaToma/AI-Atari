@@ -48,20 +48,18 @@ public class Brick extends BaseObject {
     }
 
     public void tick() {
+
         super.y +=0;
         timer++;
         if(timer>=10000) {
            timer=0;
            super.y += getImageHeight()+3;
-
         }
-
-
     }
 
     public void render(Graphics g) {
         if(y>0)
-        g.drawImage(this.img, this.x, this.y, null);
+        g.drawImage(this.img, (int)this.x, (int)this.y, null);
     }
 
     public int getPower() {

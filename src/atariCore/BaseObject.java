@@ -5,12 +5,12 @@ import java.awt.*;
 
 abstract public class BaseObject {
 
-    protected int x, y;
+    protected float x, y;
     protected Image img;
-    protected int velY, velX;
+    protected float velY, velX;
     protected int imageWidth, imageHeight;
 
-    public BaseObject(int x, int y, Image img) {
+    public BaseObject(float x, float y, Image img) {
 
         this.x = x;
         this.y = y;
@@ -22,26 +22,26 @@ abstract public class BaseObject {
         this.imageWidth = img.getWidth(null);
     }
 
-    public BaseObject(int x, int y, Image img, int velX, int velY) {
+    public BaseObject(float x, float y, Image img, float velX, float velY) {
 
         this(x, y, img);
         this.velX = velX;
         this.velY = velY;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
-    public int getVelY() {
+    public float getVelY() {
         return velY;
     }
 
-    public int getVelX() {
+    public float getVelX() {
         return velX;
     }
 
@@ -58,11 +58,11 @@ abstract public class BaseObject {
         y = Math.max(y , 0);
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 
@@ -86,16 +86,16 @@ abstract public class BaseObject {
         this.imageHeight = imageHeight;
     }
 
-    public void setVelY(int velY) {
+    public void setVelY(float velY) {
         this.velY = velY;
     }
 
-    public void setVelX(int velX) {
+    public void setVelX(float velX) {
         this.velX = velX;
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle(x, y, imageWidth, imageHeight);
+        return new Rectangle((int)x, (int)y, imageWidth, imageHeight);
     }
 
     public abstract void tick();

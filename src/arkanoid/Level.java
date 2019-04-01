@@ -17,7 +17,6 @@ public class Level {
    public Handler handler;
    public Enemy enemy;
 
-
     public Level(ArrayList<ArrayList<Integer>> dimensions,Player player, Paddle paddle, Ball ball, Handler handler) {
         this.dimensions = dimensions;
         this.player = player;
@@ -76,11 +75,10 @@ public class Level {
 
             for(int x : arrayList)
             {
-
                 if(x>0 && x<20)
                 {
                     if(index == capsul.get(indexOfCapsul)) {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2, getCaps(random.nextInt() % 11 + 1));
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2, getCaps(Math.abs(random.nextInt() % 11 + 1)));
                         indexOfCapsul++;
                         indexOfCapsul%=numberOfCapsule;
                     }
@@ -95,7 +93,7 @@ public class Level {
                 else if(x>=20)
                 {
                     if(index == capsul.get(indexOfCapsul)) {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20, getCaps(random.nextInt() % 11 + 1));
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20, getCaps(Math.abs(random.nextInt() % 11 + 1)));
                         indexOfCapsul++;
                         indexOfCapsul%=numberOfCapsule;
                     }
@@ -116,9 +114,8 @@ public class Level {
 
             initialHeight -= (3+arkHelper.normalBricks[0].getHeight(null));
         }
-
-
     }
+
     public Capsule getCaps(int ID)
     {
         if(ID == 1)
@@ -164,9 +161,4 @@ public class Level {
         else
             return new Slow(0,0,4,arkHelper.capsuleSlow);
     }
-
-
-
-
-
 }

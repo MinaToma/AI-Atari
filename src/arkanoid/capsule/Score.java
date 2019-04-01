@@ -21,9 +21,10 @@ public class Score extends Capsule {
     public void effect(Paddle p) {
 
     }
+
     @Override
-    public void tick()
-    {
+    public void tick() {
+
         timer++;
         y += capsuleSpeed;
         if(score ==100 && timer>=25)
@@ -31,10 +32,10 @@ public class Score extends Capsule {
             chang();
             timer=0;
         }
-
     }
-    public void chang()
-    {
+
+    public void chang() {
+
         this.img = arkHelper.capsule100[changePhoto++];
         changePhoto%=7;
     }
