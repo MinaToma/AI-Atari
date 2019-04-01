@@ -53,6 +53,7 @@ public class Ball extends BaseObject {
                     calcScore++;
 
                     if( o instanceof Brick)  {
+
                         if(((Brick)o).hit() && o.getY()>=0) {
 
                             if( ((Brick)o).capsule != null ){
