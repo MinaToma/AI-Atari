@@ -7,6 +7,7 @@ import atariCore.BaseObject;
 import atariCore.FileInOut;
 import atariCore.Helper;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import static arkanoid.arkHelper.paddleSpeed;
 
@@ -71,9 +72,50 @@ public class Arkanoid extends atariCore.Game {
         }
         else if (key == KeyEvent.VK_SPACE) {
 
-            if(p.laser)
+            if(p.laser) {
+
                 p.hitLaser();
+            }
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+
+        if(p.laser) {
+
+            p.hitLaser();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent mouseEvent) {
+        p.setX(mouseEvent.getX());
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky, laser = false;
+    public boolean sticky, laser = true;
     int normalImageIdx = 0;
 
     public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler) {
@@ -124,7 +124,6 @@ public class Paddle extends BaseObject {
 
                 if (o.getRectangle().intersects(getRectangle())) {
 
-                    System.out.println("HIH");
                     capsules.add(((Capsule) o));
                     updateCapsules();
                     handler.removeObject(o);

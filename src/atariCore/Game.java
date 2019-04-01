@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.TimerTask;
 import java.util.Timer;
 
-abstract public class Game extends JPanel implements KeyListener {
+abstract public class Game extends JPanel implements KeyListener , MouseListener , MouseMotionListener {
 
     protected Handler handler;
     protected Timer timer;
@@ -16,6 +18,8 @@ abstract public class Game extends JPanel implements KeyListener {
 
         handler = new Handler();
         addKeyListener(this);
+        addMouseListener(this);
+        addMouseMotionListener(this);
         setFocusable(true);
 
         timer = new Timer();
