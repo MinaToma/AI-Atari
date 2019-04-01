@@ -15,8 +15,8 @@ public class arkHelper extends Helper {
     public static final int INIT_BALL_X = 230;
     public static final int INIT_BALL_Y = 355;
     public static float paddleSpeed = 5;
-    public static float xSpeed = 1.5f;
-    public static float ySpeed = 1.5f;
+    public static float xSpeed = 2f;
+    public static float ySpeed = 2f;
     public static float capsuleSpeed = 1;
 
     public static Image[] normalBricks;

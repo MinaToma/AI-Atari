@@ -18,6 +18,7 @@ public class Level {
    public Enemy enemy;
 
     public Level(ArrayList<ArrayList<Integer>> dimensions,Player player, Paddle paddle, Ball ball, Handler handler) {
+
         this.dimensions = dimensions;
         this.player = player;
         this.paddle = paddle;
@@ -26,8 +27,8 @@ public class Level {
         this.bricks = new Brick[dimensions.get(0).get(0)];
     }
 
-    public void setBricks()
-    {
+    public void setBricks() {
+
         int initialHeight = Helper.screenHeight * 40 / 100;
         int index=0;
         int ok=0;

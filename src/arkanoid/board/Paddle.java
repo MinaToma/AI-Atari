@@ -111,7 +111,9 @@ public class Paddle extends BaseObject {
     }
 
     public void speedDown() {
-        velX = paddleSpeed - 1;
+
+        xSpeed--;
+        ySpeed--;
     }
 
     private void collision() {
@@ -166,11 +168,11 @@ public class Paddle extends BaseObject {
         //System.out.println(currX);
         //System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
 
-        if (currX < q1 || currX >= q5) newVX = xSpeed + 3;
-        else if (currX < q2) newVX = xSpeed + 2;
+        if (currX < q1 || currX >= q5) newVX = xSpeed + xSpeed * 25 / 100 ;
+        else if (currX < q2) newVX = xSpeed + xSpeed * 10 / 100;
         else if ( currX < q3) newVX = xSpeed;
         else if (currX < q4) newVX = xSpeed;
-        else newVX = xSpeed + 2;
+        else newVX = xSpeed + xSpeed * 10 / 100;
 
         return newVX;
     }
@@ -180,6 +182,5 @@ public class Paddle extends BaseObject {
         g.drawImage(super.img, (int)super.x, (int)super.y, null);
     }
 }
-
 
 

@@ -8,6 +8,8 @@ import atariCore.FileInOut;
 import atariCore.Helper;
 import java.awt.event.KeyEvent;
 
+import static arkanoid.arkHelper.paddleSpeed;
+
 public class Arkanoid extends atariCore.Game {
 
     Ball b;
@@ -27,12 +29,7 @@ public class Arkanoid extends atariCore.Game {
     private void setBall() {
 
         b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 1, -1 , handler);
-    /*    Ball b2 = new Ball(Helper.screenWidth * 20 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 2, -1 , handler);
-        Ball b3 = new Ball(Helper.screenWidth * 20 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 3, -1 , handler);
-
-        handler.addObject(b3);
-        handler.addObject(b2);
-        */handler.addObject(b);
+        handler.addObject(b);
     }
 
     private void setPlayer() {
@@ -44,8 +41,9 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setBricks() {
+
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level14"),new Player("m7m7",2), p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level12"),new Player("m7m7",2), p , b ,handler);
         level.setBricks();
     }
 
@@ -66,12 +64,10 @@ public class Arkanoid extends atariCore.Game {
 
         if (key == KeyEvent.VK_LEFT) {
 
-            p.setVelX(-4) ;
-            p.setX(p.getX()-1);
+            p.setVelX(-paddleSpeed) ;
         } else if (key == KeyEvent.VK_RIGHT) {
 
-            p.setVelX(4);
-            p.setX(p.getX()+1);
+            p.setVelX(paddleSpeed);
         }
         else if (key == KeyEvent.VK_SPACE) {
 

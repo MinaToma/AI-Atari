@@ -7,12 +7,15 @@ import atariCore.Handler;
 
 import java.awt.*;
 
+import static arkanoid.arkHelper.xSpeed;
+import static arkanoid.arkHelper.ySpeed;
+
 public class Ball extends BaseObject {
 
 
     Handler handler;
-    float xOffset = 2f;
-    float yOffset = 2f;
+    float xOffset = xSpeed * 3 / 2;
+    float yOffset = ySpeed * 3 / 2;
 
     public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Handler handler) {
         super(xPosition, yPosition, image, xVelocity, yVelocity);
