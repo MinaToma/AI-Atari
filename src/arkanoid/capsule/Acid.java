@@ -13,5 +13,6 @@ public class Acid extends Capsule {
     @Override
     public void effect(Paddle p) {
 
+        p.makeAcidBall();
     }
 }

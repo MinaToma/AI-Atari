@@ -190,6 +190,21 @@ public class Paddle extends BaseObject {
 
         g.drawImage(super.img, (int)super.x, (int)super.y, null);
     }
+    public void makeAcidBall() {
+
+        for(BaseObject o : handler.getObject()) {
+
+            if(o instanceof Ball) {
+
+                ((Ball)o).makeAcid();
+            }
+        }
+    }
+
+    public void shrink() {
+
+        img = paddle[0];
+    }
 }
 
 

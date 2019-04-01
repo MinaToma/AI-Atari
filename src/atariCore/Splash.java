@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Splash {
 
@@ -16,6 +17,8 @@ public class Splash {
 
     public Splash(String title) {
 
+        Sounds s = new Sounds();
+        s.background();
         frame = new JFrame(title);
         panel = new JPanel(new GridLayout(0, 1));
         panel.setLayout(new GridLayout(0,1));

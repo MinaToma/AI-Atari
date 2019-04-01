@@ -7,8 +7,7 @@ import atariCore.Handler;
 
 import java.awt.*;
 
-import static arkanoid.arkHelper.xSpeed;
-import static arkanoid.arkHelper.ySpeed;
+import static arkanoid.arkHelper.*;
 
 public class Ball extends BaseObject {
 
@@ -85,5 +84,9 @@ public class Ball extends BaseObject {
     @Override
     public void render(Graphics g) {
         g.drawImage(img, (int)x, (int)y, null);
+    }
+    public  void makeAcid() {
+
+        img = acidBall;
     }
 }

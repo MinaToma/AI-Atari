@@ -12,7 +12,6 @@ public class Shrink extends Capsule {
     @Override
     public void effect(Paddle p) {
 
+        p.shrink();
     }
-
-
 }
