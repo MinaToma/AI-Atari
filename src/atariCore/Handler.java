@@ -25,7 +25,6 @@ public class Handler {
 
             o.render(g);
 
-            g.drawImage(bullet , 50, 50, null);
            // Rectangle r = o.getRectangle();
            // g.fillRect(r.x , r.y , r.width , r.height);
            // g.drawRect(r.x , r.y , r.width , r.height);

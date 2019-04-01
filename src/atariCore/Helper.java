@@ -32,8 +32,8 @@ public class Helper {
         btn.setLayout(null);
         btn.setFont(font);
         btn.setBackground(Color.BLACK);
-        btn.setForeground(Color.WHITE);
-        btn.setSelected(false);
+        btn.setForeground(Color.YELLOW);
+        btn.setFocusPainted(false);
         btn.setBounds(x, y, dim.width, dim.height);
 
         panel.add(btn);
@@ -49,6 +49,4 @@ public class Helper {
         return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 4,
                 image.getHeight(null) / 4, Image.SCALE_SMOOTH))).getImage();
     }
-
-
 }
