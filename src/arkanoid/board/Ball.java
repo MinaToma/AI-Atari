@@ -4,6 +4,7 @@ import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
+import atariCore.Sounds;
 
 import java.awt.*;
 
@@ -14,6 +15,7 @@ public class Ball extends BaseObject {
 
     Handler handler;
     Player player;
+
     float xOffset = xSpeed * 3 / 2;
     float yOffset = ySpeed * 3 / 2;
 
@@ -53,18 +55,23 @@ public class Ball extends BaseObject {
 
                     if( o instanceof Brick)  {
 
-                        if(((Brick)o).hit() && o.getY()>=0) {
+                       if( o.getY()>=0) {
+                           if (((Brick) o).hit()) {
 
-                            if( ((Brick)o).capsule != null ){
 
-                                Capsule capsule = ((Brick)o).capsule;
-                                capsule.setX(o.getX());
-                                capsule.setY(o.getY());
+                               if (((Brick) o).capsule != null) {
 
-                                handler.addObject(capsule);
-                            }
-                            handler.removeObject(o);
-                        }
+                                   Capsule capsule = ((Brick) o).capsule;
+                                   capsule.setX(o.getX());
+                                   capsule.setY(o.getY());
+
+                                   handler.addObject(capsule);
+                               }
+
+
+                               handler.removeObject(o);
+                           }
+                       }
                     }
 
                     float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));

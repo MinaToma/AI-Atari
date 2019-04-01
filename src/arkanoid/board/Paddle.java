@@ -5,6 +5,8 @@ package arkanoid.board;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
+import atariCore.Sounds;
+
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -15,6 +17,7 @@ public class Paddle extends BaseObject {
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
     public boolean sticky, laser = true;
+
     int normalImageIdx = 0;
     Player player;
 
@@ -106,6 +109,8 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletL);
         handler.addObject(bulletR);
+
+
     }
 
     public void speedUp() {

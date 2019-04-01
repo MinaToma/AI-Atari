@@ -18,7 +18,7 @@ public class Splash {
     public Splash(String title) {
 
         Sounds s = new Sounds();
-        s.background();
+        s.backgroundSplash.loop(20);
         frame = new JFrame(title);
         panel = new JPanel(new GridLayout(0, 1));
         panel.setLayout(new GridLayout(0,1));
@@ -47,6 +47,7 @@ public class Splash {
 
     protected void setNewGameButton(int x, int y, Dimension dim) {
         newGameButton = Helper.btnHelper(newGameButton, "New Game", x, y, dim, panel);
+
     }
 
     protected void setSettingsButton(int x, int y, Dimension dim) {

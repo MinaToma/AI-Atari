@@ -3,6 +3,7 @@ package arkanoid.board;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
+import atariCore.Sounds;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,9 +14,11 @@ import static arkanoid.arkHelper.*;
 public class Bullet extends BaseObject {
 
     Handler handler;
+
     public Bullet(float x, float y, Image img , Handler handler) {
         super(x, y, img);
         this.handler = handler;
+
     }
 
     @Override
@@ -40,21 +43,27 @@ public class Bullet extends BaseObject {
                     dead = true;
                     calcScore++;
 
-                    if(((Brick) o).hit() && o.getY()>=0 ) {
+                    if( o.getY()>=0) {
+                        if (((Brick) o).hit()) {
 
-                        if(((Brick) o).capsule != null) {
 
-                            Capsule capsule = ((Brick) o).capsule;
-                            capsule.setX(o.getX());
-                            capsule.setY(o.getY());
-                            handler.addObject(capsule);
+                            if (((Brick) o).capsule != null) {
+
+                                Capsule capsule = ((Brick) o).capsule;
+                                capsule.setX(o.getX());
+                                capsule.setY(o.getY());
+
+                                handler.addObject(capsule);
+                            }
+
+                            handler.removeObject(o);
                         }
-                        handler.removeObject(o);
                     }
                 }
             }
         }
-
+        if(getY()<=0)
+            dead =true;
         if(dead)
             handler.removeObject(this);
     }

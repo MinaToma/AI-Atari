@@ -6,6 +6,8 @@ import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
 import atariCore.Helper;
+import atariCore.Sounds;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -26,8 +28,14 @@ public class Arkanoid extends atariCore.Game {
         setBall();
         setEnemy();
         setBricks();
+        setMusic();
     }
-
+    private void setMusic()
+    {
+        Sounds s = new Sounds();
+        //s.backgroundGame.start();
+        //s.backgroundGame.loop(5);
+    }
     private void setBall() {
 
         b = new Ball(INIT_BALL_X, INIT_BALL_Y , arkHelper.ball, xSpeed , ySpeed , handler , player);

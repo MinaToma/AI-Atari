@@ -1,42 +1,52 @@
 package atariCore;
 
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-
-import static com.sun.org.apache.xerces.internal.utils.SecuritySupport.getResourceAsStream;
+import java.net.URL;
 
 public class Sounds {
 
 
-    public void background()
+    public  Clip hit;
+    public  Clip backgroundSplash;
+    public  Clip backgroundGame;
+    public  Clip lazer;
+
+    public Sounds()
     {
-        playSound("background.wav")  ;
+       backgroundSplash = playSound("background.wav")  ;
+       backgroundGame =  playSound("background.wav");
+       hit =  playSound("hit.wav");
+       lazer =  playSound("lazer.wav");
     }
 
 
 
-    public void playSound(String path)  {
+
+
+    public Clip playSound(String path) {
+
+
         try
         {
 
-            InputStream inputStream = getClass().getResourceAsStream("Resources/Sounds/"+path);
-            AudioStream audioStream = new AudioStream(inputStream);
-            AudioPlayer.player.start(audioStream);
-
+            URL url = this.getClass().getClassLoader().getResource("Resources/Sounds/"+path);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+            Clip clip = AudioSystem.getClip();
+            // Open audio clip and load samples from the audio input stream.
+            clip.open(audioIn);
+            //clip.start();
+            return clip;
         }
         catch (Exception e)
         {
-
-            System.out.print(12);
+            ////
         }
+        return null;
+
 
 
     }

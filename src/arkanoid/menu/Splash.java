@@ -13,6 +13,7 @@ public class Splash extends atariCore.Splash {
         newGameButton.addActionListener(e -> {
             frame.dispose();
             new Arkanoid();
+
         });
     }
 
