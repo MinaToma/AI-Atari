@@ -14,10 +14,10 @@ public class arkHelper extends Helper {
     public static final int INIT_PADDLE_Y = 360;
     public static final int INIT_BALL_X = 230;
     public static final int INIT_BALL_Y = 355;
-    public static int paddleSpeed = 5;
-    public static int xSpeed = 1;
-    public static int ySpeed = 1;
-    public static int capsuleSpeed = 1;
+    public static float paddleSpeed = 5;
+    public static float xSpeed = 1.5f;
+    public static float ySpeed = 1.5f;
+    public static float capsuleSpeed = 1;
 
     public static Image[] normalBricks;
     public static Image[] brokenBricks;
@@ -100,6 +100,4 @@ public class arkHelper extends Helper {
         life = getImage(path + "60-Breakout-Tiles.png");
         bullet = getImage(path + "61-Breakout-Tiles.png");
     }
-
-
 }

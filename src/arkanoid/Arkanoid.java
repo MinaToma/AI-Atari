@@ -45,7 +45,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",2), p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level14"),new Player("m7m7",2), p , b ,handler);
         level.setBricks();
     }
 
@@ -65,18 +65,19 @@ public class Arkanoid extends atariCore.Game {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
+
             p.setVelX(-4) ;
             p.setX(p.getX()-1);
         } else if (key == KeyEvent.VK_RIGHT) {
+
             p.setVelX(4);
             p.setX(p.getX()+1);
         }
         else if (key == KeyEvent.VK_SPACE) {
+
             if(p.laser)
                 p.hitLaser();
         }
-
-
     }
 
     @Override
@@ -84,15 +85,10 @@ public class Arkanoid extends atariCore.Game {
 
         int key = e.getKeyCode();
 
-
-
-
-                if (key == KeyEvent.VK_LEFT || key == KeyEvent.VK_A) {
-                    p.setVelX(0);
-                } else if (key == KeyEvent.VK_RIGHT) {
-                    p.setVelX(0);
-                }
-
-
+        if (key == KeyEvent.VK_LEFT) {
+            p.setVelX(0);
+        } else if (key == KeyEvent.VK_RIGHT) {
+            p.setVelX(0);
+        }
     }
 }

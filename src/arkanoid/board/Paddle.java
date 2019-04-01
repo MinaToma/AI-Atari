@@ -2,16 +2,10 @@
 
 package arkanoid.board;
 
-import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
-import atariCore.Helper;
-
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
@@ -20,10 +14,10 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky, laser;
+    public boolean sticky, laser = false;
     int normalImageIdx = 0;
 
-    public Paddle(int xPosition, int yPosition, Image image, int velX, int velY, Handler handler) {
+    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler) {
 
         super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
@@ -74,6 +68,8 @@ public class Paddle extends BaseObject {
     public void updateLaser() {
 
         laser = true;
+        setImageWidth(paddleWeapon[0].getWidth(null));
+        setImageHeight(paddleWeapon[0].getHeight(null));
     }
 
     public void expand() {
@@ -157,15 +153,15 @@ public class Paddle extends BaseObject {
         }
     }
 
-    public int getNewVx(int currX) {
+    public float getNewVx(float currX) {
 
-        int newVX = xSpeed;
+        float newVX = xSpeed;
 
-        int q1 = x + getImageWidth() / 5;
-        int q2 = q1 + getImageWidth() / 5;
-        int q3 = q2 + getImageWidth() / 5;
-        int q4 = q3 + getImageWidth() / 5;
-        int q5 = q4 + getImageWidth() / 5;
+        float q1 = x + getImageWidth() / 5;
+        float q2 = q1 + getImageWidth() / 5;
+        float q3 = q2 + getImageWidth() / 5;
+        float q4 = q3 + getImageWidth() / 5;
+        float q5 = q4 + getImageWidth() / 5;
 
         //System.out.println(currX);
         //System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
@@ -181,10 +177,8 @@ public class Paddle extends BaseObject {
 
     public void render(Graphics g) {
 
-        g.drawImage(super.img, super.x, super.y, null);
+        g.drawImage(super.img, (int)super.x, (int)super.y, null);
     }
-
-
 }
 
 

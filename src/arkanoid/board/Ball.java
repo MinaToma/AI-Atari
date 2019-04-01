@@ -6,23 +6,17 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Ball extends BaseObject {
 
 
     Handler handler;
-    int xOffset = 3;
-    int yOffset = 3;
+    float xOffset = 2f;
+    float yOffset = 2f;
 
-    public Ball(int xPosition, int yPosition, Image image, int xVelocity, int yVelocity, Handler handler) {
+    public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Handler handler) {
         super(xPosition, yPosition, image, xVelocity, yVelocity);
         this.handler = handler;
-    }
-
-    public void move() {
-
     }
 
     @Override
@@ -47,48 +41,38 @@ public class Ball extends BaseObject {
 
         int calcScore = 0;
 
-        boolean reflected = false;
-
         for (BaseObject o : handler.getObject()) {
-            if ((o instanceof Brick || o instanceof Enemy) && !reflected) {
+            if ((o instanceof Brick || o instanceof Enemy)) {
                 if (o.getRectangle().intersects(getRectangle())) {
                     calcScore++;
 
-                    if( o instanceof Brick)
-                    {
-                        ((Brick)o).hit();
-                        if(((Brick)o).getPower()<=0)
-                        {
+                    if( o instanceof Brick)  {
+                        if(((Brick)o).hit() && o.getY()>=0) {
+
                             if( ((Brick)o).capsule != null ){
 
                                 Capsule capsule = ((Brick)o).capsule;
                                 capsule.setX(o.getX());
                                 capsule.setY(o.getY());
 
-
                                 handler.addObject(capsule);
                             }
                             handler.removeObject(o);
                         }
-
                     }
 
-                    int hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
-                    int hitLeft = Math.abs(x + getImageWidth() - o.getX());
-                    int hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
-                    int hitUp = Math.abs(y + getImageHeight() - o.getY());
+                    float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
+                    float hitLeft = Math.abs(x + getImageWidth() - o.getX());
+                    float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
+                    float hitUp = Math.abs(y + getImageHeight() - o.getY());
 
                     if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
-                    if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
+                    else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
 
+                    System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
+                    System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
 
-                    //System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
-                    //System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
-
-
-                    reflected = true;
-
-                    continue;
+                    break;
                 }
             }
         }
@@ -96,6 +80,6 @@ public class Ball extends BaseObject {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(img, x, y, null);
+        g.drawImage(img, (int)x, (int)y, null);
     }
 }

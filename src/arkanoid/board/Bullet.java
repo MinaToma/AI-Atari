@@ -13,7 +13,7 @@ import static arkanoid.arkHelper.*;
 public class Bullet extends BaseObject {
 
     Handler handler;
-    public Bullet(int x, int y, Image img , Handler handler) {
+    public Bullet(float x, float y, Image img , Handler handler) {
         super(x, y, img);
         this.handler = handler;
     }
@@ -40,10 +40,14 @@ public class Bullet extends BaseObject {
                     dead = true;
                     calcScore++;
 
-                    if(((Brick) o).hit()) {
+                    if(((Brick) o).hit() && o.getY()>=0 ) {
                         handler.removeObject(o);
                         if(((Brick) o).capsule != null) {
-                            handler.addObject(((Brick) o).capsule);
+
+                            Capsule capsule = ((Brick) o).capsule;
+                            capsule.setX(o.getX());
+                            capsule.setY(o.getY());
+                            handler.addObject(capsule);
                         }
                     }
                 }
@@ -56,6 +60,6 @@ public class Bullet extends BaseObject {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(super.img, super.x, super.y, null);
+        g.drawImage(super.img, (int)super.x, (int)super.y, null);
     }
 }

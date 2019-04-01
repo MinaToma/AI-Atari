@@ -46,8 +46,8 @@ public class Helper {
         ImageIcon icon = new ImageIcon(filename);
         Image image = icon.getImage();
 
-        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 4 ,
-                image.getHeight(null) / 4 , Image.SCALE_SMOOTH))).getImage();
+        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 4,
+                image.getHeight(null) / 4, Image.SCALE_SMOOTH))).getImage();
     }
 
 

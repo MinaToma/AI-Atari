@@ -34,7 +34,6 @@ public abstract class Capsule extends BaseObject {
     @Override
     public void render(Graphics g) {
 
-
-        g.drawImage(super.img, super.x, super.y, null);
+        g.drawImage(super.img, (int)super.x, (int)super.y, null);
     }
 }
