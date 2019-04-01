@@ -28,7 +28,7 @@ public class Level {
 
     public void setBricks()
     {
-        int initialHeight = Helper.screenHeight/2;
+        int initialHeight = Helper.screenHeight * 40 / 100;
         int index=0;
         int ok=0;
 

@@ -22,6 +22,7 @@ abstract public class Game extends JPanel implements KeyListener {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+
                 handler.tick();
                 revalidate();
                 repaint();

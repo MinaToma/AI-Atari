@@ -1,24 +1,23 @@
 package arkanoid;
 
 import arkanoid.board.Ball;
-import arkanoid.board.Brick;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
 import atariCore.Helper;
-
-import javax.swing.*;
 import java.awt.event.KeyEvent;
 
 public class Arkanoid extends atariCore.Game {
 
-    public Arkanoid() {
+    Ball b;
+    Paddle p;
 
+    public Arkanoid() {
         super("Arkanoid");
 
-        //  setBall();
         new arkHelper();
+        setBall();
         setEnemy();
         setPlayer();
         setPaddle();
@@ -27,8 +26,8 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBall() {
 
-        //    Ball ball = new Ball();
-        //    handler.addObject(ball);
+        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 1, -2 , handler);
+        handler.addObject(b);
     }
 
     private void setPlayer() {
@@ -41,14 +40,14 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks() {
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",3),new Paddle(0,0,arkHelper.paddle[0],0,0,handler),new Ball(0,0,arkHelper.ball,0,0,handler),handler);
+        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",3), p , b ,handler);
         level.setBricks();
     }
 
     private void setPaddle() {
 
-        // Paddle p = new Paddle(Helper.screenWidth / 3, Helper.screenHeight / 3, null, 0, 0, handler);
-        // handler.addObject(p);
+         p = new Paddle(Helper.screenWidth * 40 / 100 , Helper.screenHeight * 90 / 100 , arkHelper.paddleExpanded, 0, 0, handler);
+         handler.addObject(p);
         //Brick brick = new Brick(0,0,null,"red",1);
         //handler.addObject(brick);
 

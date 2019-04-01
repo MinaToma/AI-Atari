@@ -16,7 +16,8 @@ public class Ball extends BaseObject {
 
 
     Handler handler;
-    int offset = 2;
+    int xOffset = Math.abs(arkHelper.ySpeed) + 1;
+    int yOffset = Math.abs(arkHelper.xSpeed) + 1;
 
     public Ball(int xPostion, int yPostion, Image image, int xVelocity, int yVelocity, Handler handler) {
         super(xPostion, yPostion, image, xVelocity, yVelocity);
@@ -29,6 +30,7 @@ public class Ball extends BaseObject {
 
     @Override
     public void tick() {
+
         y += velY;
         x += velX;
 
@@ -51,7 +53,7 @@ public class Ball extends BaseObject {
 
         for (BaseObject o : handler.getObject()) {
             if ((o instanceof Brick || o instanceof Enemy) && !reflected) {
-                if (o .getRectangle().intersects(getRectangle())) {
+                if (o.getRectangle().intersects(getRectangle())) {
                     calcScore++;
                     ((Brick) o).hit();
 
@@ -61,15 +63,21 @@ public class Ball extends BaseObject {
                         object.add(o);
                     }
 
-                    int hitRight = Math.abs(x - (o.getX() + o.getImageWidth()) );
-                    int hitLeft = Math.abs(x + getImageWidth() - o.getX() );
-                    int hitDown = Math.abs(y - (o.getY() + o.getImageHeight()) );
+                    int hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
+                    int hitLeft = Math.abs(x + getImageWidth() - o.getX());
+                    int hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
                     int hitUp = Math.abs(y + getImageHeight() - o.getY());
 
-                    if((hitLeft < offset && velX > 0) || (hitRight < offset && velX < 0) ) setVelX(velX * -1);
-                    if((hitUp   < offset && velY > 0) || (hitDown  < offset && velY < 0) ) setVelY(velY * -1);
+                    if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
+                    if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
+
+                    /*
+                    System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
+                    System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
+                    */
 
                     reflected = true;
+
                     continue;
                 }
             }

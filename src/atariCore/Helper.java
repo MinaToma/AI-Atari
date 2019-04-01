@@ -16,7 +16,7 @@ public class Helper {
     public static final int INIT_PADDLE_Y = 360;
     public static final int INIT_BALL_X = 230;
     public static final int INIT_BALL_Y = 355;
-    public static final int DELAY = 1000;
+    public static final int DELAY = 100;
     public static final int PERIOD = 5;
 
     public static JButton btnHelper(JButton btn, String txt, int x, int y, Dimension dim, Panel panel) {

@@ -7,6 +7,7 @@ import java.util.List;
 public class FileInOut {
 
     public String getLeaderboardData(String path) throws IOException {
+
         String Data = new String();
         FileReader in = null;
 
@@ -43,6 +44,7 @@ public class FileInOut {
             }
         }
     }
+
     public ArrayList<ArrayList<Integer>> getLevel(String level)
     {
         ArrayList<ArrayList<Integer>> dim = new ArrayList<>();

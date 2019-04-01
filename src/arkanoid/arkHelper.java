@@ -1,6 +1,7 @@
 package arkanoid;
 
 import atariCore.Helper;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -30,13 +31,13 @@ public class arkHelper extends Helper {
     public static Image star;
     public static Image life;
     public static Image bullet;
-    public static int xSpeed = 1;
-    public static int ySpeed = 1;
+    public static int xSpeed = 2;
+    public static int ySpeed = 2;
 
     String path = "src/Resources/image/";
 
-    public arkHelper()
-    {
+    public arkHelper() {
+
         paddle = new Image[3];
         capsule100 = new Image[7];
         paddleWeapon = new Image[3];
@@ -47,23 +48,21 @@ public class arkHelper extends Helper {
         loadImages();
     }
 
-    private void loadImages()
-    {
-        for(int i = 1; i <= 20; i++)
-        {
-            if(i%2 == 1)
-                normalBricks[i/2] = getImage(path + (i < 10 ? "0" + i : i) +"-Breakout-Tiles.png");
+    private void loadImages() {
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 == 1)
+                normalBricks[i / 2] = getImage(path + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png");
             else
-                brokenBricks[i/2 - 1] = getImage(path + (i < 10 ? "0" + i : i) +"-Breakout-Tiles.png");
+                brokenBricks[i / 2 - 1] = getImage(path + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png");
         }
 
-        for(int i = 21; i <= 30; i++)
-            smallSquares[i - 21] = getImage(path + i +"-Breakout-Tiles.png");
+        for (int i = 21; i <= 30; i++)
+            smallSquares[i - 21] = getImage(path + i + "-Breakout-Tiles.png");
 
         capsule50 = getImage(path + "31-Breakout-Tiles.png");
 
-        for(int i = 32; i <= 38; i++)
-            capsule100[i-32] = getImage(path + i +"-Breakout-Tiles.png");
+        for (int i = 32; i <= 38; i++)
+            capsule100[i - 32] = getImage(path + i + "-Breakout-Tiles.png");
 
         capsule250 = getImage(path + "39-Breakout-Tiles.png");
         capsule500 = getImage(path + "40-Breakout-Tiles.png");
@@ -78,10 +77,10 @@ public class arkHelper extends Helper {
         capsuleWeapon = getImage(path + "48-Breakout-Tiles.png");
         capsuleEmpty = getImage(path + "49-Breakout-Tiles.png");
 
-        for(int i = 50; i <= 52; i++)
+        for (int i = 50; i <= 52; i++)
             paddle[i - 50] = getImage(path + i + "-Breakout-Tiles.png");
 
-        for(int i = 53; i <= 55; i++)
+        for (int i = 53; i <= 55; i++)
             paddleWeapon[i - 53] = getImage(path + i + "-Breakout-Tiles.png");
 
         paddleExpanded = getImage(path + "56-Breakout-Tiles.png");
