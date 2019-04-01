@@ -51,7 +51,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setPaddle() {
 
-         p = new Paddle(Helper.screenWidth * 40 / 100 , Helper.screenHeight * 90 / 100 , arkHelper.paddleExpanded, 0, 0, handler);
+         p = new Paddle(Helper.screenWidth * 40 / 100 , Helper.screenHeight * 90 / 100 , arkHelper.paddle[0], 0, 0, handler);
          handler.addObject(p);
         //Brick brick = new Brick(0,0,null,"red",1);
         //handler.addObject(brick);

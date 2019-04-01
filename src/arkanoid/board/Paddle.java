@@ -26,7 +26,6 @@ public class Paddle extends BaseObject {
 
     public void tick() {
 
-        speedUp();
         updateNormalImage();
         updateCapsules();
 
@@ -54,7 +53,6 @@ public class Paddle extends BaseObject {
                 break;
             }
         }
-
     }
 
     public void updateLaser() {
@@ -115,6 +113,7 @@ public class Paddle extends BaseObject {
 
                 if (o.getRectangle().intersects(getRectangle())) {
 
+                    //updateCapsules();
                     capsules.add(((Capsule) o));
                 }
             }
@@ -132,6 +131,7 @@ public class Paddle extends BaseObject {
                             o.setVelX(-dir * getNewVx(o.getX() + o.getImageWidth() / 2));
                         }
 
+                        //updateCapsules();
                         System.out.println(o.getVelX());
                     }
                 }
@@ -155,7 +155,7 @@ public class Paddle extends BaseObject {
         System.out.println(currX);
         System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
 
-        if (currX < q1 || currX >= q5) newVX = xSpeed + 2;
+        if (currX < q1 || currX >= q5) newVX = xSpeed + 3;
         else if (currX >= q1 && currX < q2) newVX = xSpeed + 2;
         else if (currX >= q2 && currX < q3) newVX = xSpeed;
         else if (currX >= q3 && currX < q4) newVX = xSpeed;
