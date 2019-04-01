@@ -69,9 +69,11 @@ public class Arkanoid extends atariCore.Game {
         if (key == KeyEvent.VK_LEFT) {
 
             p.setVelX(-paddleSpeed) ;
+            //System.out.print(1);
         } else if (key == KeyEvent.VK_RIGHT) {
 
             p.setVelX(paddleSpeed);
+            //System.out.print(2);
         }
         else if (key == KeyEvent.VK_SPACE) {
 
@@ -128,8 +130,10 @@ public class Arkanoid extends atariCore.Game {
 
         if (key == KeyEvent.VK_LEFT) {
             p.setVelX(0);
+            //System.out.print(3);
         } else if (key == KeyEvent.VK_RIGHT) {
             p.setVelX(0);
+           // System.out.print(4);
         }
     }
 }

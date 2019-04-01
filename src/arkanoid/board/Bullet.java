@@ -39,9 +39,9 @@ public class Bullet extends BaseObject {
 
                     dead = true;
                     calcScore++;
-
+                    System.out.println(((Brick)o).getPower());
                     if(((Brick) o).hit() && o.getY()>=0 ) {
-                        handler.removeObject(o);
+
                         if(((Brick) o).capsule != null) {
 
                             Capsule capsule = ((Brick) o).capsule;

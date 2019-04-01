@@ -49,7 +49,7 @@ public class Brick extends BaseObject {
 
             this.setImg(arkHelper.brokenBricks[color]);
         }
-        return  (power == 0);
+        return  (power <= 0);
     }
 
     public void tick() {
