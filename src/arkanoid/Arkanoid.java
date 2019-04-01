@@ -22,9 +22,9 @@ public class Arkanoid extends atariCore.Game {
 
         new arkHelper();
         setPlayer();
+        setPaddle();
         setBall();
         setEnemy();
-        setPaddle();
         setBricks();
     }
 
@@ -75,9 +75,23 @@ public class Arkanoid extends atariCore.Game {
         }
         else if (key == KeyEvent.VK_SPACE) {
 
-            if(p.laser) {
+            paddleClick();
+        }
+    }
 
-                p.hitLaser();
+    public void paddleClick() {
+        if(p.laser) {
+
+            p.hitLaser();
+        }
+
+        if(p.sticky) {
+
+            for(BaseObject o : handler.getObject()) {
+                if(o instanceof Ball) {
+                    o.setVelX(xSpeed);
+                    o.setVelY(ySpeed);
+                }
             }
         }
     }
@@ -85,10 +99,7 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
-        if(p.laser) {
-
-            p.hitLaser();
-        }
+        paddleClick();
     }
 
     @Override
@@ -118,7 +129,9 @@ public class Arkanoid extends atariCore.Game {
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-        p.setX(mouseEvent.getX());
+
+        if(b.getX() != INIT_BALL_X)
+             p.setX(mouseEvent.getX());
     }
 
     @Override

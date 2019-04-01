@@ -37,7 +37,8 @@ public class Ball extends BaseObject {
     @Override
     public void clamp() {
 
-        if (arkHelper.screenWidth <= x + getImageWidth() || x <= 0) velX *= -1;
+        if (arkHelper.screenWidth <= x + getImageWidth() ) velX = -1;
+        if(x <= 0) velX = 1;
         if (y <= 0) velY *= -1;
         if (y > arkHelper.screenHeight) handler.removeObject(this);
     }
@@ -73,9 +74,6 @@ public class Ball extends BaseObject {
 
                     if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
                     else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
-
-                    //System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
-                    //System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
 
                     break;
                 }

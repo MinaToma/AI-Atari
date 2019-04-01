@@ -110,14 +110,14 @@ public class Paddle extends BaseObject {
 
     public void speedUp() {
 
-        xSpeed++;
-        ySpeed++;
+        xSpeed = Math.min(4 , xSpeed + 0.5f);
+        ySpeed = Math.min(4 , ySpeed + 0.5f);
     }
 
     public void speedDown() {
 
-        xSpeed--;
-        ySpeed--;
+        xSpeed = Math.max(1 , xSpeed - 0.5f);
+        ySpeed = Math.max(1 , xSpeed - 0.5f);
     }
 
     private void collision() {
@@ -137,12 +137,14 @@ public class Paddle extends BaseObject {
             if (o instanceof Ball) {
                 if (o.getRectangle().intersects(getRectangle()) && o.getY() + o.getImageHeight() / 2 < y) {
 
-                    if (!sticky) {
-                        o.setVelY(ySpeed * -1);
-                    }
-                    else {
+                    if (sticky) {
+
+                        o.setVelX(0);
                         o.setVelY(0);
+                        continue;
                     }
+
+                    o.setVelY(ySpeed * -1);
 
                     int dir = (o.getVelX() >= 0) ? 1 : -1;
 

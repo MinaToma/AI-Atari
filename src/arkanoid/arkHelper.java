@@ -7,7 +7,6 @@ import java.awt.*;
 
 public class arkHelper extends Helper {
 
-
     public static final int BOTTOM_EDGE = 390;
     public static final int N_OF_BRICKS = 30;
     public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
