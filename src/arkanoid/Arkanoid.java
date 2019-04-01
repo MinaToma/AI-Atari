@@ -5,6 +5,7 @@ import arkanoid.board.Brick;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
+import atariCore.FileInOut;
 import atariCore.Helper;
 
 import javax.swing.*;
@@ -39,9 +40,9 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setBricks() {
-        boolean[] dim = new boolean[5];
-        Level l = new Level(dim, new Player("ahmed", 2), 30, new Paddle(0, 0, arkHelper.paddle[0], 0, 0, handler), new Ball(0, 0, null, 0, 0, handler), handler);
-        l.loadBricks();
+        FileInOut fileInOut = new FileInOut();
+        Level level = new Level(fileInOut.getLevel("Level1"),new Player("m7m7",3),new Paddle(0,0,arkHelper.paddle[0],0,0,handler),new Ball(0,0,arkHelper.ball,0,0,handler),handler);
+        level.setBricks();
     }
 
     private void setPaddle() {

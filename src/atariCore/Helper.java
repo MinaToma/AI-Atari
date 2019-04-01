@@ -7,7 +7,7 @@ import java.awt.image.ImageProducer;
 
 public class Helper {
 
-    public static int screenWidth = 700, screenHeight = 800;
+    public static int screenWidth = 1024, screenHeight = 768;
     public static final int WIDTH = 640;
     public static final int HEIGTH = WIDTH / 12 * 9;
     public static final int BOTTOM_EDGE = 390;

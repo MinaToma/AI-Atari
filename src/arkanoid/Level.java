@@ -42,6 +42,7 @@ public class Level {
             }
             for(int x : arrayList)
             {
+                //System.out.print(x+" ");
                 if(x<20 && x>0)
                 {
                     sumOfWidth += arkHelper.normalBricks[0].getWidth(null);
@@ -51,8 +52,9 @@ public class Level {
                     sumOfWidth += arkHelper.smallSquares[0].getWidth(null);
                 }
             }
+
             int initialWidth = (Helper.screenWidth - sumOfWidth)/2;
-            System.out.println(initialWidth);
+            //System.out.println(initialWidth);
             for(int x : arrayList)
             {
 
