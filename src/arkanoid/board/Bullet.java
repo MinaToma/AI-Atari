@@ -39,7 +39,7 @@ public class Bullet extends BaseObject {
 
                     dead = true;
                     calcScore++;
-                    System.out.println(((Brick)o).getPower());
+
                     if(((Brick) o).hit() && o.getY()>=0 ) {
 
                         if(((Brick) o).capsule != null) {
@@ -49,6 +49,7 @@ public class Bullet extends BaseObject {
                             capsule.setY(o.getY());
                             handler.addObject(capsule);
                         }
+                        handler.removeObject(o);
                     }
                 }
             }
