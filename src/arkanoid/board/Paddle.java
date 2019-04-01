@@ -111,7 +111,7 @@ public class Paddle extends BaseObject {
     }
 
     public void speedUp() {
-        velX = paddleSpeed;
+        velX = paddleSpeed + 1 ;
     }
 
     public void speedDown() {

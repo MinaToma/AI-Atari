@@ -51,8 +51,6 @@ public class Level {
         Collections.sort(capsul);
         numberOfCapsule = capsul.size();
 
-        //Capsule capsule = new Expand(0 , 0 , 4 , arkHelper.capsuleExpand);
-
         for(ArrayList<Integer> arrayList : dimensions)
         {
             int sumOfWidth = 0;
