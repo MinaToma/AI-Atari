@@ -6,6 +6,7 @@ import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
 import atariCore.Helper;
+import javafx.util.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,6 +37,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : handler.getObject()) {
             if (o instanceof Capsule) {
+
                 if (o.getRectangle().intersects(getRectangle())) {
                     // han3ml 7aga hena
 
@@ -43,45 +45,20 @@ public class Paddle extends BaseObject {
             }
 
             if (o instanceof Ball) {
-                if (o.getRectangle().intersects(getRectangle())) {
+                if (o.getRectangle().intersects(getRectangle()) && o.getY() + o.getImageHeight() / 2 < y) {
 
-                    int paddleLPos = (int) getRectangle().getMinX();
-                    int ballLPos = (int) o.getRectangle().getMinX();
+                    o.setVelY(o.getVelY() * -1);
 
-                    int first = paddleLPos + 8;
-                    int second = paddleLPos + 16;
-                    int third = paddleLPos + 24;
-                    int fourth = paddleLPos + 32;
+                    int dir = (o.getVelX() >= 0) ? 1 : -1;
 
-                    if (ballLPos < first) {
-
-                        o.setVelX(-xSpeed);
-                        o.setVelY(-ySpeed);
+                    if ( (o.getVelX() > 0 && getVelX() >= 0) || (o.getVelX() < 0 && getVelX() <= 0)) {
+                        o.setVelX(dir * getNewVx(o.getX() + o.getImageWidth() / 2));
+                    }
+                    else {
+                        o.setVelX(-dir * getNewVx(o.getX() + o.getImageWidth() / 2));
                     }
 
-                    if (ballLPos >= first && ballLPos < second) {
-
-                        o.setVelX(-xSpeed);
-                        o.setVelY(-1 * o.getVelY());
-                    }
-
-                    if (ballLPos >= second && ballLPos < third) {
-
-                        o.setVelX(0);
-                        o.setVelY(-ySpeed);
-                    }
-
-                    if (ballLPos >= third && ballLPos < fourth) {
-
-                        o.setVelX(xSpeed);
-                        o.setVelY(-1 * o.getVelY());
-                    }
-
-                    if (ballLPos > fourth) {
-
-                        o.setVelX(xSpeed);
-                        o.setVelY(-ySpeed);
-                    }
+                    System.out.println(o.getVelX());
                 }
             }
 
@@ -89,6 +66,27 @@ public class Paddle extends BaseObject {
         }
 
         handler.object = object;
+    }
+
+    public int getNewVx(int currX) {
+        int newVX = xSpeed;
+
+        int q1 =  x + getImageWidth() / 5;
+        int q2 = q1 + getImageWidth() / 5;
+        int q3 = q2 + getImageWidth() / 5;
+        int q4 = q3 + getImageWidth() / 5;
+        int q5 = q4 + getImageWidth() / 5;
+
+        System.out.println(currX);
+        System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
+
+        if(currX < q1 || currX >= q5) newVX = xSpeed + 2;
+        else if(currX >= q1 && currX < q2) newVX = xSpeed + 2;
+        else if(currX >= q2 && currX < q3) newVX = xSpeed;
+        else if(currX >= q3 && currX < q4) newVX = xSpeed;
+        else if(currX >= q4 && currX < q5) newVX = xSpeed + 2;
+
+        return newVX;
     }
 
     public void render(Graphics g) {

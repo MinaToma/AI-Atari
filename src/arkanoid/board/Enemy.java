@@ -26,9 +26,9 @@ public class Enemy extends BaseObject {
         super.x += super.velX;
         super.y += super.velY;
 
-        if (super.y <= 0 || super.y >= Helper.HEIGTH - super.imageHeight)
+        if (super.y <= 0 || super.y >= Helper.screenHeight - super.imageHeight)
             super.velY *= -1;
-        if (super.x <= 0 || super.x >= Helper.WIDTH - super.imageHeight)
+        if (super.x <= 0 || super.x >= Helper.screenWidth - super.imageHeight)
             super.velX *= -1;
 
         collision();

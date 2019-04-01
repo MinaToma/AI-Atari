@@ -26,8 +26,13 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBall() {
 
-        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 1, -2 , handler);
-        handler.addObject(b);
+        b = new Ball(Helper.screenWidth * 40 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 2, -2 , handler);
+    /*    Ball b2 = new Ball(Helper.screenWidth * 20 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 2, -1 , handler);
+        Ball b3 = new Ball(Helper.screenWidth * 20 / 100, Helper.screenHeight * 80 / 100 , arkHelper.ball, 3, -1 , handler);
+
+        handler.addObject(b3);
+        handler.addObject(b2);
+        */handler.addObject(b);
     }
 
     private void setPlayer() {

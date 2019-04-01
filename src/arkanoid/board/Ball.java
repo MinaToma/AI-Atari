@@ -16,8 +16,8 @@ public class Ball extends BaseObject {
 
 
     Handler handler;
-    int xOffset = Math.abs(arkHelper.ySpeed) + 1;
-    int yOffset = Math.abs(arkHelper.xSpeed) + 1;
+    int xOffset = 3;
+    int yOffset = 3;
 
     public Ball(int xPostion, int yPostion, Image image, int xVelocity, int yVelocity, Handler handler) {
         super(xPostion, yPostion, image, xVelocity, yVelocity);
@@ -71,10 +71,10 @@ public class Ball extends BaseObject {
                     if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
                     if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
 
-                    /*
+
                     System.out.println(hitLeft + " " + hitRight + " " + hitUp + " " + hitDown);
                     System.out.println(o.getX() + " " + (o.getX() + o.getImageWidth()) + " " + o.getY() + " " + (o.getY() + o.getImageHeight()));
-                    */
+
 
                     reflected = true;
 
