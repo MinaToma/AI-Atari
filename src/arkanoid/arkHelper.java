@@ -1,6 +1,7 @@
 package arkanoid;
 
 import atariCore.Helper;
+import atariCore.Splash;
 
 import javax.swing.*;
 import java.awt.*;
@@ -99,5 +100,6 @@ public class arkHelper extends Helper {
         star = getImage(path + "59-Breakout-Tiles.png");
         life = getImage(path + "60-Breakout-Tiles.png");
         bullet = getImage(path + "61-Breakout-Tiles.png");
+
     }
 }
