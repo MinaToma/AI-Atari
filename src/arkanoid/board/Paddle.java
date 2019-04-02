@@ -2,6 +2,7 @@
 
 package arkanoid.board;
 
+import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
@@ -166,6 +167,14 @@ public class Paddle extends BaseObject {
                     }
 
                     //System.out.println(o.getVelX());
+                }
+                if(o.getY() >= screenHeight)
+                {
+                    player.setLives(player.getLives()-1);
+                    o.setX((this.x+this.getImageWidth() - this.getImageWidth()/2));
+                    o.setY(INIT_BALL_Y);
+                    o.setVelX(xSpeed);
+                    o.setVelY(ySpeed);
                 }
             }
             if( o instanceof Brick) {

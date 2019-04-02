@@ -20,6 +20,15 @@ public class Player extends BaseObject {
         score = 0;
     }
 
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+
+    public int getLives() {
+        return lives;
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
@@ -34,9 +43,10 @@ public class Player extends BaseObject {
     public void tick() { }
 
     public void render(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.drawString(name, 10, 10);
-        g.drawString(Integer.toString(score) , 10 , 30);
+
+        g.setFont(new Font("TimesRoman", Font.BOLD, 25));
+        g.drawString(name, 10, 30);
+        g.drawString(Integer.toString(score) , 10 , 50);
         drawLives(g);
     }
     public void drawLives(Graphics g)
