@@ -125,7 +125,7 @@ public class Level {
         }
         else if( ID == 2)
         {
-            return new Disrupt(0,0,4,arkHelper.tripleBall);
+            return new Disrupt(0,0,4,arkHelper.capsuleTripleBall);
         }
         else if(ID == 3)
         {
@@ -153,11 +153,11 @@ public class Level {
         }
         else if(ID == 9)
         {
-            return new Acid(0,0,4,arkHelper.acidBall);
+            return new Acid(0,0,4,arkHelper.capsuleAcidBall);
         }
         else if(ID ==10)
         {
-            return new FireBall(0,0,4,arkHelper.fireBall);
+            return new FireBall(0,0,4,arkHelper.capsuleFireBall);
         }
         else if(ID == 11)
         {

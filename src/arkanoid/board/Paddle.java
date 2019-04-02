@@ -17,7 +17,7 @@ public class Paddle extends BaseObject {
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
     public boolean sticky, laser = true;
-
+    public boolean expand = false;
     int normalImageIdx = 0;
     Player player;
 
@@ -31,13 +31,16 @@ public class Paddle extends BaseObject {
 
     public void tick() {
 
-        if(img != paddleExpanded) {
+        if(laser) {
+            if(!expand)
+            updateLaserImage();
+
+        }
+        else if(!expand) {
             updateNormalImage();
         }
 
-        if(laser) {
-            updateLaserImage();
-        }
+
 
         x += velX;
 
@@ -78,8 +81,11 @@ public class Paddle extends BaseObject {
     }
 
     public void expand() {
-
-        this.img = paddleExpanded;
+        expand = true;
+        if(!laser)
+          this.img =  paddleExpanded;
+        else
+            this.img = paddleExpandedWeapon;
         this.setImageHeight(paddleExpanded.getHeight(null));
         this.setImageWidth(paddleExpanded.getWidth(null));
     }

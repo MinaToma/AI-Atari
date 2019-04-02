@@ -47,7 +47,7 @@ public class Ball extends BaseObject {
     private void collision() {
 
         int calcScore = 0;
-        boolean checkIfBricksHeight = false;
+
         for (BaseObject o : handler.getObject()) {
             if ((o instanceof Brick || o instanceof Enemy)) {
                 if (o.getRectangle().intersects(getRectangle())) {
@@ -56,10 +56,7 @@ public class Ball extends BaseObject {
                     if( o instanceof Brick)  {
 
                        if( o.getY()>=0) {
-                           if(o.getY()>= INIT_BRICKS_HEIGHT)
-                           {
-                               checkIfBricksHeight = true;
-                           }
+
                            if (((Brick) o).hit()) {
 
 

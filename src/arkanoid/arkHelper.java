@@ -26,6 +26,7 @@ public class arkHelper extends Helper {
     public static Image[] paddleWeapon;
     public static Image paddleShrunk;
     public static Image paddleExpanded;
+    public static Image paddleExpandedWeapon;
     public static Image capsuleEmpty;
     public static Image capsule50;
     public static Image[] capsule100;
@@ -36,7 +37,9 @@ public class arkHelper extends Helper {
     public static Image capsuleShrink;
     public static Image capsuleExpand;
     public static Image capsuleWeapon;
-    public static Image tripleBall;
+    public static Image capsuleFireBall;
+    public static Image capsuleAcidBall;
+    public static Image capsuleTripleBall;
     public static Image fireBall;
     public static Image acidBall;
     public static Image ball;
@@ -77,9 +80,9 @@ public class arkHelper extends Helper {
         capsule500 = getImage(path + "40-Breakout-Tiles.png");
         capsuleSlow = getImage(path + "41-Breakout-Tiles.png");
         capsuleFast = getImage(path + "42-Breakout-Tiles.png");
-        tripleBall = getImage(path + "43-Breakout-Tiles.png");
-        fireBall = getImage(path + "44-Breakout-Tiles.png");
-        acidBall = getImage(path + "45-Breakout-Tiles.png");
+        capsuleTripleBall = getImage(path + "43-Breakout-Tiles.png");
+        capsuleFireBall = getImage(path + "44-Breakout-Tiles.png");
+        capsuleAcidBall = getImage(path + "45-Breakout-Tiles.png");
 
         capsuleShrink = getImage(path + "46-Breakout-Tiles.png");
         capsuleExpand = getImage(path + "47-Breakout-Tiles.png");
@@ -98,6 +101,9 @@ public class arkHelper extends Helper {
         star = getImage(path + "59-Breakout-Tiles.png");
         life = getImage(path + "60-Breakout-Tiles.png");
         bullet = getImage(path + "61-Breakout-Tiles.png");
+        paddleExpandedWeapon = getImage(path + "62-Breakout-Tiles.png");
+        fireBall = getImage(path + "63-Breakout-Tiles.png");
+        acidBall = getImage(path + "64-Breakout-Tiles.png");
 
     }
 }
