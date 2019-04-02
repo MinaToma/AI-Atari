@@ -47,6 +47,10 @@ public class arkHelper extends Helper {
     public static Image capsuleFireBall;
     public static Image capsuleAcidBall;
     public static Image capsuleTripleBall;
+    public static Image capsuleVaus;
+    public static Image capsuleCatch;
+    //public static Image paddleShrunkWeapon;
+
     public static Image fireBall;
     public static Image acidBall;
     public static Image ball;
@@ -104,7 +108,7 @@ public class arkHelper extends Helper {
 
         paddleExpanded = getImage(path + "56-Breakout-Tiles.png", paddleScale);
         paddleShrunk = getImage(path + "57-Breakout-Tiles.png", paddleScale);
-        paddleShrunkWeapon = getImage(path + "57-Breakout-Tiles .png", paddleScale);
+        paddleShrunkWeapon = getImage(path + "65-Breakout-Tiles.png", paddleScale);
         ball = getImage(path + "58-Breakout-Tiles.png", ballScale);
         star = getImage(path + "59-Breakout-Tiles.png", ballScale);
         life = getImage(path + "60-Breakout-Tiles.png", ballScale);
@@ -112,6 +116,10 @@ public class arkHelper extends Helper {
         paddleExpandedWeapon = getImage(path + "62-Breakout-Tiles.png", paddleScale);
         fireBall = getImage(path + "63-Breakout-Tiles.png", ballScale);
         acidBall = getImage(path + "64-Breakout-Tiles.png", ballScale);
+        capsuleCatch = getImage(path + "66-Breakout-Tiles.png", ballScale);
+        capsuleVaus = getImage(path + "67-Breakout-Tiles.png", ballScale);
+
+
 
     }
 }
