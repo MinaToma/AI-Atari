@@ -6,6 +6,7 @@ import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
 
+
 import java.awt.*;
 import java.util.ConcurrentModificationException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -16,7 +17,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky = false , laser, shrink, expand;
+    public boolean sticky = false , laser = true , shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
@@ -26,6 +27,7 @@ public class Paddle extends BaseObject {
         this.handler = handler;
         this.player = player;
         capsules = new CopyOnWriteArrayList<>();
+
     }
 
     public void tick() {
@@ -87,6 +89,7 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletL);
         handler.addObject(bulletR);
+        lazerSound();
     }
 
     public void speedUp() {

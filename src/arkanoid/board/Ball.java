@@ -92,7 +92,7 @@ public class Ball extends BaseObject {
                         if(o.getY()>=0) {
 
                             if (((Brick) o).hit() || (img == acidBall)) {
-
+                                hitSound();
                                 if (((Brick) o).capsule != null) {
 
                                     Capsule capsule = ((Brick) o).capsule;

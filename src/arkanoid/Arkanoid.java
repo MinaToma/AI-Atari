@@ -32,19 +32,18 @@ public class Arkanoid extends atariCore.Game {
     public void intialLevels(int level)
     {
         handler.object.clear();
+        handler.addObject(player);
+        handler.addObject(p);
 
         setBall();
         setEnemy();
         setBricks(level);
         setMusic();
-        handler.addObject(player);
-        handler.addObject(p);
+
     }
     private void setMusic()
     {
-       // Sounds s = new Sounds();
-        //s.backgroundGame.start();
-        //s.backgroundGame.loop(5);
+
     }
 
     public void setBall() {
@@ -103,6 +102,7 @@ public class Arkanoid extends atariCore.Game {
         if(p.laser) {
 
             p.hitLaser();
+
         }
 
         for(BaseObject o : handler.object) {

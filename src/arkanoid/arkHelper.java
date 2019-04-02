@@ -3,8 +3,15 @@ package arkanoid;
 import atariCore.Helper;
 import atariCore.Splash;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import java.io.*;
+import java.net.URL;
 
 public class arkHelper extends Helper {
 
@@ -58,6 +65,11 @@ public class arkHelper extends Helper {
     public static Image life;
     public static Image bullet;
     public static String  path = "src/Resources/image/";
+    public static MediaPlayer hitSound;
+    public static MediaPlayer backgroundSplashSound;
+    public static MediaPlayer backgroundGameSound;
+    public static MediaPlayer lazerSound;
+
 
     public arkHelper() {
 
@@ -69,6 +81,62 @@ public class arkHelper extends Helper {
         smallSquares = new Image[10];
 
         loadImages();
+
+    }
+
+    public static void lazerSound()
+    {
+        playSound("lazer.wav",0);
+    }
+    public static void hitSound()
+    {
+        playSound("hit.wav",0);
+    }
+    public static void BackgroundGameSound()
+    {
+        playSound("background.wav",0);
+    }
+    public static void backgroundSplashSound()
+    {
+        playSound("intro_sound.wav",100);
+    }
+
+
+
+
+
+
+
+
+    public static void playSound(String path , int loop) {
+
+
+        try
+        {
+
+            URL url = arkHelper.class.getClassLoader().getResource("Resources/Sounds/"+path);
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+            Clip clip = AudioSystem.getClip();
+            // Open audio clip and load samples from the audio input stream.
+            clip.open(audioIn);
+            if(loop>0)
+            {
+                clip.loop(loop);
+            }
+            else if(loop==0)
+                clip.start();
+
+
+        }
+        catch (Exception e)
+        {
+            ////
+        }
+
+
+
+
     }
 
     private void loadImages() {
@@ -94,7 +162,6 @@ public class arkHelper extends Helper {
         capsuleTripleBall = getImage(path + "43-Breakout-Tiles.png", capsuleScale);
         capsuleFireBall = getImage(path + "44-Breakout-Tiles.png", capsuleScale);
         capsuleAcidBall = getImage(path + "45-Breakout-Tiles.png", capsuleScale);
-
         capsuleShrink = getImage(path + "46-Breakout-Tiles.png",capsuleScale);
         capsuleExpand = getImage(path + "47-Breakout-Tiles.png", capsuleScale);
         capsuleWeapon = getImage(path + "48-Breakout-Tiles.png", capsuleScale);

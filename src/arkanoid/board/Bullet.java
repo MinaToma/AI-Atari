@@ -1,9 +1,9 @@
 package arkanoid.board;
 
+import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
-import atariCore.Sounds;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class Bullet extends BaseObject {
 
                                 handler.addObject(capsule);
                             }
-
+                            hitSound();
                             handler.removeObject(o);
                         }
                     }

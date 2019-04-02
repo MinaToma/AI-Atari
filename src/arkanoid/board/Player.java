@@ -55,6 +55,7 @@ public class Player extends BaseObject {
     public void die()
     {
         arkHelper.running = false;
+
         new arkanoid.menu.Splash();
     }
 
