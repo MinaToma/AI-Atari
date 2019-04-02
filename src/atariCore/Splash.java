@@ -9,12 +9,12 @@ public class Splash {
 
     protected JFrame frame;
     protected JPanel panel;
-    protected Dimension btnDim = new Dimension(Helper.screenWidth/2, Helper.screenHeight/10);
+    protected Dimension btnDim = new Dimension(Helper.screenWidth / 2, Helper.screenHeight / 10);
     protected int xStart = 100, yStart = 100, bOffset = 150;
 
     protected JButton newGameButton, settingsButton, exitButton;
 
-    public Splash(String title , String fontPath) {
+    public Splash(String title, String fontPath) {
 
         //Sounds s = new Sounds();
         //s.backgroundSplash.loop(20);
@@ -22,7 +22,7 @@ public class Splash {
         frame = new JFrame(title);
 
         panel = new JPanel(new GridLayout(0, 1));
-        panel.setLayout(new GridLayout(0,1));
+        panel.setLayout(new GridLayout(0, 1));
         //panel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
@@ -45,6 +45,7 @@ public class Splash {
     }
 
     protected void setNewGameButton(int x, int y, Dimension dim) {
+
         newGameButton = Helper.btnHelper(newGameButton, "New Game", x, y, dim, panel);
 
     }
@@ -52,12 +53,14 @@ public class Splash {
     protected void setSettingsButton(int x, int y, Dimension dim) {
         settingsButton = Helper.btnHelper(settingsButton, "Settings", x, y, dim, panel);
 
-        settingsButton.addActionListener(new ActionListener() {
+       /* settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-
+                frame.setFocusable(false);
+                new Settings();
+                frame.setFocusable(true);
             }
-        });
+        });*/
     }
 
     protected void setExitButton(int x, int y, Dimension dim) {

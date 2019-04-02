@@ -35,6 +35,7 @@ public class Arkanoid extends atariCore.Game {
         //s.backgroundGame.start();
         //s.backgroundGame.loop(5);
     }
+
     public void setBall() {
 
         b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5, INIT_BALL_Y , arkHelper.ball, 0, 0, handler , player);
@@ -77,11 +78,9 @@ public class Arkanoid extends atariCore.Game {
         if (key == KeyEvent.VK_LEFT) {
 
             p.setVelX(-paddleSpeed) ;
-            //System.out.print(1);
         } else if (key == KeyEvent.VK_RIGHT) {
 
             p.setVelX(paddleSpeed);
-            //System.out.print(2);
         }
         else if (key == KeyEvent.VK_SPACE) {
 
@@ -95,19 +94,9 @@ public class Arkanoid extends atariCore.Game {
             p.hitLaser();
         }
 
-        if(p.sticky) {
-
-            for(BaseObject o : handler.getObject()) {
-                if(o instanceof Ball) {
-                    o.setVelX(xBallSpeed);
-                    o.setVelY(yBallSpeed);
-                }
-            }
-        }
-
         for(BaseObject o : handler.object) {
             if(o instanceof Ball && o.getVelX() == 0 && o.getVelY() == 0) {
-                o.setVelX(xBallSpeed);
+                o.setVelX(-p.getNewVx(o.getX() + o.getImageWidth() / 2));
                 o.setVelY(yBallSpeed);
             }
         }

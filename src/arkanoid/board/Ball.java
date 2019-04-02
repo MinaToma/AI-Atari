@@ -6,6 +6,7 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
+import java.rmi.MarshalException;
 
 import static arkanoid.arkHelper.*;
 
@@ -28,8 +29,10 @@ public class Ball extends BaseObject {
 
         y += velY;
         x += velX;
+
         if(velX == 0 && velY == 0)
-            setX(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5);
+            setX(player.paddle.get(0).getX() + Math.min(Math.abs( x -  player.paddle.get(0).getX()) , player.paddle.get(0).getImageWidth() - getImageWidth()) );
+
         collision();
         clamp();
     }
@@ -52,6 +55,8 @@ public class Ball extends BaseObject {
 
             if (add)
             {
+                System.out.println( y + " " + arkHelper.screenHeight);
+
                 player.lostBall();
                 for (BaseObject o : handler.object)
                     if (o instanceof Capsule)

@@ -7,6 +7,7 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
+import java.util.ConcurrentModificationException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
@@ -15,7 +16,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky, laser, shrink, expand;
+    public boolean sticky = true , laser, shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
@@ -78,12 +79,6 @@ public class Paddle extends BaseObject {
         }
     }
 
-    private void updateNormalImage() {
-
-        img = paddle[normalImageIdx++];
-        normalImageIdx %= 3;
-    }
-
     public void hitLaser() {
 
         updateCapsules();
@@ -107,6 +102,7 @@ public class Paddle extends BaseObject {
     }
 
     private void collision() {
+
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
         for (BaseObject o : handler.getObject()) {
 
@@ -123,10 +119,12 @@ public class Paddle extends BaseObject {
             if (o instanceof Ball) {
                 if (o.getRectangle().intersects(getRectangle()) && o.getY() + o.getImageHeight() / 2 < y) {
 
+                    System.out.println(sticky);
                     if (sticky) {
 
                         o.setVelX(0);
                         o.setVelY(0);
+                        o.setY(INIT_BALL_Y);
                         continue;
                     }
 
@@ -144,15 +142,6 @@ public class Paddle extends BaseObject {
                         o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
                     }
                 }
-
-                /*if (o.getY() >= screenHeight) {
-
-                    player.setLives(player.getLives() - 1);
-                    o.setX((this.x + this.getImageWidth() - this.getImageWidth() / 2));
-                    o.setY(INIT_BALL_Y);
-                    o.setVelX(xBallSpeed);
-                    o.setVelY(yBallSpeed);
-                }*/
             }
 
             if (o instanceof Brick) {
@@ -181,27 +170,9 @@ public class Paddle extends BaseObject {
     public float getNewVx(float currX) {
 
         float distFromCenter = (x + getImageWidth() / 2 - currX);
-
         distFromCenter /= getImageWidth() / 2;
-
         float newVX = xBallSpeed * distFromCenter;
 
-
-        /*float q1 = x + getImageWidth() / 5;
-        float q2 = q1 + getImageWidth() / 5;
-        float q3 = q2 + getImageWidth() / 5;
-        float q4 = q3 + getImageWidth() / 5;
-        float q5 = q4 + getImageWidth() / 5;
-
-        //System.out.println(currX);
-        //System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
-
-        if (currX < q1 || currX >= q5) newVX = xBallSpeed + xBallSpeed * 25 / 100;
-        else if (currX < q2) newVX = xBallSpeed + xBallSpeed * 10 / 100;
-        else if (currX < q3) newVX = xBallSpeed * 80 / 100;
-        else if (currX < q4) newVX = xBallSpeed * 80 / 100;
-        else newVX = xBallSpeed + xBallSpeed * 10 / 100;
-*/
         return newVX;
     }
 
