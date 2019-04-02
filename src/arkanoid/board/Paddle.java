@@ -94,8 +94,6 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletL);
         handler.addObject(bulletR);
-
-
     }
 
     public void speedUp() {
@@ -147,11 +145,10 @@ public class Paddle extends BaseObject {
                         dir = (getVelX() < 0) ? -1 : 1;
                         o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
                     }
-
-
-                    //System.out.println(o.getVelX());
                 }
+
                 if (o.getY() >= screenHeight) {
+
                     player.setLives(player.getLives() - 1);
                     o.setX((this.x + this.getImageWidth() - this.getImageWidth() / 2));
                     o.setY(INIT_BALL_Y);
@@ -159,6 +156,7 @@ public class Paddle extends BaseObject {
                     o.setVelY(ySpeed);
                 }
             }
+
             if (o instanceof Brick) {
 
                 if (o.getY() >= 0) {
@@ -170,7 +168,9 @@ public class Paddle extends BaseObject {
                 }
             }
         }
+
         if (checkIfBricksHeight1 == false && checkIfBricksHeight2 == true) {
+
             for (BaseObject o : handler.getObject()) {
                 if (o instanceof Brick) {
                     ((Brick) o).moveDown();
