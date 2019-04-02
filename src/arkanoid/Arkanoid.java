@@ -5,7 +5,6 @@ import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
-import atariCore.Helper;
 import atariCore.Sounds;
 
 import java.awt.event.KeyEvent;
@@ -21,31 +20,31 @@ public class Arkanoid extends atariCore.Game {
 
     public Arkanoid() {
         super("Arkanoid");
-
+        arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
         new arkHelper();
-        setPlayer();
         setPaddle();
+        setPlayer();
         setBall();
         setEnemy();
         setBricks();
         setMusic();
     }
-
-    private void setMusic() {
+    private void setMusic()
+    {
         Sounds s = new Sounds();
         //s.backgroundGame.start();
         //s.backgroundGame.loop(5);
     }
+    public void setBall() {
 
-    private void setBall() {
-
-        b = new Ball(INIT_BALL_X, INIT_BALL_Y, arkHelper.ball, xSpeed, ySpeed, handler, player);
+        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5, INIT_BALL_Y , arkHelper.ball, 0, 0, handler , player);
         handler.addObject(b);
     }
 
     private void setPlayer() {
 
-        player = new Player("Gazra", 1);
+        player = new Player("Gazra" , 3, p , this , this);
+        p.setPlayer(player);
         handler.addObject(player);
     }
 
@@ -56,17 +55,16 @@ public class Arkanoid extends atariCore.Game {
     private void setBricks() {
 
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level12"), player, p, b, handler);
+        Level level = new Level(fileInOut.getLevel("Level12"),player, p , b ,handler);
         level.setBricks();
     }
 
     private void setPaddle() {
 
-        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, handler, player);
-        handler.addObject(p);
+         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, handler , player);
+         handler.addObject(p);
     }
 
-    @Override
     public void keyTyped(KeyEvent keyEvent) {
 
     }
@@ -78,20 +76,20 @@ public class Arkanoid extends atariCore.Game {
 
         if (key == KeyEvent.VK_LEFT) {
 
-            p.setVelX(-paddleSpeed);
-
+            p.setVelX(-paddleSpeed) ;
+            //System.out.print(1);
         } else if (key == KeyEvent.VK_RIGHT) {
 
             p.setVelX(paddleSpeed);
-
-        } else if (key == KeyEvent.VK_SPACE) {
+            //System.out.print(2);
+        }
+        else if (key == KeyEvent.VK_SPACE) {
 
             paddleClick();
         }
     }
 
     public void paddleClick() {
-
         if(p.laser) {
 
             p.hitLaser();
@@ -101,13 +99,18 @@ public class Arkanoid extends atariCore.Game {
 
             for(BaseObject o : handler.getObject()) {
                 if(o instanceof Ball) {
-
-                    o.setVelX(xSpeed);
-                    o.setVelY(ySpeed);
+                    o.setVelX(xBallSpeed);
+                    o.setVelY(yBallSpeed);
                 }
             }
         }
 
+        for(BaseObject o : handler.object) {
+            if(o instanceof Ball && o.getVelX() == 0 && o.getVelY() == 0) {
+                o.setVelX(xBallSpeed);
+                o.setVelY(yBallSpeed);
+            }
+        }
     }
 
     @Override
@@ -144,8 +147,8 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        if (b.getX() != INIT_BALL_X)
-            p.setX(mouseEvent.getX());
+        if(b.getX() != INIT_BALL_X)
+             p.setX(mouseEvent.getX());
     }
 
     @Override
@@ -158,7 +161,7 @@ public class Arkanoid extends atariCore.Game {
             //System.out.print(3);
         } else if (key == KeyEvent.VK_RIGHT) {
             p.setVelX(0);
-            // System.out.print(4);
+           // System.out.print(4);
         }
     }
 }

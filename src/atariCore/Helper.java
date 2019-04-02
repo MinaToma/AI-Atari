@@ -1,5 +1,8 @@
 package atariCore;
 
+import arkanoid.Arkanoid;
+import arkanoid.arkHelper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
@@ -42,19 +45,19 @@ public class Helper {
         return btn;
     }
 
-    public static Image getImage(String filename) {
+    public static Image getImage(String filename, int scaleFactor) {
 
         ImageIcon icon = new ImageIcon(filename);
         Image image = icon.getImage();
 
-        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / 4,
-                image.getHeight(null) / 4, Image.SCALE_SMOOTH))).getImage();
+        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / scaleFactor,
+                image.getHeight(null) / scaleFactor, Image.SCALE_SMOOTH))).getImage();
     }
 
     public static void setCursorImage(JPanel mainPane, String filename)
     {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = Helper.getImage(filename);
+        Image image = getImage(filename, arkHelper.cursorScale);
         Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(),
                 mainPane.getY()), "cursor");
         mainPane.setCursor (c);

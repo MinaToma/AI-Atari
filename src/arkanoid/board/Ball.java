@@ -4,7 +4,6 @@ import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
-import atariCore.Sounds;
 
 import java.awt.*;
 
@@ -15,8 +14,8 @@ public class Ball extends BaseObject {
     Handler handler;
     Player player;
 
-    float xOffset = xSpeed * 3 / 2;
-    float yOffset = ySpeed * 3 / 2;
+    float xOffset = Math.abs(xBallSpeed) * 3 / 2;
+    float yOffset = Math.abs(yBallSpeed) * 3 / 2;
 
     public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Handler handler , Player player) {
         super(xPosition, yPosition, image, xVelocity, yVelocity);
@@ -29,7 +28,8 @@ public class Ball extends BaseObject {
 
         y += velY;
         x += velX;
-
+        if(velX == 0 && velY == 0)
+            setX(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5);
         collision();
         clamp();
     }
@@ -40,7 +40,39 @@ public class Ball extends BaseObject {
         if (arkHelper.screenWidth <= x + getImageWidth() ) velX = -1;
         if(x <= 0) velX = 1;
         if (y <= 0) velY *= -1;
-        if (y > arkHelper.screenHeight) handler.removeObject(this);
+
+        if (y > arkHelper.screenHeight) {
+            handler.removeObject(this);
+            Paddle currPaddle = player.paddle.get(0);
+            boolean add = true;
+
+            for (BaseObject o : handler.object)
+                if (o instanceof Ball)
+                    add = false;
+
+            if (add)
+            {
+                player.lostBall();
+                for (BaseObject o : handler.object)
+                    if (o instanceof Capsule)
+                        handler.removeObject(o);
+
+                Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth()/2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, handler, player);
+
+                for(int i = 1; i < player.paddle.size(); i++)
+                {
+                    handler.removeObject(player.paddle.get(i));
+                    player.paddle.remove(player.paddle.get(i));
+                }
+
+                currPaddle.sticky = false;
+                currPaddle.laser = false;
+                currPaddle.shrink = false;
+                currPaddle.expand = false;
+                handler.addObject(b);
+            }
+
+        }
     }
 
     private void collision() {

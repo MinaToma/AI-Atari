@@ -36,6 +36,10 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
         new Window(Helper.screenWidth, Helper.screenHeight, title, this);
     }
 
+    public void kill() {
+        timer.cancel();
+    }
+
     @Override
     abstract public void keyPressed(KeyEvent keyEvent);
 

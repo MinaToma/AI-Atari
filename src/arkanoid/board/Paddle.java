@@ -2,11 +2,9 @@
 
 package arkanoid.board;
 
-import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
-import atariCore.Sounds;
 
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -47,8 +45,8 @@ public class Paddle extends BaseObject {
                 Ball ball = (Ball) o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xSpeed, ball.getVelY(), handler, player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xSpeed, ball.getVelY(), handler, player);
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xBallSpeed, ball.getVelY(), handler, player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xBallSpeed, ball.getVelY(), handler, player);
 
                 handler.addObject(newBallL);
                 handler.addObject(newBallR);
@@ -98,14 +96,14 @@ public class Paddle extends BaseObject {
 
     public void speedUp() {
 
-        xSpeed = Math.min(4, xSpeed + 0.5f);
-        ySpeed = Math.min(4, ySpeed + 0.5f);
+        xBallSpeed = Math.min(4, xBallSpeed + 0.5f);
+        yBallSpeed = Math.min(4, yBallSpeed + 0.5f);
     }
 
     public void speedDown() {
 
-        xSpeed = Math.max(1, xSpeed - 0.5f);
-        ySpeed = Math.max(1, xSpeed - 0.5f);
+        xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
+        yBallSpeed = Math.max(1, xBallSpeed - 0.5f);
     }
 
     private void collision() {
@@ -132,13 +130,13 @@ public class Paddle extends BaseObject {
                         continue;
                     }
 
-                    o.setVelY(ySpeed * -1);
+                    o.setVelY(yBallSpeed);
 
-                    int dir = (o.getVelX() >= 0) ? 1 : -1;
+                    int dir = (o.getVelX() > 0) ? 1 : -1;
 
                     if (getVelX() == 0) {
 
-                        o.setVelX(dir * getNewVx(o.getX() + o.getImageWidth() / 2));
+                        o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
                     }
                     else {
 
@@ -147,14 +145,14 @@ public class Paddle extends BaseObject {
                     }
                 }
 
-                if (o.getY() >= screenHeight) {
+                /*if (o.getY() >= screenHeight) {
 
                     player.setLives(player.getLives() - 1);
                     o.setX((this.x + this.getImageWidth() - this.getImageWidth() / 2));
                     o.setY(INIT_BALL_Y);
-                    o.setVelX(xSpeed);
-                    o.setVelY(ySpeed);
-                }
+                    o.setVelX(xBallSpeed);
+                    o.setVelY(yBallSpeed);
+                }*/
             }
 
             if (o instanceof Brick) {
@@ -186,7 +184,7 @@ public class Paddle extends BaseObject {
 
         distFromCenter /= getImageWidth() / 2;
 
-        float newVX = xSpeed * distFromCenter;
+        float newVX = xBallSpeed * distFromCenter;
 
 
         /*float q1 = x + getImageWidth() / 5;
@@ -198,11 +196,11 @@ public class Paddle extends BaseObject {
         //System.out.println(currX);
         //System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
 
-        if (currX < q1 || currX >= q5) newVX = xSpeed + xSpeed * 25 / 100;
-        else if (currX < q2) newVX = xSpeed + xSpeed * 10 / 100;
-        else if (currX < q3) newVX = xSpeed * 80 / 100;
-        else if (currX < q4) newVX = xSpeed * 80 / 100;
-        else newVX = xSpeed + xSpeed * 10 / 100;
+        if (currX < q1 || currX >= q5) newVX = xBallSpeed + xBallSpeed * 25 / 100;
+        else if (currX < q2) newVX = xBallSpeed + xBallSpeed * 10 / 100;
+        else if (currX < q3) newVX = xBallSpeed * 80 / 100;
+        else if (currX < q4) newVX = xBallSpeed * 80 / 100;
+        else newVX = xBallSpeed + xBallSpeed * 10 / 100;
 */
         return newVX;
     }
@@ -210,6 +208,7 @@ public class Paddle extends BaseObject {
     public Player getPlayer() {
         return player;
     }
+    public void setPlayer(Player player) {  this.player = player; }
 
     public void render(Graphics g) {
 

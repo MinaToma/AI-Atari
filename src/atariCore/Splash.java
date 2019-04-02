@@ -15,15 +15,14 @@ public class Splash {
 
     protected JButton newGameButton, settingsButton, exitButton;
 
-    public Splash(String title) {
-
+    public Splash(String title , String fontPath, JPanel panel) {
         Sounds s = new Sounds();
         s.backgroundSplash.loop(20);
         frame = new JFrame(title);
-        panel = new JPanel(new GridLayout(0, 1));
-        panel.setLayout(new GridLayout(0,1));
-        //panel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
-        panel.setSize(Helper.screenWidth, Helper.screenHeight);
+        this.panel = panel;
+        this.panel.setLayout(new GridLayout(0,1));
+        //this.panel.setAlignmentX(JPanel.CENTER_ALIGNMENT);
+        this.panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
         frame.setPreferredSize(new Dimension(Helper.screenWidth, Helper.screenHeight));
         frame.setMaximumSize(new Dimension(Helper.screenWidth, Helper.screenHeight));
@@ -33,15 +32,19 @@ public class Splash {
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
-        Helper.setCursorImage(panel, "src/Resources/image/yellowc2.png");
-        Helper.setFont("src/Resources/Fonts/3270Medium.ttf", 40);
+        Helper.setFont(fontPath, 40);
 
         setNewGameButton(xStart, yStart, btnDim);
         setSettingsButton(xStart, (yStart += bOffset), btnDim);
         setExitButton(xStart, (yStart += bOffset), btnDim);
 
-        frame.add(panel);
+        frame.add(this.panel);
         frame.setVisible(true);
+    }
+
+    public Splash(String title, String fontPath) {
+
+        this(title , fontPath, new JPanel(new GridLayout(0, 1)));
     }
 
     protected void setNewGameButton(int x, int y, Dimension dim) {

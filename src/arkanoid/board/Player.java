@@ -1,35 +1,43 @@
 package arkanoid.board;
 
+import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
+import atariCore.Splash;
 
+import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Player extends BaseObject {
 
     private int score;
     private String name;
     private int lives;
+    public ArrayList<Paddle> paddle;
     public boolean start;
+    private JPanel panel;
+    private Arkanoid arkanoid;
 
-    public Player(String Name, int lives) {
-        super(10, 10, null);
+    public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
+        super(10 , 10 , null);
         this.name = Name;
         this.lives = lives;
+        this.paddle = new ArrayList<>();
+        this.paddle.add(paddle);
+        this.panel = panel;
 
         score = 0;
         start = true;
     }
 
     public void lostBall() {
-
         lives--;
+        if(lives < 0) {
 
-        if (lives != 0) {
-
-            start = true;
-        } else {
-            //lost
+            arkanoid.kill();
+            panel.removeAll();
+            new arkanoid.menu.Splash(panel);//change code here
         }
     }
 
@@ -59,9 +67,9 @@ public class Player extends BaseObject {
 
     public void render(Graphics g) {
 
-        g.setFont(new Font("TimesRoman", Font.BOLD, 25));
+        g.setFont(arkHelper.font);
         g.drawString(name, 10, 30);
-        g.drawString(Integer.toString(score), 10, 50);
+        g.drawString(Integer.toString(score), 10, 60);
         drawLives(g);
     }
 
