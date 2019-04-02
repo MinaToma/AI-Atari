@@ -264,6 +264,10 @@ public class Paddle extends BaseObject {
             }
         }
     }
+    public void breakToNextLevel()
+    {
+        player.setLevel(player.getLevel()+1);
+    }
 }
 
 

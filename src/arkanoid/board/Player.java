@@ -49,9 +49,13 @@ public class Player extends BaseObject {
 
         if(lives < 0) {
 
-            arkHelper.running = false;
-            new arkanoid.menu.Splash();
+            die();
         }
+    }
+    public void die()
+    {
+        arkHelper.running = false;
+        new arkanoid.menu.Splash();
     }
 
     public void setLives(int lives) {

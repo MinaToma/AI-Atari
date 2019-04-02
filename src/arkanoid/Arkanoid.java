@@ -148,7 +148,7 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        if(b.getX() != INIT_BALL_X)
+        if(b.getX() != INIT_BALL_X && mouseEvent.getX()<arkHelper.screenWidth-p.getImageWidth()+3)
              p.setX(mouseEvent.getX());
     }
 

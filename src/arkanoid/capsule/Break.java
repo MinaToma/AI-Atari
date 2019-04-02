@@ -16,7 +16,7 @@ public class Break extends Capsule {
     @Override
     public void effect(Paddle p) {
 
-        //Move to next level
+        p.breakToNextLevel();
 
     }
 }
