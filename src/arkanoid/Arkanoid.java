@@ -16,19 +16,30 @@ public class Arkanoid extends atariCore.Game {
     Paddle p;
     Player player;
 
+
     public Arkanoid() {
 
         super("Arkanoid");
         arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
+
         new arkHelper();
         setPaddle();
         setPlayer();
+
+        intialLevels(player.getLevel());
+
+    }
+    public void intialLevels(int level)
+    {
+        handler.object.clear();
+
         setBall();
         setEnemy();
-        setBricks();
+        setBricks(level);
         setMusic();
+        handler.addObject(player);
+        handler.addObject(p);
     }
-
     private void setMusic()
     {
        // Sounds s = new Sounds();
@@ -44,7 +55,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setPlayer() {
 
-        player = new Player("Gazra" , 3, p , this , this);
+        player = new Player("M7M7" , 3, p , this , this);
         p.setPlayer(player);
         handler.addObject(player);
     }
@@ -53,11 +64,11 @@ public class Arkanoid extends atariCore.Game {
 
     }
 
-    private void setBricks() {
+    private void setBricks(int lvl) {
 
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level1"),player, p , b ,handler);
-        level.setBricks();
+        Level level = new Level(fileInOut.getLevel("Level"+lvl),player, p , b ,handler);
+
     }
 
     private void setPaddle() {

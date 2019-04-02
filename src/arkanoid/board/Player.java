@@ -18,6 +18,7 @@ public class Player extends BaseObject {
     public boolean start;
     private JPanel panel;
     private Arkanoid arkanoid;
+    private int level;
 
     public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
         super(10 , 10 , null);
@@ -27,9 +28,20 @@ public class Player extends BaseObject {
         this.paddle.add(paddle);
         this.panel = panel;
         this.arkanoid = arkanoid;
+        this.level = 1;
 
         score = 0;
         start = true;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+        arkanoid.intialLevels(level);
+
     }
 
     public void lostBall() {
@@ -71,6 +83,7 @@ public class Player extends BaseObject {
         g.setFont(arkHelper.font);
         g.drawString(name, 10, 30);
         g.drawString(Integer.toString(score), 10, 60);
+        g.drawString("Level"+level,arkHelper.screenWidth-200,30);
         drawLives(g);
     }
 

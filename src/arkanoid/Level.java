@@ -25,7 +25,11 @@ public class Level {
         this.ball = ball;
         this.handler = handler;
         this.bricks = new Brick[dimensions.get(0).get(0)];
+        setBricks();
+
+
     }
+
 
     public void setBricks() {
 

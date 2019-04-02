@@ -89,20 +89,22 @@ public class Ball extends BaseObject {
                     calcScore++;
 
                     if( o instanceof Brick)  {
+                        if(o.getY()>=0) {
 
-                           if (((Brick) o).hit() || (img == acidBall)) {
+                            if (((Brick) o).hit() || (img == acidBall)) {
 
-                               if (((Brick) o).capsule != null) {
+                                if (((Brick) o).capsule != null) {
 
-                                   Capsule capsule = ((Brick) o).capsule;
-                                   capsule.setX(o.getX());
-                                   capsule.setY(o.getY());
+                                    Capsule capsule = ((Brick) o).capsule;
+                                    capsule.setX(o.getX());
+                                    capsule.setY(o.getY());
 
-                                   handler.addObject(capsule);
-                               }
+                                    handler.addObject(capsule);
+                                }
 
-                               handler.removeObject(o);
-                           }
+                                handler.removeObject(o);
+                            }
+                        }
                     }
 
                     if(img != acidBall) {

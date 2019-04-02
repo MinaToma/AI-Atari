@@ -104,6 +104,7 @@ public class Paddle extends BaseObject {
     private void collision() {
 
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
+        int numOfBricks = 0;
         for (BaseObject o : handler.getObject()) {
 
             if (o instanceof Capsule) {
@@ -124,7 +125,7 @@ public class Paddle extends BaseObject {
 
                         o.setVelX(0);
                         o.setVelY(0);
-                        o.setY(5);
+                        o.setY(INIT_BALL_Y);
                         continue;
                     }
 
@@ -145,7 +146,7 @@ public class Paddle extends BaseObject {
             }
 
             if (o instanceof Brick) {
-
+                numOfBricks++;
                 if (o.getY() >= 0) {
                     if (o.getY() >= INIT_BRICKS_HEIGHT) {
                         checkIfBricksHeight1 = true;
@@ -163,6 +164,10 @@ public class Paddle extends BaseObject {
                     ((Brick) o).moveDown();
                 }
             }
+        }
+        if (numOfBricks == 0)
+        {
+            player.setLevel(player.getLevel()+1);
         }
 
     }

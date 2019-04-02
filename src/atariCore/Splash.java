@@ -16,8 +16,8 @@ public class Splash {
 
     public Splash(String title, String fontPath) {
 
-        Sounds s = new Sounds();
-        s.backgroundSplash.loop(20);
+        //Sounds s = new Sounds();
+        //s.backgroundSplash.loop(20);
 
         frame = new JFrame(title);
 
