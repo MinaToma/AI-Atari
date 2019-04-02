@@ -13,5 +13,6 @@ public class FireBall extends Capsule {
     @Override
     public void effect(Paddle p) {
 
+        p.makeFireBall();
     }
 }

@@ -15,6 +15,6 @@ public class Catch extends Capsule {
     @Override
     public void effect(Paddle p) {
 
-        p.sticky = true;
+        p.sticky();
     }
 }

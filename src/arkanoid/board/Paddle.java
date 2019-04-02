@@ -17,12 +17,11 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky, laser = true;
-    public boolean expand = false;
-    int normalImageIdx = 0;
-    Player player;
+    public boolean sticky, laser, shrink, expand;
+    private int normalImageIdx = 0;
+    private Player player;
 
-    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler , Player player) {
+    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler, Player player) {
 
         super(xPosition, yPosition, image, velX, 0);
         this.handler = handler;
@@ -32,26 +31,11 @@ public class Paddle extends BaseObject {
 
     public void tick() {
 
-        if(laser) {
-            if(!expand)
-            updateLaserImage();
-
-        }
-        else if(!expand) {
-            updateNormalImage();
-        }
-
-
-
         x += velX;
 
+        updateImage();
         collision();
         clamp();
-    }
-
-    private void updateLaserImage() {
-        img = paddleWeapon[normalImageIdx++];
-        normalImageIdx %= 3;
     }
 
     public void splitBall() {
@@ -60,11 +44,11 @@ public class Paddle extends BaseObject {
 
             if (o instanceof Ball) {
 
-                Ball ball = (Ball)o;
+                Ball ball = (Ball) o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX() , ball.getY() , ball.getImg() , xSpeed , ball.getVelY() , handler , player);
-                Ball newBallR = new Ball(ball.getX() , ball.getY() , ball.getImg() , -xSpeed , ball.getVelY(), handler , player);
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xSpeed, ball.getVelY(), handler, player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xSpeed, ball.getVelY(), handler, player);
 
                 handler.addObject(newBallL);
                 handler.addObject(newBallR);
@@ -77,18 +61,12 @@ public class Paddle extends BaseObject {
     public void updateLaser() {
 
         laser = true;
-        setImageWidth(paddleWeapon[0].getWidth(null));
-        setImageHeight(paddleWeapon[0].getHeight(null));
     }
 
     public void expand() {
+
         expand = true;
-        if(!laser)
-          this.img =  paddleExpanded;
-        else
-            this.img = paddleExpandedWeapon;
-        this.setImageHeight(paddleExpanded.getHeight(null));
-        this.setImageWidth(paddleExpanded.getWidth(null));
+        shrink = false;
     }
 
     private void updateCapsules() {
@@ -111,8 +89,8 @@ public class Paddle extends BaseObject {
     public void hitLaser() {
 
         updateCapsules();
-        Bullet bulletL = new Bullet(x , y , bullet , handler);
-        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100 , y , bullet , handler);
+        Bullet bulletL = new Bullet(x, y, bullet, handler);
+        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet, handler);
 
         handler.addObject(bulletL);
         handler.addObject(bulletR);
@@ -122,18 +100,18 @@ public class Paddle extends BaseObject {
 
     public void speedUp() {
 
-        xSpeed = Math.min(4 , xSpeed + 0.5f);
-        ySpeed = Math.min(4 , ySpeed + 0.5f);
+        xSpeed = Math.min(4, xSpeed + 0.5f);
+        ySpeed = Math.min(4, ySpeed + 0.5f);
     }
 
     public void speedDown() {
 
-        xSpeed = Math.max(1 , xSpeed - 0.5f);
-        ySpeed = Math.max(1 , xSpeed - 0.5f);
+        xSpeed = Math.max(1, xSpeed - 0.5f);
+        ySpeed = Math.max(1, xSpeed - 0.5f);
     }
 
     private void collision() {
-        boolean checkIfBricksHeight1 = false , checkIfBricksHeight2 = false;
+        boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
         for (BaseObject o : handler.getObject()) {
 
             if (o instanceof Capsule) {
@@ -160,43 +138,42 @@ public class Paddle extends BaseObject {
 
                     int dir = (o.getVelX() >= 0) ? 1 : -1;
 
-                    if ((o.getVelX() > 0 && getVelX() >= 0) || (o.getVelX() < 0 && getVelX() <= 0)) {
+                    if (getVelX() == 0) {
+
                         o.setVelX(dir * getNewVx(o.getX() + o.getImageWidth() / 2));
-                    } else {
-                        o.setVelX(-dir * getNewVx(o.getX() + o.getImageWidth() / 2));
                     }
+                    else {
+
+                        dir = (getVelX() < 0) ? -1 : 1;
+                        o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
+                    }
+
 
                     //System.out.println(o.getVelX());
                 }
-                if(o.getY() >= screenHeight)
-                {
-                    player.setLives(player.getLives()-1);
-                    o.setX((this.x+this.getImageWidth() - this.getImageWidth()/2));
+                if (o.getY() >= screenHeight) {
+                    player.setLives(player.getLives() - 1);
+                    o.setX((this.x + this.getImageWidth() - this.getImageWidth() / 2));
                     o.setY(INIT_BALL_Y);
                     o.setVelX(xSpeed);
                     o.setVelY(ySpeed);
                 }
             }
-            if( o instanceof Brick) {
+            if (o instanceof Brick) {
 
                 if (o.getY() >= 0) {
                     if (o.getY() >= INIT_BRICKS_HEIGHT) {
                         checkIfBricksHeight1 = true;
                     }
-                }
-                else
-                {
+                } else {
                     checkIfBricksHeight2 = true;
                 }
             }
         }
-        if(checkIfBricksHeight1 == false && checkIfBricksHeight2 == true)
-        {
-            for (BaseObject o : handler.getObject())
-            {
-                if( o instanceof Brick)
-                {
-                    ((Brick)o).moveDown();
+        if (checkIfBricksHeight1 == false && checkIfBricksHeight2 == true) {
+            for (BaseObject o : handler.getObject()) {
+                if (o instanceof Brick) {
+                    ((Brick) o).moveDown();
                 }
             }
         }
@@ -205,9 +182,14 @@ public class Paddle extends BaseObject {
 
     public float getNewVx(float currX) {
 
-        float newVX = xSpeed;
+        float distFromCenter = (x + getImageWidth() / 2 - currX);
 
-        float q1 = x + getImageWidth() / 5;
+        distFromCenter /= getImageWidth() / 2;
+
+        float newVX = xSpeed * distFromCenter;
+
+
+        /*float q1 = x + getImageWidth() / 5;
         float q2 = q1 + getImageWidth() / 5;
         float q3 = q2 + getImageWidth() / 5;
         float q4 = q3 + getImageWidth() / 5;
@@ -216,12 +198,12 @@ public class Paddle extends BaseObject {
         //System.out.println(currX);
         //System.out.println(q1 + " " + q2 + " " + q3 + " " + q4 + " " + q5);
 
-        if (currX < q1 || currX >= q5) newVX = xSpeed + xSpeed * 25 / 100 ;
+        if (currX < q1 || currX >= q5) newVX = xSpeed + xSpeed * 25 / 100;
         else if (currX < q2) newVX = xSpeed + xSpeed * 10 / 100;
-        else if ( currX < q3) newVX = xSpeed;
-        else if (currX < q4) newVX = xSpeed;
+        else if (currX < q3) newVX = xSpeed * 80 / 100;
+        else if (currX < q4) newVX = xSpeed * 80 / 100;
         else newVX = xSpeed + xSpeed * 10 / 100;
-
+*/
         return newVX;
     }
 
@@ -231,22 +213,81 @@ public class Paddle extends BaseObject {
 
     public void render(Graphics g) {
 
-        g.drawImage(super.img, (int)super.x, (int)super.y, null);
+        g.drawImage(super.img, (int) super.x, (int) super.y, null);
     }
+
     public void makeAcidBall() {
 
-        for(BaseObject o : handler.getObject()) {
+        for (BaseObject o : handler.getObject()) {
 
-            if(o instanceof Ball) {
+            if (o instanceof Ball) {
 
-                ((Ball)o).makeAcid();
+                ((Ball) o).makeAcid();
             }
         }
     }
 
     public void shrink() {
 
-        img = paddle[0];
+        expand = false;
+        shrink = true;
+    }
+
+    public void increaseLife() {
+
+        player.setLives(player.getLives() + 1);
+    }
+
+    private void updateImage() {
+
+        if (laser) {
+
+            if (expand) {
+
+                img = paddleExpandedWeapon;
+            } else if (shrink) {
+
+                img = paddleShrunk;
+            } else {
+
+                img = paddleWeapon[normalImageIdx++];
+                normalImageIdx %= 3;
+            }
+        } else if (expand) {
+
+            img = paddleExpanded;
+        } else if (shrink) {
+
+            img = paddleShrunk;
+        } else {
+
+            img = paddle[normalImageIdx++];
+            normalImageIdx %= 3;
+        }
+
+        setSize();
+    }
+
+    private void setSize() {
+
+        setImageWidth(img.getWidth(null));
+        setImageHeight(img.getHeight(null));
+    }
+
+    public void sticky() {
+
+        sticky = true;
+    }
+
+    public void makeFireBall() {
+
+        for (BaseObject o : handler.getObject()) {
+
+            if (o instanceof Ball) {
+
+                ((Ball) o).makeFire();
+            }
+        }
     }
 }
 

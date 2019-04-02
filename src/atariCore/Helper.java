@@ -28,6 +28,7 @@ public class Helper {
     }
 
     public static JButton btnHelper(JButton btn, String txt, int x, int y, Dimension dim, JPanel panel) {
+
         btn = new JButton(txt);
         btn.setLayout(null);
         btn.setFont(font);

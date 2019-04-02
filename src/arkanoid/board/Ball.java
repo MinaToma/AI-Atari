@@ -12,7 +12,6 @@ import static arkanoid.arkHelper.*;
 
 public class Ball extends BaseObject {
 
-
     Handler handler;
     Player player;
 
@@ -55,10 +54,7 @@ public class Ball extends BaseObject {
 
                     if( o instanceof Brick)  {
 
-                       if( o.getY()>=0) {
-
-                           if (((Brick) o).hit()) {
-
+                           if (((Brick) o).hit() || (img == acidBall)) {
 
                                if (((Brick) o).capsule != null) {
 
@@ -69,21 +65,22 @@ public class Ball extends BaseObject {
                                    handler.addObject(capsule);
                                }
 
-
                                handler.removeObject(o);
                            }
-                       }
                     }
 
-                    float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
-                    float hitLeft = Math.abs(x + getImageWidth() - o.getX());
-                    float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
-                    float hitUp = Math.abs(y + getImageHeight() - o.getY());
+                    if(img != acidBall) {
 
-                    if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
-                    else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
+                        float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
+                        float hitLeft = Math.abs(x + getImageWidth() - o.getX());
+                        float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
+                        float hitUp = Math.abs(y + getImageHeight() - o.getY());
 
-                    break;
+                        if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
+                        else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
+
+                        break;
+                    }
                 }
             }
         }
@@ -93,8 +90,14 @@ public class Ball extends BaseObject {
     public void render(Graphics g) {
         g.drawImage(img, (int)x, (int)y, null);
     }
+
     public  void makeAcid() {
 
         img = acidBall;
+    }
+
+    public void makeFire() {
+
+        img = fireBall;
     }
 }

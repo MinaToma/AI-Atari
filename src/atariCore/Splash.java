@@ -36,7 +36,6 @@ public class Splash {
         Helper.setCursorImage(panel, "src/Resources/image/yellowc2.png");
         Helper.setFont("src/Resources/Fonts/3270Medium.ttf", 40);
 
-
         setNewGameButton(xStart, yStart, btnDim);
         setSettingsButton(xStart, (yStart += bOffset), btnDim);
         setExitButton(xStart, (yStart += bOffset), btnDim);

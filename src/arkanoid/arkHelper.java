@@ -24,6 +24,7 @@ public class arkHelper extends Helper {
     public static Image[] smallSquares;
     public static Image[] paddle;
     public static Image[] paddleWeapon;
+    public static Image paddleShrunkWeapon;
     public static Image paddleShrunk;
     public static Image paddleExpanded;
     public static Image paddleExpandedWeapon;
@@ -97,6 +98,7 @@ public class arkHelper extends Helper {
 
         paddleExpanded = getImage(path + "56-Breakout-Tiles.png");
         paddleShrunk = getImage(path + "57-Breakout-Tiles.png");
+        paddleShrunkWeapon = getImage(path + "57-Breakout-Tiles .png");
         ball = getImage(path + "58-Breakout-Tiles.png");
         star = getImage(path + "59-Breakout-Tiles.png");
         life = getImage(path + "60-Breakout-Tiles.png");
