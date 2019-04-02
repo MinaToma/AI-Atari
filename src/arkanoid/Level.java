@@ -29,7 +29,7 @@ public class Level {
 
     public void setBricks() {
 
-        int initialHeight = Helper.screenHeight * 40 / 100;
+        int initialHeight = arkHelper.INIT_BRICKS_HEIGHT;
         int index=0;
         int ok=0;
         int numberOfCapsule = (bricks.length*30)/100;

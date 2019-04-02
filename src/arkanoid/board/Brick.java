@@ -57,9 +57,13 @@ public class Brick extends BaseObject {
         super.y +=0;
         timer++;
         if(timer>=10000) {
-           timer=0;
-           super.y += getImageHeight()+3;
+           moveDown();
         }
+    }
+    public void moveDown()
+    {
+        timer=0;
+        super.y += getImageHeight()+3;
     }
 
     public void render(Graphics g) {
