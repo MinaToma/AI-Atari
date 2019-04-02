@@ -71,7 +71,6 @@ public class Ball extends BaseObject {
                 currPaddle.expand = false;
                 handler.addObject(b);
             }
-
         }
     }
 

@@ -13,23 +13,15 @@ public class Splash extends atariCore.Splash {
         super("Arkanoid", "src/Resources/Fonts/3270Medium.ttf");
         arkHelper.setCursorImage(panel, "src/Resources/image/yellowc2.png");
         newGameButton.addActionListener(e -> {
-            new Arkanoid();
+
             frame.dispose();
-
-        });
-    }
-
-    public Splash(JPanel panel) {
-
-        super("Arkanoid", "src/Resources/Fonts/3270Medium.ttf" , panel);
-        newGameButton.addActionListener(e -> {
+            arkHelper.running = true;
             new Arkanoid();
-            frame.dispose();
-
         });
     }
 
     public static void main(String[] args) {
+
         new Splash();
     }
 }

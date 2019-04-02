@@ -18,6 +18,8 @@ public class Helper {
     public static final int DELAY = 1000;
     public static final int PERIOD = 5;
     public static Font font;
+    public static JFrame frame;
+    public static boolean running = false;
 
     public static void setFont(String fontPath, int fontSize)
     {

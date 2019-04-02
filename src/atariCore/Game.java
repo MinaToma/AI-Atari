@@ -13,6 +13,7 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
 
     protected Handler handler;
     protected Timer timer;
+    protected JFrame frame;
 
     public Game(String title) {
 
@@ -22,22 +23,35 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
         addMouseMotionListener(this);
         setFocusable(true);
 
+        frame = new JFrame(title);
+        initFrame();
+
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
 
+                if(!Helper.running) {
+                    timer.cancel();
+                    timer.purge();
+                    frame.dispose();
+                    return;
+                }
                 handler.tick();
                 revalidate();
                 repaint();
             }
         } , Helper.DELAY, Helper.PERIOD);
+     }
 
-        new Window(Helper.screenWidth, Helper.screenHeight, title, this);
-    }
+    private void initFrame() {
 
-    public void kill() {
-        timer.cancel();
+        frame.setSize(Helper.screenWidth , Helper.screenHeight);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.add(this);
+        frame.setVisible(true);
     }
 
     @Override

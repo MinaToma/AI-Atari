@@ -5,8 +5,6 @@ import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
-import atariCore.Sounds;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -19,6 +17,7 @@ public class Arkanoid extends atariCore.Game {
     Player player;
 
     public Arkanoid() {
+
         super("Arkanoid");
         arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
         new arkHelper();
@@ -29,9 +28,10 @@ public class Arkanoid extends atariCore.Game {
         setBricks();
         setMusic();
     }
+
     private void setMusic()
     {
-        Sounds s = new Sounds();
+       // Sounds s = new Sounds();
         //s.backgroundGame.start();
         //s.backgroundGame.loop(5);
     }

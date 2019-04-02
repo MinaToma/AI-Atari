@@ -26,6 +26,7 @@ public class Player extends BaseObject {
         this.paddle = new ArrayList<>();
         this.paddle.add(paddle);
         this.panel = panel;
+        this.arkanoid = arkanoid;
 
         score = 0;
         start = true;
@@ -33,11 +34,11 @@ public class Player extends BaseObject {
 
     public void lostBall() {
         lives--;
+
         if(lives < 0) {
 
-            arkanoid.kill();
-            panel.removeAll();
-            new arkanoid.menu.Splash(panel);//change code here
+            arkHelper.running = false;
+            new arkanoid.menu.Splash();
         }
     }
 
