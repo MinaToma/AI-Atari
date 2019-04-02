@@ -16,7 +16,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky = true , laser, shrink, expand;
+    public boolean sticky = false , laser, shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
@@ -119,12 +119,12 @@ public class Paddle extends BaseObject {
             if (o instanceof Ball) {
                 if (o.getRectangle().intersects(getRectangle()) && o.getY() + o.getImageHeight() / 2 < y) {
 
-                    System.out.println(sticky);
+                   // System.out.println(sticky);
                     if (sticky) {
 
                         o.setVelX(0);
                         o.setVelY(0);
-                        o.setY(INIT_BALL_Y);
+                        o.setY(5);
                         continue;
                     }
 

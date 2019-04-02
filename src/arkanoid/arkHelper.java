@@ -8,17 +8,17 @@ import java.awt.*;
 
 public class arkHelper extends Helper {
 
-    public static int ballScale = 9;
-    public static int paddleScale = 5;
-    public static int brickScale = 4;
-    public static int capsuleScale = 7;
+    public static int ballScale = 6;
+    public static int paddleScale = 4;
+    public static int brickScale = 3;
+    public static int capsuleScale = 5;
     public static int cursorScale = 3;
 
     public static final int INIT_BRICKS_HEIGHT = screenHeight * 40 / 100;
     public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
     public static final int INIT_PADDLE_Y = screenHeight * 85 / 100;
     public static final int INIT_BALL_X = screenWidth * 43 / 100;
-    public static final int INIT_BALL_Y = screenHeight * 83 / 100;
+    public static final int INIT_BALL_Y = screenHeight * 82 / 100;
     public static int BRICKHITREWARD = 10;
     public static float paddleSpeed = 5;
     public static float xBallSpeed = 1f;
@@ -116,8 +116,8 @@ public class arkHelper extends Helper {
         paddleExpandedWeapon = getImage(path + "62-Breakout-Tiles.png", paddleScale);
         fireBall = getImage(path + "63-Breakout-Tiles.png", ballScale);
         acidBall = getImage(path + "64-Breakout-Tiles.png", ballScale);
-        capsuleCatch = getImage(path + "66-Breakout-Tiles.png", ballScale);
-        capsuleVaus = getImage(path + "67-Breakout-Tiles.png", ballScale);
+        capsuleCatch = getImage(path + "66-Breakout-Tiles.png", capsuleScale);
+        capsuleVaus = getImage(path + "67-Breakout-Tiles.png", capsuleScale);
 
 
 

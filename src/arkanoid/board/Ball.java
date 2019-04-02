@@ -55,7 +55,7 @@ public class Ball extends BaseObject {
 
             if (add)
             {
-                System.out.println( y + " " + arkHelper.screenHeight);
+               // System.out.println( y + " " + arkHelper.screenHeight);
 
                 player.lostBall();
                 for (BaseObject o : handler.object)
