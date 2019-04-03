@@ -15,7 +15,7 @@ import java.util.Map;
 public class Helper {
 
     public static int screenWidth = 1280 , screenHeight = 720;
-    public static final int DELAY = 2000;
+    public static final int DELAY = 3000;
     public static final int PERIOD = 1;
     public static Font font;
     public static boolean running = false;

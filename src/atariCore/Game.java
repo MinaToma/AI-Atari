@@ -67,7 +67,6 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
 
                             String dir = connection.getDIR();
 
-
                             Paddle p = ((Arkanoid)ana).p;
                             Ball b = ((Arkanoid)ana).b;
 
