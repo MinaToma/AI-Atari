@@ -1,6 +1,7 @@
 package arkanoid.menu;
 
 import arkanoid.Arkanoid;
+import arkanoid.NewPlayer;
 import arkanoid.arkHelper;
 import atariCore.Helper;
 
@@ -16,8 +17,7 @@ public class Splash extends atariCore.Splash {
         newGameButton.addActionListener(e -> {
 
             frame.dispose();
-            arkHelper.running = true;
-            new Arkanoid();
+            new NewPlayer();
 
         });
     }

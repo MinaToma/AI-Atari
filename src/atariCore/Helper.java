@@ -46,6 +46,18 @@ public class Helper {
 
         return btn;
     }
+    public static JButton btnHelper(JButton btn, String txt) {
+
+        btn = new JButton(txt);
+        btn.setLayout(null);
+        btn.setFont(font);
+        btn.setBackground(Color.BLACK);
+        btn.setForeground(Color.YELLOW);
+        btn.setFocusPainted(false);
+
+
+        return btn;
+    }
 
     public static Image getImage(String filename, int scaleFactor) {
 

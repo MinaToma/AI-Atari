@@ -17,14 +17,14 @@ public class Arkanoid extends atariCore.Game {
     Player player;
 
 
-    public Arkanoid() {
+    public Arkanoid(String namePlayer) {
 
         super("Arkanoid");
         arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
 
         new arkHelper();
         setPaddle();
-        setPlayer();
+        setPlayer(namePlayer);
 
         intialLevels(player.getLevel());
 
@@ -52,9 +52,9 @@ public class Arkanoid extends atariCore.Game {
         handler.addObject(b);
     }
 
-    private void setPlayer() {
+    private void setPlayer(String namePlayer) {
 
-        player = new Player("M7M7" , 3, p , this , this);
+        player = new Player(namePlayer , 3, p , this , this);
         p.setPlayer(player);
         handler.addObject(player);
     }
