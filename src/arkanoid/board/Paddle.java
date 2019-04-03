@@ -17,7 +17,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky = false , laser , shrink, expand;
+    public boolean sticky  , laser , shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 

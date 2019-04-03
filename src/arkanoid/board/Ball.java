@@ -6,8 +6,6 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
-import java.rmi.MarshalException;
-
 import static arkanoid.arkHelper.*;
 
 public class Ball extends BaseObject {
@@ -62,7 +60,10 @@ public class Ball extends BaseObject {
                     if (o instanceof Capsule)
                         handler.removeObject(o);
 
+
                 Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth()/2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, handler, player);
+                xBallSpeed = initBallXSpeed;
+                yBallSpeed = initBallYSpeed;
 
                 for(int i = 1; i < player.paddle.size(); i++)
                 {
@@ -92,7 +93,6 @@ public class Ball extends BaseObject {
                         if(o.getY()>=0) {
 
                             if (((Brick) o).hit() || (img == acidBall)) {
-                                hitSound();
                                 if (((Brick) o).capsule != null) {
 
                                     Capsule capsule = ((Brick) o).capsule;
@@ -103,6 +103,7 @@ public class Ball extends BaseObject {
                                 }
 
                                 handler.removeObject(o);
+                                hitSound();
                             }
                         }
                     }

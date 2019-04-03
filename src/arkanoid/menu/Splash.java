@@ -1,12 +1,7 @@
 package arkanoid.menu;
 
-import arkanoid.Arkanoid;
 import arkanoid.NewPlayer;
 import arkanoid.arkHelper;
-import atariCore.Helper;
-
-import javax.swing.*;
-import java.awt.event.WindowEvent;
 
 public class Splash extends atariCore.Splash {
 
@@ -18,8 +13,9 @@ public class Splash extends atariCore.Splash {
 
             frame.dispose();
             new NewPlayer();
-
         });
+
+
     }
 
     public static void main(String[] args) {
