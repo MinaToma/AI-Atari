@@ -28,6 +28,8 @@ public class arkHelper extends Helper {
     public static final int INIT_BALL_Y = screenHeight * 82 / 100;
     public static int BRICKHITREWARD = 10;
     public static float paddleSpeed = 5;
+    public static float initBallXSpeed = 1f;
+    public static float initBallYSpeed = -2f;
     public static float xBallSpeed = 1f;
     public static float yBallSpeed = -2f;
     public static float capsuleSpeed = 1;
@@ -70,8 +72,6 @@ public class arkHelper extends Helper {
 
 
 
-
-
     public arkHelper() {
 
         paddle = new Image[3];
@@ -82,13 +82,13 @@ public class arkHelper extends Helper {
         smallSquares = new Image[10];
 
         loadImages();
-
     }
 
     public static void lazerSound()
     {
         playSound("lazer.wav",0);
     }
+
     public static void hitSound()
     {
         playSound("hit.wav",0);
@@ -102,15 +102,10 @@ public class arkHelper extends Helper {
         playSound("intro_sound.wav",100);
     }
 
-
-
-
     public static void savePlayerScore()
     {
 
     }
-
-
 
     public static void playSound(String path , int loop) {
 

@@ -7,8 +7,12 @@ import atariCore.BaseObject;
 import atariCore.FileInOut;
 import atariCore.Leaderboards;
 
+import javax.imageio.ImageIO;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 import static arkanoid.arkHelper.*;
 
@@ -17,7 +21,7 @@ public class Arkanoid extends atariCore.Game {
     Ball b;
     Paddle p;
     Player player;
-
+    int frameCounter = 0;
 
     public Arkanoid(String namePlayer) {
 
@@ -29,8 +33,17 @@ public class Arkanoid extends atariCore.Game {
         setPlayer(namePlayer);
 
         intialLevels(player.getLevel());
-
     }
+
+    public void captureFrame() throws IOException {
+
+        BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
+        this.paint(img.getGraphics());
+        File outputfile = new File("SavedFrames/saved" + frameCounter + ".png");
+        ImageIO.write(img, "png", outputfile);
+        frameCounter++;
+    }
+
     public void intialLevels(int level)
     {
         handler.object.clear();

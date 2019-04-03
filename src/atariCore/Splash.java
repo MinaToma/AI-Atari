@@ -46,7 +46,6 @@ public class Splash {
     protected void setNewGameButton(int x, int y, Dimension dim) {
 
         newGameButton = Helper.btnHelper(newGameButton, "New Game", x, y, dim, panel);
-
     }
 
     protected void setSettingsButton(int x, int y, Dimension dim) {

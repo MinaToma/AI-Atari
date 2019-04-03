@@ -8,6 +8,7 @@ import atariCore.Splash;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Player extends BaseObject {
@@ -20,6 +21,8 @@ public class Player extends BaseObject {
     private JPanel panel;
     private Arkanoid arkanoid;
     private int level;
+    private int frameCounter = 0;
+    private int frameLimit = 50;
 
     public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
         super(10 , 10 , null);
@@ -84,6 +87,17 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
+
+        if(frameCounter + 1 >= frameLimit) {
+            try {
+                arkanoid.captureFrame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        frameCounter = (frameCounter += 1) % frameLimit;
+        System.out.println(frameCounter);
     }
 
     public void render(Graphics g) {

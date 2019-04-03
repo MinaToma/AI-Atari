@@ -77,4 +77,15 @@ public class Helper {
                 mainPane.getY()), "cursor");
         mainPane.setCursor (c);
     }
+
+    public static JLabel setLabel(int x, int  y , String text) {
+
+        JLabel label = new JLabel(text);
+        label.setLocation(x , y);
+        label.setBackground(Color.black);
+      //  label.setFont(font);
+        label.setVisible(true);
+
+        return label;
+    }
 }

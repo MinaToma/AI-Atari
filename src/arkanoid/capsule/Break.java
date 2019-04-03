@@ -17,6 +17,5 @@ public class Break extends Capsule {
     public void effect(Paddle p) {
 
         p.breakToNextLevel();
-
     }
 }
