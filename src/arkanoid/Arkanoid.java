@@ -5,6 +5,8 @@ import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
+import atariCore.Leaderboards;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -66,7 +68,7 @@ public class Arkanoid extends atariCore.Game {
     private void setBricks(int lvl) {
 
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level"+lvl),player, p , b ,handler);
+        Level level = new Level(fileInOut.getLevel("Level"+lvl, pathLevel),player, p , b ,handler);
 
     }
 

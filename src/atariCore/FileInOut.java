@@ -8,46 +8,43 @@ import java.util.List;
 
 public class FileInOut {
 
-    public String getLeaderboardData(String path) throws IOException {
+    public String getLeaderboardData(String path) {
 
         String Data = new String();
-        FileReader in = null;
-
         try {
-            in = new FileReader(path);
 
 
-            int c;
-            while ((c = in.read()) != -1) {
-                Data += ((char) c);
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+
+            int i;
+            while ((i = br.read()) != -1) {
+               Data += ((char) i);
             }
-        } finally {
-            if (in != null) {
-                in.close();
-            }
-
+            br.close();
+            fr.close();
+        }
+        catch (Exception e)
+        {
+            ///
         }
         return Data;
     }
 
-    public void addNewScoreToLeadboard(String path, String playerName, String Score) throws IOException {
-        FileWriter out = null;
-
+    public void addNewScoreToLeadboard(String path, String playerName, int  Score ,int lvl)  {
         try {
-
-            out = new FileWriter(path);
-            out.write(playerName + "$" + Score + "@");
-
-
-        } finally {
-
-            if (out != null) {
-                out.close();
-            }
+            FileWriter writer = new FileWriter(path,true);
+            BufferedWriter buffer = new BufferedWriter(writer);
+            buffer.write(playerName +   Helper.fieldSpertor  + Score +Helper.fieldSpertor + lvl + Helper.recordSpertor);
+            buffer.close();
+        }
+        catch (Exception e)
+        {
+            //
         }
     }
 
-    public ArrayList<ArrayList<Integer>> getLevel(String level)
+    public ArrayList<ArrayList<Integer>> getLevel(String level , String path)
     {
         ArrayList<ArrayList<Integer>> dim = new ArrayList<>();
 
@@ -55,7 +52,7 @@ public class FileInOut {
             List<String> records = new ArrayList<String>();
             try
             {
-                BufferedReader reader = new BufferedReader(new FileReader("src/Resources/Files/levels.txt"));
+                BufferedReader reader = new BufferedReader(new FileReader(path));
                 String line;
                 boolean ok = false;
                 while ((line = reader.readLine()) != null)

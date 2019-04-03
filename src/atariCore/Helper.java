@@ -20,7 +20,8 @@ public class Helper {
     public static Font font;
     public static JFrame frame;
     public static boolean running = false;
-
+    public static String fieldSpertor = "@@@";
+    public static String recordSpertor = "###";
     public static void setFont(String fontPath, int fontSize)
     {
         try {

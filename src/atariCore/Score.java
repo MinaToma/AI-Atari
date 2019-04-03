@@ -1,44 +1,42 @@
 package atariCore;
 
 import java.awt.*;
+import java.util.Comparator;
 
 public class Score {
 
     private int score;
-    private int x, y;
+    private String name;
+    private int level;
 
-    public Score(int score, int x, int y) {
+    public Score(int score, String name , int level) {
         this.score = score;
-        this.x = x;
-        this.y = y;
-
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
+        this.level = level;
+        this.name = name;
     }
 
     public int getScore() {
         return score;
     }
 
-    public int getX() {
-        return x;
+    public String getName() {
+        return name;
     }
 
-    public int getY() {
-        return y;
+    public int getLevel() {
+        return level;
     }
 
-    public void drawScore(Graphics g) {
-        g.drawString("Score : " + score, x, y);
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
+

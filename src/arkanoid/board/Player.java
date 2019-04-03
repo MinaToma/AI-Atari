@@ -3,6 +3,7 @@ package arkanoid.board;
 import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
+import atariCore.FileInOut;
 import atariCore.Splash;
 
 import javax.swing.*;
@@ -54,6 +55,8 @@ public class Player extends BaseObject {
     }
     public void die()
     {
+        FileInOut fileInOut = new FileInOut();
+        fileInOut.addNewScoreToLeadboard(arkHelper.pathLeaderboaeds,name,score,level);
         arkHelper.running = false;
 
         new arkanoid.menu.Splash();
