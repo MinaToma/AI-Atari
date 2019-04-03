@@ -39,7 +39,7 @@ public class Arkanoid extends atariCore.Game {
 
         BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
         this.paint(img.getGraphics());
-        File outputfile = new File("SavedFrames/saved" + frameCounter + ".png");
+        File outputfile = new File("src/SavedFrames/saved" + frameCounter + ".png");
         ImageIO.write(img, "png", outputfile);
         frameCounter++;
     }
