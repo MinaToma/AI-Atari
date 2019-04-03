@@ -18,8 +18,8 @@ import static arkanoid.arkHelper.*;
 
 public class Arkanoid extends atariCore.Game {
 
-    Ball b;
-    Paddle p;
+    public Ball b;
+    public Paddle p;
     Player player;
     int frameCounter = 0;
 
@@ -33,22 +33,6 @@ public class Arkanoid extends atariCore.Game {
         setPlayer(namePlayer);
 
         intialLevels(player.getLevel());
-    }
-
-    public void captureFrame() throws IOException {
-
-        BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
-        this.paint(img.getGraphics());
-
-        File directory = new File("src/SavedFrames");
-        if (! directory.exists()){
-            directory.mkdir();
-        }
-
-        File outputfile = new File("src/SavedFrames/saved" + ".png");
-        ImageIO.write(img, "png", outputfile);
-        frameCounter++;
-
     }
 
     public void intialLevels(int level)

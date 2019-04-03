@@ -21,8 +21,6 @@ public class Player extends BaseObject {
     private JPanel panel;
     private Arkanoid arkanoid;
     private int level;
-    private int frameCounter = 0;
-    private int frameLimit = 50;
 
     public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
         super(10 , 10 , null);
@@ -49,7 +47,6 @@ public class Player extends BaseObject {
     public void setLevel(int level) {
         this.level = level;
         arkanoid.intialLevels(level);
-
     }
 
     public void lostBall() {
@@ -89,18 +86,6 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
-
-        if(arkHelper.training) {
-            if(frameCounter + 1 >= frameLimit) {
-                try {
-                    arkanoid.captureFrame();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            frameCounter = (frameCounter += 1) % frameLimit;
-        }
     }
 
     public void render(Graphics g) {

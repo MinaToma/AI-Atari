@@ -60,13 +60,17 @@ public class Ball extends BaseObject {
                 else if(trainingCounter == trainingLimit) {
                     System.exit(0);
                 }
+                else {
 
-                trainingCounter++;
+                    player.setScore(0);
+                    player.setLevel(1);
+                    trainingCounter++;
+                    return;
+                }
 
                 for (BaseObject o : handler.object)
                     if (o instanceof Capsule)
                         handler.removeObject(o);
-
 
                 Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth()/2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, handler, player);
                 xBallSpeed = initBallXSpeed;
@@ -99,6 +103,7 @@ public class Ball extends BaseObject {
                     if( o instanceof Brick)  {
                         if(o.getY()>=0) {
 
+                            System.out.println(((Brick)o).getPower());
                             if (((Brick) o).hit() || (img == acidBall)) {
                                 if (((Brick) o).capsule != null) {
 

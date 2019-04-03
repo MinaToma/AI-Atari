@@ -15,7 +15,7 @@ import java.util.Map;
 public class Helper {
 
     public static int screenWidth = 1280 , screenHeight = 720;
-    public static final int DELAY = 1000;
+    public static final int DELAY = 2000;
     public static final int PERIOD = 1;
     public static Font font;
     public static boolean running = false;
@@ -24,7 +24,7 @@ public class Helper {
 
     public static boolean training;
     public static int trainingCounter;
-    public static int trainingLimit = 1000;
+    public static int trainingLimit = 50;
 
     public static void setFont(String fontPath, int fontSize)
     {

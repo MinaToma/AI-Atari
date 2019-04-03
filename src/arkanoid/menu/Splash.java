@@ -23,6 +23,10 @@ public class Splash extends atariCore.Splash {
 
     public static void main(String[] args) {
 
-        new Splash();
+        arkHelper.training = true;
+        arkHelper.running = true;
+
+        new Arkanoid("AI");
+        //new Splash();
     }
 }

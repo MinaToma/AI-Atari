@@ -2,31 +2,31 @@ package arkanoid;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Connection {
 
 
     public String getDIR() {
+
         String Data = new String();
+
         try {
+
             PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
 
-            writer.println("predection");
+            writer.println("right");
             writer.close();
             TimeUnit.SECONDS.sleep(1);
-            while(Data != "right" && Data != "left" ) {
-                try {
 
+            while(Data.equals("right") == false && Data.equals("left") == false ) {
+                try {
 
                     FileReader fr = new FileReader("src/test/test.txt");
                     BufferedReader br = new BufferedReader(fr);
 
-                    int i;
-                    while ((i = br.read()) != -1) {
-
-                        Data += ((char) i);
-                    }
+                    Data = br.readLine();
 
                     br.close();
                     fr.close();
@@ -39,11 +39,12 @@ public class Connection {
         catch (Exception e){
             //hi
         }
+        System.out.println(Data);
         return  Data;
     }
 
 
-    public void train(ArrayList<Integer> y ){
+    public void train(CopyOnWriteArrayList<Integer> y ){
         try {
             PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
 
