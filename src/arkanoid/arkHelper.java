@@ -67,10 +67,8 @@ public class arkHelper extends Helper {
     public static String  pathIamge = "src/Resources/image/";
     public static String pathLevel = "src/Resources/Files/levels.txt";
     public static String pathLeaderboaeds ="src/Resources/Files/Leaderboaeds.txt";
-    public static MediaPlayer hitSound;
-    public static MediaPlayer backgroundSplashSound;
-    public static MediaPlayer backgroundGameSound;
-    public static MediaPlayer lazerSound;
+
+
 
 
 

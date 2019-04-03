@@ -55,8 +55,9 @@ public class Bullet extends BaseObject {
 
                                 handler.addObject(capsule);
                             }
-                            hitSound();
+
                             handler.removeObject(o);
+                            hitSound();
                         }
                     }
                 }
