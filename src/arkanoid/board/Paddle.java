@@ -10,6 +10,7 @@ import atariCore.Handler;
 import java.awt.*;
 import java.util.ConcurrentModificationException;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.TimeUnit;
 
 import static arkanoid.arkHelper.*;
 
@@ -17,7 +18,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky  , laser , shrink, expand;
+    public boolean sticky  , laser = true, shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
@@ -174,6 +175,16 @@ public class Paddle extends BaseObject {
         }
         if (numOfBricks == 0)
         {
+            for (BaseObject o : handler.getObject()) {
+                if (o instanceof Ball || o instanceof Bullet ) {
+                    o.setX(0);
+                    o.setY(0);
+                    o.setVelX(0);
+                    o.setVelY(0);
+                }
+
+            }
+
             player.setLevel(player.getLevel()+1);
         }
 
@@ -273,6 +284,15 @@ public class Paddle extends BaseObject {
     }
     public void breakToNextLevel()
     {
+        for (BaseObject o : handler.getObject()) {
+            if (o instanceof Ball || o instanceof Bullet ) {
+                o.setX(0);
+                o.setY(0);
+                o.setVelX(0);
+                o.setVelY(0);
+            }
+
+        }
         player.setLevel(player.getLevel()+1);
     }
 }

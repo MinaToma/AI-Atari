@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class Player extends BaseObject {
 
@@ -44,6 +45,7 @@ public class Player extends BaseObject {
 
     public void setLevel(int level) {
         this.level = level;
+
         arkanoid.intialLevels(level);
 
     }

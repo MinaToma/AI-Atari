@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import static arkanoid.arkHelper.*;
 
@@ -48,6 +49,8 @@ public class Arkanoid extends atariCore.Game {
     public void intialLevels(int level)
     {
         handler.object.clear();
+
+
         handler.addObject(player);
         handler.addObject(p);
 

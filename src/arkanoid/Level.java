@@ -6,6 +6,7 @@ import atariCore.Handler;
 import atariCore.Helper;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Level {
 
@@ -90,6 +91,8 @@ public class Level {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2 , player);
                     }
                     initialWidth += arkHelper.normalBricks[0].getWidth(null);
+
+
                     handler.addObject(bricks[index]);
                     index++;
                 }
