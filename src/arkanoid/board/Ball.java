@@ -53,9 +53,16 @@ public class Ball extends BaseObject {
 
             if (add)
             {
-               // System.out.println( y + " " + arkHelper.screenHeight);
+                if(!arkHelper.training) {
 
-                player.lostBall();
+                    player.lostBall();
+                }
+                else if(trainingCounter == trainingLimit) {
+                    System.exit(0);
+                }
+
+                trainingCounter++;
+
                 for (BaseObject o : handler.object)
                     if (o instanceof Capsule)
                         handler.removeObject(o);

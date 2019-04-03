@@ -34,6 +34,10 @@ public class Player extends BaseObject {
         this.arkanoid = arkanoid;
         this.level = 1;
 
+        if(arkHelper.training) {
+            this.lives = 0;
+        }
+
         score = 0;
         start = true;
     }
@@ -61,8 +65,6 @@ public class Player extends BaseObject {
         FileInOut fileInOut = new FileInOut();
         fileInOut.addNewScoreToLeadboard(arkHelper.pathLeaderboaeds,name,score,level);
         arkHelper.running = false;
-
-        new arkanoid.menu.Splash();
     }
 
     public void setLives(int lives) {
@@ -88,16 +90,17 @@ public class Player extends BaseObject {
     @Override
     public void tick() {
 
-        if(frameCounter + 1 >= frameLimit) {
-            try {
-                arkanoid.captureFrame();
-            } catch (IOException e) {
-                e.printStackTrace();
+        if(arkHelper.training) {
+            if(frameCounter + 1 >= frameLimit) {
+                try {
+                    arkanoid.captureFrame();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-        }
 
-        frameCounter = (frameCounter += 1) % frameLimit;
-        System.out.println(frameCounter);
+            frameCounter = (frameCounter += 1) % frameLimit;
+        }
     }
 
     public void render(Graphics g) {

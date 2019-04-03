@@ -16,12 +16,16 @@ public class Helper {
 
     public static int screenWidth = 1280 , screenHeight = 720;
     public static final int DELAY = 1000;
-    public static final int PERIOD = 5;
+    public static final int PERIOD = 1;
     public static Font font;
-    public static JFrame frame;
     public static boolean running = false;
     public static String fieldSpertor = "@@@";
     public static String recordSpertor = "###";
+
+    public static boolean training;
+    public static int trainingCounter;
+    public static int trainingLimit = 1000;
+
     public static void setFont(String fontPath, int fontSize)
     {
         try {
