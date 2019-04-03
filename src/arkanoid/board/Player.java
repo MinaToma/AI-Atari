@@ -19,7 +19,7 @@ public class Player extends BaseObject {
     public ArrayList<Paddle> paddle;
     public boolean start;
     private JPanel panel;
-    private Arkanoid arkanoid;
+    public Arkanoid arkanoid;
     private int level;
 
     public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {

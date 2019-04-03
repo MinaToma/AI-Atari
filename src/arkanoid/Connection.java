@@ -16,7 +16,7 @@ public class Connection {
 
             PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
 
-            writer.println("right");
+            writer.println("predection");
             writer.close();
             TimeUnit.SECONDS.sleep(1);
 

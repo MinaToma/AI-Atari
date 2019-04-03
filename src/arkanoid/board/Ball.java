@@ -62,6 +62,9 @@ public class Ball extends BaseObject {
                 }
                 else {
 
+                    player.arkanoid.connection.train(player.arkanoid.y);
+                    player.arkanoid.y.clear();
+
                     player.setScore(0);
                     player.setLevel(1);
                     trainingCounter++;
