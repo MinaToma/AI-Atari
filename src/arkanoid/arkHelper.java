@@ -8,8 +8,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+//import javafx.scene.media.Media;
+//import javafx.scene.media.MediaPlayer;
 import java.io.*;
 import java.net.URL;
 
@@ -69,10 +69,10 @@ public class arkHelper extends Helper {
     public static String  pathIamge = "src/Resources/image/";
     public static String pathLevel = "src/Resources/Files/levels.txt";
     public static String pathLeaderboaeds ="src/Resources/Files/Leaderboaeds.txt";
-    public static MediaPlayer hitSound;
-    public static MediaPlayer backgroundSplashSound;
-    public static MediaPlayer backgroundGameSound;
-    public static MediaPlayer lazerSound;
+//    public static MediaPlayer hitSound;
+//    public static MediaPlayer backgroundSplashSound;
+//    public static MediaPlayer backgroundGameSound;
+//    public static MediaPlayer lazerSound;
 
     public arkHelper() {
 

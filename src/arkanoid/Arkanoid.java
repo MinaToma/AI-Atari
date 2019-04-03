@@ -45,9 +45,10 @@ public class Arkanoid extends atariCore.Game {
             directory.mkdir();
         }
 
-        File outputfile = new File("src/SavedFrames/saved" + frameCounter + ".png");
+        File outputfile = new File("src/SavedFrames/saved" + ".png");
         ImageIO.write(img, "png", outputfile);
         frameCounter++;
+
     }
 
     public void intialLevels(int level)
