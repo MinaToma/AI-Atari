@@ -37,11 +37,12 @@ public class Arkanoid extends atariCore.Game {
 
     public void captureFrame() throws IOException {
 
-        BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
+        /*BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
         this.paint(img.getGraphics());
         File outputfile = new File("SavedFrames/saved" + frameCounter + ".png");
         ImageIO.write(img, "png", outputfile);
         frameCounter++;
+        */
     }
 
     public void intialLevels(int level)
