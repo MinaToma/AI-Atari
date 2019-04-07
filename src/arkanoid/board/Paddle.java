@@ -2,6 +2,7 @@
 
 package arkanoid.board;
 
+import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
@@ -18,7 +19,7 @@ public class Paddle extends BaseObject {
 
     public CopyOnWriteArrayList<Capsule> capsules;
     public Handler handler;
-    public boolean sticky  , laser = true, shrink, expand;
+    public boolean sticky  , laser , shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
@@ -108,7 +109,7 @@ public class Paddle extends BaseObject {
     private void collision() {
 
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
-        int numOfBricks = 0;
+
         for (BaseObject o : handler.getObject()) {
 
             if (o instanceof Capsule) {
@@ -150,7 +151,7 @@ public class Paddle extends BaseObject {
             }
 
             if (o instanceof Brick) {
-                numOfBricks++;
+
                 if (o.getY() >= 0) {
                     if (o.getY() >= INIT_BRICKS_HEIGHT) {
                         checkIfBricksHeight1 = true;
@@ -173,7 +174,7 @@ public class Paddle extends BaseObject {
                 }
             }
         }
-        if (numOfBricks == 0)
+        if (numberOfBrics == 0)
         {
             for (BaseObject o : handler.getObject()) {
                 if (o instanceof Ball || o instanceof Bullet ) {

@@ -55,7 +55,7 @@ public class Bullet extends BaseObject {
 
                                 handler.addObject(capsule);
                             }
-
+                            arkHelper.numberOfBrics--;
                             handler.removeObject(o);
                             hitSound();
                         }

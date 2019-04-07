@@ -68,6 +68,9 @@ public class arkHelper extends Helper {
     public static String  pathIamge = "src/Resources/image/";
     public static String pathLevel = "src/Resources/Files/levels.txt";
     public static String pathLeaderboaeds ="src/Resources/Files/Leaderboaeds.txt";
+   // public static Image backgroundImage ;
+    public static Image[] backgroundImage ;
+    public static int numberOfBrics=2;
 
 
 
@@ -79,6 +82,7 @@ public class arkHelper extends Helper {
         normalBricks = new Image[10];
         brokenBricks = new Image[10];
         smallSquares = new Image[10];
+        backgroundImage = new Image[8];
 
         loadImages();
     }
@@ -98,7 +102,7 @@ public class arkHelper extends Helper {
     }
     public static void backgroundSplashSound()
     {
-        playSound("intro_sound.wav",100);
+        playSound("background.wav",100);
     }
 
     public static void savePlayerScore()
@@ -183,8 +187,12 @@ public class arkHelper extends Helper {
         acidBall = getImage(pathIamge + "64-Breakout-Tiles.png", ballScale);
         capsuleCatch = getImage(pathIamge + "66-Breakout-Tiles.png", capsuleScale);
         capsuleVaus = getImage(pathIamge + "67-Breakout-Tiles.png", capsuleScale);
-
-
+       // backgroundImage  = getImage(pathIamge+"bg.jpg",1);
+        for(int i=1 ; i<=8 ; i++)
+        {
+            backgroundImage[i-1] = getImage(pathIamge+"background/"+i+".jpg",1);
+            //System.out.println(pathIamge+"background/bk ("+i+").png");
+        }
 
     }
 }

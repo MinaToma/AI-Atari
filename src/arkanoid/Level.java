@@ -26,6 +26,7 @@ public class Level {
         this.ball = ball;
         this.handler = handler;
         this.bricks = new Brick[dimensions.get(0).get(0)];
+        arkHelper.numberOfBrics = bricks.length;
         setBricks();
     }
 
@@ -39,6 +40,7 @@ public class Level {
         ArrayList<Integer> capsul = new ArrayList<>();
         Set<Integer> st =new HashSet<>();
         Random random = new Random();
+
         for(int i=0 ; i<numberOfCapsule ; i++)
         {
             st.add(Math.abs(random.nextInt())%bricks.length);

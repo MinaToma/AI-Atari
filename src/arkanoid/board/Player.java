@@ -90,16 +90,10 @@ public class Player extends BaseObject {
     @Override
     public void tick() {
 
-        if(frameCounter + 1 >= frameLimit) {
-            try {
-                arkanoid.captureFrame();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
-        frameCounter = (frameCounter += 1) % frameLimit;
-        System.out.println(frameCounter);
+
+
+        //System.out.println(frameCounter);
     }
 
     public void render(Graphics g) {

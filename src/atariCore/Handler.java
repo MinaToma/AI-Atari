@@ -3,6 +3,8 @@ package atariCore;
 import java.awt.*;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import arkanoid.arkHelper;
 import arkanoid.arkHelper.*;
 
 import static arkanoid.arkHelper.bullet;
@@ -21,6 +23,7 @@ public class Handler {
 
     public void render(Graphics g) {
 
+
         for (BaseObject o : object) {
 
             o.render(g);
@@ -29,6 +32,7 @@ public class Handler {
            // g.fillRect(r.x , r.y , r.width , r.height);
            // g.drawRect(r.x , r.y , r.width , r.height);
         }
+
     }
 
     public void addObject(BaseObject object) {

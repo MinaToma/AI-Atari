@@ -24,6 +24,7 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
         setFocusable(true);
 
         frame = new JFrame(title);
+
         initFrame();
 
         timer = new Timer();
@@ -48,6 +49,7 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
 
         frame.setSize(Helper.screenWidth , Helper.screenHeight);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.add(this);

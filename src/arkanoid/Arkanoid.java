@@ -1,5 +1,6 @@
 package arkanoid;
 
+import arkanoid.board.Background;
 import arkanoid.board.Ball;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
@@ -46,23 +47,25 @@ public class Arkanoid extends atariCore.Game {
         */
     }
 
+
     public void intialLevels(int level)
     {
         handler.object.clear();
 
-
+        setBackGround();
         handler.addObject(player);
         handler.addObject(p);
 
         setBall();
         setEnemy();
         setBricks(level);
-        setMusic();
+
 
     }
-    private void setMusic()
+    private void setBackGround()
     {
-
+        Background background = new Background(0,0, backgroundImage[0]);
+        handler.addObject(background);
     }
 
     public void setBall() {

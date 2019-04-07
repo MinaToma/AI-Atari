@@ -101,7 +101,7 @@ public class Ball extends BaseObject {
 
                                     handler.addObject(capsule);
                                 }
-
+                                arkHelper.numberOfBrics--;
                                 handler.removeObject(o);
                                 hitSound();
                             }
