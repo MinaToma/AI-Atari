@@ -23,7 +23,7 @@ public class Helper {
     public static JPanel panel;
     public static boolean running = false;
     public static String fieldSeparator = "@@@";
-    public static String recordSeparator = "###";
+    public static FileInOut file;
 
 
     protected static boolean music, sounds, mouse, keyboard;
