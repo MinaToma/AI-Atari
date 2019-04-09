@@ -16,12 +16,12 @@ abstract public class BaseObject {
         this.y = y;
         this.velX = 0;
         this.velY = 0;
-        this.img = img;
+        setImg(img);
 
-        if(img != null) {
-
-            this.imageHeight = img.getHeight(null);
-            this.imageWidth = img.getWidth(null);
+        if(img != null)
+        {
+            setImageWidth(img.getWidth(null));
+            setImageHeight(img.getHeight(null));
         }
     }
 
@@ -75,13 +75,22 @@ abstract public class BaseObject {
 
     public void setImg(Image img) {
         this.img = img;
+      /*  if(img != null) {
+            setImageWidth(img.getHeight(null));
+            setImageHeight(img.getHeight(null));
+        }
+        else {
+            setImageWidth(0);
+            setImageHeight(0);
+        }*/
     }
 
     public int getImageHeight() {
         return imageHeight;
     }
 
-    public void setImageWidth(int imageWidth) {
+    public void setImageWidth(int imageWidth)
+    {
         this.imageWidth = imageWidth;
     }
 

@@ -6,79 +6,57 @@ import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
-import atariCore.Leaderboards;
-
-import javax.imageio.ImageIO;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
+import java.util.concurrent.CopyOnWriteArrayList;
 import static arkanoid.arkHelper.*;
+import static arkanoid.ObjectList.*;
 
 public class Arkanoid extends atariCore.Game {
 
     Ball b;
     Paddle p;
     Player player;
-    int frameCounter = 0;
 
     public Arkanoid(String namePlayer) {
 
         super("Arkanoid");
         arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
 
-        new arkHelper();
         setPaddle();
         setPlayer(namePlayer);
 
         intialLevels(player.getLevel());
     }
 
-    public void captureFrame() throws IOException {
-
-        /*BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
-        this.paint(img.getGraphics());
-        File outputfile = new File("SavedFrames/saved" + frameCounter + ".png");
-        ImageIO.write(img, "png", outputfile);
-        frameCounter++;
-        */
-    }
-
-
     public void intialLevels(int level)
     {
-        handler.object.clear();
-
         setBackGround();
-        handler.addObject(player);
-        handler.addObject(p);
+        handler.addObject(playerList , player);
+        handler.addObject(paddleList , p);
 
         setBall();
         setEnemy();
         setBricks(level);
-
-
     }
+
     private void setBackGround()
     {
         Background background = new Background(0,0, backgroundImage[0]);
-        handler.addObject(background);
+        handler.addObject(new CopyOnWriteArrayList<>() , background);
     }
 
     public void setBall() {
 
-        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5, INIT_BALL_Y , arkHelper.ball, 0, 0, handler , player);
-        handler.addObject(b);
+        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5, INIT_BALL_Y , arkHelper.ball, 0, 0 , player);
+        handler.addObject(ballList , b);
     }
 
     private void setPlayer(String namePlayer) {
 
         player = new Player(namePlayer , 3, p , this , this);
         p.setPlayer(player);
-        handler.addObject(player);
+        handler.addObject(playerList , player);
     }
 
     private void setEnemy() {
@@ -88,14 +66,13 @@ public class Arkanoid extends atariCore.Game {
     private void setBricks(int lvl) {
 
         FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level"+lvl, pathLevel),player, p , b ,handler);
-
+        Level level = new Level(fileInOut.getLevel("Level"+lvl, pathLevel),player, p , b );
     }
 
     private void setPaddle() {
 
-         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, handler , player);
-         handler.addObject(p);
+         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0,  player);
+         handler.addObject(paddleList , p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {
@@ -127,8 +104,8 @@ public class Arkanoid extends atariCore.Game {
 
         }
 
-        for(BaseObject o : handler.object) {
-            if(o instanceof Ball && o.getVelX() == 0 && o.getVelY() == 0) {
+        for(BaseObject o : ballList) {
+            if(o.getVelX() == 0 && o.getVelY() == 0) {
                 p.sticky = false;
                 o.setVelX(-p.getNewVx(o.getX() + o.getImageWidth() / 2));
                 o.setVelY(yBallSpeed);

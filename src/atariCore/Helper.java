@@ -20,6 +20,7 @@ public class Helper {
     public static Font font;
     public static int splashButtonFontSize;
     public static JFrame frame;
+    public static JPanel panel;
     public static boolean running = false;
     public static String fieldSeparator = "@@@";
     public static String recordSeparator = "###";

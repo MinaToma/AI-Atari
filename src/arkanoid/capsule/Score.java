@@ -2,10 +2,9 @@ package arkanoid.capsule;
 
 import arkanoid.arkHelper;
 import arkanoid.board.Paddle;
-
 import java.awt.*;
-
-import static arkanoid.arkHelper.capsuleSpeed;
+import static arkanoid.ObjectList.*;
+import static arkanoid.arkHelper.*;
 
 public class Score extends Capsule {
     public int score;
@@ -22,7 +21,7 @@ public class Score extends Capsule {
     public void effect(Paddle p) {
 
         p.getPlayer().increaseScore(score);
-        p.capsules.remove(this);
+        capsuleList.remove(this);
     }
 
     @Override

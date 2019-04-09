@@ -22,8 +22,6 @@ public class Player extends BaseObject {
     private JPanel panel;
     private Arkanoid arkanoid;
     private int level;
-    private int frameCounter = 0;
-    private int frameLimit = 50;
 
     public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
         super(10 , 10 , null);

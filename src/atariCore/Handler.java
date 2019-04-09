@@ -1,50 +1,49 @@
 package atariCore;
 
+import arkanoid.board.Ball;
+import arkanoid.board.Paddle;
+
 import java.awt.*;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import arkanoid.arkHelper;
-import arkanoid.arkHelper.*;
-
-import static arkanoid.arkHelper.bullet;
 
 public class Handler {
 
-    public CopyOnWriteArrayList<BaseObject> object = new CopyOnWriteArrayList<>();
+    public CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> object = new CopyOnWriteArrayList<>();
 
     public void tick() {
 
-        for (BaseObject o : object) {
-
-            o.tick();
-        }
+       for (CopyOnWriteArrayList<BaseObject> list : object)
+            for (BaseObject o : list)
+                o.tick();
     }
 
     public void render(Graphics g) {
 
-
-        for (BaseObject o : object) {
-
-            o.render(g);
-
-           // Rectangle r = o.getRectangle();
-           // g.fillRect(r.x , r.y , r.width , r.height);
-           // g.drawRect(r.x , r.y , r.width , r.height);
-        }
-
+        for (CopyOnWriteArrayList<BaseObject> list : object)
+            for (BaseObject o : list)
+                o.render(g);
     }
 
-    public void addObject(BaseObject object) {
-        this.object.add(object);
+    public void addHandler(CopyOnWriteArrayList<BaseObject> list) {
+        this.object.add(list);
     }
 
-    public void removeObject(BaseObject object) {
+    public void removeHandler(CopyOnWriteArrayList<BaseObject> list) {
 
-        this.object.remove(object);
+        this.object.remove(list);
     }
 
-    public List<BaseObject> getObject() {
+    public void removeObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
+
+        list.remove(o);
+    }
+
+    public void addObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
+
+        list.add(o);
+    }
+
+    public CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> getObject() {
         return object;
     }
 }
