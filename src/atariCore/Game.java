@@ -1,5 +1,7 @@
 package atariCore;
 
+import arkanoid.Arkanoid;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -8,23 +10,24 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.TimerTask;
 import java.util.Timer;
+import static atariCore.Helper.frame;
+import static atariCore.Helper.panel;
 import static atariCore.BaseObjectList.*;
 
 abstract public class Game extends JPanel implements KeyListener , MouseListener , MouseMotionListener {
 
     protected Timer timer;
-    protected JFrame frame;
 
     public Game(String title) {
+
+        frame.getContentPane().remove(panel);
+        frame.setTitle(title);
+        panel = this;
 
         addKeyListener(this);
         addMouseListener(this);
         addMouseMotionListener(this);
         setFocusable(true);
-
-        frame = new JFrame(title);
-
-        initFrame();
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -34,7 +37,6 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
                 if(!Helper.running) {
                     timer.cancel();
                     timer.purge();
-                    frame.dispose();
                     return;
                 }
 
@@ -45,17 +47,11 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
                 }
             }
         } , Helper.DELAY, Helper.PERIOD);
-     }
 
-    private void initFrame() {
-
-        frame.setSize(Helper.screenWidth , Helper.screenHeight);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.add(this);
+        frame.getContentPane().add(panel);
         frame.setVisible(true);
+
+        requestFocusInWindow();
     }
 
     @Override

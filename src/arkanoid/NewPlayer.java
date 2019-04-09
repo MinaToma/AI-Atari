@@ -8,21 +8,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewPlayer extends JFrame {
+import static atariCore.Helper.frame;
+import static atariCore.Helper.panel;
+
+public class NewPlayer extends JPanel {
+
     String namePlayer;
     JButton OK;
     JTextField textName;
 
-    public NewPlayer()
-    {
+    public NewPlayer() {
         initFrame();
     }
+
     private void initFrame() {
 
-        setTitle("Enter Your Name");
-        setSize(Helper.screenWidth , Helper.screenHeight);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Font font =new Font("src/Resources/Fonts/3270Medium.ttf",Font.BOLD,100);
+        frame.setTitle("Enter Your Name");
+        frame.getContentPane().remove(panel);
+        panel = this;
+
+        Font font = new Font("src/Resources/Fonts/3270Medium.ttf", Font.BOLD, 100);
 
         OK = Helper.btnHelper("OK");
 
@@ -30,31 +35,26 @@ public class NewPlayer extends JFrame {
         textName.setFont(font);
         textName.setHorizontalAlignment(JTextField.CENTER);
         textName.setForeground(Color.YELLOW);
-        setLayout(new GridLayout(0,1));
-        setResizable(false);
-        setLocationRelativeTo(null);
+        setLayout(new GridLayout(0, 1));
         add(textName);
         add(OK);
-        setVisible(true);
 
         OK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(textName.getText().length()>0 && textName.getText().length()<=20)
-                {
-
+                if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                     arkHelper.running = true;
                     Sound.stop(Sounds.backgroundSplashSound);
                     Sound.loop(1000,Sounds.BackgroundGameSound);
                     new Arkanoid(textName.getText());
-                    dispose();
                 }
 
             }
         });
+
+        frame.getContentPane().add(panel);
+        frame.setVisible(true);
     }
-
-
 
 
 }

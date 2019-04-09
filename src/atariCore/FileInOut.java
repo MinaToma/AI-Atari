@@ -38,15 +38,14 @@ public class FileInOut {
     public void writeFile(String path , ArrayList<String> data)
     {
         try {
-            FileWriter writer = new FileWriter(path,true);
-            BufferedWriter buffer = new BufferedWriter(writer);
+
+            PrintWriter writer = new PrintWriter(path);
             for(String str : data)
             {
-                buffer.write(str);
-                buffer.newLine();
+                writer.println(str);
             }
 
-            buffer.close();
+            writer.close();
         }
         catch (Exception e)
         {
@@ -57,17 +56,16 @@ public class FileInOut {
 
     public void addNewScoreToLeadboard(String path, String playerName, int  Score ,int lvl)  {
         try {
-            FileWriter writer = new FileWriter(path,true);
-            BufferedWriter buffer = new BufferedWriter(writer);
-            buffer.write(playerName +   Helper.fieldSeparator  + Score +Helper.fieldSeparator + lvl );
-            buffer.close();
+
+            PrintWriter writer = new PrintWriter(path);
+
+            writer.println(playerName +   Helper.fieldSeparator  + Score +Helper.fieldSeparator + lvl );
+
+            writer.close();
         }
         catch (Exception e)
         {
             System.out.println("Can't add score.");
         }
     }
-
-
-
 }

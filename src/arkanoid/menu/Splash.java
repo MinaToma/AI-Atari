@@ -4,6 +4,7 @@ import arkanoid.NewPlayer;
 import arkanoid.ObjectList;
 import arkanoid.Sounds;
 import arkanoid.arkHelper;
+import static atariCore.Helper.panel;
 import atariCore.Sound;
 
 public class Splash extends atariCore.Splash {
@@ -16,7 +17,6 @@ public class Splash extends atariCore.Splash {
 
         newGameButton.addActionListener(e -> {
 
-            frame.dispose();
             new NewPlayer();
         });
     }
@@ -27,6 +27,5 @@ public class Splash extends atariCore.Splash {
         new ObjectList();
         new Sounds();
         new Splash();
-
     }
 }

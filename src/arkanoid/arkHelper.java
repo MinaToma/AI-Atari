@@ -20,7 +20,6 @@ public class arkHelper extends Helper {
     public static int paddleScale = 4;
     public static int brickScale = 3;
     public static int capsuleScale = 5;
-    public static int cursorScale = 3;
 
     public static final int INIT_BRICKS_HEIGHT = screenHeight * 40 / 100;
     public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
@@ -69,7 +68,7 @@ public class arkHelper extends Helper {
     public static Image bullet;
     public static String  pathIamge = "src/Resources/image/";
     public static String pathLevel = "src/Resources/Files/levels.txt";
-    public static String pathLeaderboaeds ="src/Resources/Files/Leaderboaeds.txt";
+    public static String pathLeaderboards ="src/Resources/Files/Leaderboards.txt";
    // public static Image backgroundImage ;
     public static Image[] backgroundImage ;
     public static int numberOfBrics=2;

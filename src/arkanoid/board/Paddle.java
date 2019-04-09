@@ -256,21 +256,10 @@ public class Paddle extends BaseObject {
     }
 
     public void breakToNextLevel() {
-        for (BaseObject o : ballList) {
 
-            o.setX(0);
-            o.setY(0);
-            o.setVelX(0);
-            o.setVelY(0);
-        }
-
-        for (BaseObject o : bulletList) {
-
-            o.setX(0);
-            o.setY(0);
-            o.setVelX(0);
-            o.setVelY(0);
-        }
+        ballList.clear();
+        paddleList.clear();
+        bulletList.clear();
 
         player.setLevel(player.getLevel() + 1);
     }
