@@ -18,10 +18,14 @@ public class Helper {
     public static final int DELAY = 1000;
     public static final int PERIOD = 5;
     public static Font font;
+    public static int splashButtonFontSize;
     public static JFrame frame;
     public static boolean running = false;
-    public static String fieldSpertor = "@@@";
-    public static String recordSpertor = "###";
+    public static String fieldSeparator = "@@@";
+    public static String recordSeparator = "###";
+
+
+    protected static boolean music, sounds, mouse, keyboard;
     public static void setFont(String fontPath, int fontSize)
     {
         try {
@@ -33,9 +37,14 @@ public class Helper {
         }
     }
 
-    public static JButton btnHelper(JButton btn, String txt, int x, int y, Dimension dim, JPanel panel) {
+    public static void setSplashButtonFontSize(int splashButtonFontSize)
+    {
+        Helper.splashButtonFontSize = splashButtonFontSize;
+    }
 
-        btn = new JButton(txt);
+    public static JButton btnHelper(String txt, int x, int y, Dimension dim, JPanel panel) {
+
+        JButton btn = new JButton(txt);
         btn.setLayout(null);
         btn.setFont(font);
         btn.setBackground(Color.BLACK);
@@ -47,16 +56,12 @@ public class Helper {
 
         return btn;
     }
-    public static JButton btnHelper(JButton btn, String txt) {
-
-        btn = new JButton(txt);
-        btn.setLayout(null);
+    public static JButton btnHelper(String txt) {
+        JButton btn = new JButton(txt);
         btn.setFont(font);
         btn.setBackground(Color.BLACK);
         btn.setForeground(Color.YELLOW);
         btn.setFocusPainted(false);
-
-
         return btn;
     }
 
@@ -76,16 +81,5 @@ public class Helper {
         Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(),
                 mainPane.getY()), "cursor");
         mainPane.setCursor (c);
-    }
-
-    public static JLabel setLabel(int x, int  y , String text) {
-
-        JLabel label = new JLabel(text);
-        label.setLocation(x , y);
-        label.setBackground(Color.black);
-      //  label.setFont(font);
-        label.setVisible(true);
-
-        return label;
     }
 }

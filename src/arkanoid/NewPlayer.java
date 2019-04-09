@@ -23,7 +23,8 @@ public class NewPlayer extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Font font =new Font("src/Resources/Fonts/3270Medium.ttf",Font.BOLD,100);
 
-        OK = Helper.btnHelper(OK,"OK");
+        OK = Helper.btnHelper("OK");
+
         textName = new JTextField(20);
         textName.setFont(font);
         textName.setHorizontalAlignment(JTextField.CENTER);
@@ -34,6 +35,7 @@ public class NewPlayer extends JFrame {
         add(textName);
         add(OK);
         setVisible(true);
+
         OK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

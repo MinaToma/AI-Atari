@@ -1,7 +1,5 @@
 package atariCore;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +33,7 @@ public class FileInOut {
         try {
             FileWriter writer = new FileWriter(path,true);
             BufferedWriter buffer = new BufferedWriter(writer);
-            buffer.write(playerName +   Helper.fieldSpertor  + Score +Helper.fieldSpertor + lvl + Helper.recordSpertor);
+            buffer.write(playerName +   Helper.fieldSeparator + Score +Helper.fieldSeparator + lvl + Helper.recordSeparator);
             buffer.close();
         }
         catch (Exception e)

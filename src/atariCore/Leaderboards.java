@@ -1,8 +1,5 @@
 package atariCore;
 
-import javafx.util.Pair;
-
-import java.io.*;
 import java.util.Arrays;
 
 public class Leaderboards {
@@ -17,11 +14,11 @@ public class Leaderboards {
 
 
 
-        String[] rec = data.split(Helper.recordSpertor);
+        String[] rec = data.split(Helper.recordSeparator);
 
         record = new Score[rec.length];
         for (int i = 0; i < rec.length; i++) {
-            String[] sp = rec[i].split(Helper.fieldSpertor);
+            String[] sp = rec[i].split(Helper.fieldSeparator);
 
 
             record[i] = new Score(Integer.valueOf(sp[1]),sp[0],Integer.valueOf(sp[2]));
