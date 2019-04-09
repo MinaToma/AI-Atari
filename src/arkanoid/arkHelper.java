@@ -11,6 +11,8 @@ import java.awt.*;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class arkHelper extends Helper {
 
@@ -71,6 +73,7 @@ public class arkHelper extends Helper {
    // public static Image backgroundImage ;
     public static Image[] backgroundImage ;
     public static int numberOfBrics=2;
+    public static arkFile arkFile;
 
 
 
@@ -83,60 +86,13 @@ public class arkHelper extends Helper {
         brokenBricks = new Image[10];
         smallSquares = new Image[10];
         backgroundImage = new Image[8];
-
+        arkFile = new arkFile();
         loadImages();
     }
 
-    public static void lazerSound()
-    {
-        playSound("lazer.wav",0);
-    }
-    public static void hitSound()
-    {
-        playSound("hit.wav",0);
-    }
-    public static void BackgroundGameSound()
-    {
-        playSound("background.wav",0);
-    }
-
-    public static void backgroundSplashSound()
-    {
-
-        playSound("background.wav",100);
-    }
-
-    public static void savePlayerScore()
-    {
-
-    }
-
-    public static void playSound(String path , int loop) {
 
 
-        try
-        {
 
-            URL url = arkHelper.class.getClassLoader().getResource("Resources/Sounds/"+path);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            // Get a sound clip resource.
-            Clip clip = AudioSystem.getClip();
-            // Open audio clip and load samples from the audio input stream.
-            clip.open(audioIn);
-            if(loop>0)
-            {
-                clip.loop(loop);
-            }
-            else if(loop==0)
-                clip.start();
-
-
-        }
-        catch (Exception e)
-        {
-            ////
-        }
-    }
 
     private void loadImages() {
         for (int i = 1; i <= 20; i++) {
@@ -192,4 +148,6 @@ public class arkHelper extends Helper {
         }
 
     }
+
+
 }

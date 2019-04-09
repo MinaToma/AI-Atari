@@ -1,10 +1,12 @@
 
 package arkanoid.board;
 
+import arkanoid.Sounds;
 import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
+import atariCore.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +44,6 @@ public class Brick extends BaseObject {
 
     private boolean hit() {
 
-        System.out.println("Brick HIt");
         player.increaseScore(BRICKHITREWARD);
         power -= 1;
         if (power == 1 && !isSmallSquares) {
@@ -83,10 +84,10 @@ public class Brick extends BaseObject {
                     capsule.setY(getY());
                     handler.addObject(capsuleList, capsule);
                 }
-
+                Sound.play(Sounds.hitSound);
                 arkHelper.numberOfBrics--;
                 handler.removeObject(brickList, this);
-                hitSound();
+
             }
         }
     }

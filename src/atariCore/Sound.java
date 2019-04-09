@@ -4,6 +4,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.net.URL;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 abstract public class Sound {
 
@@ -26,15 +28,16 @@ abstract public class Sound {
         return newClip;
     }
 
-    public void play(Clip clip) {
-        clip.start();
+    public static void play(Clip clip) {
+        clip.loop(1);
+
     }
 
-    public void stop(Clip clip) {
+    public static void stop(Clip clip) {
         clip.stop();
     }
 
-    public void loop(int loop, Clip clip) {
+    public static void loop(int loop, Clip clip) {
         clip.loop(loop);
     }
 }

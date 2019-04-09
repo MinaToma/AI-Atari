@@ -1,14 +1,14 @@
 package arkanoid;
 
-import arkanoid.board.Background;
 import arkanoid.board.Ball;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
+import atariCore.Background;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.concurrent.CopyOnWriteArrayList;
+
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
 
@@ -42,8 +42,8 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBackGround()
     {
-        Background background = new Background(0,0, backgroundImage[0]);
-        handler.addObject(new CopyOnWriteArrayList<>() , background);
+        Background background = new Background(0,0, backgroundImage,backgroundImage.length);
+        handler.addObject(backgroundList , background);
     }
 
     public void setBall() {
@@ -65,8 +65,8 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBricks(int lvl) {
 
-        FileInOut fileInOut = new FileInOut();
-        Level level = new Level(fileInOut.getLevel("Level"+lvl, pathLevel),player, p , b );
+
+        Level level = new Level(arkFile.getLevel("Level"+lvl, pathLevel),player, p , b );
     }
 
     private void setPaddle() {

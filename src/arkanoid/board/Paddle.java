@@ -2,8 +2,11 @@
 
 package arkanoid.board;
 
+import arkanoid.Sounds;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
+import atariCore.Sound;
+
 import java.awt.*;
 
 import static arkanoid.arkHelper.*;
@@ -11,7 +14,7 @@ import static arkanoid.ObjectList.*;
 
 public class Paddle extends BaseObject {
 
-    public boolean sticky, laser, shrink, expand;
+    public boolean sticky, laser , shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
@@ -80,7 +83,7 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-        lazerSound();
+        Sound.play(Sounds.lazerSound);
     }
 
     public void speedUp() {

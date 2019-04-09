@@ -1,6 +1,7 @@
 package arkanoid;
 
 import atariCore.Helper;
+import atariCore.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +42,10 @@ public class NewPlayer extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(textName.getText().length()>0 && textName.getText().length()<=20)
                 {
+
                     arkHelper.running = true;
+                    Sound.stop(Sounds.backgroundSplashSound);
+                    Sound.loop(1000,Sounds.BackgroundGameSound);
                     new Arkanoid(textName.getText());
                     dispose();
                 }
