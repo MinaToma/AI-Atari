@@ -8,16 +8,15 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.TimerTask;
 import java.util.Timer;
+import static atariCore.BaseObjectList.*;
 
 abstract public class Game extends JPanel implements KeyListener , MouseListener , MouseMotionListener {
 
-    protected Handler handler;
     protected Timer timer;
     protected JFrame frame;
 
     public Game(String title) {
 
-        handler = new Handler();
         addKeyListener(this);
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -38,9 +37,12 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
                     frame.dispose();
                     return;
                 }
-                handler.tick();
-                revalidate();
-                repaint();
+
+                if(handler != null) {
+                    handler.tick();
+                    revalidate();
+                    repaint();
+                }
             }
         } , Helper.DELAY, Helper.PERIOD);
      }

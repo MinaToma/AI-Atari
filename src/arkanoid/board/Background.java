@@ -6,8 +6,10 @@ import atariCore.BaseObject;
 import java.awt.*;
 
 public class Background extends BaseObject {
+
     private static int cnt=0;
     private int timer=0;
+
     public Background(float x, float y, Image img) {
         super(x, y, img);
         cnt =0;

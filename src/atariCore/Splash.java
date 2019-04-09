@@ -16,8 +16,6 @@ public class Splash {
 
     public Splash(String title, String fontPath) {
 
-
-
         frame = new JFrame(title);
 
         panel = new JPanel(new GridLayout(0, 1));

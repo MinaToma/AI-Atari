@@ -1,11 +1,15 @@
 package arkanoid.board;
 
+import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.Handler;
 import atariCore.Helper;
 
 import java.awt.*;
 import java.util.ArrayList;
+
+import static arkanoid.ObjectList.*;
+import static arkanoid.arkHelper.hitSound;
 
 public class Enemy extends BaseObject {
 
@@ -30,26 +34,6 @@ public class Enemy extends BaseObject {
             super.velY *= -1;
         if (super.x <= 0 || super.x >= Helper.screenWidth - super.imageHeight)
             super.velX *= -1;
-
-        collision();
-    }
-
-    private void collision() {
-
-        ArrayList<BaseObject> object = new ArrayList<>();
-        for (int i = 0; i < handler.object.size(); i++) {
-            BaseObject baseObject = handler.object.get(i);
-            if (baseObject instanceof Paddle) {
-                if (baseObject.getRectangle().intersects(super.getRectangle())) {
-                    // han3ml 7aga hena
-                    object.add(baseObject);
-                }
-            }
-
-        }
-        for (BaseObject bas : object) {
-            handler.object.remove(bas);
-        }
     }
 
     public void setPower(int power) {

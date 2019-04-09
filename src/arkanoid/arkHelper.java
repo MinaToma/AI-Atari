@@ -91,7 +91,6 @@ public class arkHelper extends Helper {
     {
         playSound("lazer.wav",0);
     }
-
     public static void hitSound()
     {
         playSound("hit.wav",0);
@@ -100,8 +99,10 @@ public class arkHelper extends Helper {
     {
         playSound("background.wav",0);
     }
+
     public static void backgroundSplashSound()
     {
+
         playSound("background.wav",100);
     }
 
@@ -135,10 +136,6 @@ public class arkHelper extends Helper {
         {
             ////
         }
-
-
-
-
     }
 
     private void loadImages() {

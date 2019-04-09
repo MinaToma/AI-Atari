@@ -9,7 +9,8 @@ import atariCore.Handler;
 import javax.swing.*;
 import java.awt.*;
 
-import static arkanoid.arkHelper.BRICKHITREWARD;
+import static arkanoid.ObjectList.*;
+import static arkanoid.arkHelper.*;
 
 public class Brick extends BaseObject {
 
@@ -20,55 +21,74 @@ public class Brick extends BaseObject {
     public int timer;
     private Player player;
 
-    public Brick(int xPostion, int yPostion, Image image,  int power, int color , Player player) {
+    public Brick(int xPostion, int yPostion, Image image, int power, int color, Player player) {
 
         super(xPostion, yPostion, image);
         this.power = power;
         this.player = player;
         this.color = color;
-        if(power > 1)
-        {
+        if (power > 1) {
             isSmallSquares = false;
-        }
-        else
+        } else
             isSmallSquares = true;
-        timer =0 ;
+        timer = 0;
     }
 
-    public Brick(int xPostion, int yPostion, Image image,  int power,int color ,Capsule capsule , Player player) {
+    public Brick(int xPostion, int yPostion, Image image, int power, int color, Capsule capsule, Player player) {
 
-        this(xPostion, yPostion, image,power , color , player);
+        this(xPostion, yPostion, image, power, color, player);
         this.capsule = capsule;
     }
 
-    public boolean hit() {
+    private boolean hit() {
 
+        System.out.println("Brick HIt");
         player.increaseScore(BRICKHITREWARD);
         power -= 1;
-        if(power == 1 && !isSmallSquares) {
+        if (power == 1 && !isSmallSquares) {
 
             this.setImg(arkHelper.brokenBricks[color]);
         }
-        return  (power <= 0);
+
+        return (power <= 0);
     }
 
     public void tick() {
 
-        super.y +=0;
+        super.y += 0;
         timer++;
-        if(timer>=10000) {
-           moveDown();
+        if (timer >= 10000) {
+            moveDown();
         }
     }
-    public void moveDown()
-    {
-        timer=0;
-        super.y += getImageHeight()+3;
+
+    public void moveDown() {
+        timer = 0;
+        super.y += getImageHeight() + 3;
     }
 
     public void render(Graphics g) {
-        if(y>0)
-        g.drawImage(this.img, (int)this.x, (int)this.y, null);
+        if (y > 0)
+            g.drawImage(this.img, (int) this.x, (int) this.y, null);
+    }
+
+
+    public void hitBrick() {
+
+        if (getY() >= 0) {
+            if (hit()) {
+                if (capsule != null) {
+
+                    capsule.setX(getX());
+                    capsule.setY(getY());
+                    handler.addObject(capsuleList, capsule);
+                }
+
+                arkHelper.numberOfBrics--;
+                handler.removeObject(brickList, this);
+                hitSound();
+            }
+        }
     }
 
     public int getPower() {

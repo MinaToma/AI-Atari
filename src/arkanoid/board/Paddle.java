@@ -2,34 +2,23 @@
 
 package arkanoid.board;
 
-import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
-import atariCore.Handler;
-
-
 import java.awt.*;
-import java.util.ConcurrentModificationException;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeUnit;
 
 import static arkanoid.arkHelper.*;
+import static arkanoid.ObjectList.*;
 
 public class Paddle extends BaseObject {
 
-    public CopyOnWriteArrayList<Capsule> capsules;
-    public Handler handler;
-    public boolean sticky  , laser , shrink, expand;
+    public boolean sticky, laser, shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
 
-    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Handler handler, Player player) {
+    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY , Player player) {
 
         super(xPosition, yPosition, image, velX, 0);
-        this.handler = handler;
         this.player = player;
-        capsules = new CopyOnWriteArrayList<>();
-
     }
 
     public void tick() {
@@ -43,18 +32,18 @@ public class Paddle extends BaseObject {
 
     public void splitBall() {
 
-        for (BaseObject o : handler.getObject()) {
+        for (BaseObject o : ballList) {
 
             if (o instanceof Ball) {
 
                 Ball ball = (Ball) o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xBallSpeed, ball.getVelY(), handler, player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xBallSpeed, ball.getVelY(), handler, player);
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xBallSpeed, ball.getVelY() , player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xBallSpeed, ball.getVelY() , player);
 
-                handler.addObject(newBallL);
-                handler.addObject(newBallR);
+                handler.addObject(ballList, newBallL);
+                handler.addObject(ballList, newBallR);
 
                 break;
             }
@@ -74,11 +63,11 @@ public class Paddle extends BaseObject {
 
     private void updateCapsules() {
 
-        for (Capsule c : capsules) {
+        for (BaseObject c : capsuleList) {
 
-            c.effect(this);
-            if (!c.hit()) {
-                capsules.remove(c);
+            ((Capsule) c).effect(this);
+            if (!((Capsule) c).hit()) {
+                capsuleList.remove(c);
             }
         }
     }
@@ -86,11 +75,11 @@ public class Paddle extends BaseObject {
     public void hitLaser() {
 
         updateCapsules();
-        Bullet bulletL = new Bullet(x, y, bullet, handler);
-        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet, handler);
+        Bullet bulletL = new Bullet(x, y, bullet);
+        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
 
-        handler.addObject(bulletL);
-        handler.addObject(bulletR);
+        handler.addObject(bulletList, bulletL);
+        handler.addObject(bulletList, bulletR);
         lazerSound();
     }
 
@@ -110,85 +99,68 @@ public class Paddle extends BaseObject {
 
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
 
-        for (BaseObject o : handler.getObject()) {
+        for (BaseObject o : capsuleList) {
 
-            if (o instanceof Capsule) {
+            if (o.getRectangle().intersects(getRectangle())) {
 
-                if (o.getRectangle().intersects(getRectangle())) {
-
-                    capsules.add(((Capsule) o));
-                    updateCapsules();
-                    handler.removeObject(o);
-                }
+                capsuleList.add(o);
+                updateCapsules();
+                handler.removeObject(capsuleList, o);
             }
+        }
 
-            if (o instanceof Ball) {
-                if (o.getRectangle().intersects(getRectangle()) && o.getY() + o.getImageHeight() / 2 < y) {
 
-                   // System.out.println(sticky);
-                    if (sticky) {
+        for (BaseObject o : ballList) {
 
-                        o.setVelX(0);
-                        o.setVelY(0);
-                        o.setY(INIT_BALL_Y);
-                        continue;
-                    }
+            if (o.getRectangle().intersects(getRectangle())) {
+                if (sticky) {
 
-                    o.setVelY(yBallSpeed);
-
-                    int dir = (o.getVelX() > 0) ? 1 : -1;
-
-                    if (getVelX() == 0) {
-
-                        o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
-                    }
-                    else {
-
-                        dir = (getVelX() < 0) ? -1 : 1;
-                        o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
-                    }
+                    o.setVelX(0);
+                    o.setVelY(0);
+                    o.setY(INIT_BALL_Y);
+                    continue;
                 }
-            }
 
-            if (o instanceof Brick) {
+                o.setVelY(yBallSpeed);
 
-                if (o.getY() >= 0) {
-                    if (o.getY() >= INIT_BRICKS_HEIGHT) {
-                        checkIfBricksHeight1 = true;
-                    }
+                int dir = (o.getVelX() > 0) ? 1 : -1;
+
+                if (getVelX() == 0) {
+
+                    o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
                 } else {
-                    checkIfBricksHeight2 = true;
+
+                    dir = (getVelX() < 0) ? -1 : 1;
+                    o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
                 }
-                if(o.getY() + o.getImageHeight() >= this.getY())
-                {
-                    player.die();
+            }
+        }
+
+        for (BaseObject o : brickList) {
+
+            if (o.getY() >= 0) {
+                if (o.getY() >= INIT_BRICKS_HEIGHT) {
+                    checkIfBricksHeight1 = true;
                 }
+            } else {
+                checkIfBricksHeight2 = true;
+            }
+            if (o.getY() + o.getImageHeight() >= this.getY()) {
+                player.die();
             }
         }
 
         if (checkIfBricksHeight1 == false && checkIfBricksHeight2 == true) {
 
-            for (BaseObject o : handler.getObject()) {
-                if (o instanceof Brick) {
-                    ((Brick) o).moveDown();
-                }
+            for (BaseObject o : brickList) {
+
+                ((Brick) o).moveDown();
             }
         }
-        if (numberOfBrics == 0)
-        {
-            for (BaseObject o : handler.getObject()) {
-                if (o instanceof Ball || o instanceof Bullet ) {
-                    o.setX(0);
-                    o.setY(0);
-                    o.setVelX(0);
-                    o.setVelY(0);
-                }
 
-            }
-
-            player.setLevel(player.getLevel()+1);
+        if (numberOfBrics == 0) {
+            breakToNextLevel();
         }
-
     }
 
     public float getNewVx(float currX) {
@@ -203,7 +175,10 @@ public class Paddle extends BaseObject {
     public Player getPlayer() {
         return player;
     }
-    public void setPlayer(Player player) {  this.player = player; }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 
     public void render(Graphics g) {
 
@@ -212,12 +187,9 @@ public class Paddle extends BaseObject {
 
     public void makeAcidBall() {
 
-        for (BaseObject o : handler.getObject()) {
+        for (BaseObject o : ballList) {
 
-            if (o instanceof Ball) {
-
-                ((Ball) o).makeAcid();
-            }
+            ((Ball) o).makeAcid();
         }
     }
 
@@ -238,27 +210,26 @@ public class Paddle extends BaseObject {
 
             if (expand) {
 
-                img = paddleExpandedWeapon;
+                setImg(paddleExpandedWeapon);
             } else if (shrink) {
 
-                img = paddleShrunk;
+                setImg(paddleShrunk);
             } else {
 
-                img = paddleWeapon[normalImageIdx++];
+                setImg(paddleWeapon[normalImageIdx++]);
                 normalImageIdx %= 3;
             }
         } else if (expand) {
 
-            img = paddleExpanded;
+            setImg(paddleExpanded);
         } else if (shrink) {
 
-            img = paddleShrunk;
+            setImg(paddleShrunk);
         } else {
 
-            img = paddle[normalImageIdx++];
+            setImg(paddle[normalImageIdx++]);
             normalImageIdx %= 3;
         }
-
         setSize();
     }
 
@@ -275,26 +246,30 @@ public class Paddle extends BaseObject {
 
     public void makeFireBall() {
 
-        for (BaseObject o : handler.getObject()) {
+        for (BaseObject o : ballList) {
 
-            if (o instanceof Ball) {
-
-                ((Ball) o).makeFire();
-            }
+            ((Ball) o).makeFire();
         }
     }
-    public void breakToNextLevel()
-    {
-        for (BaseObject o : handler.getObject()) {
-            if (o instanceof Ball || o instanceof Bullet ) {
-                o.setX(0);
-                o.setY(0);
-                o.setVelX(0);
-                o.setVelY(0);
-            }
 
+    public void breakToNextLevel() {
+        for (BaseObject o : ballList) {
+
+            o.setX(0);
+            o.setY(0);
+            o.setVelX(0);
+            o.setVelY(0);
         }
-        player.setLevel(player.getLevel()+1);
+
+        for (BaseObject o : bulletList) {
+
+            o.setX(0);
+            o.setY(0);
+            o.setVelX(0);
+            o.setVelY(0);
+        }
+
+        player.setLevel(player.getLevel() + 1);
     }
 }
 

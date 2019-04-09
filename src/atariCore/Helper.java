@@ -19,9 +19,11 @@ public class Helper {
     public static final int PERIOD = 5;
     public static Font font;
     public static JFrame frame;
+    public static JPanel panel;
     public static boolean running = false;
     public static String fieldSpertor = "@@@";
     public static String recordSpertor = "###";
+
     public static void setFont(String fontPath, int fontSize)
     {
         try {
@@ -47,6 +49,7 @@ public class Helper {
 
         return btn;
     }
+
     public static JButton btnHelper(JButton btn, String txt) {
 
         btn = new JButton(txt);
@@ -76,16 +79,5 @@ public class Helper {
         Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(),
                 mainPane.getY()), "cursor");
         mainPane.setCursor (c);
-    }
-
-    public static JLabel setLabel(int x, int  y , String text) {
-
-        JLabel label = new JLabel(text);
-        label.setLocation(x , y);
-        label.setBackground(Color.black);
-      //  label.setFont(font);
-        label.setVisible(true);
-
-        return label;
     }
 }
