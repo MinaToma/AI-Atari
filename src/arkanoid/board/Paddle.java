@@ -64,7 +64,7 @@ public class Paddle extends BaseObject {
         shrink = false;
     }
 
-    private void updateCapsules() {
+    private void updateCapsules( ) {
 
         for (BaseObject c : capsuleList) {
 
@@ -106,8 +106,7 @@ public class Paddle extends BaseObject {
 
             if (o.getRectangle().intersects(getRectangle())) {
 
-                capsuleList.add(o);
-                updateCapsules();
+                ((Capsule)o).effect(this);
                 handler.removeObject(capsuleList, o);
             }
         }
@@ -161,7 +160,7 @@ public class Paddle extends BaseObject {
             }
         }
 
-        if (numberOfBrics == 0) {
+        if (brickList.size() == 0) {
             breakToNextLevel();
         }
     }
@@ -260,8 +259,7 @@ public class Paddle extends BaseObject {
         ballList.clear();
         paddleList.clear();
         bulletList.clear();
-
-        player.setLevel(player.getLevel() + 1);
+        player.setLevel(player.getLevel() +1);
     }
 }
 

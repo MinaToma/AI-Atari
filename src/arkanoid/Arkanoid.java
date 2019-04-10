@@ -43,6 +43,9 @@ public class Arkanoid extends atariCore.Game {
 
     public void intialLevels(int level)
     {
+
+
+        // to clear every level
         paddleList.clear();
         ballList.clear();
         brickList.clear();
@@ -51,13 +54,16 @@ public class Arkanoid extends atariCore.Game {
         playerList.clear();
         enemyList.clear();
         backgroundList.clear();
+
+
         setBackGround();
+        setBricks(level);
         handler.addObject(playerList , player);
         handler.addObject(paddleList , p);
 
         setBall();
         setEnemy();
-        setBricks(level);
+
     }
 
     private void setBackGround()
@@ -84,9 +90,7 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setBricks(int lvl) {
-
-
-        Level level = new Level(arkfile.getLevel("Level"+lvl, pathLevel),player, p , b );
+        new Level(arkfile.getLevel("Level"+lvl, pathLevel),player, p , b );
     }
 
     private void setPaddle() {
