@@ -4,14 +4,9 @@ import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
-import atariCore.Helper;
-import atariCore.Splash;
-
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class Player extends BaseObject {
 
@@ -46,7 +41,6 @@ public class Player extends BaseObject {
         this.level = level;
 
         arkanoid.intialLevels(level);
-
     }
 
     public void lostBall() {
@@ -59,9 +53,8 @@ public class Player extends BaseObject {
     }
     public void die()
     {
-
-        Helper.file.addNewScoreToLeadboard(arkHelper.pathLeaderboaeds,name,score,level);
-        arkHelper.running = true;
+        arkHelper.file.addNewScoreToLeadboard(arkHelper.pathLeaderboards,name,score,level);
+        arkHelper.running = false;
 
         new arkanoid.menu.Splash();
     }
@@ -88,10 +81,6 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
-
-
-
-
         //System.out.println(frameCounter);
     }
 

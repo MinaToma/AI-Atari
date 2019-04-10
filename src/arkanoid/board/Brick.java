@@ -77,6 +77,8 @@ public class Brick extends BaseObject {
     public void hitBrick() {
 
         if (getY() >= 0) {
+
+            Sound.play(Sounds.hitSound);
             if (hit()) {
                 if (capsule != null) {
 
@@ -84,7 +86,6 @@ public class Brick extends BaseObject {
                     capsule.setY(getY());
                     handler.addObject(capsuleList, capsule);
                 }
-                Sound.play(Sounds.hitSound);
                 arkHelper.numberOfBrics--;
                 handler.removeObject(brickList, this);
 

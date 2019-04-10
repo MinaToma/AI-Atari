@@ -6,6 +6,8 @@ import arkanoid.board.Player;
 import atariCore.Background;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
+import sun.print.BackgroundLookupListener;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -21,7 +23,17 @@ public class Arkanoid extends atariCore.Game {
     public Arkanoid(String namePlayer) {
 
         super("Arkanoid");
+
         arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
+
+        paddleList.clear();
+        ballList.clear();
+        brickList.clear();
+        bulletList.clear();
+        capsuleList.clear();
+        playerList.clear();
+        enemyList.clear();
+        backgroundList.clear();
 
         setPaddle();
         setPlayer(namePlayer);
@@ -31,7 +43,7 @@ public class Arkanoid extends atariCore.Game {
 
     public void intialLevels(int level)
     {
-        setBackGround();
+        //setBackGround();
         handler.addObject(playerList , player);
         handler.addObject(paddleList , p);
 
@@ -52,7 +64,7 @@ public class Arkanoid extends atariCore.Game {
         handler.addObject(ballList , b);
     }
 
-    private void setPlayer(String namePlayer) {
+    private void    setPlayer(String namePlayer) {
 
         player = new Player(namePlayer , 3, p , this , this);
         p.setPlayer(player);

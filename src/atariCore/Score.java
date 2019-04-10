@@ -3,7 +3,7 @@ package atariCore;
 import java.awt.*;
 import java.util.Comparator;
 
-public class Score {
+public class Score implements Comparable<Score>{
 
     private int score;
     private String name;
@@ -37,6 +37,14 @@ public class Score {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    @Override
+    public int compareTo(Score o) {
+        if(level - o.getLevel() < 0)
+            return level - o.getLevel();
+
+        return score - o.getScore();
     }
 }
 

@@ -1,18 +1,14 @@
 package atariCore;
 
-import arkanoid.Arkanoid;
-import arkanoid.arkHelper;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
-import java.text.AttributedCharacterIterator;
-import java.util.Map;
 
 public class Helper {
+
 
     public static int screenWidth = 1280 , screenHeight = 720;
     public static final int DELAY = 1000;
@@ -25,8 +21,28 @@ public class Helper {
     public static String fieldSeparator = "@@@";
     public static FileInOut file;
 
+    public static int cursorScale = 3;
+    public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
+
 
     protected static boolean music, sounds, mouse, keyboard;
+
+    public Helper()
+    {
+        frame = new JFrame();
+
+        frame.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        frame.setMaximumSize(new Dimension(screenWidth, screenHeight));
+        frame.setMinimumSize(new Dimension(screenWidth, screenHeight));
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+
+        frame.setLocationRelativeTo(null);
+    }
+
+
+
     public static void setFont(String fontPath, int fontSize)
     {
         try {
@@ -43,7 +59,7 @@ public class Helper {
         Helper.splashButtonFontSize = splashButtonFontSize;
     }
 
-    public static JButton btnHelper(String txt, int x, int y, Dimension dim, JPanel panel) {
+    public static JButton btnHelper(String txt, int x, int y, Dimension dim) {
 
         JButton btn = new JButton(txt);
         btn.setLayout(null);
@@ -57,6 +73,7 @@ public class Helper {
 
         return btn;
     }
+
     public static JButton btnHelper(String txt) {
         JButton btn = new JButton(txt);
         btn.setFont(font);
@@ -78,7 +95,7 @@ public class Helper {
     public static void setCursorImage(JPanel mainPane, String filename)
     {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = getImage(filename, arkHelper.cursorScale);
+        Image image = getImage(filename, cursorScale);
         Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(),
                 mainPane.getY()), "cursor");
         mainPane.setCursor (c);
