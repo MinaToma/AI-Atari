@@ -1,7 +1,6 @@
-
-
 package arkanoid.board;
 
+import arkanoid.Arkanoid;
 import arkanoid.Sounds;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
@@ -11,256 +10,277 @@ import java.awt.*;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
+import arkanoid.arkHelper;
 
 public class Paddle extends BaseObject {
 
-    public boolean sticky, laser , shrink, expand;
-    private int normalImageIdx = 0;
-    private Player player;
+	public boolean sticky, laser, shrink, expand;
+	private int normalImageIdx = 0;
+	private Player player;
 
-    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY , Player player) {
+	public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Player player) {
 
-        super(xPosition, yPosition, image, velX, 0);
-        this.player = player;
-    }
+		super(xPosition, yPosition, image, velX, 0);
+		this.player = player;
+	}
 
-    public void tick() {
+	@Override
+	public void tick() {
 
-        x += velX;
+		x += velX;
 
-        updateImage();
-        collision();
-        clamp();
-    }
+		updateImage();
+		collision();
+		clamp();
+	}
 
-    public void splitBall() {
+	public void splitBall() {
 
-        for (BaseObject o : ballList) {
+		for (BaseObject o : ballList) {
 
-            if (o instanceof Ball) {
+			if (o instanceof Ball) {
 
-                Ball ball = (Ball) o;
-                ball.setVelX(0);
+				Ball ball = (Ball) o;
+				ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xBallSpeed, ball.getVelY() , player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xBallSpeed, ball.getVelY() , player);
+				Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xBallSpeed, ball.getVelY(), player);
+				Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xBallSpeed, ball.getVelY(), player);
 
-                handler.addObject(ballList, newBallL);
-                handler.addObject(ballList, newBallR);
+				handler.addObject(ballList, newBallL);
+				handler.addObject(ballList, newBallR);
 
-                break;
-            }
-        }
-    }
+				break;
+			}
+		}
+	}
 
-    public void updateLaser() {
+	public void updateLaser() {
 
-        laser = true;
-    }
+		laser = true;
+	}
 
-    public void expand() {
+	public void expand() {
 
-        expand = true;
-        shrink = false;
-    }
+		expand = true;
+		shrink = false;
+	}
 
-    private void updateCapsules( ) {
+	private void updateCapsules() {
 
-        for (BaseObject c : capsuleList) {
+		for (BaseObject c : capsuleList) {
 
-            ((Capsule) c).effect(this);
-            if (!((Capsule) c).hit()) {
-                capsuleList.remove(c);
-            }
-        }
-    }
+			((Capsule) c).effect(this);
+			if (!((Capsule) c).hit()) {
+				capsuleList.remove(c);
+			}
+		}
+	}
 
-    public void hitLaser() {
+	public void hitLaser() {
 
-        updateCapsules();
-        Bullet bulletL = new Bullet(x, y, bullet);
-        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
+		updateCapsules();
+		Bullet bulletL = new Bullet(x, y, bullet);
+		Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
 
-        handler.addObject(bulletList, bulletL);
-        handler.addObject(bulletList, bulletR);
-        Sound.play(Sounds.lazerSound);
-    }
+		handler.addObject(bulletList, bulletL);
+		handler.addObject(bulletList, bulletR);
+		Sound.play(Sounds.lazerSound);
+	}
 
-    public void speedUp() {
+	public void speedUp() {
 
-        xBallSpeed = Math.min(4, xBallSpeed + 0.5f);
-        yBallSpeed = Math.min(-4, yBallSpeed - 0.5f);
-    }
+		xBallSpeed = Math.min(4, xBallSpeed + 0.5f);
+		yBallSpeed = Math.min(-4, yBallSpeed - 0.5f);
+	}
 
-    public void speedDown() {
+	public void speedDown() {
 
-        xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
-        yBallSpeed = Math.max(-1, yBallSpeed + 0.5f);
-    }
+		xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
+		yBallSpeed = Math.max(-1, yBallSpeed + 0.5f);
+	}
 
-    private void collision() {
+	private void setEnemy() {
 
-        boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
+		Enemy e = new Enemy(50, 50, arkHelper.baseEnemyXSpeed, arkHelper.baseEnemyYSpeed, arkHelper.baseEnemy, player.getLevel()*2);
+		handler.addObject(enemyList, e);
+	}
 
-        for (BaseObject o : capsuleList) {
+	private void collision() {
 
-            if (o.getRectangle().intersects(getRectangle())) {
+		boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
 
-                ((Capsule)o).effect(this);
-                handler.removeObject(capsuleList, o);
-            }
-        }
+		for (BaseObject o : capsuleList) {
 
+			if (o.getRectangle().intersects(getRectangle())) {
 
-        for (BaseObject o : ballList) {
+				((Capsule) o).effect(this);
+				handler.removeObject(capsuleList, o);
+			}
+		}
 
-            if (o.getRectangle().intersects(getRectangle())) {
-                if (sticky) {
+		for (BaseObject o : ballList) {
 
-                    o.setVelX(0);
-                    o.setVelY(0);
-                    o.setY(INIT_BALL_Y);
-                    continue;
-                }
+			if (o.getRectangle().intersects(getRectangle())) {
+				if (sticky) {
 
-                o.setVelY(yBallSpeed);
+					o.setVelX(0);
+					o.setVelY(0);
+					o.setY(INIT_BALL_Y);
+					continue;
+				}
 
-                int dir = (o.getVelX() > 0) ? 1 : -1;
+				o.setVelY(yBallSpeed);
 
-                if (getVelX() == 0) {
+				int dir = (o.getVelX() > 0) ? 1 : -1;
 
-                    o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
-                } else {
+				if (getVelX() == 0) {
 
-                    dir = (getVelX() < 0) ? -1 : 1;
-                    o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
-                }
-            }
-        }
+					o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
+				} else {
 
-        for (BaseObject o : brickList) {
+					dir = (getVelX() < 0) ? -1 : 1;
+					o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
+				}
+			}
+		}
 
-            if (o.getY() >= 0) {
-                if (o.getY() >= INIT_BRICKS_HEIGHT) {
-                    checkIfBricksHeight1 = true;
-                }
-            } else {
-                checkIfBricksHeight2 = true;
-            }
-            if (o.getY() + o.getImageHeight() >= this.getY()) {
-                player.die();
-            }
-        }
+		for (BaseObject o : brickList) {
 
-        if (checkIfBricksHeight1 == false && checkIfBricksHeight2 == true) {
+			if (o.getY() >= 0) {
+				if (o.getY() >= INIT_BRICKS_HEIGHT) {
+					checkIfBricksHeight1 = true;
+				}
+			} else {
+				checkIfBricksHeight2 = true;
+			}
+			if (o.getY() + o.getImageHeight() >= this.getY()) {
+				player.die();
+			}
+		}
 
-            for (BaseObject o : brickList) {
+		if (checkIfBricksHeight1 == false && checkIfBricksHeight2 == true) {
 
-                ((Brick) o).moveDown();
-            }
-        }
+			for (BaseObject o : brickList) {
 
-        if (brickList.size() == 0) {
-            breakToNextLevel();
-        }
-    }
+				((Brick) o).moveDown();
+			}
+		}
+		if (enemyList.isEmpty()) {
+			if (brickList.isEmpty()) {
+				if (player.getLevel() % 5 == 0) {
+					setEnemy();
+				} else {
 
-    public float getNewVx(float currX) {
+					breakToNextLevel();
+				}
 
-        float distFromCenter = (x + getImageWidth() / 2 - currX);
-        distFromCenter /= getImageWidth() / 2;
-        float newVX = xBallSpeed * distFromCenter;
+			}
+		}
+		for (BaseObject o : enemyList) {
 
-        return newVX;
-    }
+			if (o.getRectangle().intersects(getRectangle())) {
+				player.die();
+			}
 
-    public Player getPlayer() {
-        return player;
-    }
+		}
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
+	}
 
-    public void render(Graphics g) {
+	public float getNewVx(float currX) {
 
-        g.drawImage(super.img, (int) super.x, (int) super.y, null);
-    }
+		float distFromCenter = (x + getImageWidth() / 2 - currX);
+		distFromCenter /= getImageWidth() / 2;
+		float newVX = xBallSpeed * distFromCenter;
 
-    public void makeAcidBall() {
+		return newVX;
+	}
 
-        for (BaseObject o : ballList) {
+	public Player getPlayer() {
+		return player;
+	}
 
-            ((Ball) o).makeAcid();
-        }
-    }
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 
-    public void shrink() {
+	public void render(Graphics g) {
 
-        expand = false;
-        shrink = true;
-    }
+		g.drawImage(super.img, (int) super.x, (int) super.y, null);
+	}
 
-    public void increaseLife() {
+	public void makeAcidBall() {
 
-        player.setLives(player.getLives() + 1);
-    }
+		for (BaseObject o : ballList) {
 
-    private void updateImage() {
+			((Ball) o).makeAcid();
+		}
+	}
 
-        if (laser) {
+	public void shrink() {
 
-            if (expand) {
+		expand = false;
+		shrink = true;
+	}
 
-                setImg(paddleExpandedWeapon);
-            } else if (shrink) {
+	public void increaseLife() {
 
-                setImg(paddleShrunk);
-            } else {
+		player.setLives(player.getLives() + 1);
+	}
 
-                setImg(paddleWeapon[normalImageIdx++]);
-                normalImageIdx %= 3;
-            }
-        } else if (expand) {
+	private void updateImage() {
 
-            setImg(paddleExpanded);
-        } else if (shrink) {
+		if (laser) {
 
-            setImg(paddleShrunk);
-        } else {
+			if (expand) {
 
-            setImg(paddle[normalImageIdx++]);
-            normalImageIdx %= 3;
-        }
-        setSize();
-    }
+				setImg(paddleExpandedWeapon);
+			} else if (shrink) {
 
-    private void setSize() {
+				setImg(paddleShrunk);
+			} else {
 
-        setImageWidth(img.getWidth(null));
-        setImageHeight(img.getHeight(null));
-    }
+				setImg(paddleWeapon[normalImageIdx++]);
+				normalImageIdx %= 3;
+			}
+		} else if (expand) {
 
-    public void sticky() {
+			setImg(paddleExpanded);
+		} else if (shrink) {
 
-        sticky = true;
-    }
+			setImg(paddleShrunk);
+		} else {
 
-    public void makeFireBall() {
+			setImg(paddle[normalImageIdx++]);
+			normalImageIdx %= 3;
+		}
+		setSize();
+	}
 
-        for (BaseObject o : ballList) {
+	private void setSize() {
 
-            ((Ball) o).makeFire();
-        }
-    }
+		setImageWidth(img.getWidth(null));
+		setImageHeight(img.getHeight(null));
+	}
 
-    public void breakToNextLevel() {
+	public void sticky() {
 
-        ballList.clear();
-        paddleList.clear();
-        bulletList.clear();
-        player.setLevel(player.getLevel() +1);
-    }
+		sticky = true;
+	}
+
+	public void makeFireBall() {
+
+		for (BaseObject o : ballList) {
+
+			((Ball) o).makeFire();
+		}
+	}
+
+	public void breakToNextLevel() {
+
+		ballList.clear();
+		paddleList.clear();
+		bulletList.clear();
+		enemyList.clear();
+		player.setLevel(player.getLevel() + 1);
+	}
 }
-
-
