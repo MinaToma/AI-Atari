@@ -14,4 +14,8 @@ public class Vaus extends Capsule {
 
 
     }
+
+    public void unEffect(Paddle p) {
+
+    }
 }

@@ -15,4 +15,10 @@ public class Acid extends Capsule {
 
         p.makeAcidBall();
     }
+
+
+    public void unEffect(Paddle p) {
+        p.makeNormalBall();
+    }
+
 }

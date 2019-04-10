@@ -14,4 +14,8 @@ public class Shrink extends Capsule {
 
         p.shrink();
     }
+
+    public void unEffect(Paddle p) {
+        p.paddleNormal();
+    }
 }

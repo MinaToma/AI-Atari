@@ -58,7 +58,9 @@ public class Brick extends BaseObject {
 
         super.y += 0;
         timer++;
-        if (timer >= 10000) {
+
+        // every level the timer per move brick down decrease
+        if (timer >= Math.max(1000,10000-10*player.getLevel())) {
             moveDown();
         }
     }

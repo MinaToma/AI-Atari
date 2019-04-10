@@ -113,35 +113,34 @@ public class Level {
 
 
         if (ID == 1) {
-            return new Expand(0, 0, 4, arkHelper.capsuleExpand);
+            return new Expand(0, 0, 5000, arkHelper.capsuleExpand);
         } else if (ID == 2) {
-            return new Disrupt(0, 0, 4, arkHelper.capsuleTripleBall);
+            return new Disrupt(0, 0, 0, arkHelper.capsuleTripleBall);
         } else if (ID == 3) {
-            return new Laser(0, 0, 4, arkHelper.capsuleWeapon);
+            return new Laser(0, 0, 5000, arkHelper.capsuleWeapon);
         } else if (ID == 4) {
-            return new Break(0, 0, 4, arkHelper.star);
+            return new Break(0, 0, 0, arkHelper.star);
         } else if (ID == 5) {
-            return new Score(0, 0, 4, arkHelper.capsule50, 50);
+            return new Score(0, 0, 0, arkHelper.capsule50, 50);
         } else if (ID == 6) {
-            return new Score(0, 0, 4, arkHelper.capsule250, 250);
+            return new Score(0, 0, 0, arkHelper.capsule250, 250);
         } else if (ID == 7) {
-            return new Score(0, 0, 4, arkHelper.capsule500, 500);
+            return new Score(0, 0, 0, arkHelper.capsule500, 500);
         } else if (ID == 8) {
-            return new Score(0, 0, 4, arkHelper.capsule100[0], 100);
+            return new Score(0, 0, 0, arkHelper.capsule100[0], 100);
         } else if (ID == 9) {
-            return new Acid(0, 0, 4, arkHelper.capsuleAcidBall);
+            return new Acid(0, 0, 5000, arkHelper.capsuleAcidBall);
         } else if (ID == 10) {
-            return new FireBall(0, 0, 4, arkHelper.capsuleFireBall);
+            return new FireBall(0, 0, 5000, arkHelper.capsuleFireBall);
         } else if (ID == 11) {
-            return new Life(0, 0, 4, arkHelper.life);
+            return new Life(0, 0, 0, arkHelper.life);
         } else if (ID == 12) {
-            return new Shrink(0, 0, 4, arkHelper.capsuleShrink);
+            return new Shrink(0, 0, 5000, arkHelper.capsuleShrink);
         } else if (ID == 13) {
-            return new Catch(0, 0, 4, arkHelper.capsuleCatch);
+            return new Catch(0, 0, 0, arkHelper.capsuleCatch);
         } else if (ID == 14) {
-            return new Vaus(0, 0, 4, arkHelper.capsuleVaus);
+            return new Vaus(0, 0, 0, arkHelper.capsuleVaus);
         } else
-            return new Slow(0, 0, 4, arkHelper.capsuleSlow);
-
+            return new Slow(0, 0, 5000, arkHelper.capsuleSlow);
     }
 }

@@ -15,4 +15,8 @@ public class FireBall extends Capsule {
 
         p.makeFireBall();
     }
+
+    public void unEffect(Paddle p) {
+        p.makeNormalBall();
+    }
 }

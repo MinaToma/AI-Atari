@@ -16,6 +16,10 @@ public class Laser extends Capsule {
     @Override
     public void effect(Paddle p) {
 
-        p.updateLaser();
+        p.runLaser();
+    }
+
+    public void unEffect(Paddle p) {
+        p.stopLaser();
     }
 }

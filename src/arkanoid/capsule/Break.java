@@ -19,4 +19,5 @@ public class Break extends Capsule {
         p.breakToNextLevel();
 
     }
+
 }

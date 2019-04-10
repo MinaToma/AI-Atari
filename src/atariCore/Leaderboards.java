@@ -18,7 +18,7 @@ public class Leaderboards {
 
             getDataFromFile(path);
 
-            // the sort is increasing
+            // the sort is decreasing by level and by score
             Arrays.sort(record);
 
 
