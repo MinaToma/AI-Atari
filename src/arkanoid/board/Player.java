@@ -4,6 +4,8 @@ import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
+import atariCore.Helper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class Player extends BaseObject {
     }
     public void die()
     {
-        arkHelper.file.addNewScoreToLeadboard(arkHelper.pathLeaderboards,name,score,level);
+        arkHelper.arkfile.addNewScoreToLeadboard(arkHelper.pathLeaderboards,name,score,level);
         arkHelper.running = false;
 
         new arkanoid.menu.Splash();

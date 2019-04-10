@@ -72,7 +72,7 @@ public class arkHelper extends Helper {
    // public static Image backgroundImage ;
     public static Image[] backgroundImage ;
     public static int numberOfBrics=2;
-    public static arkFile arkFile;
+    public static arkFile arkfile;
 
 
 
@@ -85,7 +85,7 @@ public class arkHelper extends Helper {
         brokenBricks = new Image[10];
         smallSquares = new Image[10];
         backgroundImage = new Image[8];
-        arkFile = new arkFile();
+        arkfile = new arkFile();
         loadImages();
     }
 

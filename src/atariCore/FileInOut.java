@@ -8,11 +8,13 @@ import java.util.List;
 
 public class FileInOut {
 
-    public ArrayList<String> readFile(String path)
+    public static ArrayList<String> readFile(String path)
     {
+
         ArrayList<String> data = new ArrayList<>();
+        String line ;
         try{
-           String line = new String();
+
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
 
@@ -29,24 +31,27 @@ public class FileInOut {
             System.out.println("File not Found.");
 
         }
+
+
         return data;
 
 
 
     }
 
-    public void writeFile(String path , ArrayList<String> data)
+    public static void writeFile(String path , ArrayList<String> data)
     {
-        try {
-
-            PrintWriter writer = new PrintWriter(path);
+        try(FileWriter fw = new FileWriter(path, true);
+            BufferedWriter bw = new BufferedWriter(fw))
+        {
             for(String str : data)
             {
-                writer.println(str);
+                bw.write(str);
+                bw.newLine();
             }
 
-            writer.close();
         }
+
         catch (Exception e)
         {
             System.out.println("Can't add data.");
@@ -54,14 +59,15 @@ public class FileInOut {
     }
 
 
-    public void addNewScoreToLeadboard(String path, String playerName, int  Score ,int lvl)  {
-        try {
+    public static void addNewScoreToLeadboard(String path, String playerName, int  Score ,int lvl)  {
 
-            PrintWriter writer = new PrintWriter(path);
 
-            writer.println(playerName +   Helper.fieldSeparator  + Score +Helper.fieldSeparator + lvl );
+        try(FileWriter fw = new FileWriter(path, true);
+            BufferedWriter bw = new BufferedWriter(fw))
+        {
 
-            writer.close();
+            bw.write(playerName +   Helper.fieldSeparator  + Score +Helper.fieldSeparator + lvl );
+            bw.newLine();
         }
         catch (Exception e)
         {

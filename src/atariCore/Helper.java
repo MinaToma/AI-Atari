@@ -19,7 +19,7 @@ public class Helper {
     public static JPanel panel;
     public static boolean running = false;
     public static String fieldSeparator = "@@@";
-    public static FileInOut file;
+
 
     public static int cursorScale = 3;
     public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
@@ -29,6 +29,7 @@ public class Helper {
 
     public Helper()
     {
+
         frame = new JFrame();
 
         frame.setPreferredSize(new Dimension(screenWidth, screenHeight));

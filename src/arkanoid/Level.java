@@ -110,7 +110,9 @@ public class Level {
 
     public Capsule getCaps(int ID) {
 
-        if (ID == 1) {
+
+        return new Break(0, 0, 4, arkHelper.star);
+       /* if (ID == 1) {
             return new Expand(0, 0, 4, arkHelper.capsuleExpand);
         } else if (ID == 2) {
             return new Disrupt(0, 0, 4, arkHelper.capsuleTripleBall);
@@ -139,6 +141,6 @@ public class Level {
         } else if (ID == 14) {
             return new Vaus(0, 0, 4, arkHelper.capsuleVaus);
         } else
-            return new Slow(0, 0, 4, arkHelper.capsuleSlow);
+            return new Slow(0, 0, 4, arkHelper.capsuleSlow);*/
     }
 }
