@@ -116,7 +116,7 @@ public class Paddle extends BaseObject {
 
 	private void setEnemy() {
 
-		Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, baseEnemy, player.getLevel()*2);
+		Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, enemy[0], player.getLevel()*2);
 		handler.addObject(enemyList, e);
 	}
 

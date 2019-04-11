@@ -14,11 +14,11 @@ public class Splash {
     public Splash(String title, String fontPath) {
 
         frame.setTitle(title);
-        new Leaderboards("src/Resources/Files/Leaderboards.txt");
+        //new Leaderboards("src/Resources/Files/Leaderboards.txt");
 
-        if(panel != null)
+        if(panel != null) {
             frame.getContentPane().remove(panel);
-
+        }
         panel = new JPanel(new GridLayout(0, 1));
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 

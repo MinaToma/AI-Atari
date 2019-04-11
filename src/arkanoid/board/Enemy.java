@@ -1,6 +1,7 @@
 package arkanoid.board;
 
 import arkanoid.ObjectList;
+import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.Handler;
 import atariCore.Helper;
@@ -11,12 +12,15 @@ public class Enemy extends BaseObject {
 
 	private int power;
 	public Handler handler;
-
+	private  int timer ;
+	private int cnt;
 	public Enemy(int xPostion, int yPostion, float velX, float velY, Image image, int power) {
 		super(xPostion, yPostion, image);
 		this.power = power;  // we can change it
 		this.velX = velX;
 		this.velY = velY;
+		timer = 0;
+		cnt = 1;
 	}
 
 	@Override
@@ -26,6 +30,15 @@ public class Enemy extends BaseObject {
 
 	@Override
 	public void tick() {
+
+		timer++;
+		if(timer%10==0)
+		{
+			timer=0;
+			setImg(arkHelper.enemy[cnt++]);
+			cnt%=6;
+		}
+
 		super.x += super.velX;
 		super.y += super.velY;
 		if (super.y <= 0 || super.y >= Helper.screenHeight - super.imageHeight) {

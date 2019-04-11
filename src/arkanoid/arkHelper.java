@@ -60,7 +60,7 @@ public class arkHelper extends Helper {
 	public static Image capsuleTripleBall;
 	public static Image capsuleVaus;
 	public static Image capsuleCatch;
-	//public static Image paddleShrunkWeapon;
+	public static Image[] enemy;
 
 	public static Image fireBall;
 	public static Image acidBall;
@@ -75,7 +75,7 @@ public class arkHelper extends Helper {
 	public static Image[] backgroundImage;
 	public static int numberOfBrics = 2;
 	public static arkFile arkfile;
-	public static Image baseEnemy;
+
 
 	public arkHelper() {
 
@@ -86,13 +86,15 @@ public class arkHelper extends Helper {
 		brokenBricks = new Image[10];
 		smallSquares = new Image[10];
 		backgroundImage = new Image[8];
+		enemy = new Image[6];
+
 		arkfile = new arkFile();
 
 		loadImages();
 	}
 
 	private void loadImages() {
-		baseEnemy = getImage(pathIamge + "02-Breakout-Tiles.png", brickScale);
+
 		for (int i = 1; i <= 20; i++) {
 			if (i % 2 == 1) {
 				normalBricks[i / 2] = getImage(pathIamge + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
@@ -143,11 +145,17 @@ public class arkHelper extends Helper {
 		acidBall = getImage(pathIamge + "64-Breakout-Tiles.png", ballScale);
 		capsuleCatch = getImage(pathIamge + "66-Breakout-Tiles.png", capsuleScale);
 		capsuleVaus = getImage(pathIamge + "67-Breakout-Tiles.png", capsuleScale);
-		// backgroundImage  = getImage(pathIamge+"bg.jpg",1);
+
 		for (int i = 1; i <= 8; i++) {
 			backgroundImage[i - 1] = getImage(pathIamge + "background/" + i + ".jpg", 1);
-			//System.out.println(pathIamge+"background/bk ("+i+").png");
+
 		}
+
+		for(int i = 1 ;i <=6 ; i++)
+		{
+			enemy[i-1] = getImage(pathIamge+"enemy/"+i+".png",1);
+		}
+
 
 	}
 

@@ -15,10 +15,11 @@ public class Helper {
     public static final int PERIOD = 5;
     public static Font font;
     public static int splashButtonFontSize;
-    public static JFrame frame;
+    public static JFrame frame = null;
     public static JPanel panel;
     public static boolean running = false;
     public static String fieldSeparator = "@@@";
+
 
 
     public static int cursorScale = 3;
@@ -29,18 +30,20 @@ public class Helper {
 
     public Helper()
     {
+        if(frame == null) {
+            frame = new JFrame();
 
-        frame = new JFrame();
+            frame.setPreferredSize(new Dimension(screenWidth, screenHeight));
+            frame.setMaximumSize(new Dimension(screenWidth, screenHeight));
+            frame.setMinimumSize(new Dimension(screenWidth, screenHeight));
 
-        frame.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        frame.setMaximumSize(new Dimension(screenWidth, screenHeight));
-        frame.setMinimumSize(new Dimension(screenWidth, screenHeight));
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setResizable(false);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-
-        frame.setLocationRelativeTo(null);
+            frame.setLocationRelativeTo(null);
+        }
     }
+
 
 
 
