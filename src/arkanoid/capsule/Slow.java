@@ -20,6 +20,7 @@ public class Slow extends Capsule {
         p.speedDown();
     }
 
+
     public void unEffect(Paddle p) {
 
     }

@@ -2,13 +2,9 @@ package arkanoid;
 
 import arkanoid.board.*;
 import arkanoid.capsule.*;
-import atariCore.BaseObject;
-import atariCore.Handler;
 import atariCore.Helper;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeUnit;
 
 import static arkanoid.ObjectList.*;
 
@@ -29,7 +25,7 @@ public class Level {
         this.paddle = paddle;
         this.ball = ball;
         this.bricks = new Brick[dimensions.get(0).get(0)];
-        arkHelper.numberOfBrics = bricks.length;
+        arkHelper.numberOfBricks = bricks.length;
         setBricks();
     }
 
@@ -38,24 +34,24 @@ public class Level {
         int initialHeight = arkHelper.INIT_BRICKS_HEIGHT;
         int index = 0;
         int ok = 0;
-        int numberOfCapsule = (bricks.length * 30) / 100;
-        ArrayList<Integer> capsul = new ArrayList<>();
+        int numberOfCapsules = (bricks.length * 30) / 100;
+        ArrayList<Integer> capsule = new ArrayList<>();
         Set<Integer> st = new HashSet<>();
         Random random = new Random();
 
 
-        for (int i = 0; i < numberOfCapsule; i++) {
+        for (int i = 0; i < numberOfCapsules; i++) {
             st.add(Math.abs(random.nextInt()) % bricks.length);
 
         }
 
         for (Integer x : st) {
             // System.out.println(x);
-            capsul.add(x);
+            capsule.add(x);
         }
         int indexOfCapsul = 0;
-        Collections.sort(capsul);
-        numberOfCapsule = capsul.size();
+        Collections.sort(capsule);
+        numberOfCapsules = capsule.size();
 
         for (ArrayList<Integer> arrayList : dimensions) {
             int sumOfWidth = 0;
@@ -75,10 +71,10 @@ public class Level {
 
             for (int x : arrayList) {
                 if (x > 0 && x < 20) {
-                    if (index == capsul.get(indexOfCapsul)) {
+                    if (index == capsule.get(indexOfCapsul)) {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2, getCaps(Math.abs(random.nextInt() % 16 + 1)), player);
                         indexOfCapsul++;
-                        indexOfCapsul %= numberOfCapsule;
+                        indexOfCapsul %= numberOfCapsules;
                     } else {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) / 2], 2, (x - 1) / 2, player);
                     }
@@ -88,10 +84,10 @@ public class Level {
                     handler.addObject(brickList , bricks[index]);
                     index++;
                 } else if (x >= 20) {
-                    if (index == capsul.get(indexOfCapsul)) {
+                    if (index == capsule.get(indexOfCapsul)) {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20, getCaps(Math.abs(random.nextInt() % 16 + 1)), player);
                         indexOfCapsul++;
-                        indexOfCapsul %= numberOfCapsule;
+                        indexOfCapsul %= numberOfCapsules;
                     } else {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 20], 1, x - 20, player);
                     }
@@ -131,7 +127,7 @@ public class Level {
         } else if (ID == 9) {
             return new Acid(0, 0, 5000, arkHelper.capsuleAcidBall);
         } else if (ID == 10) {
-            return new FireBall(0, 0, 5000, arkHelper.capsuleFireBall);
+            return new Fire(0, 0, 5000, arkHelper.capsuleFireBall);
         } else if (ID == 11) {
             return new Life(0, 0, 0, arkHelper.life);
         } else if (ID == 12) {
@@ -143,7 +139,7 @@ public class Level {
         }
         else if(ID == 15)
         {
-        return new Fast(0,0,5000,arkHelper.capsuleFast);
+            return new Fast(0,0,5000,arkHelper.capsuleFast);
         }
         else
             return new Slow(0, 0, 5000, arkHelper.capsuleSlow);

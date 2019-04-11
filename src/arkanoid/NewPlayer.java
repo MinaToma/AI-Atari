@@ -13,7 +13,6 @@ import static atariCore.Helper.panel;
 
 public class NewPlayer extends JPanel {
 
-    String namePlayer;
     JButton OK;
     JTextField textName;
 
@@ -27,12 +26,10 @@ public class NewPlayer extends JPanel {
         frame.getContentPane().remove(panel);
         panel = this;
 
-        Font font = new Font("src/Resources/Fonts/3270Medium.ttf", Font.BOLD, 100);
-
-        OK = Helper.btnHelper("OK");
+        OK = Helper.buttonHelper("OK");
 
         textName = new JTextField(20);
-        textName.setFont(font);
+        textName.setFont((arkHelper.font.deriveFont(100)));
         textName.setHorizontalAlignment(JTextField.CENTER);
         textName.setForeground(Color.YELLOW);
         setLayout(new GridLayout(0, 1));

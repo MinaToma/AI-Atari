@@ -63,28 +63,28 @@ public class Helper {
         Helper.splashButtonFontSize = splashButtonFontSize;
     }
 
-    public static JButton btnHelper(String txt, int x, int y, Dimension dim) {
+    public static JButton buttonHelper(String txt, int x, int y, Dimension dim) {
 
-        JButton btn = new JButton(txt);
-        btn.setLayout(null);
-        btn.setFont(font);
-        btn.setBackground(Color.BLACK);
-        btn.setForeground(Color.YELLOW);
-        btn.setFocusPainted(false);
-        btn.setBounds(x, y, dim.width, dim.height);
+        JButton button = new JButton(txt);
+        button.setLayout(null);
+        button.setFont(font);
+        button.setBackground(Color.BLACK);
+        button.setForeground(Color.YELLOW);
+        button.setFocusPainted(false);
+        button.setBounds(x, y, dim.width, dim.height);
 
-        panel.add(btn);
+        panel.add(button);
 
-        return btn;
+        return button;
     }
 
-    public static JButton btnHelper(String txt) {
-        JButton btn = new JButton(txt);
-        btn.setFont(font);
-        btn.setBackground(Color.BLACK);
-        btn.setForeground(Color.YELLOW);
-        btn.setFocusPainted(false);
-        return btn;
+    public static JButton buttonHelper(String txt) {
+        JButton button = new JButton(txt);
+        button.setFont(font);
+        button.setBackground(Color.BLACK);
+        button.setForeground(Color.YELLOW);
+        button.setFocusPainted(false);
+        return button;
     }
 
     public static Image getImage(String filename, int scaleFactor) {

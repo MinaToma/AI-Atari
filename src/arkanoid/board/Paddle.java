@@ -3,7 +3,6 @@
 package arkanoid.board;
 
 import arkanoid.Sounds;
-import arkanoid.arkHelper;
 import arkanoid.capsule.*;
 import atariCore.BaseObject;
 import atariCore.Sound;
@@ -46,8 +45,8 @@ public class Paddle extends BaseObject {
                 Ball ball = (Ball) o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImg(), xBallSpeed, ball.getVelY() , player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImg(), -xBallSpeed, ball.getVelY() , player);
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), xBallSpeed, ball.getVelY() , player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -xBallSpeed, ball.getVelY() , player);
 
                 handler.addObject(ballList, newBallL);
                 handler.addObject(ballList, newBallR);
@@ -73,11 +72,11 @@ public class Paddle extends BaseObject {
 
     public void expand() {
 
-        for(BaseObject o:currentCapsulList)
+        for(BaseObject o: currentCapsuleList)
         {
             if(o instanceof Shrink)
             {
-                handler.removeObject(currentCapsulList,o);
+                handler.removeObject(currentCapsuleList,o);
                 break;
             }
         }
@@ -94,7 +93,7 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-        Sound.play(Sounds.lazerSound);
+        Sound.play(Sounds.laserSound);
     }
 
     public void speedUp() {
@@ -109,7 +108,7 @@ public class Paddle extends BaseObject {
         xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
         yBallSpeed = Math.min(-1, yBallSpeed + 0.5f);
     }
-    public void speadNormal()
+    public void speedNormal()
     {
         xBallSpeed = 1f;
         yBallSpeed = -2f;
@@ -131,7 +130,7 @@ public class Paddle extends BaseObject {
 
                 ((Capsule)o).effect(this);
                 ((Capsule)o).active = true;
-                handler.addObject(currentCapsulList,o);
+                handler.addObject(currentCapsuleList,o);
                 handler.removeObject(capsuleList, o);
             }
         }
@@ -224,7 +223,7 @@ public class Paddle extends BaseObject {
 
     public void render(Graphics g) {
 
-        g.drawImage(super.img, (int) super.x, (int) super.y, null);
+        g.drawImage(super.image, (int) super.x, (int) super.y, null);
     }
 
     public void makeAcidBall() {
@@ -234,11 +233,11 @@ public class Paddle extends BaseObject {
 
             ((Ball) o).makeAcid();
         }
-        for(BaseObject o:currentCapsulList)
+        for(BaseObject o: currentCapsuleList)
         {
-            if(o instanceof FireBall)
+            if(o instanceof Fire)
             {
-                handler.removeObject(currentCapsulList,o);
+                handler.removeObject(currentCapsuleList,o);
                 break;
             }
         }
@@ -246,11 +245,11 @@ public class Paddle extends BaseObject {
 
     public void shrink() {
 
-        for(BaseObject o:currentCapsulList)
+        for(BaseObject o: currentCapsuleList)
         {
             if(o instanceof Expand)
             {
-                handler.removeObject(currentCapsulList,o);
+                handler.removeObject(currentCapsuleList,o);
                 break;
             }
         }
@@ -269,24 +268,24 @@ public class Paddle extends BaseObject {
 
             if (expand) {
 
-                setImg(paddleExpandedWeapon);
+                setImage(paddleExpandedWeapon);
             } else if (shrink) {
 
-                setImg(paddleShrunk);
+                setImage(paddleShrunk);
             } else {
 
-                setImg(paddleWeapon[normalImageIdx++]);
+                setImage(paddleWeapon[normalImageIdx++]);
                 normalImageIdx %= 3;
             }
         } else if (expand) {
 
-            setImg(paddleExpanded);
+            setImage(paddleExpanded);
         } else if (shrink) {
 
-            setImg(paddleShrunk);
+            setImage(paddleShrunk);
         } else {
 
-            setImg(paddle[normalImageIdx++]);
+            setImage(paddle[normalImageIdx++]);
             normalImageIdx %= 3;
         }
         setSize();
@@ -294,8 +293,8 @@ public class Paddle extends BaseObject {
 
     private void setSize() {
 
-        setImageWidth(img.getWidth(null));
-        setImageHeight(img.getHeight(null));
+        setImageWidth(image.getWidth(null));
+        setImageHeight(image.getHeight(null));
     }
 
     public void sticky() {
@@ -305,11 +304,11 @@ public class Paddle extends BaseObject {
 
     public void makeFireBall() {
 
-        for(BaseObject o:currentCapsulList)
+        for(BaseObject o: currentCapsuleList)
         {
             if(o instanceof Acid)
             {
-                handler.removeObject(currentCapsulList,o);
+                handler.removeObject(currentCapsuleList,o);
                 break;
             }
         }
@@ -329,12 +328,12 @@ public class Paddle extends BaseObject {
     }
     private void updateCapsule()
     {
-        for(BaseObject o:currentCapsulList)
+        for(BaseObject o: currentCapsuleList)
         {
             if(((Capsule)o).life <=0)
             {
                 ((Capsule)o).unEffect(this);
-                handler.removeObject(currentCapsulList,o);
+                handler.removeObject(currentCapsuleList,o);
             }
             else
             {

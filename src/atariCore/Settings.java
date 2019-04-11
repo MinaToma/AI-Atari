@@ -9,23 +9,23 @@ public class Settings {
     private Dimension dim = new Dimension(100, 30);
 
     protected void setMusicButton(int x, int y) {
-        musicButton = Helper.btnHelper("Music", x, y, dim);
+        musicButton = Helper.buttonHelper("Music", x, y, dim);
     }
 
     protected void setSoundButton(int x, int y, JPanel panel) {
-        soundButton = Helper.btnHelper("Sound", x, y, dim);
+        soundButton = Helper.buttonHelper("Sound", x, y, dim);
     }
 
     protected void setControlsButton(int x, int y, JPanel panel) {
-        controlsButton = Helper.btnHelper("Controls", x, y, dim);
+        controlsButton = Helper.buttonHelper("Controls", x, y, dim);
     }
 
     protected void setMouseButton(int x, int y, JPanel panel) {
-        mouseButton = Helper.btnHelper("Mouse", x, y, dim);
+        mouseButton = Helper.buttonHelper("Mouse", x, y, dim);
     }
 
     protected void setKeyboardButton(int x, int y, JPanel panel) {
-        keyboardButton = Helper.btnHelper("Keyboard", x, y, dim);
+        keyboardButton = Helper.buttonHelper("Keyboard", x, y, dim);
     }
 
     protected void switchSoundsState(){

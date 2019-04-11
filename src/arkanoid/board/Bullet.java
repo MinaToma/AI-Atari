@@ -1,8 +1,5 @@
 package arkanoid.board;
 
-import arkanoid.ObjectList;
-import arkanoid.arkHelper;
-import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import java.awt.*;
 
@@ -11,8 +8,8 @@ import static arkanoid.ObjectList.*;
 
 public class Bullet extends BaseObject {
 
-	public Bullet(float x, float y, Image img) {
-		super(x, y, img);
+	public Bullet(float x, float y, Image image) {
+		super(x, y, image);
 	}
 
 	@Override
@@ -55,6 +52,6 @@ public class Bullet extends BaseObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(super.img, (int) super.x, (int) super.y, null);
+		g.drawImage(super.image, (int) super.x, (int) super.y, null);
 	}
 }

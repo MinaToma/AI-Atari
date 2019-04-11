@@ -4,9 +4,9 @@ import arkanoid.board.Paddle;
 
 import java.awt.*;
 
-public class FireBall extends Capsule {
+public class Fire extends Capsule {
 
-    public FireBall(int x, int y, int life, Image image) {
+    public Fire(int x, int y, int life, Image image) {
         super(x, y, life, image);
     }
 

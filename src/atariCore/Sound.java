@@ -22,7 +22,7 @@ abstract public class Sound {
             // Open audio clip and load samples from the audio input stream.
             newClip.open(audioIn);
         } catch (Exception e) {
-            System.out.println("Sound Can't load.");
+            System.out.println("Failed to load sound file.");
         }
 
         return newClip;

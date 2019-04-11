@@ -3,7 +3,6 @@ package arkanoid.board;
 import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
-import atariCore.Handler;
 
 import java.awt.*;
 
@@ -62,13 +61,13 @@ public class Ball extends BaseObject {
                 currPaddle.laser = false;
                 currPaddle.shrink = false;
                 currPaddle.expand = false;
-                for(BaseObject p:paddleList) {
-                    for (BaseObject o : currentCapsulList) {
-                        ((Capsule)o).unEffect(((Paddle)p));
-                        handler.removeObject(currentCapsulList, o);
+                for (BaseObject p : paddleList) {
+                    for (BaseObject o : currentCapsuleList) {
+                        ((Capsule) o).unEffect(((Paddle) p));
+                        handler.removeObject(currentCapsuleList, o);
                     }
                 }
-                    handler.addObject(ballList, b);
+                handler.addObject(ballList, b);
 
             }
         }
@@ -78,85 +77,68 @@ public class Ball extends BaseObject {
 
         for (BaseObject o : brickList)
             if (o.getRectangle().intersects(getRectangle())) {
+                if(image == fireBall)
+                    ((Brick) o).setPower(0);
+
                 ((Brick) o).hitBrick();
 
-                if (img == ball) {
+                if (image == ball || image == fireBall) {
 
-                    float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
-                    float hitLeft = Math.abs(x + getImageWidth() - o.getX());
-                    float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
-                    float hitUp = Math.abs(y + getImageHeight() - o.getY());
-
-					if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) {
-						setVelX(velX * -1);
-					} else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) {
-						setVelY(velY * -1);
-					}
-
-					break;
-				}
-                else if(img == fireBall)
-                {
-                    if(((Brick) o).getPower()>0)
-                        ((Brick) o).hitBrick();
-                    float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
-                    float hitLeft = Math.abs(x + getImageWidth() - o.getX());
-                    float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
-                    float hitUp = Math.abs(y + getImageHeight() - o.getY());
-
-                    if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) setVelX(velX * -1);
-                    else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) setVelY(velY * -1);
+                    setPosition(o);
 
                     break;
-
-
                 }
-			}
-
-
-		for (BaseObject o : enemyList) {
-
-			if (o.getRectangle().intersects(getRectangle())) {
-				((Enemy) o).reducePower();
-					float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
-					float hitLeft = Math.abs(x + getImageWidth() - o.getX());
-					float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
-					float hitUp = Math.abs(y + getImageHeight() - o.getY());
-                if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) {
-                    setVelX(velX * -1);
-                } else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) {
-                    setVelY(velY * -1);
-
-                }
-                player.setScore(player.getScore()+10);
-                break;
-
-
-                }
-
             }
 
 
+        for (BaseObject o : enemyList) {
+
+            if (o.getRectangle().intersects(getRectangle())) {
+                ((Enemy) o).reducePower();
+
+                setPosition(o);
+
+                player.setScore(player.getScore() + 10);
+
+                break;
+            }
+
+        }
 
 
-	}
+    }
+
+    private void setPosition(BaseObject o) {
+
+        float hitRight = Math.abs(x - (o.getX() + o.getImageWidth()));
+        float hitLeft = Math.abs(x + getImageWidth() - o.getX());
+        float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
+        float hitUp = Math.abs(y + getImageHeight() - o.getY());
+
+        if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) {
+            setVelX(velX * -1);
+        }
+        else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) {
+            setVelY(velY * -1);
+        }
+    }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(img, (int) x, (int) y, null);
+        g.drawImage(image, (int) x, (int) y, null);
     }
 
     public void makeAcid() {
 
-        img = acidBall;
+        image = acidBall;
     }
 
     public void makeFire() {
 
-        img = fireBall;
+        image = fireBall;
     }
-    public void makeNormal()
-    {
-        img = ball;
+
+    public void makeNormal() {
+        image = ball;
     }
 }

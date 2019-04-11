@@ -5,10 +5,8 @@ import arkanoid.Sounds;
 import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
-import atariCore.Handler;
 import atariCore.Sound;
 
-import javax.swing.*;
 import java.awt.*;
 
 import static arkanoid.ObjectList.*;
@@ -23,9 +21,9 @@ public class Brick extends BaseObject {
     public int timer;
     private Player player;
 
-    public Brick(int xPostion, int yPostion, Image image, int power, int color, Player player) {
+    public Brick(int xPosition, int yPosition, Image image, int power, int color, Player player) {
 
-        super(xPostion, yPostion, image);
+        super(xPosition, yPosition, image);
         this.power = power;
         this.player = player;
         this.color = color;
@@ -48,7 +46,7 @@ public class Brick extends BaseObject {
         power -= 1;
         if (power == 1 && !isSmallSquares) {
 
-            this.setImg(arkHelper.brokenBricks[color]);
+            this.setImage(arkHelper.brokenBricks[color]);
         }
 
         return (power <= 0);
@@ -72,7 +70,7 @@ public class Brick extends BaseObject {
 
     public void render(Graphics g) {
         if (y > 0)
-            g.drawImage(this.img, (int) this.x, (int) this.y, null);
+            g.drawImage(this.image, (int) this.x, (int) this.y, null);
     }
 
 
@@ -88,7 +86,7 @@ public class Brick extends BaseObject {
                     capsule.setY(getY());
                     handler.addObject(capsuleList, capsule);
                 }
-                arkHelper.numberOfBrics--;
+                arkHelper.numberOfBricks--;
                 handler.removeObject(brickList, this);
 
             }
@@ -97,5 +95,9 @@ public class Brick extends BaseObject {
 
     public int getPower() {
         return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
     }
 }

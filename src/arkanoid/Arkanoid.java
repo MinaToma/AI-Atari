@@ -6,8 +6,6 @@ import arkanoid.board.Player;
 import arkanoid.capsule.Capsule;
 import atariCore.Background;
 import atariCore.BaseObject;
-import atariCore.FileInOut;
-import sun.print.BackgroundLookupListener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -25,7 +23,7 @@ public class Arkanoid extends atariCore.Game {
 
         super("Arkanoid");
 
-        arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
+        arkHelper.setCursorImage(this, "src/Resources/Images/yellowc2.png");
 
         paddleList.clear();
         ballList.clear();
@@ -35,7 +33,7 @@ public class Arkanoid extends atariCore.Game {
         playerList.clear();
         enemyList.clear();
         backgroundList.clear();
-        currentCapsulList.clear();
+        currentCapsuleList.clear();
 
         setPaddle();
         setPlayer(namePlayer);
@@ -56,17 +54,17 @@ public class Arkanoid extends atariCore.Game {
         playerList.clear();
         enemyList.clear();
         backgroundList.clear();
-        for(BaseObject o:currentCapsulList)
+        for(BaseObject o: currentCapsuleList)
         {
                 ((Capsule)o).unEffect(p);
-                handler.removeObject(currentCapsulList,o);
+                handler.removeObject(currentCapsuleList,o);
         }
 
 
         setBackGround();
         setBricks(level);
-        handler.addObject(playerList , player);
-        handler.addObject(paddleList , p);
+        handler.addObject(playerList, player);
+        handler.addObject(paddleList, p);
 
         setBall();
         setEnemy();
@@ -75,7 +73,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBackGround()
     {
-        Background background = new Background(0,0, backgroundImage,backgroundImage.length);
+        Background background = new Background(0,0, backgroundImage, backgroundImage.length);
         handler.addObject(backgroundList , background);
     }
 
@@ -87,7 +85,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void    setPlayer(String namePlayer) {
 
-        player = new Player(namePlayer , 3, p , this , this);
+        player = new Player(namePlayer, 3, p, this, this);
         p.setPlayer(player);
         handler.addObject(playerList , player);
     }

@@ -36,23 +36,23 @@ public class Splash {
     }
 
     protected void setNewGameButton(int x, int y, Dimension dim) {
-        newGameButton = Helper.btnHelper("New Game", x, y, dim);
+        newGameButton = Helper.buttonHelper("New Game", x, y, dim);
     }
 
     protected void setAIButton(int x, int y, Dimension dim) {
-        AIButton = Helper.btnHelper("New AI Game", x, y, dim);
+        AIButton = Helper.buttonHelper("New AI Game", x, y, dim);
     }
 
     protected void setLeaderboardsButton(int x, int y, Dimension dim) {
-        LeaderboardsButton = Helper.btnHelper("Leaderboards", x, y, dim);
+        LeaderboardsButton = Helper.buttonHelper("Leaderboards", x, y, dim);
     }
 
     protected void setSettingsButton(int x, int y, Dimension dim) {
-        settingsButton = Helper.btnHelper("Settings", x, y, dim);
+        settingsButton = Helper.buttonHelper("Settings", x, y, dim);
     }
 
     protected void setExitButton(int x, int y, Dimension dim) {
-        exitButton = Helper.btnHelper("Exit", x, y, dim);
+        exitButton = Helper.buttonHelper("Exit", x, y, dim);
         exitButton.addActionListener(e -> frame.dispose());
     }
 }

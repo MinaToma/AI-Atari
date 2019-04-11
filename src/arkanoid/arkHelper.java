@@ -1,18 +1,8 @@
 package arkanoid;
 
 import atariCore.Helper;
-import atariCore.Splash;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.awt.*;
-
-import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class arkHelper extends Helper {
 
@@ -68,12 +58,12 @@ public class arkHelper extends Helper {
 	public static Image star;
 	public static Image life;
 	public static Image bullet;
-	public static String pathIamge = "src/Resources/image/";
+	public static String pathImage = "src/Resources/Images/";
 	public static String pathLevel = "src/Resources/Files/levels.txt";
 	public static String pathLeaderboards = "src/Resources/Files/Leaderboards.txt";
 	// public static Image backgroundImage ;
 	public static Image[] backgroundImage;
-	public static int numberOfBrics = 2;
+	public static int numberOfBricks = 2;
 	public static arkFile arkfile;
 
 
@@ -97,63 +87,63 @@ public class arkHelper extends Helper {
 
 		for (int i = 1; i <= 20; i++) {
 			if (i % 2 == 1) {
-				normalBricks[i / 2] = getImage(pathIamge + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
+				normalBricks[i / 2] = getImage(pathImage + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
 			} else {
-				brokenBricks[i / 2 - 1] = getImage(pathIamge + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
+				brokenBricks[i / 2 - 1] = getImage(pathImage + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
 			}
 		}
 
 		for (int i = 21; i <= 30; i++) {
-			smallSquares[i - 21] = getImage(pathIamge + i + "-Breakout-Tiles.png", brickScale);
+			smallSquares[i - 21] = getImage(pathImage + i + "-Breakout-Tiles.png", brickScale);
 		}
 
-		capsule50 = getImage(pathIamge + "31-Breakout-Tiles.png", capsuleScale);
+		capsule50 = getImage(pathImage + "31-Breakout-Tiles.png", capsuleScale);
 
 		for (int i = 32; i <= 38; i++) {
-			capsule100[i - 32] = getImage(pathIamge + i + "-Breakout-Tiles.png", capsuleScale);
+			capsule100[i - 32] = getImage(pathImage + i + "-Breakout-Tiles.png", capsuleScale);
 		}
 
-		capsule250 = getImage(pathIamge + "39-Breakout-Tiles.png", capsuleScale);
-		capsule500 = getImage(pathIamge + "40-Breakout-Tiles.png", capsuleScale);
-		capsuleSlow = getImage(pathIamge + "41-Breakout-Tiles.png", capsuleScale);
-		capsuleFast = getImage(pathIamge + "42-Breakout-Tiles.png", capsuleScale);
-		capsuleTripleBall = getImage(pathIamge + "43-Breakout-Tiles.png", capsuleScale);
-		capsuleFireBall = getImage(pathIamge + "44-Breakout-Tiles.png", capsuleScale);
-		capsuleAcidBall = getImage(pathIamge + "45-Breakout-Tiles.png", capsuleScale);
-		capsuleShrink = getImage(pathIamge + "46-Breakout-Tiles.png", capsuleScale);
-		capsuleExpand = getImage(pathIamge + "47-Breakout-Tiles.png", capsuleScale);
-		capsuleWeapon = getImage(pathIamge + "48-Breakout-Tiles.png", capsuleScale);
-		capsuleEmpty = getImage(pathIamge + "49-Breakout-Tiles.png", capsuleScale);
+		capsule250 = getImage(pathImage + "39-Breakout-Tiles.png", capsuleScale);
+		capsule500 = getImage(pathImage + "40-Breakout-Tiles.png", capsuleScale);
+		capsuleSlow = getImage(pathImage + "41-Breakout-Tiles.png", capsuleScale);
+		capsuleFast = getImage(pathImage + "42-Breakout-Tiles.png", capsuleScale);
+		capsuleTripleBall = getImage(pathImage + "43-Breakout-Tiles.png", capsuleScale);
+		capsuleFireBall = getImage(pathImage + "44-Breakout-Tiles.png", capsuleScale);
+		capsuleAcidBall = getImage(pathImage + "45-Breakout-Tiles.png", capsuleScale);
+		capsuleShrink = getImage(pathImage + "46-Breakout-Tiles.png", capsuleScale);
+		capsuleExpand = getImage(pathImage + "47-Breakout-Tiles.png", capsuleScale);
+		capsuleWeapon = getImage(pathImage + "48-Breakout-Tiles.png", capsuleScale);
+		capsuleEmpty = getImage(pathImage + "49-Breakout-Tiles.png", capsuleScale);
 
 		for (int i = 50; i <= 52; i++) {
-			paddle[i - 50] = getImage(pathIamge + i + "-Breakout-Tiles.png", paddleScale);
+			paddle[i - 50] = getImage(pathImage + i + "-Breakout-Tiles.png", paddleScale);
 		}
 
 		for (int i = 53; i <= 55; i++) {
-			paddleWeapon[i - 53] = getImage(pathIamge + i + "-Breakout-Tiles.png", paddleScale);
+			paddleWeapon[i - 53] = getImage(pathImage + i + "-Breakout-Tiles.png", paddleScale);
 		}
 
-		paddleExpanded = getImage(pathIamge + "56-Breakout-Tiles.png", paddleScale);
-		paddleShrunk = getImage(pathIamge + "57-Breakout-Tiles.png", paddleScale);
-		paddleShrunkWeapon = getImage(pathIamge + "65-Breakout-Tiles.png", paddleScale);
-		ball = getImage(pathIamge + "58-Breakout-Tiles.png", ballScale);
-		star = getImage(pathIamge + "59-Breakout-Tiles.png", ballScale);
-		life = getImage(pathIamge + "60-Breakout-Tiles.png", ballScale);
-		bullet = getImage(pathIamge + "61-Breakout-Tiles.png", brickScale);
-		paddleExpandedWeapon = getImage(pathIamge + "62-Breakout-Tiles.png", paddleScale);
-		fireBall = getImage(pathIamge + "63-Breakout-Tiles.png", ballScale);
-		acidBall = getImage(pathIamge + "64-Breakout-Tiles.png", ballScale);
-		capsuleCatch = getImage(pathIamge + "66-Breakout-Tiles.png", capsuleScale);
-		capsuleVaus = getImage(pathIamge + "67-Breakout-Tiles.png", capsuleScale);
+		paddleExpanded = getImage(pathImage + "56-Breakout-Tiles.png", paddleScale);
+		paddleShrunk = getImage(pathImage + "57-Breakout-Tiles.png", paddleScale);
+		paddleShrunkWeapon = getImage(pathImage + "65-Breakout-Tiles.png", paddleScale);
+		ball = getImage(pathImage + "58-Breakout-Tiles.png", ballScale);
+		star = getImage(pathImage + "59-Breakout-Tiles.png", ballScale);
+		life = getImage(pathImage + "60-Breakout-Tiles.png", ballScale);
+		bullet = getImage(pathImage + "61-Breakout-Tiles.png", brickScale);
+		paddleExpandedWeapon = getImage(pathImage + "62-Breakout-Tiles.png", paddleScale);
+		fireBall = getImage(pathImage + "63-Breakout-Tiles.png", ballScale);
+		acidBall = getImage(pathImage + "64-Breakout-Tiles.png", ballScale);
+		capsuleCatch = getImage(pathImage + "66-Breakout-Tiles.png", capsuleScale);
+		capsuleVaus = getImage(pathImage + "67-Breakout-Tiles.png", capsuleScale);
 
 		for (int i = 1; i <= 8; i++) {
-			backgroundImage[i - 1] = getImage(pathIamge + "background/" + i + ".jpg", 1);
+			backgroundImage[i - 1] = getImage(pathImage + "background/" + i + ".jpg", 1);
 
 		}
 
 		for(int i = 1 ;i <=6 ; i++)
 		{
-			enemy[i-1] = getImage(pathIamge+"enemy/"+i+".png",1);
+			enemy[i-1] = getImage(pathImage +"enemy/"+i+".png",1);
 		}
 
 

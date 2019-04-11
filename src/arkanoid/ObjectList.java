@@ -15,7 +15,7 @@ public class ObjectList extends BaseObjectList {
     public static CopyOnWriteArrayList<BaseObject> capsuleList;
     public static CopyOnWriteArrayList<BaseObject> enemyList;
     public static CopyOnWriteArrayList<BaseObject> backgroundList;
-    public static CopyOnWriteArrayList<BaseObject> currentCapsulList;
+    public static CopyOnWriteArrayList<BaseObject> currentCapsuleList;
     public ObjectList() {
 
         paddleList = new CopyOnWriteArrayList<>();
@@ -26,7 +26,7 @@ public class ObjectList extends BaseObjectList {
         enemyList = new CopyOnWriteArrayList<>();
         brickList = new CopyOnWriteArrayList<>();
         backgroundList = new CopyOnWriteArrayList<>();
-        currentCapsulList = new CopyOnWriteArrayList<>();
+        currentCapsuleList = new CopyOnWriteArrayList<>();
 
         handler.addHandler(backgroundList);
         handler.addHandler(enemyList);
@@ -36,6 +36,6 @@ public class ObjectList extends BaseObjectList {
         handler.addHandler(playerList);
         handler.addHandler(ballList);
         handler.addHandler(brickList);
-        handler.addHandler(currentCapsulList);
+        handler.addHandler(currentCapsuleList);
     }
 }

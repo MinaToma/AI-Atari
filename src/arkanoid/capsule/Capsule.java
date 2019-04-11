@@ -1,6 +1,5 @@
 package arkanoid.capsule;
 
-import arkanoid.arkHelper;
 import arkanoid.board.Paddle;
 import atariCore.BaseObject;
 import java.awt.*;
@@ -19,6 +18,8 @@ public abstract class Capsule extends BaseObject {
     }
 
     public abstract void effect(Paddle p);
+
+    //this name is hysterical...
     public void unEffect(Paddle p)
     {
 
@@ -35,6 +36,6 @@ public abstract class Capsule extends BaseObject {
     @Override
     public void render(Graphics g) {
         if(active == false)
-        g.drawImage(super.img, (int)super.x, (int)super.y, null);
+        g.drawImage(super.image, (int)super.x, (int)super.y, null);
     }
 }

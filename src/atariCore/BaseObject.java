@@ -6,28 +6,27 @@ import java.awt.*;
 abstract public class BaseObject {
 
     protected float x, y;
-    protected Image img;
+    protected Image image;
     protected float velY, velX;
     protected int imageWidth, imageHeight;
 
-    public BaseObject(float x, float y, Image img) {
+    public BaseObject(float x, float y, Image image) {
 
         this.x = x;
         this.y = y;
         this.velX = 0;
         this.velY = 0;
-        setImg(img);
+        setImage(image);
 
-        if(img != null)
-        {
-            setImageWidth(img.getWidth(null));
-            setImageHeight(img.getHeight(null));
+        if (image != null) {
+            setImageWidth(image.getWidth(null));
+            setImageHeight(image.getHeight(null));
         }
     }
 
-    public BaseObject(float x, float y, Image img, float velX, float velY) {
+    public BaseObject(float x, float y, Image image, float velX, float velY) {
 
-        this(x, y, img);
+        this(x, y, image);
         this.velX = velX;
         this.velY = velY;
     }
@@ -48,17 +47,17 @@ abstract public class BaseObject {
         return velX;
     }
 
-    public Image getImg() {
-        return img;
+    public Image getImage() {
+        return image;
     }
 
     public void clamp() {
 
-        x = Math.min(x , Helper.screenWidth - imageWidth);
-        x = Math.max(x , 0);
+        x = Math.min(x, Helper.screenWidth - imageWidth);
+        x = Math.max(x, 0);
 
-        y = Math.min(y , Helper.screenHeight - imageHeight);
-        y = Math.max(y , 0);
+        y = Math.min(y, Helper.screenHeight - imageHeight);
+        y = Math.max(y, 0);
     }
 
     public void setX(float x) {
@@ -73,11 +72,11 @@ abstract public class BaseObject {
         return imageWidth;
     }
 
-    public void setImg(Image img) {
-        this.img = img;
-      /*  if(img != null) {
-            setImageWidth(img.getHeight(null));
-            setImageHeight(img.getHeight(null));
+    public void setImage(Image image) {
+        this.image = image;
+      /*  if(Images != null) {
+            setImageWidth(Images.getHeight(null));
+            setImageHeight(Images.getHeight(null));
         }
         else {
             setImageWidth(0);
@@ -89,8 +88,7 @@ abstract public class BaseObject {
         return imageHeight;
     }
 
-    public void setImageWidth(int imageWidth)
-    {
+    public void setImageWidth(int imageWidth) {
         this.imageWidth = imageWidth;
     }
 
@@ -107,7 +105,7 @@ abstract public class BaseObject {
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle((int)x, (int)y, imageWidth, imageHeight);
+        return new Rectangle((int) x, (int) y, imageWidth, imageHeight);
     }
 
     public abstract void tick();

@@ -1,11 +1,7 @@
 package atariCore;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 import static atariCore.Helper.*;
 
@@ -14,7 +10,7 @@ public class LoadingScreen extends JPanel {
 
 
     private int initialAtariWidth, initialAtariHeight;
-    private JLabel atariLable, loading;
+    private JLabel atariLabel, loading;
 
     public LoadingScreen()
     {
@@ -27,20 +23,20 @@ public class LoadingScreen extends JPanel {
 
 
 
-        ImageIcon icon = new ImageIcon("src/Resources/image/loading/loading.gif");
+        ImageIcon icon = new ImageIcon("src/Resources/Images/loading/loading.gif");
         loading = new JLabel(icon);
-        icon = new ImageIcon("src/Resources/image/loading/atari.gif");
-        atariLable = new JLabel(icon);
+        icon = new ImageIcon("src/Resources/Images/loading/atari.gif");
+        atariLabel = new JLabel(icon);
 
         initialAtariHeight = screenHeight/3;
         initialAtariWidth = screenWidth /2;
 
 
-        atariLable.setBounds(initialAtariWidth,initialAtariHeight,atariLable.getWidth(),atariLable.getHeight());
+        atariLabel.setBounds(initialAtariWidth,initialAtariHeight, atariLabel.getWidth(), atariLabel.getHeight());
 
 
 
-        panel.add(atariLable);
+        panel.add(atariLabel);
         panel.add(loading);
 
         frame.getContentPane().add(panel);

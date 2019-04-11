@@ -38,7 +38,7 @@ public class Score extends Capsule {
 
     public void chang() {
 
-        this.img = arkHelper.capsule100[changePhoto++];
+        this.image = arkHelper.capsule100[changePhoto++];
         changePhoto%=7;
     }
 }

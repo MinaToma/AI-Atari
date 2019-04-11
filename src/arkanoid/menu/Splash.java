@@ -18,7 +18,7 @@ public class Splash extends atariCore.Splash {
 
     public Splash() {
         super("Arkanoid", "src/Resources/Fonts/3270Medium.ttf");
-        arkHelper.setCursorImage(panel, "src/Resources/image/yellowc2.png");
+        arkHelper.setCursorImage(panel, "src/Resources/Images/yellowc2.png");
         Sound.stop(Sounds.BackgroundGameSound);
         Sound.loop(1000,Sounds.backgroundSplashSound);
 

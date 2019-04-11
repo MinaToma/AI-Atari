@@ -14,8 +14,8 @@ public class Enemy extends BaseObject {
 	public Handler handler;
 	private  int timer ;
 	private int cnt;
-	public Enemy(int xPostion, int yPostion, float velX, float velY, Image image, int power) {
-		super(xPostion, yPostion, image);
+	public Enemy(int xPosition, int yPosition, float velX, float velY, Image image, int power) {
+		super(xPosition, yPosition, image);
 		this.power = power;  // we can change it
 		this.velX = velX;
 		this.velY = velY;
@@ -25,7 +25,7 @@ public class Enemy extends BaseObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(super.img, (int) super.x, (int) super.y, null);
+		g.drawImage(super.image, (int) super.x, (int) super.y, null);
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class Enemy extends BaseObject {
 		if(timer%10==0)
 		{
 			timer=0;
-			setImg(arkHelper.enemy[cnt++]);
+			setImage(arkHelper.enemy[cnt++]);
 			cnt%=6;
 		}
 
