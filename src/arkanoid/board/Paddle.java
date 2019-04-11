@@ -100,13 +100,14 @@ public class Paddle extends BaseObject {
     public void speedUp() {
 
         xBallSpeed = Math.min(4, xBallSpeed + 0.5f);
-        yBallSpeed = Math.min(-4, yBallSpeed - 0.5f);
+        yBallSpeed = Math.max(-4, yBallSpeed - 0.5f);
+
     }
 
     public void speedDown() {
 
         xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
-        yBallSpeed = Math.max(-1, yBallSpeed + 0.5f);
+        yBallSpeed = Math.min(-1, yBallSpeed + 0.5f);
     }
     public void speadNormal()
     {

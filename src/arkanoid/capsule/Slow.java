@@ -8,8 +8,10 @@ import java.awt.*;
 
 public class Slow extends Capsule {
 
+
     public Slow(int x, int y, int life , Image image) {
         super(x, y, life , image);
+
     }
 
     @Override
@@ -19,6 +21,6 @@ public class Slow extends Capsule {
     }
 
     public void unEffect(Paddle p) {
-        p.speadNormal();
+
     }
 }

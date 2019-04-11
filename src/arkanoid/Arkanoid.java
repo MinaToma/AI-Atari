@@ -3,6 +3,7 @@ package arkanoid;
 import arkanoid.board.Ball;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
+import arkanoid.capsule.Capsule;
 import atariCore.Background;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
@@ -55,11 +56,15 @@ public class Arkanoid extends atariCore.Game {
         playerList.clear();
         enemyList.clear();
         backgroundList.clear();
-        currentCapsulList.clear();
+        for(BaseObject o:currentCapsulList)
+        {
+                ((Capsule)o).unEffect(p);
+                handler.removeObject(currentCapsulList,o);
+        }
 
 
         setBackGround();
-        //setBricks(level);
+        setBricks(level);
         handler.addObject(playerList , player);
         handler.addObject(paddleList , p);
 

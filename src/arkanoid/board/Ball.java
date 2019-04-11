@@ -62,9 +62,11 @@ public class Ball extends BaseObject {
                 currPaddle.laser = false;
                 currPaddle.shrink = false;
                 currPaddle.expand = false;
-                for(BaseObject o:currentCapsulList)
-                {
-                    handler.removeObject(currentCapsulList,o);
+                for(BaseObject p:paddleList) {
+                    for (BaseObject o : currentCapsulList) {
+                        ((Capsule)o).unEffect(((Paddle)p));
+                        handler.removeObject(currentCapsulList, o);
+                    }
                 }
                     handler.addObject(ballList, b);
 

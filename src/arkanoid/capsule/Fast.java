@@ -6,16 +6,20 @@ import java.awt.*;
 
 public class Fast extends Capsule {
 
+
+
     public Fast(int x, int y, int life, Image image) {
         super(x, y, life, image);
+
     }
 
     @Override
     public void effect(Paddle p) {
+
         p.speedUp();
     }
 
     public void unEffect(Paddle p) {
-        p.speadNormal();
+
     }
 }

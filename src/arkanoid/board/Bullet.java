@@ -29,6 +29,7 @@ public class Bullet extends BaseObject {
 		for (BaseObject o : brickList) {
 			if (o.getRectangle().intersects(getRectangle())) {
 				((Brick) o).hitBrick();
+				handler.removeObject(bulletList,this);
 				break;
 			}
 		}
@@ -36,8 +37,9 @@ public class Bullet extends BaseObject {
 		for (BaseObject o : enemyList) {
 			if (o.getRectangle().intersects(getRectangle())) {
 				((Enemy)o).reducePower();
-			
-		
+				handler.removeObject(bulletList,this);
+				break;
+
 			}
 	
 		}
