@@ -72,9 +72,9 @@ public class arkHelper extends Helper {
 		paddle = new Image[3];
 		capsule100 = new Image[7];
 		paddleWeapon = new Image[3];
-		normalBricks = new Image[10];
-		brokenBricks = new Image[10];
-		smallSquares = new Image[10];
+		normalBricks = new Image[14];
+		brokenBricks = new Image[14];
+		smallSquares = new Image[14];
 		backgroundImage = new Image[10];
 		enemy = new Image[6];
 
@@ -85,16 +85,17 @@ public class arkHelper extends Helper {
 
 	private void loadImages() {
 
-		for (int i = 1; i <= 20; i++) {
-			if (i % 2 == 1) {
-				normalBricks[i / 2] = getImage(pathImage + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
-			} else {
-				brokenBricks[i / 2 - 1] = getImage(pathImage + (i < 10 ? "0" + i : i) + "-Breakout-Tiles.png", brickScale);
-			}
+
+		for(int i=1 ; i<=14 ; i++) {
+			normalBricks[i - 1] = getImage(pathImage + "bricks/normal brick" + i + ".png", brickScale);
 		}
 
-		for (int i = 21; i <= 30; i++) {
-			smallSquares[i - 21] = getImage(pathImage + i + "-Breakout-Tiles.png", brickScale);
+		for(int i=1;  i<=14 ; i++) {
+			brokenBricks[i - 1] = getImage(pathImage + "bricks/broken brick" + i + ".png", brickScale);
+		}
+
+		for (int i = 1; i <= 14; i++) {
+			smallSquares[i - 1] = getImage(pathImage + "bricks/small brick"+i+".png", brickScale);
 		}
 
 		capsule50 = getImage(pathImage + "31-Breakout-Tiles.png", capsuleScale);

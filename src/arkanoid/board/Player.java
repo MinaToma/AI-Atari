@@ -29,7 +29,7 @@ public class Player extends BaseObject {
         this.paddle.add(paddle);
         this.panel = panel;
         this.arkanoid = arkanoid;
-        this.level = 51;
+        this.level = 1;
 
         score = 0;
         start = true;
