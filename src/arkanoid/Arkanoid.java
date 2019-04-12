@@ -54,6 +54,7 @@ public class Arkanoid extends atariCore.Game {
         playerList.clear();
         enemyList.clear();
         backgroundList.clear();
+        p.speedNormal();
         for(BaseObject o: currentCapsuleList)
         {
                 ((Capsule)o).unEffect(p);

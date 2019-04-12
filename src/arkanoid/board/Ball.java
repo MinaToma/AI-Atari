@@ -62,6 +62,7 @@ public class Ball extends BaseObject {
                 currPaddle.shrink = false;
                 currPaddle.expand = false;
                 for (BaseObject p : paddleList) {
+                    ((Paddle)p).speedNormal();
                     for (BaseObject o : currentCapsuleList) {
                         ((Capsule) o).unEffect(((Paddle) p));
                         handler.removeObject(currentCapsuleList, o);
