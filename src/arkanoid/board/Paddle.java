@@ -143,7 +143,7 @@ public class Paddle extends BaseObject {
 
                     o.setVelX(0);
                     o.setVelY(0);
-                    o.setY(INIT_BALL_Y);
+                    //o.setY(INIT_BALL_Y);
                     continue;
                 }
 
