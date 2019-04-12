@@ -106,9 +106,6 @@ public class Level {
 
     public Capsule getCaps(int ID) {
 
-
-
-
         if (ID == 1) {
             return new Expand(0, 0, 5000, arkHelper.capsuleExpand);
         } else if (ID == 2) {
@@ -131,11 +128,14 @@ public class Level {
             return new Fire(0, 0, 5000, arkHelper.capsuleFireBall);
         } else if (ID == 11) {
             return new Life(0, 0, 0, arkHelper.life);
-        } else if (ID == 12) {
+        }
+        else if (ID == 12) {
             return new Shrink(0, 0, 5000, arkHelper.capsuleShrink);
-        } else if (ID == 13) {
+        }
+        else if (ID == 13) {
             return new Catch(0, 0, 0, arkHelper.capsuleCatch);
-        } else if (ID == 14) {
+        }
+        else if (ID == 14) {
             return new Vaus(0, 0, 0, arkHelper.capsuleVaus);
         }
         else if(ID == 15)

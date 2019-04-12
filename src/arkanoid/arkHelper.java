@@ -75,7 +75,7 @@ public class arkHelper extends Helper {
 		normalBricks = new Image[10];
 		brokenBricks = new Image[10];
 		smallSquares = new Image[10];
-		backgroundImage = new Image[8];
+		backgroundImage = new Image[10];
 		enemy = new Image[6];
 
 		arkfile = new arkFile();
@@ -136,7 +136,7 @@ public class arkHelper extends Helper {
 		capsuleCatch = getImage(pathImage + "66-Breakout-Tiles.png", capsuleScale);
 		capsuleVaus = getImage(pathImage + "67-Breakout-Tiles.png", capsuleScale);
 
-		for (int i = 1; i <= 8; i++) {
+		for (int i = 1; i <= 10; i++) {
 			backgroundImage[i - 1] = getImage(pathImage + "background/" + i + ".jpg", 1);
 
 		}

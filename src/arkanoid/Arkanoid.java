@@ -74,7 +74,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setBackGround()
     {
-        Background background = new Background(0,0, backgroundImage, backgroundImage.length);
+        Background background = new Background(0,0, backgroundImage[(player.getLevel()-1)/10]);
         handler.addObject(backgroundList , background);
     }
 

@@ -29,7 +29,7 @@ public class Player extends BaseObject {
         this.paddle.add(paddle);
         this.panel = panel;
         this.arkanoid = arkanoid;
-        this.level = 1;
+        this.level = 51;
 
         score = 0;
         start = true;
@@ -89,15 +89,16 @@ public class Player extends BaseObject {
     public void render(Graphics g) {
 
         g.setFont(arkHelper.font);
+        g.setColor(Color.ORANGE);
         g.drawString(name, 10, 30);
-        g.drawString(Integer.toString(score), 10, 60);
-        g.drawString("Level"+level,arkHelper.screenWidth-200,30);
+        g.drawString(Integer.toString(score), 10, 110);
+        g.drawString("Level"+level,10,70);
         drawLives(g);
     }
 
     public void drawLives(Graphics g) {
         int numOfLives = lives;
-        int initialHeight = 60;
+        int initialHeight = 120;
 
         for (int i = 0; numOfLives > 0; i++) {
             int initialWidth = 10;

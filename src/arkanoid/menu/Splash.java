@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Splash extends atariCore.Splash {
 
     public Splash() {
-        super("Arkanoid", "src/Resources/Fonts/3270Medium.ttf");
+        super("Arkanoid", "src/Resources/Fonts/Cowboys.otf");
         arkHelper.setCursorImage(panel, "src/Resources/Images/yellowc2.png");
         Sound.stop(Sounds.BackgroundGameSound);
         Sound.loop(1000,Sounds.backgroundSplashSound);
