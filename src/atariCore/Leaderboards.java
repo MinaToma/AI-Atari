@@ -1,8 +1,5 @@
 package atariCore;
 
-import javafx.util.Pair;
-
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
