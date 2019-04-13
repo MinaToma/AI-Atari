@@ -6,6 +6,7 @@ import arkanoid.board.Player;
 import arkanoid.capsule.Capsule;
 import atariCore.Background;
 import atariCore.BaseObject;
+import atariCore.Sound;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -66,7 +67,7 @@ public class Arkanoid extends atariCore.Game {
         setBricks(level);
         handler.addObject(playerList, player);
         handler.addObject(paddleList, p);
-
+        setSounds();
         setBall();
         setEnemy();
 
@@ -107,6 +108,14 @@ public class Arkanoid extends atariCore.Game {
 
     public void keyTyped(KeyEvent keyEvent) {
 
+    }
+    public void setSounds()
+    {
+        for(int i=0 ; i<10; i++)
+        {
+            Sounds.stop(Sounds.backgroundGameSound[i]);
+        }
+        Sounds.loop(10000,Sounds.backgroundGameSound[(player.getLevel()-1)/10]);
     }
 
     @Override
