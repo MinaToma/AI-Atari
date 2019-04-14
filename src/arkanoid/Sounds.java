@@ -23,7 +23,6 @@ public class Sounds extends Sound {
         {
             backgroundGameSound[i-1] = setClip("Resources/Sounds/BackgroundGame/"+i+".wav");
 
-
         }
 
     }

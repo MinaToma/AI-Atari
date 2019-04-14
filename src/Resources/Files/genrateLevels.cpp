@@ -30,12 +30,10 @@ int main() {
             numOfBricks++;
         cout<<"Level"<<level<<endl<<numOfBricks<<endl;
         int temp = numOfBricks;
-        int rnd = rand()%10 ;
-        rnd *= 2;
-        int rnd2 = rand()%10 ;
-        rnd2 *= 2;
-        int rnd3 = rand()%10 +20 ;
-        int rnd4 = rand()%10 +20 ;
+        int rnd ;
+        int rnd2 ;
+        int rnd3 ;
+        int rnd4 ;
 
         if(level<=10)
         {
@@ -128,7 +126,10 @@ int main() {
 
                 while(sizeNormal*2<widthTemp && temp)
                 {
+                    if(random%2==0)
                     cout<<rnd<<" ";
+                    else
+                    cout<<rnd2<<" ";
                     widthTemp-=sizeNormal*2;
                     temp-=2;
                 }
@@ -140,8 +141,12 @@ int main() {
                 while(sizeNormal*2<widthTemp && temp)
                 {
                     int r = rand()%4;
-                    if(r)
-                    cout<<rnd<<" ",temp-=2 ,widthTemp-=sizeNormal*2;
+                    if(r) {
+                        if(random%2 == 0)
+                            cout << rnd << " ", temp -= 2, widthTemp -= sizeNormal * 2;
+                        else
+                            cout << rnd2 << " ", temp -= 2, widthTemp -= sizeNormal * 2;
+                    }
                     else
                         cout<<"0 ",widthTemp-=sizeSqaure*2;
 
@@ -181,7 +186,7 @@ int main() {
                         temp-=2;
                     } else
                         cout<<"0 ",widthTemp-=sizeSqaure;
-                    ;
+
 
                 }
                 cout<<endl;
@@ -196,8 +201,15 @@ int main() {
                 {
                     int r = rand()%2;
 
-                        if(r)
-                            cout << rnd << " " , widthTemp-=sizeNormal*2;
+                        if(r) {
+                            if(random%2 == 0) {
+                                cout << rnd << " ", widthTemp -= sizeNormal * 2;
+                            } else
+                            {
+                                cout << rnd2 << " ", widthTemp -= sizeNormal * 2;
+
+                            }
+                        }
                         else
                             cout << rnd3 << " " , widthTemp-=sizeSqaure*2;
 
@@ -214,8 +226,13 @@ int main() {
                 {
                     int r = rand()%4;
                     if(r) {
-                        if (r % 2)
+                        if (r % 2){
+                            if(random%2 == 0)
                             cout << rnd  << " ", widthTemp -= sizeNormal*2;
+                            else
+                                cout << rnd2  << " ", widthTemp -= sizeNormal*2;
+
+                        }
                         else
                             cout << rnd3 << " ", widthTemp -= sizeSqaure*2;
 
@@ -232,7 +249,11 @@ int main() {
 
                 while(sizeSqaure*2<widthTemp && temp)
                 {
+                    if(random%2 == 0)
                     cout << rnd3 << " ", widthTemp -= sizeSqaure*2;
+                    else
+                        cout << rnd4 << " ", widthTemp -= sizeSqaure*2;
+
                     temp-=2;
                 }
                 cout<<endl;
@@ -244,8 +265,13 @@ int main() {
                 while(sizeSqaure < widthTemp/2 && temp)
                 {
                     int r= rand()%4;
-                    if(r)
-                    cout << rnd3 << " ",temp-=2;
+                    if(r) {
+                        if(random%2 == 0 )
+                        cout << rnd3 << " ", temp -= 2;
+                        else
+                            cout << rnd4 << " ", temp -= 2;
+
+                    }
                     else
                         cout<<"0 ";
 

@@ -84,7 +84,6 @@ public class Ball extends BaseObject {
                 ((Brick) o).hitBrick();
 
                 if (image == ball || image == fireBall) {
-
                     setPosition(o);
 
                     break;
