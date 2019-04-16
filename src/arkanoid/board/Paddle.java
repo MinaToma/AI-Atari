@@ -93,7 +93,8 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-        Sound.play(Sounds.laserSound);
+        Sounds.laserSound.stop();
+        Sounds.laserSound.play();
     }
 
     public void speedUp() {
@@ -143,7 +144,7 @@ public class Paddle extends BaseObject {
 
                     o.setVelX(0);
                     o.setVelY(0);
-                    //o.setY(INIT_BALL_Y);
+
                     continue;
                 }
 

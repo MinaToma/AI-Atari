@@ -1,29 +1,36 @@
 package arkanoid;
 
 import atariCore.Sound;
+import jaco.mp3.player.MP3Player;
 
 import javax.sound.sampled.Clip;
+import java.io.File;
 
 
 public class Sounds extends Sound {
 
-    public static Clip laserSound;
-    public static Clip hitSound;
-    public static Clip backgroundSplashSound;
-    public static Clip[] backgroundGameSound;
+    public static MP3Player laserSound;
+    public static MP3Player hitSound;
+    public static MP3Player backgroundSplashSound;
+    public static MP3Player[] backgroundGameSound;
 
     public Sounds() {
-        laserSound = setClip("Resources/Sounds/laser.wav");
-        hitSound = setClip("Resources/Sounds/hit.wav");
-        backgroundSplashSound = setClip("Resources/Sounds/background.wav");
 
-        backgroundGameSound = new Clip[10];
+
+
+        laserSound = setSound("src/Resources/Sounds/laser.mp3");
+        hitSound = setSound("src/Resources/Sounds/hit.mp3");
+        backgroundSplashSound = setSound("src/Resources/Sounds/background.mp3");
+
+        backgroundGameSound = new MP3Player[10];
 
         for(int i=1 ; i<=10; i++)
         {
-            backgroundGameSound[i-1] = setClip("Resources/Sounds/BackgroundGame/"+i+".wav");
+            backgroundGameSound[i-1] = setSound("src/Resources/Sounds/BackgroundGame/"+i+".mp3");
 
         }
+
+
 
     }
 }

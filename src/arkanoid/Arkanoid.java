@@ -113,9 +113,9 @@ public class Arkanoid extends atariCore.Game {
     {
         for(int i=0 ; i<10; i++)
         {
-            Sounds.stop(Sounds.backgroundGameSound[i]);
+            Sounds.backgroundGameSound[i].stop();
         }
-        Sounds.loop(10000,Sounds.backgroundGameSound[(player.getLevel()-1)/10]);
+        Sounds.backgroundGameSound[(player.getLevel()-1)/10].play();
     }
 
     @Override

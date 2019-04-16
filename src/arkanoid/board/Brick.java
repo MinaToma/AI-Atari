@@ -78,7 +78,8 @@ public class Brick extends BaseObject {
 
         if (getY() >= 0) {
 
-            Sound.play(Sounds.hitSound);
+            Sounds.hitSound.stop();
+            Sounds.hitSound.play();
             if (hit()) {
                 if (capsule != null) {
 

@@ -23,10 +23,10 @@ public class Splash extends atariCore.Splash {
 
         for(int i=0 ; i<10 ; i++)
         {
-            Sounds.stop(Sounds.backgroundGameSound[i]);
+            Sounds.backgroundGameSound[i].stop();
         }
 
-        Sound.loop(1000,Sounds.backgroundSplashSound);
+        Sounds.backgroundSplashSound.play();
 
         newGameButton.addActionListener(e -> {
 

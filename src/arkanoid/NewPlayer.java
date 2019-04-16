@@ -41,7 +41,7 @@ public class NewPlayer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                     arkHelper.running = true;
-                    Sound.stop(Sounds.backgroundSplashSound);
+                    Sounds.backgroundSplashSound.stop();
 
                     new Arkanoid(textName.getText());
                 }
