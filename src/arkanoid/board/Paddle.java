@@ -2,7 +2,6 @@
 
 package arkanoid.board;
 
-import arkanoid.Sounds;
 import arkanoid.capsule.*;
 import atariCore.BaseObject;
 import atariCore.Sound;
@@ -93,8 +92,7 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-        Sounds.laserSound.stop();
-        Sounds.laserSound.play();
+        Sound.Play(laserSound,true);
     }
 
     public void speedUp() {

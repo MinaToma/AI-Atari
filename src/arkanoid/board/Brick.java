@@ -1,7 +1,6 @@
 
 package arkanoid.board;
 
-import arkanoid.Sounds;
 import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
 import atariCore.AIEngine;
@@ -78,12 +77,14 @@ public class Brick extends BaseObject {
     public void hitBrick() {
 
         if (getY() >= 0) {
-
-            if (!AIMode) {
+         if (!AIMode) {
                 Sounds.hitSound.stop();
                 Sounds.hitSound.play();
             }
 
+
+
+            Sound.Play(hitSound,true);
             if (hit()) {
                 if (capsule != null) {
 

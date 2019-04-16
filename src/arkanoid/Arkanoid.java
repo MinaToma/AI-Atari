@@ -48,6 +48,12 @@ public class Arkanoid extends atariCore.Game {
         enemyList.clear();
         backgroundList.clear();
         p.reset();
+        p.speedNormal();
+        for(BaseObject o: currentCapsuleList)
+        {
+            ((Capsule)o).unEffect(p);
+            handler.removeObject(currentCapsuleList,o);
+        }
 
         setBackGround();
         setBricks(level);
@@ -87,6 +93,10 @@ public class Arkanoid extends atariCore.Game {
 
         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
         handler.addObject(paddleList, p);
+
+        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0,  player);
+        handler.addObject(paddleList , p);
+
     }
 
     public void keyTyped(KeyEvent keyEvent) {
@@ -96,9 +106,9 @@ public class Arkanoid extends atariCore.Game {
     {
         for(int i=0 ; i<10; i++)
         {
-            Sounds.backgroundGameSound[i].stop();
+            backgroundGameSound[i].stop();
         }
-        Sounds.backgroundGameSound[(player.getLevel()-1)/10].play();
+        Sound.Play(backgroundGameSound[(player.getLevel()-1)/10],false);
     }
 
     @Override
@@ -215,6 +225,7 @@ public class Arkanoid extends atariCore.Game {
     public void mouseMoved(MouseEvent mouseEvent) {
 
         if (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3)
+        if(b.getX() != INIT_BALL_X && mouseEvent.getX()<arkHelper.screenWidth-p.getImageWidth()+3)
             p.setX(mouseEvent.getX());
     }
 
@@ -223,5 +234,13 @@ public class Arkanoid extends atariCore.Game {
 
         int key = e.getKeyCode();
         keys.put(key , false);
+
+        if (key == KeyEvent.VK_LEFT) {
+            p.setVelX(0);
+            //System.out.print(3);
+        } else if (key == KeyEvent.VK_RIGHT) {
+            p.setVelX(0);
+            // System.out.print(4);
+        }
     }
 }

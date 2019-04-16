@@ -1,6 +1,11 @@
 package arkanoid.menu;
 
 import arkanoid.*;
+import arkanoid.NewPlayer;
+import arkanoid.ObjectList;
+import arkanoid.arkHelper;
+
+import static atariCore.Helper.panel;
 
 import atariCore.AIEngine;
 import atariCore.Helper;
@@ -21,10 +26,10 @@ public class Splash extends atariCore.Splash {
 
         for(int i=0 ; i<10 ; i++)
         {
-            Sounds.backgroundGameSound[i].stop();
+           arkHelper.backgroundGameSound[i].stop();
         }
+        Sound.Play(arkHelper.backgroundSplashSound,false);
 
-        Sounds.backgroundSplashSound.play();
 
         newGameButton.addActionListener(e -> {
 
@@ -52,6 +57,12 @@ public class Splash extends atariCore.Splash {
         new arkHelper();
         new ObjectList();
         new Sounds();
+        new Helper();
+        new LoadingScreen();
+
+        new arkHelper();
+        new ObjectList();
+
         new Splash();
     }
 }
