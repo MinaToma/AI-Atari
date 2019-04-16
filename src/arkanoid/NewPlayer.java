@@ -45,13 +45,10 @@ public class NewPlayer extends JPanel {
 
                     new Arkanoid(textName.getText());
                 }
-
             }
         });
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
     }
-
-
 }

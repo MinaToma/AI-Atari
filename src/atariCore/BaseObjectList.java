@@ -1,11 +1,10 @@
 package atariCore;
 
-public class BaseObjectList {
+abstract public class BaseObjectList {
 
     public static Handler handler;
 
     public BaseObjectList() {
-
         handler = new Handler();
     }
 }

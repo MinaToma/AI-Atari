@@ -66,7 +66,6 @@ public class arkHelper extends Helper {
 	public static int numberOfBricks = 2;
 	public static arkFile arkfile;
 
-
 	public arkHelper() {
 
 		paddle = new Image[3];
@@ -84,7 +83,6 @@ public class arkHelper extends Helper {
 	}
 
 	private void loadImages() {
-
 
 		for(int i=1 ; i<=14 ; i++) {
 			normalBricks[i - 1] = getImage(pathImage + "bricks/normal brick" + i + ".png", brickScale);
@@ -146,8 +144,5 @@ public class arkHelper extends Helper {
 		{
 			enemy[i-1] = getImage(pathImage +"11-Breakout-Tiles.png",1);
 		}
-
-
 	}
-
 }

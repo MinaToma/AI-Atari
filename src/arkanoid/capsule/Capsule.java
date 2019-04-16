@@ -19,8 +19,7 @@ public abstract class Capsule extends BaseObject {
 
     public abstract void effect(Paddle p);
 
-    //this name is hysterical...
-    public void unEffect(Paddle p)
+    public void removeEffect(Paddle p)
     {
 
     }
@@ -28,7 +27,7 @@ public abstract class Capsule extends BaseObject {
     @Override
     public void tick() {
         if(active == false)
-        y += capsuleSpeed;
+            y += capsuleSpeed;
         else
             life--;
     }

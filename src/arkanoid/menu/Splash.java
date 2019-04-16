@@ -1,18 +1,16 @@
 package arkanoid.menu;
 
-import arkanoid.NewPlayer;
-import arkanoid.ObjectList;
-import arkanoid.Sounds;
-import arkanoid.arkHelper;
+import arkanoid.*;
 
-import static atariCore.Helper.frame;
-import static atariCore.Helper.panel;
-
+import atariCore.AIEngine;
 import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import static atariCore.Helper.*;
 
 public class Splash extends atariCore.Splash {
 
@@ -32,24 +30,28 @@ public class Splash extends atariCore.Splash {
 
             new NewPlayer();
         });
+
+        AIButton.addActionListener(e -> {
+            arkHelper.running = true;
+            AIMode = true;
+
+            //setinput
+            //setouput
+            try {
+                AIEngine.startAI();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            new Arkanoid("AI-Player");
+        });
     }
 
     public static void main(String[] args) {
 
-        new Helper();
-        new LoadingScreen();
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        }
-        catch (Exception e)
-        {
-
-        }
-
         new arkHelper();
         new ObjectList();
         new Sounds();
-
         new Splash();
     }
 }

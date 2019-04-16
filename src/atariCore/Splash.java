@@ -2,8 +2,10 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
-import static atariCore.Helper.frame;
-import static atariCore.Helper.panel;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import static atariCore.Helper.*;
 
 public class Splash {
 
@@ -12,6 +14,12 @@ public class Splash {
     protected JButton newGameButton, AIButton, LeaderboardsButton, settingsButton, exitButton;
 
     public Splash(String title, String fontPath) {
+
+        new LoadingScreen();
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        }
+        catch (Exception e) { }
 
         frame.setTitle(title);
         //new Leaderboards("src/Resources/Files/Leaderboards.txt");
@@ -40,7 +48,7 @@ public class Splash {
     }
 
     protected void setAIButton(int x, int y, Dimension dim) {
-        AIButton = Helper.buttonHelper("New AI Game", x, y, dim);
+        AIButton = Helper.buttonHelper("AI Mode", x, y, dim);
     }
 
     protected void setLeaderboardsButton(int x, int y, Dimension dim) {

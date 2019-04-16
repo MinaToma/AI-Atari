@@ -16,7 +16,7 @@ public class Fire extends Capsule {
         p.makeFireBall();
     }
 
-    public void unEffect(Paddle p) {
+    public void removeEffect(Paddle p) {
         p.makeNormalBall();
     }
 }
