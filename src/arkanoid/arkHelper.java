@@ -1,6 +1,8 @@
 package arkanoid;
 
 import atariCore.Helper;
+import atariCore.Sound;
+import jaco.mp3.player.MP3Player;
 
 import java.awt.*;
 
@@ -25,7 +27,7 @@ public class arkHelper extends Helper {
 	public static float capsuleSpeed = 1;
 	public static float baseEnemyXSpeed = .1f;
 	public static float baseEnemyYSpeed = .1f;
-	
+
 	public static Image[] normalBricks;
 	public static Image[] brokenBricks;
 	public static Image[] smallSquares;
@@ -66,6 +68,11 @@ public class arkHelper extends Helper {
 	public static int numberOfBricks = 2;
 	public static arkFile arkfile;
 
+	public static MP3Player laserSound;
+	public static MP3Player hitSound;
+	public static MP3Player backgroundSplashSound;
+	public static MP3Player[] backgroundGameSound;
+
 
 	public arkHelper() {
 
@@ -79,8 +86,22 @@ public class arkHelper extends Helper {
 		enemy = new Image[6];
 
 		arkfile = new arkFile();
-
+		setSound();
 		loadImages();
+	}
+	private void setSound()
+	{
+		laserSound = Sound.setSound("src/Resources/Sounds/laser.mp3");
+		hitSound = Sound.setSound("src/Resources/Sounds/hit.mp3");
+		backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
+
+		backgroundGameSound = new MP3Player[10];
+
+		for(int i=1 ; i<=10; i++)
+		{
+			backgroundGameSound[i-1] = Sound.setSound("src/Resources/Sounds/BackgroundGame/"+i+".mp3");
+
+		}
 	}
 
 	private void loadImages() {
