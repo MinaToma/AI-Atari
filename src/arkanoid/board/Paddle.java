@@ -7,20 +7,24 @@ import atariCore.BaseObject;
 import atariCore.Sound;
 
 import java.awt.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
 
 public class Paddle extends BaseObject {
 
-    public boolean sticky, laser , shrink, expand;
+    public boolean sticky, laser, shrink, expand;
     private int normalImageIdx = 0;
     private Player player;
+    private CopyOnWriteArrayList<BaseObject> currentCapsuleList;
 
-    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY , Player player) {
+    public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Player player) {
 
         super(xPosition, yPosition, image, velX, 0);
+        currentCapsuleList = new CopyOnWriteArrayList<>();
         this.player = player;
+        handler.addHandler(currentCapsuleList);
     }
 
     public void tick() {
@@ -44,16 +48,15 @@ public class Paddle extends BaseObject {
                 Ball ball = (Ball) o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), xBallSpeed, ball.getVelY() , player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -xBallSpeed, ball.getVelY() , player);
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), xBallSpeed, ball.getVelY(), player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -xBallSpeed, ball.getVelY(), player);
 
                 handler.addObject(ballList, newBallL);
                 handler.addObject(ballList, newBallR);
 
                 numOfBall--;
             }
-            if(numOfBall == 0)
-            {
+            if (numOfBall == 0) {
                 break;
             }
         }
@@ -63,19 +66,17 @@ public class Paddle extends BaseObject {
 
         laser = true;
     }
-    public void stopLaser()
-    {
+
+    public void stopLaser() {
         laser = false;
     }
 
 
     public void expand() {
 
-        for(BaseObject o: currentCapsuleList)
-        {
-            if(o instanceof Shrink)
-            {
-                handler.removeObject(currentCapsuleList,o);
+        for (BaseObject o : currentCapsuleList) {
+            if (o instanceof Shrink) {
+                handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -86,7 +87,6 @@ public class Paddle extends BaseObject {
 
     public void hitLaser() {
 
-
         Bullet bulletL = new Bullet(x, y, bullet);
         Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
 
@@ -96,7 +96,6 @@ public class Paddle extends BaseObject {
     }
 
     public void speedUp() {
-
         xBallSpeed = Math.min(4, xBallSpeed + 0.5f);
         yBallSpeed = Math.max(-4, yBallSpeed - 0.5f);
 
@@ -107,19 +106,19 @@ public class Paddle extends BaseObject {
         xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
         yBallSpeed = Math.min(-1, yBallSpeed + 0.5f);
     }
-    public void speedNormal()
-    {
-        xBallSpeed = 1f;
-        yBallSpeed = -2f;
+
+    public void speedNormal() {
+        xBallSpeed = initBallXSpeed;
+        yBallSpeed = initBallYSpeed;
     }
 
-	private void setEnemy() {
+    private void setEnemy() {
 
-		Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, enemy[0], player.getLevel()*2);
-		handler.addObject(enemyList, e);
-	}
+        Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, enemy[0], player.getLevel() * 2);
+        handler.addObject(enemyList, e);
+    }
 
-	private void collision() {
+    private void collision() {
 
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
 
@@ -127,13 +126,12 @@ public class Paddle extends BaseObject {
 
             if (o.getRectangle().intersects(getRectangle())) {
 
-                ((Capsule)o).effect(this);
-                ((Capsule)o).active = true;
-                handler.addObject(currentCapsuleList,o);
+                ((Capsule) o).effect(this);
+                ((Capsule) o).active = true;
+                handler.addObject(currentCapsuleList, o);
                 handler.removeObject(capsuleList, o);
             }
         }
-
 
         for (BaseObject o : ballList) {
 
@@ -142,7 +140,6 @@ public class Paddle extends BaseObject {
 
                     o.setVelX(0);
                     o.setVelY(0);
-
                     continue;
                 }
 
@@ -179,29 +176,27 @@ public class Paddle extends BaseObject {
 
             for (BaseObject o : brickList) {
 
-				((Brick) o).moveDown();
-			}
-		}
-		if (enemyList.isEmpty()) {
-			if (brickList.isEmpty()) {
-				if (player.getLevel() % 5 == 0) {
-					setEnemy();
-				} else {
+                ((Brick) o).moveDown();
+            }
+        }
 
-					breakToNextLevel();
-				}
+        if (enemyList.isEmpty())
+            if (brickList.isEmpty()) {
+                if (player.getLevel() % 5 == 0) {
+                    setEnemy();
+                } else {
 
-			}
-		}
-		for (BaseObject o : enemyList) {
+                    breakToNextLevel();
+                }
+            }
 
-			if (o.getRectangle().intersects(getRectangle())) {
-				player.die();
-			}
+        for (BaseObject o : enemyList) {
 
-		}
-
-	}
+            if (o.getRectangle().intersects(getRectangle())) {
+                player.die();
+            }
+        }
+    }
 
     public float getNewVx(float currX) {
 
@@ -232,11 +227,10 @@ public class Paddle extends BaseObject {
 
             ((Ball) o).makeAcid();
         }
-        for(BaseObject o: currentCapsuleList)
-        {
-            if(o instanceof Fire)
-            {
-                handler.removeObject(currentCapsuleList,o);
+
+        for (BaseObject o : currentCapsuleList) {
+            if (o instanceof Fire) {
+                handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -244,11 +238,9 @@ public class Paddle extends BaseObject {
 
     public void shrink() {
 
-        for(BaseObject o: currentCapsuleList)
-        {
-            if(o instanceof Expand)
-            {
-                handler.removeObject(currentCapsuleList,o);
+        for (BaseObject o : currentCapsuleList) {
+            if (o instanceof Expand) {
+                handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -303,11 +295,9 @@ public class Paddle extends BaseObject {
 
     public void makeFireBall() {
 
-        for(BaseObject o: currentCapsuleList)
-        {
-            if(o instanceof Acid)
-            {
-                handler.removeObject(currentCapsuleList,o);
+        for (BaseObject o : currentCapsuleList) {
+            if (o instanceof Acid) {
+                handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -323,33 +313,43 @@ public class Paddle extends BaseObject {
         ballList.clear();
         paddleList.clear();
         bulletList.clear();
-        player.setLevel(player.getLevel() +1);
+        player.setLevel(player.getLevel() + 1);
     }
-    private void updateCapsule()
-    {
-        for(BaseObject o: currentCapsuleList)
-        {
-            if(((Capsule)o).life <=0)
-            {
-                ((Capsule)o).unEffect(this);
-                handler.removeObject(currentCapsuleList,o);
+
+    private void updateCapsule() {
+        for (BaseObject o : currentCapsuleList) {
+            if (((Capsule) o).life <= 0) {
+                ((Capsule) o).removeEffect(this);
+                handler.removeObject(currentCapsuleList, o);
             }
-            else
-            {
-                ((Capsule)o).effect(this);
-            }
+            /*else {
+                ((Capsule) o).effect(this);
+            }*/
         }
     }
-    public void paddleNormal()
-    {
+
+    public void paddleNormal() {
         expand = false;
         shrink = false;
     }
-    public void makeNormalBall()
-    {
+
+    public void makeNormalBall() {
         for (BaseObject o : ballList) {
 
             ((Ball) o).makeNormal();
+        }
+    }
+
+    public void reset() {
+        speedNormal();
+        sticky = false;
+        laser = false;
+        shrink = false;
+        expand = false;
+
+        for (BaseObject o : currentCapsuleList) {
+            ((Capsule) o).removeEffect(this);
+            handler.removeObject(currentCapsuleList, o);
         }
     }
 }

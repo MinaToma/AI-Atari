@@ -105,7 +105,7 @@ abstract public class BaseObject {
     }
 
     public Rectangle getRectangle() {
-        return new Rectangle((int) x, (int) y, imageWidth, imageHeight);
+        return new Rectangle((int) x, (int) y, getImageWidth(), getImageHeight());
     }
 
     public abstract void tick();

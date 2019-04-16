@@ -1,8 +1,5 @@
 package atariCore;
 
-import arkanoid.board.Ball;
-import arkanoid.board.Paddle;
-
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 

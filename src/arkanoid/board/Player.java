@@ -3,13 +3,12 @@ package arkanoid.board;
 import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
-import atariCore.FileInOut;
-import atariCore.Helper;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static atariCore.Helper.AIMode;
 
 public class Player extends BaseObject {
 
@@ -42,24 +41,30 @@ public class Player extends BaseObject {
 
     public void setLevel(int level) {
         this.level = level;
-
-        arkanoid.intialLevels(level);
+        arkanoid.initializeLevels(level);
     }
 
-    public void lostBall() {
+    public boolean lostBall() {
         lives--;
 
         if(lives < 0) {
 
             die();
         }
+
+        return lives >= 0;
     }
+
     public void die()
     {
         arkHelper.arkfile.addNewScoreToLeadboard(arkHelper.pathLeaderboards,name,score,level);
-        arkHelper.running = false;
 
-        new arkanoid.menu.Splash();
+        if(!AIMode) {
+            arkHelper.running = false;
+            new arkanoid.menu.Splash();
+        } else {
+            arkanoid.initializeLevels(1);
+        }
     }
 
     public void setLives(int lives) {
@@ -84,7 +89,6 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
-        //System.out.println(frameCounter);
     }
 
     public void render(Graphics g) {

@@ -39,16 +39,15 @@ public class Level {
         Set<Integer> st = new HashSet<>();
         Random random = new Random();
 
-
         for (int i = 0; i < numberOfCapsules; i++) {
             st.add(Math.abs(random.nextInt()) % bricks.length);
 
         }
 
         for (Integer x : st) {
-            // System.out.println(x);
             capsule.add(x);
         }
+
         int indexOfCapsul = 0;
         Collections.sort(capsule);
         numberOfCapsules = capsule.size();
@@ -80,7 +79,6 @@ public class Level {
                     }
                     initialWidth += arkHelper.normalBricks[0].getWidth(null);
 
-
                     handler.addObject(brickList , bricks[index]);
                     index++;
                 } else if (x >= 101) {
@@ -98,7 +96,6 @@ public class Level {
                 } else {
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);
                 }
-
             }
 
             initialHeight -= (3 + arkHelper.normalBricks[0].getHeight(null));
@@ -145,6 +142,5 @@ public class Level {
         }
         else
             return new Slow(0, 0, 0, arkHelper.capsuleSlow);
-
     }
 }

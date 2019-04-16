@@ -19,7 +19,7 @@ public class Slow extends Capsule {
     }
 
 
-    public void unEffect(Paddle p) {
+    public void removeEffect(Paddle p) {
 
     }
 }

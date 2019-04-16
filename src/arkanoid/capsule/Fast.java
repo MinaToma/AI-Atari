@@ -19,7 +19,7 @@ public class Fast extends Capsule {
         p.speedUp();
     }
 
-    public void unEffect(Paddle p) {
+    public void removeEffect(Paddle p) {
 
     }
 }

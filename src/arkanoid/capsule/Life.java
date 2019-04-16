@@ -1,7 +1,6 @@
 package arkanoid.capsule;
 
 import arkanoid.board.Paddle;
-
 import java.awt.*;
 
 public class Life extends Capsule {
