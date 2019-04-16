@@ -73,6 +73,7 @@ public class arkHelper extends Helper {
 	public static MP3Player hitSound;
 	public static MP3Player backgroundSplashSound;
 	public static MP3Player[] backgroundGameSound;
+	public static MP3Player lossSound;
 
 	public arkHelper() {
 
@@ -94,13 +95,12 @@ public class arkHelper extends Helper {
 		laserSound = Sound.setSound("src/Resources/Sounds/laser.mp3");
 		hitSound = Sound.setSound("src/Resources/Sounds/hit.mp3");
 		backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
-
+		lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
 		backgroundGameSound = new MP3Player[10];
 
 		for(int i=1 ; i<=10; i++)
 		{
 			backgroundGameSound[i-1] = Sound.setSound("src/Resources/Sounds/BackgroundGame/"+i+".mp3");
-
 		}
 	}
 

@@ -5,6 +5,7 @@ import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.Background;
 import atariCore.BaseObject;
+import atariCore.Sound;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -49,11 +50,7 @@ public class Arkanoid extends atariCore.Game {
         backgroundList.clear();
         p.reset();
         p.speedNormal();
-        for(BaseObject o: currentCapsuleList)
-        {
-            ((Capsule)o).unEffect(p);
-            handler.removeObject(currentCapsuleList,o);
-        }
+
 
         setBackGround();
         setBricks(level);
@@ -104,11 +101,11 @@ public class Arkanoid extends atariCore.Game {
     }
     public void setSounds()
     {
-        for(int i=0 ; i<10; i++)
-        {
-            backgroundGameSound[i].stop();
+
+        if(arkHelper.backgroundGameSound[(player.getLevel()-1)/10].isStopped()){
+            Sound.Play(backgroundGameSound[(player.getLevel()-1)/10],false);
         }
-        Sound.Play(backgroundGameSound[(player.getLevel()-1)/10],false);
+
     }
 
     @Override

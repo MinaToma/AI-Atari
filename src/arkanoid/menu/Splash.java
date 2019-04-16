@@ -56,13 +56,6 @@ public class Splash extends atariCore.Splash {
 
         new arkHelper();
         new ObjectList();
-        new Sounds();
-        new Helper();
-        new LoadingScreen();
-
-        new arkHelper();
-        new ObjectList();
-
         new Splash();
     }
 }

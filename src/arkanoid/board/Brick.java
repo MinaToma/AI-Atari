@@ -6,6 +6,7 @@ import arkanoid.capsule.Capsule;
 import atariCore.AIEngine;
 import atariCore.BaseObject;
 import atariCore.Sound;
+import jaco.mp3.player.MP3Player;
 
 import java.awt.*;
 
@@ -78,13 +79,10 @@ public class Brick extends BaseObject {
 
         if (getY() >= 0) {
          if (!AIMode) {
-                Sounds.hitSound.stop();
-                Sounds.hitSound.play();
+
+                Sound.Play(hitSound,true);
             }
 
-
-
-            Sound.Play(hitSound,true);
             if (hit()) {
                 if (capsule != null) {
 

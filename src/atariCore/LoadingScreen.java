@@ -12,6 +12,9 @@ public class LoadingScreen extends JPanel {
 
     public LoadingScreen() {
 
+        if(panel != null) {
+            frame.getContentPane().remove(panel);
+        }
         frame.setTitle("AI-Atari");
         panel = this;
         panel.setSize(screenWidth, screenHeight);
