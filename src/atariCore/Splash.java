@@ -15,11 +15,13 @@ public class Splash {
 
     public Splash(String title, String fontPath) {
 
-        new LoadingScreen();
-        try {
-            TimeUnit.SECONDS.sleep(5);
+        if(panel == null) {
+            new LoadingScreen();
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            }
+            catch (Exception e) { }
         }
-        catch (Exception e) { }
 
         frame.setTitle(title);
         //new Leaderboards("src/Resources/Files/Leaderboards.txt");
