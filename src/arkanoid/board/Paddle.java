@@ -90,7 +90,7 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-
+        if(sounds)
         laserSound();
     }
 
@@ -258,23 +258,21 @@ public class Paddle extends BaseObject {
 
             if (expand) {
 
-                setImage(paddleExpandedWeapon);
-            } else if (shrink) {
+                setImage(paddleExpandedWeapon[normalImageIdx++]);
+                normalImageIdx %= 3;
 
+            } else if (shrink) {
                 setImage(paddleShrunk);
             } else {
-
                 setImage(paddleWeapon[normalImageIdx++]);
                 normalImageIdx %= 3;
             }
         } else if (expand) {
-
-            setImage(paddleExpanded);
+            setImage(paddleExpanded[normalImageIdx++]);
+            normalImageIdx %=3;
         } else if (shrink) {
-
             setImage(paddleShrunk);
         } else {
-
             setImage(paddle[normalImageIdx++]);
             normalImageIdx %= 3;
         }
@@ -321,9 +319,9 @@ public class Paddle extends BaseObject {
                 ((Capsule) o).removeEffect(this);
                 handler.removeObject(currentCapsuleList, o);
             }
-            /*else {
+            else {
                 ((Capsule) o).effect(this);
-            }*/
+            }
         }
     }
 

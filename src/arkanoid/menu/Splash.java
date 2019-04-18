@@ -20,15 +20,23 @@ import static atariCore.Helper.*;
 public class Splash extends atariCore.Splash {
 
     public Splash() {
+
         super("Arkanoid", "src/Resources/Fonts/joystix monospace.ttf");
         arkHelper.setCursorImage(panel, pathCursor);
 
         for (int i = 0; i < 10; i++) {
             arkHelper.backgroundGameSound[i].stop();
         }
-        if(arkHelper.backgroundSplashSound.isStopped())
-        Sound.Play(arkHelper.backgroundSplashSound,false);
-        Sound.Repeat(arkHelper.backgroundSplashSound);
+
+        if(music) {
+            if (arkHelper.backgroundSplashSound.isStopped())
+                Sound.Play(arkHelper.backgroundSplashSound, false);
+            Sound.Repeat(arkHelper.backgroundSplashSound);
+        }
+        else
+        {
+            Sound.Stop(arkHelper.backgroundSplashSound);
+        }
 
         newGameButton.addActionListener(e -> {
 
@@ -37,7 +45,7 @@ public class Splash extends atariCore.Splash {
 
         settingsButton.addActionListener(e -> {
 
-            new Settings();
+            new Settings(music,sounds,mouse,keyboard);
         });
 
         AIButton.addActionListener(e -> {
