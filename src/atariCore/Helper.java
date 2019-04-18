@@ -7,8 +7,7 @@ import java.io.IOException;
 
 public class Helper {
 
-
-    public static int screenWidth = 1280 , screenHeight = 720;
+    public static int screenWidth = 1280, screenHeight = 720;
     public static final int DELAY = 1000;
     public static final int PERIOD = 5;
     public static Font font;
@@ -16,6 +15,7 @@ public class Helper {
     public static JFrame frame = null;
     public static JPanel panel;
     public static boolean running = false;
+    public static boolean pause = false;
     public static String fieldSeparator = "@@@";
 
     public static String controlsImages = "src/Resources/Images/controls/";
@@ -29,8 +29,7 @@ public class Helper {
     public static Image mouseOnImage;
     public static Image mouseOffImage;
 
-
-
+    public static boolean AIMode = false;
 
     public static int cursorScale = 3;
     public static Dimension btnDim = new Dimension((int)(screenWidth / 2.5f), screenHeight / 11);
@@ -61,9 +60,8 @@ public class Helper {
 
     protected static boolean music, sounds, mouse, keyboard;
 
-    public Helper()
-    {
-        if(frame == null) {
+    public Helper() {
+        if (frame == null) {
             frame = new JFrame();
 
             frame.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -102,6 +100,7 @@ public class Helper {
     public static Font setFont(String fontPath, int fontSize)
     {
         Font font = new Font(null, Font.BOLD, fontSize);
+    public static void setFont(String fontPath, int fontSize) {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)).deriveFont(Font.BOLD, fontSize);
         } catch (FontFormatException e) {
@@ -112,8 +111,7 @@ public class Helper {
         return font;
     }
 
-    public static void setSplashButtonFontSize(int splashButtonFontSize)
-    {
+    public static void setSplashButtonFontSize(int splashButtonFontSize) {
         Helper.splashButtonFontSize = splashButtonFontSize;
     }
 
@@ -150,12 +148,11 @@ public class Helper {
                 image.getHeight(null) / scaleFactor, Image.SCALE_SMOOTH))).getImage();
     }
 
-    public static void setCursorImage(JPanel mainPane, String filename)
-    {
+    public static void setCursorImage(JPanel mainPane, String filename) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = getImage(filename, cursorScale);
-        Cursor c = toolkit.createCustomCursor(image , new Point(mainPane.getX(),
+        Cursor c = toolkit.createCustomCursor(image, new Point(mainPane.getX(),
                 mainPane.getY()), "cursor");
-        mainPane.setCursor (c);
+        mainPane.setCursor(c);
     }
 }

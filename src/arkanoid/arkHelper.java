@@ -1,6 +1,8 @@
 package arkanoid;
 
 import atariCore.Helper;
+import atariCore.Sound;
+import jaco.mp3.player.MP3Player;
 
 import java.awt.*;
 
@@ -69,9 +71,11 @@ public class arkHelper extends Helper {
 	public static int numberOfBricks = 2;
 	public static arkFile arkfile;
 
-
-
-
+	public static MP3Player laserSound;
+	public static MP3Player hitSound;
+	public static MP3Player backgroundSplashSound;
+	public static MP3Player[] backgroundGameSound;
+	public static MP3Player lossSound;
 
 	public arkHelper() {
 
@@ -85,11 +89,24 @@ public class arkHelper extends Helper {
 		enemy = new Image[6];
 
 		arkfile = new arkFile();
-
+		setSound();
 		loadImages();
 		setHUDFont();
 		setButtonBackgroundColor(new Color(0x543131));
 		setForegroundColor(new Color(0xe3d3c3));
+	}
+	private void setSound()
+	{
+		laserSound = Sound.setSound("src/Resources/Sounds/laser.mp3");
+		hitSound = Sound.setSound("src/Resources/Sounds/hit.mp3");
+		backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
+		lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
+		backgroundGameSound = new MP3Player[10];
+
+		for(int i=1 ; i<=10; i++)
+		{
+			backgroundGameSound[i-1] = Sound.setSound("src/Resources/Sounds/BackgroundGame/"+i+".mp3");
+		}
 	}
 
 	private void loadImages() {
@@ -156,15 +173,9 @@ public class arkHelper extends Helper {
 		{
 			enemy[i-1] = getImage(pathImage +"11-Breakout-Tiles.png",1);
 		}
-
-
 	}
 
 	public static void setHUDFont(){
 		HUDFont = setFont("src/Resources/Fonts/joystix monospace.ttf", 25);
 	}
-
-
-
-
 }

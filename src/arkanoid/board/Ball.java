@@ -37,8 +37,8 @@ public class Ball extends BaseObject {
     @Override
     public void clamp() {
 
-        if (arkHelper.screenWidth <= x + getImageWidth()) velX = -1;
-        if (x <= 0) velX = 1;
+        if (arkHelper.screenWidth <= x + getImageWidth()) velX = -getVelX();
+        if (x <= 0) velX = -getVelX();
         if (y <= 0) velY *= -1;
 
         if (y > arkHelper.screenHeight) {
@@ -46,66 +46,53 @@ public class Ball extends BaseObject {
             Paddle currPaddle = player.paddle.get(0);
 
             if (ballList.isEmpty()) {
-                player.lostBall();
-                for (BaseObject o : capsuleList)
-                    handler.removeObject(capsuleList, o);
+                if(player.lostBall()) {
+                    for (BaseObject o : capsuleList)
+                        handler.removeObject(capsuleList, o);
 
-                Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
+                    Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
 
-                for (int i = 1; i < player.paddle.size(); i++) {
-                    handler.removeObject(playerList, player.paddle.get(i));
-                    player.paddle.remove(player.paddle.get(i));
-                }
-
-                currPaddle.sticky = false;
-                currPaddle.laser = false;
-                currPaddle.shrink = false;
-                currPaddle.expand = false;
-                for (BaseObject p : paddleList) {
-                    ((Paddle)p).speedNormal();
-                    for (BaseObject o : currentCapsuleList) {
-                        ((Capsule) o).unEffect(((Paddle) p));
-                        handler.removeObject(currentCapsuleList, o);
+                    for (int i = 1; i < player.paddle.size(); i++) {
+                        handler.removeObject(paddleList , player.paddle.get(i));
+                        player.paddle.remove(player.paddle.get(i));
                     }
-                }
-                handler.addObject(ballList, b);
 
+                    for (BaseObject p : paddleList) {
+                        ((Paddle) p).reset();
+                    }
+
+                    handler.addObject(ballList, b);
+                }
             }
         }
     }
 
     private void collision() {
 
+        xOffset = Math.abs(xBallSpeed) * 3 / 2;
+        yOffset = Math.abs(yBallSpeed) * 3 / 2;
+
         for (BaseObject o : brickList)
             if (o.getRectangle().intersects(getRectangle())) {
-                if(image == fireBall)
+                if (image == fireBall)
                     ((Brick) o).setPower(0);
 
                 ((Brick) o).hitBrick();
 
                 if (image == ball || image == fireBall) {
                     setPosition(o);
-
-                    break;
                 }
             }
 
-
-        for (BaseObject o : enemyList) {
-
+        for (BaseObject o : enemyList)
             if (o.getRectangle().intersects(getRectangle())) {
                 ((Enemy) o).reducePower();
 
                 setPosition(o);
-
                 player.setScore(player.getScore() + 10);
 
                 break;
             }
-
-        }
-
-
     }
 
     private void setPosition(BaseObject o) {
@@ -117,8 +104,7 @@ public class Ball extends BaseObject {
 
         if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) {
             setVelX(velX * -1);
-        }
-        else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) {
+        } else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) {
             setVelY(velY * -1);
         }
     }

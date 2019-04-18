@@ -1,11 +1,12 @@
 
 package arkanoid.board;
 
-import arkanoid.Sounds;
 import arkanoid.arkHelper;
 import arkanoid.capsule.Capsule;
+import atariCore.AIEngine;
 import atariCore.BaseObject;
 import atariCore.Sound;
+import jaco.mp3.player.MP3Player;
 
 import java.awt.*;
 
@@ -58,7 +59,7 @@ public class Brick extends BaseObject {
         timer++;
 
         // every level the timer per move brick down decrease
-        if (timer >= Math.max(1000,10000-10*player.getLevel())) {
+        if (timer >= Math.max(1000, 10000 - 10 * player.getLevel())) {
             moveDown();
         }
     }
@@ -77,8 +78,11 @@ public class Brick extends BaseObject {
     public void hitBrick() {
 
         if (getY() >= 0) {
+         if (!AIMode) {
 
-            Sound.play(Sounds.hitSound);
+                Sound.Play(hitSound,true);
+            }
+
             if (hit()) {
                 if (capsule != null) {
 

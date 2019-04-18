@@ -67,11 +67,10 @@ public class NewPlayer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                     arkHelper.running = true;
-                    Sound.stop(Sounds.backgroundSplashSound);
+                    Sound.Stop(arkHelper.backgroundSplashSound);
 
                     new Arkanoid(textName.getText());
                 }
-
             }
         });
 
@@ -80,10 +79,10 @@ public class NewPlayer extends JPanel {
         frame.setVisible(true);
     }
 
-
     @Override
     protected void paintComponent (Graphics g){
         super.paintComponent(g);
         g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
     }
 }
+

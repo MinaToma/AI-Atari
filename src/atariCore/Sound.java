@@ -1,43 +1,44 @@
 package atariCore;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import java.net.URL;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
+import jaco.mp3.player.MP3Player;
 
-abstract public class Sound {
+import java.io.File;
 
 
-    public Clip setClip(String path) {
+ public class Sound {
 
-        Clip newClip = null;
+
+    public static MP3Player setSound(String path) {
+
+        MP3Player newClip = null;
         try {
+            newClip = new MP3Player(new File(path));
 
-            URL url = Sound.class.getClassLoader().getResource(path);
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-            // Get a sound clip resource.
-            newClip = AudioSystem.getClip();
-            // Open audio clip and load samples from the audio input stream.
-            newClip.open(audioIn);
         } catch (Exception e) {
             System.out.println("Failed to load sound file.");
         }
 
         return newClip;
     }
+    public static void Play(MP3Player p, boolean thrd)
+    {
+        if(thrd  == true) {
+            Thread thread = new Thread() {
+                public void run() {
+                    p.play();
+                }
 
-    public static void play(Clip clip) {
-        clip.loop(1);
+            };
+            thread.start();
+        }
+        else
+            p.play();
 
     }
-
-    public static void stop(Clip clip) {
-        clip.stop();
+    public static void Stop(MP3Player p)
+    {
+        p.stop();
     }
 
-    public static void loop(int loop, Clip clip) {
-        clip.loop(loop);
-    }
+
 }

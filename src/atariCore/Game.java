@@ -4,17 +4,14 @@ import arkanoid.Arkanoid;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.util.TimerTask;
 import java.util.Timer;
-import static atariCore.Helper.frame;
-import static atariCore.Helper.panel;
-import static atariCore.BaseObjectList.*;
 
-abstract public class Game extends JPanel implements KeyListener , MouseListener , MouseMotionListener {
+import static atariCore.BaseObjectList.*;
+import static atariCore.Helper.*;
+
+abstract public class Game extends JPanel implements AtariKeyListener , MouseListener , MouseMotionListener {
 
     protected Timer timer;
 
@@ -40,10 +37,12 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
                     return;
                 }
 
-                if(handler != null) {
+                if(handler != null && !pause) {
+                    pressKey();
                     handler.tick();
                     revalidate();
                     repaint();
+                    Toolkit.getDefaultToolkit().sync();
                 }
             }
         } , Helper.DELAY, Helper.PERIOD);
@@ -55,14 +54,33 @@ abstract public class Game extends JPanel implements KeyListener , MouseListener
     }
 
     @Override
-    abstract public void keyPressed(KeyEvent keyEvent);
-
-    @Override
-    abstract public void keyReleased(KeyEvent keyEvent);
-
-    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         handler.render(g);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent mouseEvent) {
+
     }
 }

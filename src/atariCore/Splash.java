@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 import static arkanoid.arkHelper.pathImage;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import static atariCore.Helper.*;
 
 public class Splash {
@@ -13,6 +16,14 @@ public class Splash {
     protected JButton newGameButton, AIButton, LeaderboardsButton, settingsButton, exitButton;
 
     public Splash(String title, String fontPath) {
+
+        if(panel == null) {
+            new LoadingScreen();
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            }
+            catch (Exception e) { }
+        }
 
         frame.setTitle(title);
         //new Leaderboards("src/Resources/Files/Leaderboards.txt");

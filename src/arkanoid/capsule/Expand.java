@@ -16,7 +16,7 @@ public class Expand extends Capsule {
         p.expand();
     }
 
-    public void unEffect(Paddle p) {
+    public void removeEffect(Paddle p) {
         p.paddleNormal();
     }
 }

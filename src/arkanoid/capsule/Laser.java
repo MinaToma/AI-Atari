@@ -17,7 +17,7 @@ public class Laser extends Capsule {
         p.runLaser();
     }
 
-    public void unEffect(Paddle p) {
+    public void removeEffect(Paddle p) {
         p.stopLaser();
     }
 }

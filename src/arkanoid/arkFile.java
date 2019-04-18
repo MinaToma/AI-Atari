@@ -9,17 +9,11 @@ public class arkFile extends FileInOut {
     public  ArrayList<ArrayList<Integer>> getLevel(String level , String path)
     {
         ArrayList<ArrayList<Integer>> dim = new ArrayList<>();
-
-
         ArrayList<String> records = readFile(path);
-
 
         boolean checkLevel = false;
         for(String str :records)
         {
-
-
-
             if (checkLevel==false && str.equals(level))
             {
                 checkLevel=true;
@@ -45,10 +39,7 @@ public class arkFile extends FileInOut {
             {
                 break;
             }
-
         }
-
         return dim;
     }
-
 }

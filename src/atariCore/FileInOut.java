@@ -8,6 +8,7 @@ import java.util.List;
 
 public class FileInOut {
 
+
     public static ArrayList<String> readFile(String path) {
 
         ArrayList<String> data = new ArrayList<>();

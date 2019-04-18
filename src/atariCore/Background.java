@@ -2,7 +2,7 @@ package atariCore;
 
 import java.awt.*;
 
-public class Background extends BaseObject{
+public class Background extends BaseObject {
 
     private static int cnt = 0;
     private int timer = 0;
@@ -18,6 +18,8 @@ public class Background extends BaseObject{
     public Background(float x, float y , Image[] images, int length)
     {
         super(x,y, images[0]);
+    public Background(float x, float y, Image[] images, int length) {
+        super(x, y, images[0]);
         this.length = length;
         this.images = images;
     }
@@ -25,7 +27,8 @@ public class Background extends BaseObject{
     @Override
     public void tick() {
         if(length > 0) {
-            timer++;
+        if (length > 0) {
+           timer++;
             if (timer % 10 == 0) {
                 this.setImage(images[cnt++]);
                 cnt %= 8;
@@ -35,6 +38,6 @@ public class Background extends BaseObject{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(image,0,0,null);
+        g.drawImage(image, 0, 0, null);
     }
 }

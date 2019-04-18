@@ -1,8 +1,8 @@
 package arkanoid.menu;
 
+import arkanoid.*;
 import arkanoid.NewPlayer;
 import arkanoid.ObjectList;
-import arkanoid.Sounds;
 import arkanoid.arkHelper;
 
 import static arkanoid.ObjectList.backgroundList;
@@ -11,13 +11,20 @@ import static atariCore.BaseObjectList.handler;
 import static atariCore.Helper.*;
 
 import atariCore.Background;
+import static atariCore.Helper.panel;
+
+import atariCore.AIEngine;
 import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 
 import javax.swing.*;
 import java.awt.*;
+
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import static atariCore.Helper.*;
 
 public class Splash extends atariCore.Splash {
 
@@ -28,10 +35,10 @@ public class Splash extends atariCore.Splash {
 
         for(int i=0 ; i<10 ; i++)
         {
-            Sounds.stop(Sounds.backgroundGameSound[i]);
+           arkHelper.backgroundGameSound[i].stop();
         }
+        Sound.Play(arkHelper.backgroundSplashSound,false);
 
-        Sound.loop(1000,Sounds.backgroundSplashSound);
 
         newGameButton.addActionListener(e -> {
 
@@ -45,21 +52,26 @@ public class Splash extends atariCore.Splash {
 
     }
 
+        AIButton.addActionListener(e -> {
+            arkHelper.running = true;
+            AIMode = true;
+
+            //setinput
+            //setouput
+            try {
+                AIEngine.startAI();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            new Arkanoid("AI-Player");
+        });
+    }
+
     public static void main(String[] args) {
-
-        new Helper();
-        new LoadingScreen();
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        }
-        catch (Exception e)
-        {
-
-        }
 
         new arkHelper();
         new ObjectList();
-        new Sounds();
 
         new Splash();
     }
