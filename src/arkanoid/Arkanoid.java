@@ -8,6 +8,7 @@ import atariCore.Background;
 import atariCore.BaseObject;
 import atariCore.Sound;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -21,10 +22,24 @@ public class Arkanoid extends atariCore.Game {
     Player player;
 
     public Arkanoid(String namePlayer) {
+        /*
+         *
+         * 1 stone-age ok
+         * 2 pharaohs ok
+         * 3 aztec ok
+         * 4 greek ok
+         * 5 roman ok
+         * 6 indian ok
+         * 7 viking ok
+         * 8 chinese ok
+         * 9 medieval ok
+         * 10 arabian
+         *
+         * */
 
         super("Arkanoid");
 
-        arkHelper.setCursorImage(this, "src/Resources/Images/yellowc2.png");
+        arkHelper.setCursorImage(this, pathCursor);
 
         paddleList.clear();
         ballList.clear();
@@ -38,12 +53,11 @@ public class Arkanoid extends atariCore.Game {
 
         setPaddle();
         setPlayer(namePlayer);
-
+        // /*FOR TESTING - to remove*/ player.setLevel(93);
         intialLevels(player.getLevel());
     }
 
-    public void intialLevels(int level)
-    {
+    public void intialLevels(int level) {
 
 
         // to clear every level
@@ -56,10 +70,9 @@ public class Arkanoid extends atariCore.Game {
         enemyList.clear();
         backgroundList.clear();
         p.speedNormal();
-        for(BaseObject o: currentCapsuleList)
-        {
-                ((Capsule)o).unEffect(p);
-                handler.removeObject(currentCapsuleList,o);
+        for (BaseObject o : currentCapsuleList) {
+            ((Capsule) o).unEffect(p);
+            handler.removeObject(currentCapsuleList, o);
         }
 
 
@@ -73,23 +86,22 @@ public class Arkanoid extends atariCore.Game {
 
     }
 
-    private void setBackGround()
-    {
-        Background background = new Background(0,0, backgroundImage[(player.getLevel()-1)/10]);
-        handler.addObject(backgroundList , background);
+    private void setBackGround() {
+        Background background = new Background(0, 0, backgroundImage[(player.getLevel() - 1) / 10]);
+        handler.addObject(backgroundList, background);
     }
 
     public void setBall() {
 
-        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth()/2 - 5, INIT_BALL_Y , arkHelper.ball, 0, 0 , player);
-        handler.addObject(ballList , b);
+        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
+        handler.addObject(ballList, b);
     }
 
-    private void    setPlayer(String namePlayer) {
+    private void setPlayer(String namePlayer) {
 
         player = new Player(namePlayer, 3, p, this, this);
         p.setPlayer(player);
-        handler.addObject(playerList , player);
+        handler.addObject(playerList, player);
     }
 
     private void setEnemy() {
@@ -97,25 +109,24 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setBricks(int lvl) {
-        new Level(arkfile.getLevel("Level"+lvl, pathLevel),player, p , b );
+        new Level(arkfile.getLevel("Level" + lvl, pathLevel), player, p, b);
     }
 
     private void setPaddle() {
 
-         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0,  player);
-         handler.addObject(paddleList , p);
+        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
+        handler.addObject(paddleList, p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {
 
     }
-    public void setSounds()
-    {
-        for(int i=0 ; i<10; i++)
-        {
+
+    public void setSounds() {
+        for (int i = 0; i < 10; i++) {
             Sounds.stop(Sounds.backgroundGameSound[i]);
         }
-        Sounds.loop(10000,Sounds.backgroundGameSound[(player.getLevel()-1)/10]);
+        Sounds.loop(10000, Sounds.backgroundGameSound[(player.getLevel() - 1) / 10]);
     }
 
     @Override
@@ -125,26 +136,25 @@ public class Arkanoid extends atariCore.Game {
 
         if (key == KeyEvent.VK_LEFT) {
 
-            p.setVelX(-paddleSpeed) ;
+            p.setVelX(-paddleSpeed);
         } else if (key == KeyEvent.VK_RIGHT) {
 
             p.setVelX(paddleSpeed);
-        }
-        else if (key == KeyEvent.VK_SPACE) {
+        } else if (key == KeyEvent.VK_SPACE) {
 
             paddleClick();
         }
     }
 
     public void paddleClick() {
-        if(p.laser) {
+        if (p.laser) {
 
             p.hitLaser();
 
         }
 
-        for(BaseObject o : ballList) {
-            if(o.getVelX() == 0 && o.getVelY() == 0) {
+        for (BaseObject o : ballList) {
+            if (o.getVelX() == 0 && o.getVelY() == 0) {
                 p.sticky = false;
                 o.setVelX(-p.getNewVx(o.getX() + o.getImageWidth() / 2));
                 o.setVelY(yBallSpeed);
@@ -186,8 +196,8 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        if(b.getX() != INIT_BALL_X && mouseEvent.getX()<arkHelper.screenWidth-p.getImageWidth()+3)
-             p.setX(mouseEvent.getX());
+        if (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3)
+            p.setX(mouseEvent.getX());
     }
 
     @Override
@@ -200,7 +210,7 @@ public class Arkanoid extends atariCore.Game {
             //System.out.print(3);
         } else if (key == KeyEvent.VK_RIGHT) {
             p.setVelX(0);
-           // System.out.print(4);
+            // System.out.print(4);
         }
     }
 }

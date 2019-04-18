@@ -2,8 +2,6 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -20,11 +18,46 @@ public class Helper {
     public static boolean running = false;
     public static String fieldSeparator = "@@@";
 
+    public static String controlsImages = "src/Resources/Images/controls/";
+
+    public static Image soundOnImage;
+    public static Image soundOffImage;
+    public static Image musicOnImage;
+    public static Image musicOffImage;
+    public static Image keyboardOnImage;
+    public static Image keyboardOffImage;
+    public static Image mouseOnImage;
+    public static Image mouseOffImage;
+
+
 
 
     public static int cursorScale = 3;
-    public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
+    public static Dimension btnDim = new Dimension((int)(screenWidth / 2.5f), screenHeight / 11);
 
+
+    //game colors
+
+    public static Color backgroundColor;
+    public static Color foregroundColor;
+    public static Color buttonBackgroundColor;
+    public static Color HUDColor;
+
+    public static void setButtonBackgroundColor(Color buttonBackgroundColor) {
+        Helper.buttonBackgroundColor = buttonBackgroundColor;
+    }
+
+    public static void setBackgroundColor(Color backgroundColor) {
+        Helper.backgroundColor = backgroundColor;
+    }
+
+    public static void setForegroundColor(Color foregroundColor) {
+        Helper.foregroundColor = foregroundColor;
+    }
+
+    public static void setHUDColor(Color HUDColor) {
+        Helper.HUDColor = HUDColor;
+    }
 
     protected static boolean music, sounds, mouse, keyboard;
 
@@ -42,13 +75,33 @@ public class Helper {
 
             frame.setLocationRelativeTo(null);
         }
+
+        setButtonBackgroundColor(new Color(0x171C28));
+        setForegroundColor(new Color(165, 209, 77));
+        setHUDColor(new Color(173, 173, 173));
+
+        loadImages();
+    }
+
+    private void loadImages() {
+
+        soundOnImage = getImage(controlsImages + "sound on.png", 1);
+        soundOffImage = getImage(controlsImages + "sound off.png", 1);
+
+        musicOnImage = getImage(controlsImages + "music on.png", 1);
+        musicOffImage = getImage(controlsImages + "music off.png", 1);
+
+        keyboardOnImage = getImage(controlsImages + "empty.png",1);
+        keyboardOffImage = getImage(controlsImages + "empty.png",1);
+
+        mouseOnImage = getImage(controlsImages + "empty.png",1);
+        mouseOffImage = getImage(controlsImages + "empty.png",1);
     }
 
 
-
-
-    public static void setFont(String fontPath, int fontSize)
+    public static Font setFont(String fontPath, int fontSize)
     {
+        Font font = new Font(null, Font.BOLD, fontSize);
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)).deriveFont(Font.BOLD, fontSize);
         } catch (FontFormatException e) {
@@ -56,6 +109,7 @@ public class Helper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return font;
     }
 
     public static void setSplashButtonFontSize(int splashButtonFontSize)
@@ -66,10 +120,9 @@ public class Helper {
     public static JButton buttonHelper(String txt, int x, int y, Dimension dim) {
 
         JButton button = new JButton(txt);
-        button.setLayout(null);
         button.setFont(font);
-        button.setBackground(Color.BLACK);
-        button.setForeground(Color.YELLOW);
+        button.setForeground(foregroundColor);
+        button.setBackground(buttonBackgroundColor);
         button.setFocusPainted(false);
         button.setBounds(x, y, dim.width, dim.height);
 
@@ -81,8 +134,9 @@ public class Helper {
     public static JButton buttonHelper(String txt) {
         JButton button = new JButton(txt);
         button.setFont(font);
-        button.setBackground(Color.BLACK);
-        button.setForeground(Color.YELLOW);
+        button.setLayout(null);
+        button.setForeground(foregroundColor);
+        button.setBackground(buttonBackgroundColor);
         button.setFocusPainted(false);
         return button;
     }

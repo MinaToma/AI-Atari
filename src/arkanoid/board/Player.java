@@ -3,8 +3,6 @@ package arkanoid.board;
 import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
-import atariCore.FileInOut;
-import atariCore.Helper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,7 +34,7 @@ public class Player extends BaseObject {
         start = true;
     }
 
-    public int getLevel() {
+    public int getLevel(){
         return level;
     }
 
@@ -89,12 +87,39 @@ public class Player extends BaseObject {
 
     public void render(Graphics g) {
 
-        g.setFont(arkHelper.font);
-        g.setColor(Color.ORANGE);
+        g.setFont(arkHelper.HUDFont);
+        g.setColor(getLevelHUDColor());
         g.drawString(name, 10, 30);
-        g.drawString(Integer.toString(score), 10, 110);
-        g.drawString("Level"+level,10,70);
+        g.drawString(Integer.toString(score), 10, 100);
+        g.drawString("Level " + level,10,60);
         drawLives(g);
+    }
+
+
+    private Color getLevelHUDColor() {
+        Color color;
+        if (level< 11) {
+            color = new Color(55, 30, 20);
+        } else if (level< 21) {
+            color = new Color(255, 215, 34, 181);
+        } else if (level< 31) {
+            color = new Color(4, 21, 42, 225);
+        } else if (level< 41) {
+            color = new Color(43, 21, 11, 235);
+        } else if (level< 51) {
+            color = new Color(32, 75, 74);
+        } else if (level< 61) {
+            color = new Color(203, 82, 85, 219);
+        } else if (level< 71) {
+            color = new Color(32, 75, 74);
+        } else if (level< 81) {
+            color = new Color(173, 173, 173, 212);
+        } else if (level< 91) {
+            color = new Color(7, 51, 79, 156);
+        } else {
+            color = new Color(190, 110, 23, 214);
+        }
+        return color;
     }
 
     public void drawLives(Graphics g) {

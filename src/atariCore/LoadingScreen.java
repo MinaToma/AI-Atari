@@ -41,14 +41,6 @@ public class LoadingScreen extends JPanel {
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
-
-
-
-
-
-
-
-
     }
 
 }

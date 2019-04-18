@@ -2,12 +2,13 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
-import static atariCore.Helper.frame;
-import static atariCore.Helper.panel;
+
+import static arkanoid.arkHelper.pathImage;
+import static atariCore.Helper.*;
 
 public class Splash {
 
-    protected int xStart = 100, yStart = 100, bOffset = 150;
+    protected int xStart = (int)(screenWidth/3.5), yStart = 212, bOffset = btnDim.height + 20;
 
     protected JButton newGameButton, AIButton, LeaderboardsButton, settingsButton, exitButton;
 
@@ -19,11 +20,17 @@ public class Splash {
         if(panel != null) {
             frame.getContentPane().remove(panel);
         }
-        panel = new JPanel(new GridLayout(0, 1));
+        panel = new JPanel(null){
+            @Override
+            protected void paintComponent(Graphics g){
+                super.paintComponent(g);
+                g.drawImage(getImage(pathImage + "background/splash.png", 1), 0, 0, null);
+            }
+        };
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
         Helper.setSplashButtonFontSize(40);
-        Helper.setFont(fontPath, Helper.splashButtonFontSize);
+        Helper.font = Helper.setFont(fontPath, Helper.splashButtonFontSize);
 
         setNewGameButton(xStart, yStart, Helper.btnDim);
         setAIButton(xStart, (yStart += bOffset), Helper.btnDim);
@@ -40,7 +47,7 @@ public class Splash {
     }
 
     protected void setAIButton(int x, int y, Dimension dim) {
-        AIButton = Helper.buttonHelper("New AI Game", x, y, dim);
+        AIButton = Helper.buttonHelper("AI Mode", x, y, dim);
     }
 
     protected void setLeaderboardsButton(int x, int y, Dimension dim) {
