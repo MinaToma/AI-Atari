@@ -5,21 +5,12 @@ import arkanoid.NewPlayer;
 import arkanoid.ObjectList;
 import arkanoid.arkHelper;
 
-import static arkanoid.ObjectList.backgroundList;
-import static arkanoid.arkHelper.*;
-import static atariCore.BaseObjectList.handler;
-import static atariCore.Helper.*;
-
-import atariCore.Background;
 import static atariCore.Helper.panel;
 
 import atariCore.AIEngine;
 import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
-
-import javax.swing.*;
-import java.awt.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -29,9 +20,9 @@ import static atariCore.Helper.*;
 public class Splash extends atariCore.Splash {
 
     public Splash() {
-        super("Arkanoid", "src/Resources/Fonts/joystix monospace.ttf");
+        super("Arkanoid", "src/Resources/Fonts/Cowboys.otf");
+        arkHelper.setCursorImage(panel, "src/Resources/Images/yellowc2.png");
 
-        arkHelper.setCursorImage(panel, pathCursor);
 
         for(int i=0 ; i<10 ; i++)
         {
@@ -44,13 +35,6 @@ public class Splash extends atariCore.Splash {
 
             new NewPlayer();
         });
-
-        settingsButton.addActionListener(e -> {
-
-            new Settings();
-        });
-
-    }
 
         AIButton.addActionListener(e -> {
             arkHelper.running = true;

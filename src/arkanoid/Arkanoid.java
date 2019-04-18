@@ -21,35 +21,9 @@ public class Arkanoid extends atariCore.Game {
     Player player;
 
     public Arkanoid(String namePlayer) {
-        /*
-         *
-         * 1 stone-age ok
-         * 2 pharaohs ok
-         * 3 aztec ok
-         * 4 greek ok
-         * 5 roman ok
-         * 6 indian ok
-         * 7 viking ok
-         * 8 chinese ok
-         * 9 medieval ok
-         * 10 arabian
-         *
-         * */
 
         super("Arkanoid");
 
-        arkHelper.setCursorImage(this, pathCursor);
-
-        paddleList.clear();
-        ballList.clear();
-        brickList.clear();
-        bulletList.clear();
-        capsuleList.clear();
-        playerList.clear();
-        enemyList.clear();
-        backgroundList.clear();
-        currentCapsuleList.clear();
-      
         try {
             Robot r = new Robot();
             r.mouseMove(frame.getX() + INIT_PADDLE_X, screenHeight / 2);
@@ -61,14 +35,6 @@ public class Arkanoid extends atariCore.Game {
         arkHelper.setCursorImage(this, "src/Resources/Images/yellowc2.png");
         setPaddle();
         setPlayer(namePlayer);
-        // /*FOR TESTING - to remove*/ player.setLevel(93);
-        intialLevels(player.getLevel());
-    }
-
-    public void intialLevels(int level) {
-
-
-        // to clear every level
 
         initializeLevels(player.getLevel());
     }
@@ -84,10 +50,6 @@ public class Arkanoid extends atariCore.Game {
         backgroundList.clear();
         p.reset();
         p.speedNormal();
-        for (BaseObject o : currentCapsuleList) {
-            ((Capsule) o).unEffect(p);
-            handler.removeObject(currentCapsuleList, o);
-        }
 
         setBackGround();
         setBricks(level);
@@ -110,8 +72,6 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setPlayer(String namePlayer) {
-
-        player = new Player(namePlayer, 3, p, this, this);
         player = new Player(namePlayer, (AIMode) ? 0 : 3, p, this, this);
         p.setPlayer(player);
         handler.addObject(playerList, player);
@@ -138,19 +98,14 @@ public class Arkanoid extends atariCore.Game {
     public void keyTyped(KeyEvent keyEvent) {
 
     }
-
-    public void setSounds() {
-        for (int i = 0; i < 10; i++) {
-            Sounds.stop(Sounds.backgroundGameSound[i]);
-        }
-        Sounds.loop(10000, Sounds.backgroundGameSound[(player.getLevel() - 1) / 10]);
     public void setSounds()
     {
 
         if(arkHelper.backgroundGameSound[(player.getLevel()-1)/10].isStopped()){
             Sound.Play(backgroundGameSound[(player.getLevel()-1)/10],false);
         }
-     }
+
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -158,10 +113,7 @@ public class Arkanoid extends atariCore.Game {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-         p.setVelX(-paddleSpeed);
-        } else if (key == KeyEvent.VK_RIGHT) {
 
-            p.setVelX(paddleSpeed);
             keys.put(KeyEvent.VK_LEFT , true);
             keys.put(KeyEvent.VK_RIGHT , false);
         } else if (key == KeyEvent.VK_RIGHT) {
@@ -173,8 +125,6 @@ public class Arkanoid extends atariCore.Game {
             paddleClick();
         } else if (key == KeyEvent.VK_P) {
 
-    public void paddleClick() {
-        if (p.laser) {
             pause = !pause;
         } else if (key == KeyEvent.VK_ESCAPE) {
 
@@ -186,12 +136,6 @@ public class Arkanoid extends atariCore.Game {
             keys.put(KeyEvent.VK_A , true);
         } else if (key == KeyEvent.VK_D) {
 
-        for (BaseObject o : ballList) {
-            if (o.getVelX() == 0 && o.getVelY() == 0) {
-                p.sticky = false;
-                o.setVelX(-p.getNewVx(o.getX() + o.getImageWidth() / 2));
-                o.setVelY(yBallSpeed);
-            }
             keys.put(KeyEvent.VK_A , false);
             keys.put(KeyEvent.VK_D , true);
         } else if (key == KeyEvent.VK_NUMPAD4) {
@@ -277,7 +221,7 @@ public class Arkanoid extends atariCore.Game {
     public void mouseMoved(MouseEvent mouseEvent) {
 
         if (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3)
-       if(b.getX() != INIT_BALL_X && mouseEvent.getX()<arkHelper.screenWidth-p.getImageWidth()+3)
+        if(b.getX() != INIT_BALL_X && mouseEvent.getX()<arkHelper.screenWidth-p.getImageWidth()+3)
             p.setX(mouseEvent.getX());
     }
 
