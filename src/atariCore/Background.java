@@ -15,9 +15,6 @@ public class Background extends BaseObject {
         length = 0;
     }
 
-    public Background(float x, float y , Image[] images, int length)
-    {
-        super(x,y, images[0]);
     public Background(float x, float y, Image[] images, int length) {
         super(x, y, images[0]);
         this.length = length;
@@ -26,9 +23,8 @@ public class Background extends BaseObject {
 
     @Override
     public void tick() {
-        if(length > 0) {
         if (length > 0) {
-           timer++;
+            timer++;
             if (timer % 10 == 0) {
                 this.setImage(images[cnt++]);
                 cnt %= 8;

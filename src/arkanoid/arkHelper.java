@@ -28,8 +28,6 @@ public class arkHelper extends Helper {
 	public static float baseEnemyXSpeed = .1f;
 	public static float baseEnemyYSpeed = .1f;
 
-	public static Font HUDFont;
-	public static Image splashBackground;
 	public static Image[] normalBricks;
 	public static Image[] brokenBricks;
 	public static Image[] smallSquares;
@@ -65,11 +63,11 @@ public class arkHelper extends Helper {
 	public static String pathImage = "src/Resources/Images/";
 	public static String pathLevel = "src/Resources/Files/levels.txt";
 	public static String pathLeaderboards = "src/Resources/Files/Leaderboards.txt";
-	public static String pathCursor = "src/Resources/Images/yellowc2.png";
 	// public static Image backgroundImage ;
 	public static Image[] backgroundImage;
 	public static int numberOfBricks = 2;
 	public static arkFile arkfile;
+
 
 	public static MP3Player laserSound;
 	public static MP3Player hitSound;
@@ -91,9 +89,6 @@ public class arkHelper extends Helper {
 		arkfile = new arkFile();
 		setSound();
 		loadImages();
-		setHUDFont();
-		setButtonBackgroundColor(new Color(0x543131));
-		setForegroundColor(new Color(0xe3d3c3));
 	}
 	private void setSound()
 	{
@@ -110,8 +105,6 @@ public class arkHelper extends Helper {
 	}
 
 	private void loadImages() {
-
-		splashBackground = getImage(backgroundImage  + "splash.png", 1);
 
 		for(int i=1 ; i<=14 ; i++) {
 			normalBricks[i - 1] = getImage(pathImage + "bricks/normal brick" + i + ".png", brickScale);
@@ -173,9 +166,5 @@ public class arkHelper extends Helper {
 		{
 			enemy[i-1] = getImage(pathImage +"11-Breakout-Tiles.png",1);
 		}
-	}
-
-	public static void setHUDFont(){
-		HUDFont = setFont("src/Resources/Fonts/joystix monospace.ttf", 25);
 	}
 }

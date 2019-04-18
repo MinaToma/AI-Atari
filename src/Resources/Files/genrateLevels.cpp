@@ -35,7 +35,7 @@ int main() {
         int rnd3 ;
         int rnd4 ;
 
-        if(level<=10) //stone
+        if(level<=10)
         {
             //1,7
             rnd=1;
@@ -43,78 +43,77 @@ int main() {
             rnd3=101;
             rnd4=107;
         }
-        else if(level<=20) //pharaohs
+        else if(level<=20)
         {
             // 8,3
-            rnd=2;
+            rnd=8;
             rnd2=3;
-            rnd3=102;
+            rnd3=108;
             rnd4=103;
         }
-        else if(level<=30) //aztec
+        else if(level<=30)
         {
             //1,9
             rnd=1;
-            rnd2=14;
+            rnd2=9;
             rnd3=101;
-            rnd4=114;
+            rnd4=109;
         }
-        else if(level<=40) //greek
+        else if(level<=40)
         {
             //9,13
-            rnd=7;
-            rnd2=1;
-            rnd3=107;
-            rnd4=101;
+            rnd=9;
+            rnd2=13;
+            rnd3=109;
+            rnd4=113;
         }
-        else if(level<=50) //roman
+        else if(level<=50)
         {
             //10,7
-            rnd=2;
-            rnd2=1;
-            rnd3=102;
-            rnd4=101;
-
+            rnd=10;
+            rnd2=7;
+            rnd3=110;
+            rnd4=107;
         }
-        else if(level<=60) //indian
+        else if(level<=60)
         {
             // 5,2
+            rnd=2;
+            rnd2=5;
+            rnd3=102;
+            rnd4=105;
+        }
+        else if(level<=70)
+        {
+            //2,6
+            rnd=2;
+            rnd2=6;
+            rnd3=102;
+            rnd4=106;
+        }
+        else if(level<=80)
+        {
+            //14, 8
+            rnd=14;
+            rnd2=8;
+            rnd3=114;
+            rnd4=108;
+        }
+        else if(level<=90)
+        {
+            //4,9
+            rnd=4;
+            rnd2=9;
+            rnd3=104;
+            rnd4=109;
+        }
+        else
+        {
+            //5,14
             rnd=5;
             rnd2=14;
             rnd3=105;
             rnd4=114;
-        }
-        else if(level<=70) //viking
-        {
-            //2,6
-            rnd=9;
-            rnd2=14;
-            rnd3=109;
-            rnd4=114;
-        }
-        else if(level<=80) //chinese
-        {
-            //14, 8
-            rnd=2;
-            rnd2=3;
-            rnd3=102;
-            rnd4=103;
-        }
-        else if(level<=90) //medieval
-        {
-            //4,9
-            rnd=14;
-            rnd2=13;
-            rnd3=114;
-            rnd4=113;
-        }
-        else //arabian
-        {
-            //5,14
-            rnd=9;
-            rnd2=8;
-            rnd3=109;
-            rnd4=108;
         }
 
 
@@ -246,7 +245,7 @@ int main() {
             }
             else if(random <= 1000)
             {
-
+               
 
                 while(sizeSqaure*2<widthTemp && temp)
                 {
@@ -261,7 +260,7 @@ int main() {
             }
             else if(random <= 1020)
             {
-
+                
 
                 while(sizeSqaure < widthTemp/2 && temp)
                 {
@@ -283,7 +282,7 @@ int main() {
             }
             else if(random <= 1100)
             {
-
+                
 
 
                 while(sizeSqaure*2<widthTemp && temp)
@@ -300,7 +299,7 @@ int main() {
             }
             else if(random <= 1120)
             {
-
+               
 
                 while(sizeSqaure*2<widthTemp && temp)
                 {
