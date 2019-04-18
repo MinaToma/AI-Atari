@@ -66,11 +66,10 @@ public class NewPlayer extends JPanel {
         });
 
         setCursorImage(panel, pathCursor);
-        frame.getContentPane().
-
-                add(panel);
+        frame.getContentPane().add(panel);
         frame.setVisible(true);
     }
+
 
     @Override
     protected void paintComponent(Graphics g) {

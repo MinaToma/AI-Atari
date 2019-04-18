@@ -10,6 +10,8 @@ import java.awt.*;
 import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.*;
 
+import static atariCore.Helper.getImage;
+
 public class Settings extends atariCore.Settings {
 
 
@@ -43,4 +45,5 @@ public class Settings extends atariCore.Settings {
             Sound.Repeat(arkHelper.backgroundSplashSound);
         }
     }
+
 }
