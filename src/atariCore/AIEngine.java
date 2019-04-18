@@ -7,12 +7,14 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class AIEngine {
+abstract public class AIEngine {
 
-    private static ArrayList<Double> AIReward;
-    private static ArrayList<Double> AIInput;
+    static public CopyOnWriteArrayList<Double> rewards = new CopyOnWriteArrayList<>();
+    public static int slack = 0;
+    private static ArrayList<Float> AIReward;
+    private static ArrayList<Float> AIInput;
 
-    private AIEngine() {
+    public AIEngine() {
     }
 
     public static void startAI() throws IOException {
@@ -21,11 +23,11 @@ public class AIEngine {
         Process p = Runtime.getRuntime().exec(command);
     }
 
-    public static void initializeReward(ArrayList<Double> action) {
+    public static void initializeReward(ArrayList<Float> action) {
         AIReward = action;
     }
 
-    public static void initializeInput(ArrayList<Double> input) {
+    public static void initializeInput(ArrayList<Float> input) {
         AIInput = input;
     }
 
@@ -37,7 +39,7 @@ public class AIEngine {
 
     }
 
-    public String getDIR() {
+    static public String getDIR() {
 
         String Data = new String();
 
@@ -45,7 +47,7 @@ public class AIEngine {
             PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
 
             writer.println("predection");
-            for(Double val : AIInput)
+            for(Float val : AIInput)
                 writer.println(val);
 
             writer.close();
@@ -56,18 +58,18 @@ public class AIEngine {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(Data);
+
         return Data;
     }
 
-    public void train(CopyOnWriteArrayList<Double> y) {
+    static public void train() {
         try {
             PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
             writer.println("training");
-            writer.println(y.size());
+            writer.println(rewards.size());
 
-            for (int i = 0; i < y.size(); i++) {
-                writer.println(y.get(i));
+            for (int i = 0; i < rewards.size(); i++) {
+                writer.println(rewards.get(i));
             }
 
             writer.close();
@@ -87,9 +89,10 @@ public class AIEngine {
         } catch (Exception e) {
             System.out.println(e);
         }
+        rewards.clear();
     }
 
-    private String waitForPrediciton(String Data)
+    private static String waitForPrediciton(String Data)
     {
         try {
             FileReader fr = new FileReader("src/test/test.txt");

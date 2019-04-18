@@ -11,7 +11,7 @@ import java.util.Timer;
 import static atariCore.BaseObjectList.*;
 import static atariCore.Helper.*;
 
-abstract public class Game extends JPanel implements AtariKeyListener , MouseListener , MouseMotionListener {
+abstract public class Game extends JPanel implements AtariKeyListener, MouseListener, MouseMotionListener {
 
     protected Timer timer;
 
@@ -31,27 +31,34 @@ abstract public class Game extends JPanel implements AtariKeyListener , MouseLis
             @Override
             public void run() {
 
-                if(!Helper.running) {
+                if (!Helper.running) {
                     timer.cancel();
                     timer.purge();
                     return;
                 }
 
-                if(handler != null && !pause) {
-                    pressKey();
+                if (handler != null && !pause) {
+
+                    if (AIMode) {
+                        sendDataToAI();
+                    } else {
+                        pressKey();
+                    }
                     handler.tick();
                     revalidate();
                     repaint();
                     Toolkit.getDefaultToolkit().sync();
                 }
             }
-        } , Helper.DELAY, Helper.PERIOD);
+        }, Helper.DELAY, Helper.PERIOD);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
 
         requestFocusInWindow();
     }
+
+    abstract protected void sendDataToAI();
 
     @Override
     public void paintComponent(Graphics g) {
