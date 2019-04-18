@@ -56,6 +56,8 @@ public class Arkanoid extends atariCore.Game {
         setPaddle();
         setPlayer(namePlayer , level);
 
+        setPlayer(namePlayer , level);
+
         // /*FOR TESTING - to remove*/ player.setLevel(93);
         initializeLevels(player.getLevel());
     }

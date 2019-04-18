@@ -80,10 +80,6 @@ public class arkHelper extends Helper {
 	public static JLabel nextLevelImage;
     public static JLabel lossImage;
 
-
-
-
-
 	public arkHelper() {
 
 		paddle = new Image[3];
