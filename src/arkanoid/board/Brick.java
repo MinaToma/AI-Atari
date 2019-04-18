@@ -33,6 +33,7 @@ public class Brick extends BaseObject {
         else
             isSmallSquares = true;
         timer =0 ;
+//        this.power = 1 ;
     }
 
     public Brick(int xPostion, int yPostion, Image image,  int power,int color ,Capsule capsule , Player player) {
@@ -63,7 +64,7 @@ public class Brick extends BaseObject {
     public void moveDown()
     {
         timer=0;
-        super.y += getImageHeight()+3;
+//        super.y += getImageHeight()+3;
     }
 
     public void render(Graphics g) {

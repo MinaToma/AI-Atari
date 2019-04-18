@@ -1,10 +1,11 @@
 package arkanoid.capsule;
 
 import arkanoid.board.Paddle;
-import javafx.util.Pair;
 
-import java.awt.Graphics;
 import java.awt.*;
+import java.io.IOException;
+
+//import javafx.util.Pair;
 
 
 public class Break extends Capsule {
@@ -14,7 +15,7 @@ public class Break extends Capsule {
     }
 
     @Override
-    public void effect(Paddle p) {
+    public void effect(Paddle p) throws IOException {
 
         p.breakToNextLevel();
     }

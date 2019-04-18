@@ -1,7 +1,7 @@
 package arkanoid.capsule;
 
 import arkanoid.board.Paddle;
-import javafx.util.Pair;
+//import javafx.util.Pair;
 
 import java.awt.Graphics;
 import java.awt.*;

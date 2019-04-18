@@ -6,9 +6,8 @@ import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
 import atariCore.Handler;
 
-
 import java.awt.*;
-import java.util.ConcurrentModificationException;
+import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
@@ -30,7 +29,7 @@ public class Paddle extends BaseObject {
 
     }
 
-    public void tick() {
+    public void tick() throws IOException {
 
         x += velX;
 
@@ -70,7 +69,7 @@ public class Paddle extends BaseObject {
         shrink = false;
     }
 
-    private void updateCapsules() {
+    private void updateCapsules() throws IOException {
 
         for (Capsule c : capsules) {
 
@@ -81,7 +80,7 @@ public class Paddle extends BaseObject {
         }
     }
 
-    public void hitLaser() {
+    public void hitLaser() throws IOException {
 
         updateCapsules();
         Bullet bulletL = new Bullet(x, y, bullet, handler);
@@ -104,7 +103,7 @@ public class Paddle extends BaseObject {
         yBallSpeed = Math.max(-1, yBallSpeed + 0.5f);
     }
 
-    private void collision() {
+    private void collision() throws IOException {
 
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
         int numOfBricks = 0;
@@ -271,8 +270,7 @@ public class Paddle extends BaseObject {
             }
         }
     }
-    public void breakToNextLevel()
-    {
+    public void breakToNextLevel() throws IOException {
         player.setLevel(player.getLevel()+1);
     }
 }

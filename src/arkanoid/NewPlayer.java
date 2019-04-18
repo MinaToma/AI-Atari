@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class NewPlayer extends JFrame {
     String namePlayer;
@@ -40,7 +41,11 @@ public class NewPlayer extends JFrame {
                 if(textName.getText().length()>0 && textName.getText().length()<=20)
                 {
                     arkHelper.running = true;
-                    new Arkanoid(textName.getText());
+                    try {
+                        new Arkanoid(textName.getText());
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                     dispose();
                 }
 

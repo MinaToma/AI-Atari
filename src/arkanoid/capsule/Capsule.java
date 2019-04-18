@@ -4,6 +4,7 @@ import arkanoid.arkHelper;
 import arkanoid.board.Paddle;
 import atariCore.BaseObject;
 import java.awt.*;
+import java.io.IOException;
 
 import static arkanoid.arkHelper.*;
 
@@ -17,7 +18,7 @@ public abstract class Capsule extends BaseObject {
         this.life = life;
     }
 
-    public abstract void effect(Paddle p);
+    public abstract void effect(Paddle p) throws IOException;
 
     public boolean hit() {
         life--;

@@ -6,7 +6,7 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
-import java.rmi.MarshalException;
+import java.io.IOException;
 
 import static arkanoid.arkHelper.*;
 
@@ -14,6 +14,7 @@ public class Ball extends BaseObject {
 
     Handler handler;
     Player player;
+    public boolean train  = false;
 
     float xOffset = Math.abs(xBallSpeed) * 3 / 2;
     float yOffset = Math.abs(yBallSpeed) * 3 / 2;
@@ -25,7 +26,7 @@ public class Ball extends BaseObject {
     }
 
     @Override
-    public void tick() {
+    public void tick() throws IOException {
 
         y += velY;
         x += velX;
@@ -38,8 +39,15 @@ public class Ball extends BaseObject {
     }
 
     @Override
-    public void clamp() {
+    public void clamp() throws IOException {
+        if (train){
+            trainingCounter++;
+//                    if(trainingCounter%1 == 0) {
+            player.arkanoid.connection.train(player.arkanoid.y);
+            player.arkanoid.y.clear();
+            train = false ;
 
+        }
         if (arkHelper.screenWidth <= x + getImageWidth() ) velX = -1;
         if(x <= 0) velX = 1;
         if (y <= 0) velY *= -1;
@@ -52,12 +60,37 @@ public class Ball extends BaseObject {
             for (BaseObject o : handler.object)
                 if (o instanceof Ball)
                     add = false;
+            if(player.getNewLevel()){
+                trainingCounter++;
+//                    if(trainingCounter%1 == 0) {
+                player.arkanoid.connection.train(player.arkanoid.y);
+                player.arkanoid.y.clear();
+                player.setNewLevel(false);
+            }
 
             if (add)
             {
-               // System.out.println( y + " " + arkHelper.screenHeight);
+                if(!arkHelper.training) {
 
-                player.lostBall();
+                    player.lostBall();
+                }
+                else if(trainingCounter == trainingLimit) {
+                    System.exit(0);
+                }
+
+                else {
+                    trainingCounter++;
+//                    if(trainingCounter%1 == 0) {
+                    player.arkanoid.connection.train(player.arkanoid.y);
+                    player.arkanoid.y.clear();
+//                    }
+                    player.setScore(0);
+                    player.setLevel(1);
+
+                    return;
+
+                }
+
                 for (BaseObject o : handler.object)
                     if (o instanceof Capsule)
                         handler.removeObject(o);
@@ -91,6 +124,7 @@ public class Ball extends BaseObject {
                     if( o instanceof Brick)  {
                         if(o.getY()>=0) {
 
+                            System.out.println(((Brick)o).getPower());
                             if (((Brick) o).hit() || (img == acidBall)) {
 
                                 if (((Brick) o).capsule != null) {

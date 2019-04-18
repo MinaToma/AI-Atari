@@ -5,25 +5,22 @@ import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
-import atariCore.Leaderboards;
+import atariCore.Helper;
 
-import javax.imageio.ImageIO;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import static arkanoid.arkHelper.*;
-
 public class Arkanoid extends atariCore.Game {
 
-    Ball b;
-    Paddle p;
-    Player player;
+    public Ball b;
+    public Paddle p;
+    public Player player;
     int frameCounter = 0;
 
-    public Arkanoid(String namePlayer) {
+    public Arkanoid(String namePlayer) throws IOException {
 
         super("Arkanoid");
         arkHelper.setCursorImage(this, "src/Resources/image/yellowc2.png");
@@ -35,19 +32,20 @@ public class Arkanoid extends atariCore.Game {
         intialLevels(player.getLevel());
     }
 
-    public void captureFrame() throws IOException {
+    public void intialLevels(int level) throws IOException {
 
-        /*BufferedImage img = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
-        this.paint(img.getGraphics());
-        File outputfile = new File("SavedFrames/saved" + frameCounter + ".png");
-        ImageIO.write(img, "png", outputfile);
-        frameCounter++;
-        */
-    }
+        Random rand = new Random();
+        double start [] = {Helper.screenWidth * 0.1,Helper.screenWidth * 0.2,Helper.screenWidth * 0.3,Helper.screenWidth * 0.4 , Helper.screenWidth*0.5,Helper.screenWidth * 0.6 ,Helper.screenWidth*0.7,Helper.screenWidth * 0.8, Helper.screenWidth * 0.9 };
 
-    public void intialLevels(int level)
-    {
+
+        int n = Math.abs(rand.nextInt()%(9));
+        System.out.println(n);
         handler.object.clear();
+        n = Math.abs(rand.nextInt()%1200);
+        p.setX((float)start[0]);
+//        p.setX((float)(n));
+//        p.setX((Helper.screenWidth/2)-(p.getImageWidth()/2));
+        p.setVelX(0);
         handler.addObject(player);
         handler.addObject(p);
 
@@ -55,6 +53,8 @@ public class Arkanoid extends atariCore.Game {
         setEnemy();
         setBricks(level);
         setMusic();
+
+
 
     }
     private void setMusic()
@@ -110,11 +110,15 @@ public class Arkanoid extends atariCore.Game {
         }
         else if (key == KeyEvent.VK_SPACE) {
 
-            paddleClick();
+            try {
+                paddleClick();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
-    public void paddleClick() {
+    public void paddleClick() throws IOException {
         if(p.laser) {
 
             p.hitLaser();
@@ -133,7 +137,11 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
-        paddleClick();
+        try {
+            paddleClick();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

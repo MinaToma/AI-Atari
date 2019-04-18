@@ -4,7 +4,6 @@ import arkanoid.Arkanoid;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.FileInOut;
-import atariCore.Splash;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,16 +13,15 @@ import java.util.ArrayList;
 public class Player extends BaseObject {
 
     private int score;
+
     private String name;
     private int lives;
     public ArrayList<Paddle> paddle;
     public boolean start;
     private JPanel panel;
-    private Arkanoid arkanoid;
+    public Arkanoid arkanoid;
     private int level;
-    private int frameCounter = 0;
-    private int frameLimit = 50;
-
+    private boolean newLevel = false ;
     public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
         super(10 , 10 , null);
         this.name = Name;
@@ -34,7 +32,12 @@ public class Player extends BaseObject {
         this.arkanoid = arkanoid;
         this.level = 1;
 
+        if(arkHelper.training) {
+            this.lives = 0;
+        }
+
         score = 0;
+
         start = true;
     }
 
@@ -42,12 +45,18 @@ public class Player extends BaseObject {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(int level) throws IOException {
         this.level = level;
         arkanoid.intialLevels(level);
-
+        if(level!=1)
+            this.newLevel = true;
     }
-
+    public void setNewLevel(boolean newLevel1) {
+        this.newLevel = newLevel1;
+    }
+    public boolean getNewLevel(){
+        return newLevel;
+    }
     public void lostBall() {
         lives--;
 
@@ -61,8 +70,6 @@ public class Player extends BaseObject {
         FileInOut fileInOut = new FileInOut();
         fileInOut.addNewScoreToLeadboard(arkHelper.pathLeaderboaeds,name,score,level);
         arkHelper.running = false;
-
-        new arkanoid.menu.Splash();
     }
 
     public void setLives(int lives) {
@@ -74,7 +81,9 @@ public class Player extends BaseObject {
     }
 
     public void setScore(int score) {
+
         this.score = score;
+
     }
 
     public void increaseScore(int add) {
@@ -85,19 +94,10 @@ public class Player extends BaseObject {
         return score;
     }
 
+
+
     @Override
     public void tick() {
-
-        if(frameCounter + 1 >= frameLimit) {
-            try {
-                arkanoid.captureFrame();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        frameCounter = (frameCounter += 1) % frameLimit;
-        System.out.println(frameCounter);
     }
 
     public void render(Graphics g) {

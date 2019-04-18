@@ -2,6 +2,7 @@ package atariCore;
 
 
 import java.awt.*;
+import java.io.IOException;
 
 abstract public class BaseObject {
 
@@ -52,7 +53,7 @@ abstract public class BaseObject {
         return img;
     }
 
-    public void clamp() {
+    public void clamp() throws IOException {
 
         x = Math.min(x , Helper.screenWidth - imageWidth);
         x = Math.max(x , 0);
@@ -101,7 +102,7 @@ abstract public class BaseObject {
         return new Rectangle((int)x, (int)y, imageWidth, imageHeight);
     }
 
-    public abstract void tick();
+    public abstract void tick() throws IOException;
 
     public abstract void render(Graphics g);
 }

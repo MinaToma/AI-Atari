@@ -1,17 +1,15 @@
 package atariCore;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import arkanoid.arkHelper.*;
-
-import static arkanoid.arkHelper.bullet;
 
 public class Handler {
 
     public CopyOnWriteArrayList<BaseObject> object = new CopyOnWriteArrayList<>();
 
-    public void tick() {
+    public void tick() throws IOException {
 
         for (BaseObject o : object) {
 
