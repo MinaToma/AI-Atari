@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 import arkanoid.arkHelper.*;
 
+import static arkanoid.arkHelper.pathCursor;
 import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.*;
 
@@ -41,12 +42,12 @@ public class NewPlayer extends JPanel {
         textName = new JTextField(20);
         textName.setFont((arkHelper.font));
         textName.setHorizontalAlignment(JTextField.CENTER);
-        textName.setForeground(new Color(234, 156, 68));
-        textName.setBackground(new Color(23, 28, 40));
+        textName.setForeground(buttonBackgroundColor);
+        textName.setBackground(foregroundColor);
 
         labelName.setFont(arkHelper.font);
 
-        labelName.setForeground(new Color(234, 156, 68));
+        labelName.setForeground(buttonBackgroundColor);
 
         setLayout(null);
         labelName.setBounds(screenWidth / 3 - 50, 80, screenWidth / 3 - 50 + 710, 300);
@@ -74,7 +75,7 @@ public class NewPlayer extends JPanel {
             }
         });
 
-        setCursorImage(panel, "src/Resources/Images/yellowc2.png");
+        setCursorImage(panel, pathCursor);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
     }
@@ -83,6 +84,6 @@ public class NewPlayer extends JPanel {
     @Override
     protected void paintComponent (Graphics g){
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/splash.png", 1), 0, 0, null);
+        g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
     }
 }
