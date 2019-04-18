@@ -51,6 +51,7 @@ public class Arkanoid extends atariCore.Game {
         p.reset();
         p.speedNormal();
 
+
         setBackGround();
         setBricks(level);
         handler.addObject(playerList, player);

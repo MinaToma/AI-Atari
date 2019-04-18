@@ -56,7 +56,6 @@ public class Splash extends atariCore.Splash {
 
         new arkHelper();
         new ObjectList();
-
         new Splash();
     }
 }
