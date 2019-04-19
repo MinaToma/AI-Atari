@@ -38,4 +38,8 @@ import java.io.File;
     {
         p.stop();
     }
+    public static void Repeat(MP3Player p)
+    {
+        p.setRepeat(true);
+    }
 }
