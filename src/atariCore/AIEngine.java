@@ -44,7 +44,7 @@ abstract public class AIEngine {
         String Data = new String();
 
         try {
-            PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("src/AI-Interaction/interaction.txt", "UTF-8");
 
             writer.println("predection");
             for(Float val : AIInput)
@@ -64,7 +64,7 @@ abstract public class AIEngine {
 
     static public void train() {
         try {
-            PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("src/AI-Interaction/interaction.txt", "UTF-8");
             writer.println("training");
             writer.println(rewards.size());
 
@@ -83,7 +83,7 @@ abstract public class AIEngine {
             Data = waitForPrediciton(Data);
 
         try {
-            PrintWriter writer = new PrintWriter("src/test/test.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("src/AI-Interaction/interaction.txt", "UTF-8");
             writer.println("");
             writer.close();
         } catch (Exception e) {
@@ -95,7 +95,7 @@ abstract public class AIEngine {
     private static String waitForPrediciton(String Data)
     {
         try {
-            FileReader fr = new FileReader("src/test/test.txt");
+            FileReader fr = new FileReader("src/AI-Interaction/interaction.txt");
             BufferedReader br = new BufferedReader(fr);
 
             Data = br.readLine();

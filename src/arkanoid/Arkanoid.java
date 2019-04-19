@@ -64,8 +64,12 @@ public class Arkanoid extends atariCore.Game {
         setBall();
         setEnemy();
 
-        if(AIMode)
-            p.setVelX(arkHelper.screenHeight * 0.1f);
+        if (AIMode)
+        {
+            p.setX(arkHelper.screenHeight * 0.1f);
+            paddleClick();
+        }
+
     }
 
     private void setBackGround() {

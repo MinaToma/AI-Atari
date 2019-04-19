@@ -78,7 +78,7 @@ public class Player extends BaseObject {
             new arkanoid.menu.Splash();
         } else {
 
-            arkAIEngine.train();
+            //arkAIEngine.train();
             setScore(0);
             setPreviousScore(0);
             arkanoid.initializeLevels(1);
