@@ -20,6 +20,7 @@ import java.io.File;
 
         return newClip;
     }
+
     public static void Play(MP3Player p, boolean thrd)
     {
         if(thrd  == true) {

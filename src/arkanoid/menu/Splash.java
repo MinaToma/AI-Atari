@@ -20,8 +20,8 @@ import static atariCore.Helper.*;
 public class Splash extends atariCore.Splash {
 
     public Splash() {
-        super("Arkanoid", "src/Resources/Fonts/Cowboys.otf");
-        arkHelper.setCursorImage(panel, "src/Resources/Images/yellowc2.png");
+        super("Arkanoid", "src/Resources/Fonts/joystix monospace.ttf");
+        arkHelper.setCursorImage(panel, pathCursor);
 
 
         for(int i=0 ; i<10 ; i++)
@@ -34,6 +34,11 @@ public class Splash extends atariCore.Splash {
         newGameButton.addActionListener(e -> {
 
             new NewPlayer();
+        });
+
+        settingsButton.addActionListener(e -> {
+
+            new Settings();
         });
 
         AIButton.addActionListener(e -> {
