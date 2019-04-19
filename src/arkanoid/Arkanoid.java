@@ -26,6 +26,21 @@ public class Arkanoid extends atariCore.Game {
 
     public Arkanoid(String namePlayer) {
 
+        /*
+         *
+         * 1 stone-age ok
+         * 2 pharaohs ok
+         * 3 aztec ok
+         * 4 greek ok
+         * 5 roman ok
+         * 6 indian ok
+         * 7 viking ok
+         * 8 chinese ok
+         * 9 medieval ok
+         * 10 arabian
+         *
+         * */
+
         super("Arkanoid");
 
         try {
@@ -36,10 +51,11 @@ public class Arkanoid extends atariCore.Game {
         }
 
         initKeys();
-        arkHelper.setCursorImage(this, "src/Resources/Images/yellowc2.png");
+        arkHelper.setCursorImage(this, pathCursor);
         setPaddle();
         setPlayer(namePlayer);
 
+        // /*FOR TESTING - to remove*/ player.setLevel(93);
         initializeLevels(player.getLevel());
     }
 
@@ -55,6 +71,7 @@ public class Arkanoid extends atariCore.Game {
         backgroundList.clear();
         p.reset();
         p.speedNormal();
+
 
         setBackGround();
         setBricks(level);
@@ -98,13 +115,8 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setPaddle() {
-
-        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
-        handler.addObject(paddleList, p);
-
-        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
-        handler.addObject(paddleList, p);
-
+        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0,  player);
+        handler.addObject(paddleList , p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {

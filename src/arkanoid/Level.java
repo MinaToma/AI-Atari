@@ -48,7 +48,7 @@ public class Level {
             capsule.add(x);
         }
 
-        int indexOfCapsul = 0;
+        int indexOfCapsule = 0;
         Collections.sort(capsule);
         numberOfCapsules = capsule.size();
 
@@ -59,7 +59,7 @@ public class Level {
                 continue;
             }
             for (int x : arrayList) {
-                if ( x > 0 && x<100) {
+                if (x > 0 && x < 100) {
                     sumOfWidth += arkHelper.normalBricks[0].getWidth(null);
                 } else {
                     sumOfWidth += arkHelper.smallSquares[0].getWidth(null);
@@ -70,28 +70,28 @@ public class Level {
 
             for (int x : arrayList) {
                 if (x > 0 && x < 100) {
-                    if (index == capsule.get(indexOfCapsul)) {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[x-1], 2, (x - 1) , getCaps(Math.abs(random.nextInt() % 16 + 1)), player);
-                        indexOfCapsul++;
-                        indexOfCapsul %= numberOfCapsules;
+                    if (index == capsule.get(indexOfCapsule)) {
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[x - 1], 2, (x - 1), getCaps(Math.abs(random.nextInt() % 16 + 1)), player);
+                        indexOfCapsule++;
+                        indexOfCapsule %= numberOfCapsules;
                     } else {
-                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1) ], 2, (x - 1) , player);
+                        bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.normalBricks[(x - 1)], 2, (x - 1), player);
                     }
                     initialWidth += arkHelper.normalBricks[0].getWidth(null);
 
-                    handler.addObject(brickList , bricks[index]);
+                    handler.addObject(brickList, bricks[index]);
                     index++;
                 } else if (x >= 101) {
-                    if (index == capsule.get(indexOfCapsul)) {
+                    if (index == capsule.get(indexOfCapsule)) {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 101], 1, x - 101, getCaps(Math.abs(random.nextInt() % 16 + 1)), player);
-                        indexOfCapsul++;
-                        indexOfCapsul %= numberOfCapsules;
+                        indexOfCapsule++;
+                        indexOfCapsule %= numberOfCapsules;
                     } else {
                         bricks[index] = new Brick(initialWidth, initialHeight, arkHelper.smallSquares[x - 101], 1, x - 101, player);
                     }
 
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);
-                    handler.addObject(brickList , bricks[index]);
+                    handler.addObject(brickList, bricks[index]);
                     index++;
                 } else {
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);
@@ -126,21 +126,15 @@ public class Level {
             return new Fire(0, 0, 5000, arkHelper.capsuleFireBall);
         } else if (ID == 11) {
             return new Life(0, 0, 0, arkHelper.life);
-        }
-        else if (ID == 12) {
+        } else if (ID == 12) {
             return new Shrink(0, 0, 5000, arkHelper.capsuleShrink);
-        }
-        else if (ID == 13) {
+        } else if (ID == 13) {
             return new Catch(0, 0, 0, arkHelper.capsuleCatch);
-        }
-        else if (ID == 14) {
+        } else if (ID == 14) {
             return new Vaus(0, 0, 0, arkHelper.capsuleVaus);
-        }
-        else if(ID == 15)
-        {
-            return new Fast(0,0,0,arkHelper.capsuleFast);
-        }
-        else
+        } else if (ID == 15) {
+            return new Fast(0, 0, 0, arkHelper.capsuleFast);
+        } else
             return new Slow(0, 0, 0, arkHelper.capsuleSlow);
     }
 }

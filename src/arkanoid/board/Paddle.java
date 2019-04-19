@@ -1,5 +1,3 @@
-
-
 package arkanoid.board;
 
 import arkanoid.capsule.*;
