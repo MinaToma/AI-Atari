@@ -80,8 +80,7 @@ public class Brick extends BaseObject {
 
         if (getY() >= 0) {
          if (!AIMode) {
-
-                Sound.Play(hitSound,true);
+             hitSound();
             }
 
             if (hit()) {

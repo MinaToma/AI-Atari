@@ -71,8 +71,7 @@ public class arkHelper extends Helper {
 	public static arkFile arkfile;
 
 
-	public static MP3Player laserSound;
-	public static MP3Player hitSound;
+
 	public static MP3Player backgroundSplashSound;
 	public static MP3Player[] backgroundGameSound;
 	public static MP3Player lossSound;
@@ -97,8 +96,7 @@ public class arkHelper extends Helper {
 	}
 	private void setSound()
 	{
-		laserSound = Sound.setSound("src/Resources/Sounds/laser.mp3");
-		hitSound = Sound.setSound("src/Resources/Sounds/hit.mp3");
+
 		backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
 		lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
 		backgroundGameSound = new MP3Player[10];
@@ -108,6 +106,16 @@ public class arkHelper extends Helper {
 			backgroundGameSound[i-1] = Sound.setSound("src/Resources/Sounds/BackgroundGame/"+i+".mp3");
 		}
 	}
+	public static void laserSound()
+    {
+        MP3Player player = Sound.setSound("src/Resources/Sounds/laser.mp3");
+        Sound.Play(player,true);
+    }
+    public static void hitSound()
+    {
+        MP3Player player = Sound.setSound("src/Resources/Sounds/hit.mp3");
+        Sound.Play(player,true);
+    }
 
 	private void loadImages() {
 		pathCursor = "src/Resources/Images/yellowc2.png";

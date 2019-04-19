@@ -90,7 +90,8 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-        Sound.Play(laserSound,true);
+
+        laserSound();
     }
 
     public void speedUp() {
