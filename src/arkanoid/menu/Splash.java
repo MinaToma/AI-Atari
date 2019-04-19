@@ -52,6 +52,10 @@ public class Splash extends atariCore.Splash {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            catch(NullPointerException ex)
+            {
+                ex.printStackTrace();
+            }
 
             new Arkanoid("AI-Player");
         });

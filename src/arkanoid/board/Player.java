@@ -1,6 +1,7 @@
 package arkanoid.board;
 
 import arkanoid.Arkanoid;
+import arkanoid.arkAIEngine;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.Sound;
@@ -22,9 +23,10 @@ public class Player extends BaseObject {
     private JPanel panel;
     private Arkanoid arkanoid;
     private int level;
+    private int previousScore;
 
-    public Player(String Name, int lives, Paddle paddle , JPanel panel , Arkanoid arkanoid) {
-        super(10 , 10 , null);
+    public Player(String Name, int lives, Paddle paddle, JPanel panel, Arkanoid arkanoid) {
+        super(10, 10, null);
         this.name = Name;
         this.lives = lives;
         this.paddle = new ArrayList<>();
@@ -33,6 +35,7 @@ public class Player extends BaseObject {
         this.arkanoid = arkanoid;
         this.level = 1;
 
+        previousScore = 0;
         score = 0;
         start = true;
     }
@@ -43,9 +46,8 @@ public class Player extends BaseObject {
 
     public void setLevel(int level) {
         this.level = level;
-        if(level%10==1)
-        {
-            Sound.Stop(arkHelper.backgroundGameSound[(level-1)/10]);
+        if (level % 10 == 1) {
+            Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
         }
         arkanoid.initializeLevels(level);
     }
@@ -53,7 +55,7 @@ public class Player extends BaseObject {
     public boolean lostBall() {
         lives--;
 
-        if(lives < 0) {
+        if (lives < 0) {
 
             die();
         }
@@ -61,22 +63,24 @@ public class Player extends BaseObject {
         return lives >= 0;
     }
 
-    public void die()
-    {
-        arkHelper.arkfile.addNewScoreToLeadboard(arkHelper.pathLeaderboards,name,score,level);
+    public void die() {
+        arkHelper.arkfile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
 
-        if(!AIMode) {
+        if (!AIMode) {
             arkHelper.running = false;
-            Sound.Stop(arkHelper.backgroundGameSound[(level-1)/10]);
-            Sound.Play(arkHelper.lossSound,true);
+            Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
+            Sound.Play(arkHelper.lossSound, true);
             try {
                 TimeUnit.SECONDS.sleep(10);
-            }catch (Exception e)
-            {
+            } catch (Exception e) {
 
             }
             new arkanoid.menu.Splash();
         } else {
+
+            //arkAIEngine.train();
+            setScore(0);
+            setPreviousScore(0);
             arkanoid.initializeLevels(1);
         }
     }
@@ -103,9 +107,8 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
-        if(arkHelper.backgroundGameSound[(level-1)/10].isStopped())
-        {
-            Sound.Play(arkHelper.backgroundGameSound[(level-1)/10],false);
+        if (arkHelper.backgroundGameSound[(level - 1) / 10].isStopped()) {
+            Sound.Play(arkHelper.backgroundGameSound[(level - 1) / 10], false);
         }
     }
 
@@ -158,5 +161,13 @@ public class Player extends BaseObject {
 
             initialHeight += arkHelper.life.getHeight(null) + 2;
         }
+    }
+
+    public int getPreviousScore() {
+        return previousScore;
+    }
+
+    public void setPreviousScore(int previousScore) {
+        this.previousScore = previousScore;
     }
 }

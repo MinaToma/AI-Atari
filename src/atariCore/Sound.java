@@ -7,7 +7,6 @@ import java.io.File;
 
  public class Sound {
 
-
     public static MP3Player setSound(String path) {
 
         MP3Player newClip = null;
@@ -34,12 +33,9 @@ import java.io.File;
         }
         else
             p.play();
-
     }
     public static void Stop(MP3Player p)
     {
         p.stop();
     }
-
-
 }
