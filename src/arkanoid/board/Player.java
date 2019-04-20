@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static atariCore.Helper.AIMode;
+import static atariCore.Helper.frame;
 
 public class Player extends BaseObject {
 
@@ -24,6 +25,7 @@ public class Player extends BaseObject {
     private Arkanoid arkanoid;
     private int level;
     private int previousScore;
+
 
     public Player(String Name, int lives, Paddle paddle, JPanel panel, Arkanoid arkanoid) {
         super(10, 10, null);
@@ -45,6 +47,24 @@ public class Player extends BaseObject {
     }
 
     public void setLevel(int level) {
+
+        if(score>0 && !AIMode) {
+            Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
+            panel.add(arkHelper.nextLevelImage);
+            frame.setVisible(true);
+            Sound.Play(arkHelper.winSound, true);
+
+            try {
+                TimeUnit.SECONDS.sleep(8);
+            } catch (Exception e) {
+
+            }
+
+            panel.remove(arkHelper.nextLevelImage);
+            frame.setVisible(true);
+
+            panel.requestFocusInWindow();
+        }
         this.level = level;
         if (level % 10 == 1) {
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
@@ -68,8 +88,15 @@ public class Player extends BaseObject {
 
         if (!AIMode) {
             arkHelper.running = false;
+
+
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
+            frame.getContentPane().remove(panel);
+            panel.add(arkHelper.lossImage);
+            frame.getContentPane().add(panel);
+            frame.setVisible(true);
             Sound.Play(arkHelper.lossSound, true);
+
             try {
                 TimeUnit.SECONDS.sleep(10);
             } catch (Exception e) {

@@ -4,6 +4,7 @@ import atariCore.Helper;
 import atariCore.Sound;
 import jaco.mp3.player.MP3Player;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class arkHelper extends Helper {
@@ -75,6 +76,11 @@ public class arkHelper extends Helper {
 	public static MP3Player backgroundSplashSound;
 	public static MP3Player[] backgroundGameSound;
 	public static MP3Player lossSound;
+    public static MP3Player winSound;
+
+	public static JLabel nextLevelImage;
+    public static JLabel lossImage;
+
 
 	public arkHelper() {
 
@@ -93,12 +99,26 @@ public class arkHelper extends Helper {
 		setHUDFont();
 		setButtonBackgroundColor(new Color(0x543131));
 		setForegroundColor(new Color(0xe3d3c3));
+		setLoseAndWinImage();
 	}
+	private void setLoseAndWinImage()
+    {
+        ImageIcon icon = new ImageIcon("src/Resources/Images/dance.gif");
+        nextLevelImage = new JLabel(icon);
+        nextLevelImage.setBounds(screenWidth/2-icon.getImage().getWidth(null)/2,screenHeight/2 - icon.getImage().getHeight(null)/2,icon.getImage().getWidth(null),icon.getImage().getHeight(null));
+        icon = new ImageIcon(pathImage + "sad.gif");
+        lossImage = new JLabel(icon);
+
+        lossImage.setBounds(screenWidth/2-icon.getImage().getWidth(null)/2,screenHeight/2 - icon.getImage().getHeight(null)/2,icon.getImage().getWidth(null),icon.getImage().getHeight(null));
+
+
+    }
 	private void setSound()
 	{
 
 		backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
 		lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
+		winSound = Sound.setSound("src/Resources/Sounds/nextLevel.mp3");
 		backgroundGameSound = new MP3Player[10];
 
 		for(int i=1 ; i<=10; i++)

@@ -321,9 +321,9 @@ public class Paddle extends BaseObject {
                 ((Capsule) o).removeEffect(this);
                 handler.removeObject(currentCapsuleList, o);
             }
-            /*else {
+            else {
                 ((Capsule) o).effect(this);
-            }*/
+            }
         }
     }
 
