@@ -56,6 +56,8 @@ public class Arkanoid extends atariCore.Game {
         setPaddle();
         setPlayer(namePlayer , level);
 
+        setPlayer(namePlayer , level);
+
         // /*FOR TESTING - to remove*/ player.setLevel(93);
         initializeLevels(player.getLevel());
     }
@@ -72,8 +74,6 @@ public class Arkanoid extends atariCore.Game {
         backgroundList.clear();
         p.reset();
         p.speedNormal();
-
-
 
         handler.addObject(playerList, player);
         handler.addObject(paddleList, p);
@@ -130,7 +130,7 @@ public class Arkanoid extends atariCore.Game {
 
     public void setSounds() {
 
-        if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped()) {
+        if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped() && music) {
             Sound.Play(backgroundGameSound[(player.getLevel() - 1) / 10], false);
         }
 

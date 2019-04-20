@@ -34,6 +34,7 @@ public class Settings extends JPanel {
     protected void switchSoundsState() {
         Helper.sounds = !Helper.sounds;
         soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
+
     }
 
     protected void switchMusicState() {
@@ -117,9 +118,7 @@ public class Settings extends JPanel {
     private void setDesign() {
 
         int posX = (int) (screenWidth / 3.5), posY = 152, offset = 20;
-
         setLayout(null);
-
         setBackground(backgroundColor);
         setForeground(foregroundColor);
 
