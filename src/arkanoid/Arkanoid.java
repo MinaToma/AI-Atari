@@ -130,7 +130,7 @@ public class Arkanoid extends atariCore.Game {
 
     public void setSounds() {
 
-        if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped()) {
+        if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped() && music) {
             Sound.Play(backgroundGameSound[(player.getLevel() - 1) / 10], false);
         }
 

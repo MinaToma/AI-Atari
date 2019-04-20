@@ -66,7 +66,7 @@ public class arkHelper extends Helper {
 	public static String pathImage = "src/Resources/Images/";
 	public static String pathLevel = "src/Resources/Files/levels.txt";
 	public static String pathLeaderboards = "src/Resources/Files/Leaderboards.txt";
-	// public static Image backgroundImage ;
+
 	public static Image[] backgroundImage;
 	public static int numberOfBricks = 2;
 
@@ -77,6 +77,9 @@ public class arkHelper extends Helper {
 
 	public static JLabel nextLevelImage;
     public static JLabel lossImage;
+
+
+
 
 
 	public arkHelper() {

@@ -12,8 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import static atariCore.Helper.AIMode;
-import static atariCore.Helper.frame;
+import static atariCore.Helper.*;
 
 public class Player extends BaseObject {
 
@@ -136,7 +135,7 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
-        if (arkHelper.backgroundGameSound[(level - 1) / 10].isStopped()) {
+        if (arkHelper.backgroundGameSound[(level - 1) / 10].isStopped() && music) {
             Sound.Play(arkHelper.backgroundGameSound[(level - 1) / 10], false);
         }
     }

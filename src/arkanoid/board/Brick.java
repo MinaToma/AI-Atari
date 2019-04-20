@@ -79,7 +79,7 @@ public class Brick extends BaseObject {
     public void hitBrick() {
 
         if (getY() >= 0) {
-         if (!AIMode) {
+         if (!AIMode && sounds) {
              hitSound();
             }
 

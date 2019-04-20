@@ -90,7 +90,7 @@ public class Paddle extends BaseObject {
 
         handler.addObject(bulletList, bulletL);
         handler.addObject(bulletList, bulletR);
-
+        if(sounds)
         laserSound();
     }
 
