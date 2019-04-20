@@ -20,10 +20,8 @@ public class Helper {
     public static boolean pause = false;
     public static String fieldSeparator = "@@@";
     public static boolean AIMode = false;
-
     public static String controlsImages = "src/Resources/Images/controls/";
     public static String pathCursor;
-
     public static Image soundOnImage;
     public static Image soundOffImage;
     public static Image musicOnImage;
@@ -32,10 +30,9 @@ public class Helper {
     public static Image keyboardOffImage;
     public static Image mouseOnImage;
     public static Image mouseOffImage;
-
     public static int cursorScale = 3;
     public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
-
+    public static String filesPath = "src/Resources/Files/";
     //game colors
 
     public static Color backgroundColor;

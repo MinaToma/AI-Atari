@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class arkFile extends FileInOut {
 
-    public  ArrayList<ArrayList<Integer>> getLevel(String level , String path)
+    public static ArrayList<ArrayList<Integer>> getLevel(String level , String path)
     {
         ArrayList<ArrayList<Integer>> dim = new ArrayList<>();
         ArrayList<String> records = readFile(path);

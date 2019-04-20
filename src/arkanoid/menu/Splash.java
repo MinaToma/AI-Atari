@@ -23,10 +23,8 @@ public class Splash extends atariCore.Splash {
         super("Arkanoid", "src/Resources/Fonts/joystix monospace.ttf");
         arkHelper.setCursorImage(panel, pathCursor);
 
-
-        for(int i=0 ; i<10 ; i++)
-        {
-           arkHelper.backgroundGameSound[i].stop();
+        for (int i = 0; i < 10; i++) {
+            arkHelper.backgroundGameSound[i].stop();
         }
         if(arkHelper.backgroundSplashSound.isStopped())
         Sound.Play(arkHelper.backgroundSplashSound,false);
@@ -52,13 +50,11 @@ public class Splash extends atariCore.Splash {
                 AIEngine.startAI();
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }
-            catch(NullPointerException ex)
-            {
+            } catch (NullPointerException ex) {
                 ex.printStackTrace();
             }
 
-            new Arkanoid("AI-Player");
+            new Arkanoid("AI-Player" , 1 );
         });
     }
 

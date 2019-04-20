@@ -8,15 +8,14 @@ import static atariCore.Helper.getImage;
 public class Settings extends atariCore.Settings {
 
 
-    Settings()
-    {
-        backButton.addActionListener(e->{
+    Settings() {
+        backButton.addActionListener(e -> {
             new Splash();
         });
     }
 
     @Override
-    protected void paintComponent (Graphics g){
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
     }

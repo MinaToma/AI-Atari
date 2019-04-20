@@ -23,13 +23,7 @@ import java.io.File;
     public static void Play(MP3Player p, boolean thrd)
     {
         if(thrd  == true) {
-            Thread thread = new Thread() {
-                public void run() {
-                    p.play();
-                }
-
-            };
-            thread.start();
+            new Thread(() -> p.play()).run();
         }
         else
             p.play();

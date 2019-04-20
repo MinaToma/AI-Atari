@@ -68,9 +68,6 @@ public class arkHelper extends Helper {
 	// public static Image backgroundImage ;
 	public static Image[] backgroundImage;
 	public static int numberOfBricks = 2;
-	public static arkFile arkfile;
-
-
 
 	public static MP3Player backgroundSplashSound;
 	public static MP3Player[] backgroundGameSound;
@@ -87,7 +84,6 @@ public class arkHelper extends Helper {
 		backgroundImage = new Image[10];
 		enemy = new Image[6];
 
-		arkfile = new arkFile();
 		setSound();
 		loadImages();
 		setHUDFont();

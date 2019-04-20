@@ -2,6 +2,7 @@ package arkanoid.board;
 
 import arkanoid.Arkanoid;
 import arkanoid.arkAIEngine;
+import arkanoid.arkFile;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.Sound;
@@ -64,7 +65,8 @@ public class Player extends BaseObject {
     }
 
     public void die() {
-        arkHelper.arkfile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+        arkFile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+        arkFile.sendPlayerScore(name , level);
 
         if (!AIMode) {
             arkHelper.running = false;
@@ -78,7 +80,7 @@ public class Player extends BaseObject {
             new arkanoid.menu.Splash();
         } else {
 
-            //arkAIEngine.train();
+            arkAIEngine.train();
             setScore(0);
             setPreviousScore(0);
             arkanoid.initializeLevels(1);

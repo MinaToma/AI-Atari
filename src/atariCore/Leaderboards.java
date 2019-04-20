@@ -10,16 +10,10 @@ public class Leaderboards {
 
     public Leaderboards(String path) {
 
-
-
-
             getDataFromFile(path);
 
             // the sort is decreasing by level and by score
             Arrays.sort(record);
-
-
-
     }
 
     private void getDataFromFile(String path) {

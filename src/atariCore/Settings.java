@@ -6,7 +6,7 @@ import java.awt.*;
 import static arkanoid.arkHelper.pathCursor;
 import static atariCore.Helper.*;
 
-public class Settings extends JPanel{
+public class Settings extends JPanel {
 
     protected JButton musicButton, soundButton, mouseButton, keyboardButton, backButton;
     //private Dimension dim = new Dimension(screenWidth, screenHeight);
@@ -31,21 +31,21 @@ public class Settings extends JPanel{
         backButton = Helper.buttonHelper("Back", x, y, btnDim);
     }
 
-    protected void switchSoundsState(){
+    protected void switchSoundsState() {
         Helper.sounds = !Helper.sounds;
         soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
     }
 
-    protected void switchMusicState(){
+    protected void switchMusicState() {
         Helper.music = !Helper.music;
         musicButton.setIcon(new ImageIcon((Helper.music ? musicOnImage : musicOffImage)));
     }
 
-    protected void switchMouseState(){
+    protected void switchMouseState() {
         Helper.mouse = !Helper.mouse;
     }
 
-    protected void switchKeyboardState(){
+    protected void switchKeyboardState() {
         Helper.keyboard = !Helper.keyboard;
     }
 
@@ -97,26 +97,26 @@ public class Settings extends JPanel{
 
     private void setActions() {
 
-        musicButton.addActionListener(e->{
+        musicButton.addActionListener(e -> {
             switchMusicState();
         });
 
-        soundButton.addActionListener(e->{
+        soundButton.addActionListener(e -> {
             switchSoundsState();
         });
 
-        mouseButton.addActionListener(e->{
+        mouseButton.addActionListener(e -> {
             switchMouseState();
         });
 
-        keyboardButton.addActionListener(e->{
+        keyboardButton.addActionListener(e -> {
             switchKeyboardState();
         });
     }
 
     private void setDesign() {
 
-        int posX = (int)(screenWidth/3.5) , posY = 152, offset = 20;
+        int posX = (int) (screenWidth / 3.5), posY = 152, offset = 20;
 
         setLayout(null);
 
