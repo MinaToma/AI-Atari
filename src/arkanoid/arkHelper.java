@@ -38,8 +38,8 @@ public class arkHelper extends Helper {
 	public static Image[] paddleWeapon;
 	public static Image paddleShrunkWeapon;
 	public static Image paddleShrunk;
-	public static Image paddleExpanded;
-	public static Image paddleExpandedWeapon;
+	public static Image[] paddleExpanded;
+	public static Image[] paddleExpandedWeapon;
 	public static Image capsuleEmpty;
 	public static Image capsule50;
 	public static Image[] capsule100;
@@ -87,6 +87,8 @@ public class arkHelper extends Helper {
 		paddle = new Image[3];
 		capsule100 = new Image[7];
 		paddleWeapon = new Image[3];
+		paddleExpandedWeapon = new Image[3];
+		paddleExpanded = new Image[3];
 		normalBricks = new Image[14];
 		brokenBricks = new Image[14];
 		smallSquares = new Image[14];
@@ -177,15 +179,18 @@ public class arkHelper extends Helper {
 		for (int i = 53; i <= 55; i++) {
 			paddleWeapon[i - 53] = getImage(pathImage + i + "-Breakout-Tiles.png", paddleScale);
 		}
-
-		paddleExpanded = getImage(pathImage + "56-Breakout-Tiles.png", paddleScale);
+		for(int i=1 ; i<=3; i++){
+		paddleExpanded[i-1] = getImage(pathImage + "56-"+i+"-Breakout-Tiles.png", paddleScale);
+		}
 		paddleShrunk = getImage(pathImage + "57-Breakout-Tiles.png", paddleScale);
 		paddleShrunkWeapon = getImage(pathImage + "65-Breakout-Tiles.png", paddleScale);
 		ball = getImage(pathImage + "58-Breakout-Tiles.png", ballScale);
 		star = getImage(pathImage + "59-Breakout-Tiles.png", ballScale);
 		life = getImage(pathImage + "60-Breakout-Tiles.png", ballScale);
 		bullet = getImage(pathImage + "61-Breakout-Tiles.png", brickScale);
-		paddleExpandedWeapon = getImage(pathImage + "62-Breakout-Tiles.png", paddleScale);
+		for(int i=1 ; i<=3; i++){
+			paddleExpandedWeapon[i-1] = getImage(pathImage + "62-"+i+"-Breakout-Tiles.png", paddleScale);
+		}
 		fireBall = getImage(pathImage + "63-Breakout-Tiles.png", ballScale);
 		acidBall = getImage(pathImage + "64-Breakout-Tiles.png", ballScale);
 		capsuleCatch = getImage(pathImage + "66-Breakout-Tiles.png", capsuleScale);
