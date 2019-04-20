@@ -46,7 +46,7 @@ public class Player extends BaseObject {
     }
 
     public void setLevel(int level) {
-        this.level = level;
+        this.level = level ;
         if (level % 10 == 1) {
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
         }
