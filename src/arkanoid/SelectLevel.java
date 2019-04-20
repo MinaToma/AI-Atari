@@ -7,8 +7,6 @@ import javax.swing.*;
 
 import java.awt.*;
 
-import static arkanoid.arkHelper.lockImage;
-import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.*;
 
 /*
@@ -28,28 +26,19 @@ public class SelectLevel extends JPanel {
         panel.setBackground(backgroundColor);
 
         levels = new JButton[10];
-        int posX = (int)(screenWidth / 11.7), posY = screenHeight / 5, xoffset = 60, yoffset = 210;
-        Dimension dim = new Dimension(150, 150);
+        int posX = screenWidth / 7, posY = screenHeight / 4, offset = 100;
+        Dimension dim = new Dimension(250, 100);
 
         for (int i = 0; i < 10; i++) {
-            if(i <= level % 10  || era < level / 10 ){
-                levels[i] = buttonHelper("" + (i + 1), posX, posY, dim);
-                levels[i].setBackground(new Color(0xEA2D1113));
-                levels[i].setForeground(new Color(0xB0E6D6C4));
-            }
-            else{
-                levels[i] = buttonHelper(null, posX, posY, dim);
-                levels[i].setBackground(new Color(0x232323));
-                levels[i].setIcon(new ImageIcon(lockImage));
-                levels[i].setEnabled(false);
-            }
-            posX += dim.width + xoffset;
+            levels[i] = buttonHelper("" + (i + 1) , posX, posY, dim);
 
             if (i == 4) {
-                posY += yoffset;
+                posY += offset;
                 posX = screenWidth / 7;
 
             }
+
+            posX += dim.width + offset;
 
             int finalI = i;
             levels[i].addActionListener(e -> {
@@ -61,11 +50,5 @@ public class SelectLevel extends JPanel {
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
     }
 }

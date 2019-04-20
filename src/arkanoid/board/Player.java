@@ -46,6 +46,7 @@ public class Player extends BaseObject {
     }
 
     public void setLevel(int level) {
+<<<<<<< HEAD
 
         if(score>0 && !AIMode) {
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
@@ -66,6 +67,8 @@ public class Player extends BaseObject {
             panel.requestFocusInWindow();
             arkHelper.setLoseAndWinImage();
         }
+=======
+>>>>>>> parent of 3ff7ac5... updated select level panels and locked levels
         this.level = level;
         if (level % 10 == 1) {
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
