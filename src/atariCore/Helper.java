@@ -40,7 +40,7 @@ public class Helper {
     public static Color buttonBackgroundColor;
     public static Color HUDColor;
 
-    protected static boolean music, sounds, mouse, keyboard;
+    public static boolean music = true, sounds = true, mouse = true, keyboard = true;
 
     public Helper() {
         if (frame == null) {

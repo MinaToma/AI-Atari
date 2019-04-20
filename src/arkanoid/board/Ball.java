@@ -13,8 +13,8 @@ public class Ball extends BaseObject {
 
     Player player;
 
-    float xOffset = Math.abs(xBallSpeed) * 3 / 2;
-    float yOffset = Math.abs(yBallSpeed) * 3 / 2;
+    float xOffset = 3;
+    float yOffset = 3;
 
     public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Player player) {
         super(xPosition, yPosition, image, xVelocity, yVelocity);
@@ -46,16 +46,17 @@ public class Ball extends BaseObject {
             Paddle currPaddle = player.paddle.get(0);
 
             if (ballList.isEmpty()) {
-                if(player.lostBall()) {
+                if (player.lostBall()) {
                     for (BaseObject o : capsuleList)
                         handler.removeObject(capsuleList, o);
 
                     Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
 
-                    for (int i = 1; i < player.paddle.size(); i++) {
-                        handler.removeObject(paddleList , player.paddle.get(i));
-                        player.paddle.remove(player.paddle.get(i));
-                    }
+                    paddleList.clear();
+                    player.paddle.clear();
+
+                    paddleList.add(currPaddle);
+                    player.paddle.add(currPaddle);
 
                     for (BaseObject p : paddleList) {
                         ((Paddle) p).reset();
@@ -69,9 +70,6 @@ public class Ball extends BaseObject {
 
     private void collision() {
 
-        xOffset = Math.abs(xBallSpeed) * 3 / 2;
-        yOffset = Math.abs(yBallSpeed) * 3 / 2;
-
         for (BaseObject o : brickList)
             if (o.getRectangle().intersects(getRectangle())) {
                 if (image == fireBall)
@@ -82,6 +80,7 @@ public class Ball extends BaseObject {
                 if (image == ball || image == fireBall) {
                     setPosition(o);
                 }
+                break;
             }
 
         for (BaseObject o : enemyList)
@@ -102,11 +101,15 @@ public class Ball extends BaseObject {
         float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
         float hitUp = Math.abs(y + getImageHeight() - o.getY());
 
-        if ((hitLeft < xOffset && velX > 0) || (hitRight < xOffset && velX < 0)) {
+        System.out.println(hitRight + " " + hitLeft + " " + hitDown + " " + hitUp);
+        System.out.println(xOffset + " " + yOffset);
+
+        if ((hitLeft <= xOffset && velX > 0) || (hitRight <= xOffset && velX < 0)) {
             setVelX(velX * -1);
-        } else if ((hitUp < yOffset && velY > 0) || (hitDown < yOffset && velY < 0)) {
+        } else if ((hitUp <= yOffset && velY > 0) || (hitDown <= yOffset && velY < 0)) {
             setVelY(velY * -1);
-        }
+        } else
+            running = false;
     }
 
     @Override

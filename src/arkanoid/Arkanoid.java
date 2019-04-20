@@ -14,6 +14,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.security.interfaces.DSAPublicKey;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
@@ -73,10 +74,14 @@ public class Arkanoid extends atariCore.Game {
         p.speedNormal();
 
 
-        setBackGround();
-        setBricks(level);
+
         handler.addObject(playerList, player);
         handler.addObject(paddleList, p);
+        setBackGround();
+        setBricks(level);
+
+
+
         setSounds();
         setBall();
         setEnemy();
@@ -125,7 +130,7 @@ public class Arkanoid extends atariCore.Game {
 
     public void setSounds() {
 
-        if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped()) {
+        if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped() && music) {
             Sound.Play(backgroundGameSound[(player.getLevel() - 1) / 10], false);
         }
 
@@ -280,8 +285,11 @@ public class Arkanoid extends atariCore.Game {
 
         AIEngine.initializeInput(inputData);
 
+        System.out.println("before");
+
         String dir = AIEngine.getDIR();
 
+        System.out.println("after");
         if (dir.equals("right")) {
 
             p.setVelX(arkHelper.paddleSpeed);
