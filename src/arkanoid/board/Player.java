@@ -52,6 +52,7 @@ public class Player extends BaseObject {
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
             panel.add(arkHelper.nextLevelImage);
             frame.setVisible(true);
+            if(sounds)
             Sound.Play(arkHelper.winSound, true);
 
             try {
@@ -64,6 +65,7 @@ public class Player extends BaseObject {
             frame.setVisible(true);
 
             panel.requestFocusInWindow();
+            arkHelper.setLoseAndWinImage();
         }
         this.level = level;
         if (level % 10 == 1) {
@@ -103,6 +105,7 @@ public class Player extends BaseObject {
             } catch (Exception e) {
 
             }
+            arkHelper.setLoseAndWinImage();
             new arkanoid.menu.Splash();
         } else {
 

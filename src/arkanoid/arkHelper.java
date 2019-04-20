@@ -100,7 +100,7 @@ public class arkHelper extends Helper {
 		setForegroundColor(new Color(0xe3d3c3));
 		setLoseAndWinImage();
 	}
-	private void setLoseAndWinImage()
+	public static void setLoseAndWinImage()
     {
         ImageIcon icon = new ImageIcon("src/Resources/Images/dance.gif");
         nextLevelImage = new JLabel(icon);
