@@ -285,8 +285,11 @@ public class Arkanoid extends atariCore.Game {
 
         AIEngine.initializeInput(inputData);
 
+        System.out.println("before");
+
         String dir = AIEngine.getDIR();
 
+        System.out.println("after");
         if (dir.equals("right")) {
 
             p.setVelX(arkHelper.paddleSpeed);

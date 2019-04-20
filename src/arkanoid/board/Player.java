@@ -26,7 +26,6 @@ public class Player extends BaseObject {
     private int level;
     private int previousScore;
 
-
     public Player(String Name, int lives, Paddle paddle, JPanel panel, Arkanoid arkanoid) {
         super(10, 10, null);
         this.name = Name;

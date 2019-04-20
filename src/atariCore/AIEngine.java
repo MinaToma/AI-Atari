@@ -19,8 +19,8 @@ abstract public class AIEngine {
 
     public static void startAI() throws IOException {
 
-        String command = "/home/mina/anaconda3/bin/python src/AI-Python-Scripts/venv/java-python-interaction/interaction.py";
-        Process p = Runtime.getRuntime().exec(command);
+        //String command = "/home/mina/anaconda3/bin/python3 src/AI-Scripts/__main__.py";
+        //Process p = Runtime.getRuntime().exec(command);
     }
 
     public static void initializeReward(ArrayList<Float> action) {
@@ -44,9 +44,12 @@ abstract public class AIEngine {
         String Data = new String();
 
         try {
-            PrintWriter writer = new PrintWriter("src/AI-Interaction/interaction.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("src/Resources/AI-Interaction/interaction.txt", "UTF-8");
 
             writer.println("predection");
+
+            System.out.println("inside Dir");
+
             for(Float val : AIInput)
                 writer.println(val);
 
@@ -64,7 +67,7 @@ abstract public class AIEngine {
 
     static public void train() {
         try {
-            PrintWriter writer = new PrintWriter("src/AI-Interaction/interaction.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("src/Resources/AI-Interaction/interaction.txt", "UTF-8");
             writer.println("training");
             writer.println(rewards.size());
 
@@ -83,7 +86,7 @@ abstract public class AIEngine {
             Data = waitForPrediciton(Data);
 
         try {
-            PrintWriter writer = new PrintWriter("src/AI-Interaction/interaction.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter("src/Resources/AI-Interaction/interaction.txt", "UTF-8");
             writer.println("");
             writer.close();
         } catch (Exception e) {
@@ -95,9 +98,11 @@ abstract public class AIEngine {
     private static String waitForPrediciton(String Data)
     {
         try {
-            FileReader fr = new FileReader("src/AI-Interaction/interaction.txt");
+            FileReader fr = new FileReader("src/Resources/AI-Interaction/interaction.txt");
             BufferedReader br = new BufferedReader(fr);
 
+
+            System.out.println("inside wait");
             Data = br.readLine();
             br.close();
             fr.close();
