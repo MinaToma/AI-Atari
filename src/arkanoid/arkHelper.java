@@ -15,6 +15,7 @@ public class arkHelper extends Helper {
     public static int brickScale = 3;
     public static int capsuleScale = 5;
 
+    public static float ballSpeed = 2f;
     public static final int INIT_BRICKS_HEIGHT = screenHeight * 40 / 100;
     public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
     public static final int INIT_PADDLE_Y = screenHeight * 85 / 100;
@@ -22,10 +23,6 @@ public class arkHelper extends Helper {
     public static final int INIT_BALL_Y = screenHeight * 82 / 100;
     public static int BRICKHITREWARD = 10;
     public static float paddleSpeed = 5;
-    public static float initBallXSpeed = 1f;
-    public static float initBallYSpeed = -2f;
-    public static float xBallSpeed = 1f;
-    public static float yBallSpeed = -2f;
     public static float capsuleSpeed = 1;
     public static float baseEnemyXSpeed = .1f;
     public static float baseEnemyYSpeed = .1f;
@@ -105,15 +102,12 @@ public class arkHelper extends Helper {
 
     public static void setLoseAndWinImage() {
         Random r = new Random();
-        ImageIcon icon = new ImageIcon("src/Resources/Images/dance/dance"+Math.abs( r.nextInt()%8 + 1)+".gif");
+        ImageIcon icon = new ImageIcon("src/Resources/Images/dance/dance"+(Math.abs( r.nextInt())%8+1)+".gif");
         nextLevelImage = new JLabel(icon);
         nextLevelImage.setBounds(screenWidth / 2 - icon.getImage().getWidth(null) / 2, screenHeight / 2 - icon.getImage().getHeight(null) / 2, icon.getImage().getWidth(null), icon.getImage().getHeight(null));
         icon = new ImageIcon(pathImage + "sad.gif");
         lossImage = new JLabel(icon);
-
         lossImage.setBounds(screenWidth / 2 - icon.getImage().getWidth(null) / 2, screenHeight / 2 - icon.getImage().getHeight(null) / 2, icon.getImage().getWidth(null), icon.getImage().getHeight(null));
-
-
     }
 
     private void setSound() {

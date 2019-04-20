@@ -46,8 +46,8 @@ public class Paddle extends BaseObject {
                 Ball ball = (Ball) o;
                 ball.setVelX(0);
 
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), xBallSpeed, ball.getVelY(), player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -xBallSpeed, ball.getVelY(), player);
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), ballSpeed * (float)Math.cos(Math.PI * 45 / 180) , ball.getVelY(), player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -ballSpeed * (float)Math.cos(Math.PI * 45 / 180) , ball.getVelY(), player);
 
                 handler.addObject(ballList, newBallL);
                 handler.addObject(ballList, newBallR);
@@ -95,20 +95,17 @@ public class Paddle extends BaseObject {
     }
 
     public void speedUp() {
-        xBallSpeed = Math.min(4, xBallSpeed + 0.5f);
-        yBallSpeed = Math.max(-4, yBallSpeed - 0.5f);
+        ballSpeed = Math.max(ballSpeed + 0.1f , 4);
 
     }
 
     public void speedDown() {
 
-        xBallSpeed = Math.max(1, xBallSpeed - 0.5f);
-        yBallSpeed = Math.min(-1, yBallSpeed + 0.5f);
+        ballSpeed = Math.min(ballSpeed - 0.1f , 1);
     }
 
     public void speedNormal() {
-        xBallSpeed = initBallXSpeed;
-        yBallSpeed = initBallYSpeed;
+        ballSpeed = 2;
     }
 
     private void setEnemy() {
@@ -135,24 +132,17 @@ public class Paddle extends BaseObject {
         for (BaseObject o : ballList) {
 
             if (o.getRectangle().intersects(getRectangle())) {
-                if (sticky) {
 
-                    o.setVelX(0);
-                    o.setVelY(0);
-                    continue;
-                }
+                if(y >= o.getY()) {
 
-                o.setVelY(yBallSpeed);
+                    if (sticky) {
 
-                int dir = (o.getVelX() > 0) ? 1 : -1;
+                        o.setVelX(0);
+                        o.setVelY(0);
+                        continue;
+                    }
 
-                if (getVelX() == 0) {
-
-                    o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
-                } else {
-
-                    dir = (getVelX() < 0) ? -1 : 1;
-                    o.setVelX(dir * Math.abs(getNewVx(o.getX() + o.getImageWidth() / 2)));
+                    setBallSpeed(o);
                 }
             }
         }
@@ -197,13 +187,18 @@ public class Paddle extends BaseObject {
         }
     }
 
-    public float getNewVx(float currX) {
+    private void setBallSpeed(BaseObject o) {
 
-        float distFromCenter = (x + getImageWidth() / 2 - currX);
+        float _x = o.getX();
+        int dir = (o.getX() >= getX() + getImageWidth() / 2f) ? 1 : -1;
+
+        float distFromCenter = (x + getImageWidth() / 2 - _x);
         distFromCenter /= getImageWidth() / 2;
-        float newVX = xBallSpeed * distFromCenter;
 
-        return newVX;
+        float newVX = ballSpeed * (float)Math.sin(Math.abs(distFromCenter));
+        float newVY = ballSpeed * (float)Math.cos(Math.abs(distFromCenter));
+
+        ((Ball)o).setSpeed(dir * newVX , -newVY);
     }
 
     public Player getPlayer() {

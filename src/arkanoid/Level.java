@@ -104,9 +104,6 @@ public class Level {
 
     public Capsule getCaps(int ID) {
 
-
-
-
         if (ID == 1) {
             return new Expand(0, 0, 5000, arkHelper.capsuleExpand);
         } else if (ID == 2) {
@@ -139,6 +136,5 @@ public class Level {
             return new Fast(0, 0, 0, arkHelper.capsuleFast);
         } else
             return new Slow(0, 0, 0, arkHelper.capsuleSlow);
-
     }
 }

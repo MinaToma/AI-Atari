@@ -88,6 +88,6 @@ public class FileInOut {
 
         ret.clear();
         ret.add(String.valueOf(level));
-        writeFile(name,ret);
+        writeFile(name, ret);
     }
 }

@@ -232,8 +232,7 @@ public class Arkanoid extends atariCore.Game {
         for (BaseObject o : ballList) {
             if (o.getVelX() == 0 && o.getVelY() == 0) {
                 p.sticky = false;
-                o.setVelX(-p.getNewVx(o.getX() + o.getImageWidth() / 2));
-                o.setVelY(yBallSpeed);
+                ((Ball)o).setSpeed(0 , ballSpeed);
             }
         }
     }

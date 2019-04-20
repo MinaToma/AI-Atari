@@ -10,8 +10,8 @@ public class Ball extends BaseObject {
 
     Player player;
 
-    float xOffset = 3;
-    float yOffset = 3;
+    float xOffset = 5;
+    float yOffset = 5;
 
     public Ball(float xPosition, float yPosition, Image image, float xVelocity, float yVelocity, Player player) {
         super(xPosition, yPosition, image, xVelocity, yVelocity);
@@ -25,7 +25,7 @@ public class Ball extends BaseObject {
         x += velX;
 
         if (velX == 0 && velY == 0)
-            setX(player.paddle.get(0).getX() + Math.min(Math.abs(x - player.paddle.get(0).getX()), player.paddle.get(0).getImageWidth() - getImageWidth()));
+            setX(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2f - getImageWidth() / 2f);
 
         collision();
         clamp();
@@ -98,14 +98,16 @@ public class Ball extends BaseObject {
         float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
         float hitUp = Math.abs(y + getImageHeight() - o.getY());
 
-        System.out.println(hitRight + " " + hitLeft + " " + hitDown + " " + hitUp);
+        System.out.println(hitLeft + " " + hitLeft + " " + hitUp + " " + hitDown);
         System.out.println(xOffset + " " + yOffset);
+        System.out.println(o.getVelX() + " " + o.getVelY());
 
         if ((hitLeft <= xOffset && velX > 0) || (hitRight <= xOffset && velX < 0)) {
             setVelX(velX * -1);
         } else if ((hitUp <= yOffset && velY > 0) || (hitDown <= yOffset && velY < 0)) {
             setVelY(velY * -1);
         }
+       // else running = false;
     }
 
     @Override
@@ -125,5 +127,10 @@ public class Ball extends BaseObject {
 
     public void makeNormal() {
         image = ball;
+    }
+
+    public void setSpeed(float _x , float _y) {
+        setVelX(_x);
+        setVelY(_y);
     }
 }
