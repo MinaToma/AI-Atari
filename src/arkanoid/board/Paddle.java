@@ -157,7 +157,9 @@ public class Paddle extends BaseObject {
                 checkIfBricksHeight2 = true;
             }
             if (o.getY() + o.getImageHeight() >= this.getY()) {
-                player.die();
+
+               player.die();
+               break;
             }
         }
 

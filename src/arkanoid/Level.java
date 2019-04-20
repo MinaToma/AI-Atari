@@ -110,7 +110,7 @@ public class Level {
             return new Disrupt(0, 0, 0, arkHelper.capsuleTripleBall);
         } else if (ID == 3) {
             return new Laser(0, 0, 5000, arkHelper.capsuleWeapon);
-        } else if (ID == 4) {
+        } else if (ID == 4 && player.getLevel()%5!=0) {
             return new Break(0, 0, 0, arkHelper.star);
         } else if (ID == 5) {
             return new Score(0, 0, 0, arkHelper.capsule50, 50);
