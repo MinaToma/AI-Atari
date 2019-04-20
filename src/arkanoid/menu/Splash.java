@@ -47,6 +47,9 @@ public class Splash extends atariCore.Splash {
 
             new Settings(music,sounds,mouse,keyboard);
         });
+        LeaderboardsButton.addActionListener(e -> {
+            new Leaderboards("src/Resources/Files/Leaderboards.txt");
+        });
 
         AIButton.addActionListener(e -> {
             arkHelper.running = true;

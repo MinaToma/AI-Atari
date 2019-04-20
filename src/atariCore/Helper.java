@@ -119,6 +119,14 @@ public class Helper {
         button.setFocusPainted(false);
         return button;
     }
+    public static JLabel labelHelper(String txt)
+    {
+        JLabel label = new JLabel(txt);
+        label.setFont(font);
+        label.setLayout(null);
+        label.setForeground(buttonBackgroundColor);
+        return label;
+    }
 
     public static Image getImage(String filename, int scaleFactor) {
 

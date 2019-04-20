@@ -17,7 +17,7 @@ public class Splash {
 
 
         frame.setTitle(title);
-        //new Leaderboards("src/Resources/Files/Leaderboards.txt");
+        //new Leaderboards();
 
         if(panel != null) {
             frame.getContentPane().remove(panel);

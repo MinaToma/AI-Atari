@@ -1,11 +1,17 @@
 package atariCore;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Leaderboards {
+import static atariCore.Helper.*;
 
-    public Score[] record;
+public class Leaderboards extends JPanel {
+
+    private Score[] record;
+    protected JButton backButton;
+    protected JLabel[] top10;
 
 
     public Leaderboards(String path) {
@@ -14,6 +20,7 @@ public class Leaderboards {
 
             // the sort is decreasing by level and by score
             Arrays.sort(record);
+            setDesing();
     }
 
     private void getDataFromFile(String path) {
@@ -30,6 +37,73 @@ public class Leaderboards {
             record[i] = new Score(Integer.valueOf(sp[1]),(sp[0]),Integer.valueOf(sp[2]));
             i++;
         }
+    }
+    public void setBackButton(int x, int y) {
+        backButton = Helper.buttonHelper("Back", x, y, btnDim);
+    }
+    public void setINILabel()
+    {
+        top10 = new JLabel[10];
+        int xOffset = 10, yOffest = 190;
+        for(int i=1 ; i<=10 ; i++)
+        {
+            if(record.length>i)
+            {
+                String rec ,tmp;
+                if(i<10)
+                 rec = (i)+"   ";
+                else rec = (i)+"  ";
+
+                tmp = record[i-1].getName();
+                rec += tmp;
+                for(int j=tmp.length() ; j<=20 ; j++)
+                    rec += ' ';
+                tmp = String.valueOf( record[i-1].getScore());
+
+                rec += tmp;
+                for(int j=tmp.length() ; j<=10 ; j++)
+                    rec += ' ';
+                tmp = String.valueOf( record[i-1].getLevel());
+
+                rec += tmp;
+                top10[i-1] = new JLabel(rec);
+            }
+            else{
+            String s =(i)+"  ........................................";
+            top10[i-1] = new JLabel(s);}
+            top10[i-1].setFont(Helper.setFont("src/Resources/Fonts/joystix monospace.ttf",35));
+            top10[i-1].setForeground(Color.BLACK);
+                top10[i-1].setBounds(xOffset,yOffest,Helper.screenWidth-40,35);
+                yOffest += 35;
+
+            add(top10[i-1]);
+        }
+
+    }
+
+
+    private void setDesing()
+    {
+        Helper.frame.getContentPane().remove(Helper.panel);
+        Helper.panel = this;
+        setLayout(null);
+        panel.setSize(Helper.screenWidth, Helper.screenHeight);
+
+        setBackButton(Helper.screenWidth/2-btnDim.width/2,Helper.screenHeight-btnDim.height-30);
+        setINILabel();
+
+
+
+
+
+
+
+
+        add(backButton);
+        Helper.frame.getContentPane().add(this);
+        Helper.frame.setVisible(true);
+
+
     }
 
 }
