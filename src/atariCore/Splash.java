@@ -9,7 +9,7 @@ import static atariCore.Helper.*;
 
 public class Splash {
 
-    protected int xStart = (int)(screenWidth/3.5), yStart = 212, bOffset = btnDim.height + 20;
+    protected int xStart = (int)(screenWidth * 25 / 100), yStart = 212, bOffset = btnDim.height + 20;
 
     protected JButton newGameButton, AIButton, LeaderboardsButton, settingsButton, exitButton;
 

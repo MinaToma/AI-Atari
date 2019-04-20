@@ -1,17 +1,12 @@
 package arkanoid;
 
 import atariCore.Helper;
-import atariCore.Sound;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import arkanoid.arkHelper.*;
 
 import static arkanoid.arkHelper.pathImage;
+import static arkanoid.arkHelper.pathLevel;
 import static atariCore.Helper.*;
 import static atariCore.Helper.frame;
 import static atariCore.Helper.panel;
@@ -62,27 +57,23 @@ public class NewPlayer extends JPanel {
         add(textName);
         add(OK);
 
-        OK.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
-                    arkHelper.running = true;
-                    Sound.Stop(arkHelper.backgroundSplashSound);
-
-                    new Arkanoid(textName.getText());
-                }
-
+        OK.addActionListener(e -> {
+            if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
+                String name = textName.getText();
+                int level = arkFile.getPlayerLevel(textName.getText());
+                new SelectEra(name, level);
             }
         });
 
         setCursorImage(panel, pathCursor);
-        frame.getContentPane().add(panel);
+        frame.getContentPane().
+
+                add(panel);
         frame.setVisible(true);
     }
 
-
     @Override
-    protected void paintComponent (Graphics g){
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
     }

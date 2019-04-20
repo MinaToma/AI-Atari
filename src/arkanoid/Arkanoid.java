@@ -25,7 +25,7 @@ public class Arkanoid extends atariCore.Game {
     Paddle p;
     Player player;
 
-    public Arkanoid(String namePlayer) {
+    public Arkanoid(String namePlayer, int level) {
 
         /*
          *
@@ -54,7 +54,7 @@ public class Arkanoid extends atariCore.Game {
         initKeys();
         arkHelper.setCursorImage(this, pathCursor);
         setPaddle();
-        setPlayer(namePlayer);
+        setPlayer(namePlayer , level);
 
         // /*FOR TESTING - to remove*/ player.setLevel(93);
         initializeLevels(player.getLevel());
@@ -86,8 +86,7 @@ public class Arkanoid extends atariCore.Game {
         setBall();
         setEnemy();
 
-        if (AIMode)
-        {
+        if (AIMode) {
             p.setX(arkHelper.screenHeight * 0.1f);
             paddleClick();
         }
@@ -105,8 +104,9 @@ public class Arkanoid extends atariCore.Game {
         handler.addObject(ballList, b);
     }
 
-    private void setPlayer(String namePlayer) {
+    private void setPlayer(String namePlayer , int level) {
         player = new Player(namePlayer, (AIMode) ? 0 : 3, p, this, this);
+        player.setLevel(level);
         p.setPlayer(player);
         handler.addObject(playerList, player);
     }
@@ -116,12 +116,12 @@ public class Arkanoid extends atariCore.Game {
     }
 
     private void setBricks(int lvl) {
-        new Level(arkfile.getLevel("Level" + lvl, pathLevel), player, p, b);
+        new Level(arkFile.getLevel("Level" + lvl, pathLevel), player, p, b);
     }
 
     private void setPaddle() {
-        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0,  player);
-        handler.addObject(paddleList , p);
+        p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
+        handler.addObject(paddleList, p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {
@@ -302,7 +302,7 @@ public class Arkanoid extends atariCore.Game {
         else
             AIEngine.slack = 0;
 
-        arkAIEngine.calculateReward(player , b , p);
+        arkAIEngine.calculateReward(player, b, p);
 
         arkHelper.running = true;
 
