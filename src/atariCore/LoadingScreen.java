@@ -12,6 +12,7 @@ public class LoadingScreen extends JPanel {
 
     public LoadingScreen() {
 
+        new Helper();
         if(panel != null) {
             frame.getContentPane().remove(panel);
         }

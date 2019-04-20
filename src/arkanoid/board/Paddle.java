@@ -258,7 +258,8 @@ public class Paddle extends BaseObject {
 
             if (expand) {
 
-                setImage(paddleExpandedWeapon);
+                setImage(paddleExpandedWeapon[normalImageIdx++]);
+                normalImageIdx %=3;
             } else if (shrink) {
 
                 setImage(paddleShrunk);
@@ -269,7 +270,8 @@ public class Paddle extends BaseObject {
             }
         } else if (expand) {
 
-            setImage(paddleExpanded);
+            setImage(paddleExpanded[normalImageIdx++]);
+            normalImageIdx %=3;
         } else if (shrink) {
 
             setImage(paddleShrunk);

@@ -68,6 +68,12 @@ public class Splash extends atariCore.Splash {
 
     public static void main(String[] args) {
 
+        new LoadingScreen();
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        }
+        catch (Exception e) { }
+
         new arkHelper();
         new ObjectList();
         new Splash();
