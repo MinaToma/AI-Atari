@@ -31,6 +31,8 @@ public class arkHelper extends Helper {
 
     public static Font HUDFont;
     public static Image splashBackground;
+    public static Image lockImage;
+    public static Image lockedEraImage;
     public static Image[] normalBricks;
     public static Image[] brokenBricks;
     public static Image[] smallSquares;
@@ -135,6 +137,10 @@ public class arkHelper extends Helper {
     private void loadImages() {
         pathCursor = "src/Resources/Images/yellowc2.png";
         splashBackground = getImage(backgroundImage + "splash.png", 1);
+
+
+        lockImage = getImage(pathImage + "background/lock.png", 2);
+        lockedEraImage = getImage(pathImage + "background/locked.jpg", 7);
 
         for (int i = 1; i <= 14; i++) {
             normalBricks[i - 1] = getImage(pathImage + "bricks/normal brick" + i + ".png", brickScale);

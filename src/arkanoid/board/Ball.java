@@ -1,11 +1,8 @@
 package arkanoid.board;
 
 import arkanoid.arkHelper;
-import arkanoid.capsule.Capsule;
 import atariCore.BaseObject;
-
 import java.awt.*;
-
 import static arkanoid.ObjectList.*;
 import static arkanoid.arkHelper.*;
 
@@ -108,8 +105,7 @@ public class Ball extends BaseObject {
             setVelX(velX * -1);
         } else if ((hitUp <= yOffset && velY > 0) || (hitDown <= yOffset && velY < 0)) {
             setVelY(velY * -1);
-        } else
-            running = false;
+        }
     }
 
     @Override
