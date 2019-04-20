@@ -200,5 +200,4 @@ public class arkHelper extends Helper {
     public static void setHUDFont() {
         HUDFont = setFont("src/Resources/Fonts/joystix monospace.ttf", 25);
     }
-
 }

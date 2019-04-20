@@ -67,6 +67,7 @@ public class Player extends BaseObject {
             arkHelper.setLoseAndWinImage();
         }
         this.level = level;
+
         if (level % 10 == 1) {
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
         }

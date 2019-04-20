@@ -75,6 +75,6 @@ public class NewPlayer extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(pathImage + "background/bgName.jpg", 1), 0, 0, null);
     }
 }

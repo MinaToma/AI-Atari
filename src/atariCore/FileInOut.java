@@ -65,29 +65,29 @@ public class FileInOut {
 
         ArrayList<String> ret = readFile(name);
         if (ret.size() == 0)
-            return 1;
+            return 0;
 
         return Integer.parseInt(ret.get(0));
     }
 
-    public static void sendPlayerScore(String name, int score) {
+    public static void sendPlayerScore(String name, int level) {
+
+        level--;
         name = filesPath + name + ".txt";
         ArrayList<String> ret = readFile(name);
 
-        File file = new File(name);
-
-        if (ret.size() == 0) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            score = Math.max(score, Integer.parseInt(ret.get(0)));
+        FileWriter file = null;
+        try {
+            file = new FileWriter(name, false);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
+        if (ret.size() != 0)
+            level = Math.max(level, Integer.parseInt(ret.get(0)));
+
         ret.clear();
-        ret.add(String.valueOf( score) );
+        ret.add(String.valueOf(level));
         writeFile(name,ret);
     }
 }
