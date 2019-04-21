@@ -45,6 +45,7 @@ public class Leaderboards extends JPanel {
 
     public void setINILabel()
     {
+
         top10 = new JLabel[10];
         int xOffset = 10, yOffest = 190;
         for(int i=1 ; i<=10 ; i++)
@@ -72,7 +73,7 @@ public class Leaderboards extends JPanel {
                 top10[i-1] = new JLabel(rec);
             }
             else{
-            String s =(i < 10 ? "0" + i : i) +"  ....................  ........ ........";
+            String s =(i < 10 ? "0" + i : i) +"  .................... ........  ........";
             top10[i-1] = new JLabel(s);}
             top10[i-1].setFont(Helper.setFont("src/Resources/Fonts/joystix monospace.ttf",35));
             top10[i-1].setForeground(buttonBackgroundColor);

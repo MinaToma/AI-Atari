@@ -21,7 +21,7 @@ public class LoadingScreen extends JPanel {
         panel = this;
         panel.setSize(screenWidth, screenHeight);
         panel.setLayout(new GridLayout(0, 1));
-        panel.setBackground(new Color(26, 26, 26));
+        panel.setBackground(new Color(24, 24, 24));
 
         ImageIcon icon = new ImageIcon("src/Resources/Images/loading/loading.gif");
         loading = new JLabel(icon);
