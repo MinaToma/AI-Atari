@@ -20,7 +20,7 @@ public class Leaderboards extends JPanel {
 
             // the sort is decreasing by level and by score
             Arrays.sort(record);
-            setDesing();
+            setDesign();
     }
 
     private void getDataFromFile(String path) {
@@ -38,9 +38,11 @@ public class Leaderboards extends JPanel {
             i++;
         }
     }
+
     public void setBackButton(int x, int y) {
         backButton = Helper.buttonHelper("Back", x, y, btnDim);
     }
+
     public void setINILabel()
     {
         top10 = new JLabel[10];
@@ -51,17 +53,18 @@ public class Leaderboards extends JPanel {
             {
                 String rec ,tmp;
                 if(i<10)
-                 rec = (i)+"   ";
-                else rec = (i)+"  ";
+                    rec = "0" + i + "   ";
+                else
+                    rec = (i) + "   ";
 
                 tmp = record[i-1].getName();
                 rec += tmp;
-                for(int j=tmp.length() ; j<=20 ; j++)
+                for(int j=tmp.length() ; j<=21 ; j++)
                     rec += ' ';
                 tmp = String.valueOf( record[i-1].getScore());
 
                 rec += tmp;
-                for(int j=tmp.length() ; j<=10 ; j++)
+                for(int j=tmp.length() ; j<=9 ; j++)
                     rec += ' ';
                 tmp = String.valueOf( record[i-1].getLevel());
 
@@ -69,10 +72,10 @@ public class Leaderboards extends JPanel {
                 top10[i-1] = new JLabel(rec);
             }
             else{
-            String s =(i)+"  ........................................";
+            String s =(i < 10 ? "0" + i : i) +"  ....................  ........ ........";
             top10[i-1] = new JLabel(s);}
             top10[i-1].setFont(Helper.setFont("src/Resources/Fonts/joystix monospace.ttf",35));
-            top10[i-1].setForeground(Color.BLACK);
+            top10[i-1].setForeground(buttonBackgroundColor);
                 top10[i-1].setBounds(xOffset,yOffest,Helper.screenWidth-40,35);
                 yOffest += 35;
 
@@ -82,14 +85,14 @@ public class Leaderboards extends JPanel {
     }
 
 
-    private void setDesing()
+    private void setDesign()
     {
         Helper.frame.getContentPane().remove(Helper.panel);
         Helper.panel = this;
         setLayout(null);
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
-        setBackButton(Helper.screenWidth/2-btnDim.width/2,Helper.screenHeight-btnDim.height-30);
+        setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 55);
         setINILabel();
 
 

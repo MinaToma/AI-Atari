@@ -1,15 +1,17 @@
 package arkanoid;
 
+import atariCore.Helper;
+
 import javax.swing.*;
 import java.awt.*;
 
-import static arkanoid.arkHelper.lockedEraImage;
-import static arkanoid.arkHelper.pathImage;
-import static atariCore.Helper.*;
+import static arkanoid.arkHelper.*;
 
 public class SelectEra extends JPanel {
 
-    private JButton eras[];
+    private JButton[] eras;
+
+    private JButton backButton;
 
     SelectEra(String name, int level) {
 
@@ -36,11 +38,14 @@ public class SelectEra extends JPanel {
             }
 
             if(i <= level / 10)
-                eras[i].setIcon(new ImageIcon(getImage(pathImage +  "background/era" + (i + 1) + ".jpg", 7)));
+                eras[i].setIcon(new ImageIcon(eraSelectionImage[i]));
             else
             {
-                eras[i].setIcon(new ImageIcon(lockedEraImage));
                 eras[i].setBackground(new Color(0x232323));
+                eras[i].setIcon(new ImageIcon(lockImage));
+
+                //eras[i].setIcon(new ImageIcon(lockedEraImage));
+
                 eras[i].setEnabled(false);
             }
 
@@ -50,9 +55,20 @@ public class SelectEra extends JPanel {
             });
         }
 
+        setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 155);
+
+        backButton.addActionListener(e->{
+            new SelectPlayer();
+        });
+
         frame.getContentPane().add(panel);
         frame.setVisible(true);
 
+    }
+
+    private void setBackButton(int x, int y) {
+        backButton = Helper.buttonHelper("Back", x, y, btnDim);
+        backButton.setBackground(new Color(0xEA2D1113));
     }
 
     @Override

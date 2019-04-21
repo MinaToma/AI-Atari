@@ -68,6 +68,7 @@ public class arkHelper extends Helper {
     public static String pathLeaderboards = "src/Resources/Files/Leaderboards.txt";
 
     public static Image[] backgroundImage;
+    public static Image[] eraSelectionImage;
     public static int numberOfBricks = 2;
 
     public static MP3Player backgroundSplashSound;
@@ -88,6 +89,7 @@ public class arkHelper extends Helper {
         brokenBricks = new Image[14];
         smallSquares = new Image[14];
         backgroundImage = new Image[10];
+        eraSelectionImage = new Image[10];
         paddleExpanded = new Image[3];
         paddleExpandedWeapon = new Image[3];
         enemy = new Image[6];
@@ -137,7 +139,7 @@ public class arkHelper extends Helper {
         splashBackground = getImage(backgroundImage + "splash.png", 1);
 
 
-        lockImage = getImage(pathImage + "background/lock.png", 2);
+        lockImage = getImage(pathImage + "background/lock-1.png", 4);
         lockedEraImage = getImage(pathImage + "background/locked.jpg", 7);
 
         for (int i = 1; i <= 14; i++) {
@@ -197,6 +199,7 @@ public class arkHelper extends Helper {
 
         for (int i = 1; i <= 10; i++) {
             backgroundImage[i - 1] = getImage(pathImage + "background/" + i + ".jpg", 1);
+            eraSelectionImage[i - 1] = getImage(pathImage +  "background/era" + i + ".jpg", 7);
 
         }
 

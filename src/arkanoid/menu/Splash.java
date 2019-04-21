@@ -1,14 +1,13 @@
 package arkanoid.menu;
 
 import arkanoid.*;
-import arkanoid.NewPlayer;
+import arkanoid.SelectPlayer;
 import arkanoid.ObjectList;
 import arkanoid.arkHelper;
 
 import static atariCore.Helper.panel;
 
 import atariCore.AIEngine;
-import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 
@@ -40,7 +39,7 @@ public class Splash extends atariCore.Splash {
 
         newGameButton.addActionListener(e -> {
 
-            new NewPlayer();
+            new SelectPlayer();
         });
 
         settingsButton.addActionListener(e -> {

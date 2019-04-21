@@ -1,6 +1,5 @@
 package arkanoid;
 
-import arkanoid.board.Player;
 import atariCore.Sound;
 
 import javax.swing.*;
@@ -17,7 +16,9 @@ import static atariCore.Helper.*;
 
 public class SelectLevel extends JPanel {
 
-    private JButton levels[];
+    private JButton[] levels;
+
+    private JButton backButton;
 
     SelectLevel(String name, int level, int era) {
         frame.setTitle("Select Level");
@@ -41,6 +42,7 @@ public class SelectLevel extends JPanel {
                 levels[i] = buttonHelper(null, posX, posY, dim);
                 levels[i].setBackground(new Color(0x232323));
                 levels[i].setIcon(new ImageIcon(lockImage));
+
                 levels[i].setEnabled(false);
             }
             posX += dim.width + xoffset;
@@ -59,8 +61,19 @@ public class SelectLevel extends JPanel {
             });
         }
 
+        setBackButton(arkHelper.screenWidth/2-btnDim.width/2, arkHelper.screenHeight-btnDim.height - 115);
+        backButton.addActionListener(e->{
+            new SelectEra(name, level);
+        });
+
+        setCursorImage(this, pathCursor);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
+    }
+
+    private void setBackButton(int x, int y) {
+        backButton = arkHelper.buttonHelper("Back", x, y, btnDim);
+        backButton.setBackground(new Color(0xEA2D1113));
     }
 
     @Override
