@@ -25,7 +25,7 @@ public class Ball extends BaseObject {
         x += velX;
 
         if (velX == 0 && velY == 0)
-            setX(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2f - getImageWidth() / 2f);
+            setX(player.paddle.get(0).getX() + Math.min(Math.abs(x - player.paddle.get(0).getX()), player.paddle.get(0).getImageWidth() - getImageWidth()));
 
         collision();
         clamp();

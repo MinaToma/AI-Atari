@@ -18,9 +18,15 @@ abstract public class AIEngine {
     }
 
     public static void startAI() throws IOException {
-
-        //String command = "/home/mina/anaconda3/bin/python3 src/AI-Scripts/__main__.py";
-        //Process p = Runtime.getRuntime().exec(command);
+        try
+        {
+            String command = "/home/mina/anaconda3/bin/python3 src/AI-Scripts/__main__.py";
+            Process p = Runtime.getRuntime().exec(command);
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
     public static void initializeReward(ArrayList<Float> action) {
@@ -101,8 +107,6 @@ abstract public class AIEngine {
             FileReader fr = new FileReader("src/Resources/AI-Interaction/interaction.txt");
             BufferedReader br = new BufferedReader(fr);
 
-
-            System.out.println("inside wait");
             Data = br.readLine();
             br.close();
             fr.close();

@@ -246,7 +246,7 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        if (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3)
+        if (AIMode == false && (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3))
             p.setX(mouseEvent.getX());
     }
 
@@ -283,8 +283,6 @@ public class Arkanoid extends atariCore.Game {
         inputData.add(L);
 
         AIEngine.initializeInput(inputData);
-
-        System.out.println("before");
 
         String dir = AIEngine.getDIR();
 
