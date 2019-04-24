@@ -205,7 +205,7 @@ public class arkHelper extends Helper {
         }
 
         for (int i = 1; i <= 6; i++) {
-            enemy[i - 1] = getImage(pathImage + "11-Breakout-Tiles.png", 1);
+            enemy[i - 1] = getImage(pathImage +"Enemy/"+ i+".png", 1);
         }
     }
 
