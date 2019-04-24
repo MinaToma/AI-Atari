@@ -61,6 +61,8 @@ public class SelectEra extends JPanel {
             new SelectPlayer();
         });
 
+        setCursorImage(panel, pathCursor);
+
         frame.getContentPane().add(panel);
         frame.setVisible(true);
 

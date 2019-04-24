@@ -67,6 +67,7 @@ public class SelectLevel extends JPanel {
         });
 
         setCursorImage(this, pathCursor);
+
         frame.getContentPane().add(panel);
         frame.setVisible(true);
     }

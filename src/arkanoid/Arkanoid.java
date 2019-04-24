@@ -9,6 +9,7 @@ import atariCore.Background;
 import atariCore.BaseObject;
 import atariCore.Sound;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -246,7 +247,7 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        if (AIMode == false && (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3))
+        if (!AIMode && (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3))
             p.setX(mouseEvent.getX());
     }
 
@@ -307,4 +308,13 @@ public class Arkanoid extends atariCore.Game {
         arkHelper.running = true;
 
     }
+
+    @Override
+    public void setPausedBG() {
+        pausedBG.setIcon(new ImageIcon(pausedImage));
+        pausedBG.setBounds(0,0, screenWidth, screenHeight);
+        add(pausedBG);
+        frame.setVisible(true);
+    }
+
 }

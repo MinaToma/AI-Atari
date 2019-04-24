@@ -138,6 +138,7 @@ public class arkHelper extends Helper {
         pathCursor = "src/Resources/Images/yellowc2.png";
         splashBackground = getImage(backgroundImage + "splash.png", 1);
 
+        pausedImage = getImage( pathImage + "background/pausedBG.png",1);
 
         lockImage = getImage(pathImage + "background/lock-1.png", 4);
         lockedEraImage = getImage(pathImage + "background/locked.jpg", 7);
@@ -209,6 +210,6 @@ public class arkHelper extends Helper {
     }
 
     public static void setHUDFont() {
-        HUDFont = setFont("src/Resources/Fonts/joystix monospace.ttf", 25);
+        HUDFont = setFont("src/Resources/Fonts/joystix monospace.ttf", 20);
     }
 }

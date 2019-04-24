@@ -146,41 +146,119 @@ public class Player extends BaseObject {
     public void render(Graphics g) {
 
         g.setFont(arkHelper.HUDFont);
-        g.setColor(getLevelHUDColor());
+
+        g.setColor(getNameHUDColor());
         g.drawString(name, 10, 30);
-        g.drawString(Integer.toString(score), 10, 100);
-        g.drawString("Level " + level,10,60);
+        g.drawString(Integer.toString(score), 10, 60);
+
+        g.setColor(getLevelHUDColor());
+        String era = era();
+        g.drawString(era,1100,30);
+
+        for(int i = 0; i < 10; i++){
+
+            if(i < level %10 || level == 100)
+                g.setColor(Color.green);
+            else
+                g.setColor(Color.red);
+
+            g.drawString(".",1140 + ((i % 5) * 25), i <= 4 ? 50 : 70);
+        }
+
         drawLives(g);
+    }
+
+    private String era(){
+        switch(level / 10){
+            case 0:
+                return "Stone Age ";
+
+            case 1:
+                return " Pharaohs ";
+
+            case 2:
+                return "   Aztec  ";
+
+            case 3:
+                return "   Greek  ";
+
+            case 4:
+                return "   Roman ";
+
+            case 5:
+                return "  Indian ";
+
+            case 6:
+                return "  Viking  ";
+
+            case 7:
+                return "  Chinese ";
+
+            case 8:
+                return " Medieval ";
+
+            case 9:
+                return " Arabian  ";
+
+            default:
+                return " Arabian  ";
+        }
     }
 
     private Color getLevelHUDColor() {
         Color color;
         if (level< 11) {
-            color = new Color(55, 30, 20);
+            color = new Color(0xFD6663);
         } else if (level< 21) {
-            color = new Color(255, 215, 34, 181);
+            color = new Color(0xCAB344);
         } else if (level< 31) {
-            color = new Color(4, 21, 42, 225);
+            color = new Color(0xFAE4AE);
         } else if (level< 41) {
-            color = new Color(43, 21, 11, 235);
+            color = new Color(0xC6BE9E);
         } else if (level< 51) {
-            color = new Color(32, 75, 74);
+            color = new Color(0x402C2C);
         } else if (level< 61) {
-            color = new Color(203, 82, 85, 219);
+            color = new Color(0x53311B);
         } else if (level< 71) {
-            color = new Color(32, 75, 74);
+            color = new Color(0x1C3837);
         } else if (level< 81) {
-            color = new Color(173, 173, 173, 212);
+            color = new Color(0xAEAEAE);
         } else if (level< 91) {
-            color = new Color(7, 51, 79, 156);
+            color = new Color(0x232323);
         } else {
-            color = new Color(190, 110, 23, 214);
+            color = new Color(0xD2D370);
+        }
+        return color;
+    }
+
+    private Color getNameHUDColor() {
+        Color color;
+        if (level< 11) {
+            color = new Color(0x341A16);
+        } else if (level< 21) {
+            color = new Color(0xCAB344);
+        } else if (level< 31) {
+            color = new Color(0xCAB344);
+        } else if (level< 41) {
+            color = new Color(0x24353B);
+        } else if (level< 51) {
+            color = new Color(0x402C2C);
+        } else if (level< 61) {
+            color = new Color(0x172F1B);
+        } else if (level< 71) {
+            color = new Color(0x1C3837);
+        } else if (level< 81) {
+            color = new Color(0xD58384);
+        } else if (level< 91) {
+            color = new Color(0xD2D370);
+        } else {
+            color = new Color(0xD2D370);
         }
         return color;
     }
     public void drawLives(Graphics g) {
         int numOfLives = lives;
-        int initialHeight = 120;
+        int initialHeight = 80;
 
         for (int i = 0; numOfLives > 0; i++) {
             int initialWidth = 10;

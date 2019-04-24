@@ -30,6 +30,7 @@ public class Helper {
     public static Image keyboardOffImage;
     public static Image mouseOnImage;
     public static Image mouseOffImage;
+    public static Image pausedImage;
     public static int cursorScale = 3;
     public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
     public static String filesPath = "src/Resources/Files/";
