@@ -155,6 +155,10 @@ public class Player extends BaseObject {
         String era = era();
         g.drawString(era,1100,30);
 
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+        g.drawString("Press P to Pause/Resume", 1100,670);
+        g.drawString("Press Esc to return to  Main Menu", 1100, 680);
+
         for(int i = 0; i < 10; i++){
 
             if(i < level %10 || level == 100)
@@ -208,7 +212,7 @@ public class Player extends BaseObject {
     private Color getLevelHUDColor() {
         Color color;
         if (level< 11) {
-            color = new Color(0xFD6663);
+            color = new Color(0xCDBF67);
         } else if (level< 21) {
             color = new Color(0xCAB344);
         } else if (level< 31) {
@@ -224,9 +228,9 @@ public class Player extends BaseObject {
         } else if (level< 81) {
             color = new Color(0xAEAEAE);
         } else if (level< 91) {
-            color = new Color(0x232323);
+            color = new Color(0x595959);
         } else {
-            color = new Color(0xD2D370);
+            color = new Color(0x98994D);
         }
         return color;
     }
@@ -234,7 +238,7 @@ public class Player extends BaseObject {
     private Color getNameHUDColor() {
         Color color;
         if (level< 11) {
-            color = new Color(0x341A16);
+            color = new Color(0xCDBF67);
         } else if (level< 21) {
             color = new Color(0xCAB344);
         } else if (level< 31) {
@@ -252,7 +256,7 @@ public class Player extends BaseObject {
         } else if (level< 91) {
             color = new Color(0xD2D370);
         } else {
-            color = new Color(0xD2D370);
+            color = new Color(0x98994D);
         }
         return color;
     }
