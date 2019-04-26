@@ -155,10 +155,6 @@ public class Player extends BaseObject {
         String era = era();
         g.drawString(era,1100,30);
 
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-        g.drawString("Press P to Pause/Resume", 1100,670);
-        g.drawString("Press Esc to return to  Main Menu", 1100, 680);
-
         for(int i = 0; i < 10; i++){
 
             if(i < level %10 || level == 100)
@@ -168,6 +164,12 @@ public class Player extends BaseObject {
 
             g.drawString(".",1140 + ((i % 5) * 25), i <= 4 ? 50 : 70);
         }
+
+
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
+        g.setColor(getLevelHUDColor());
+        g.drawString("Press P to Pause/Resume", 1100,670);
+        g.drawString("Press Esc to return to  Main Menu", 1100, 680);
 
         drawLives(g);
     }
