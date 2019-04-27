@@ -15,6 +15,8 @@ public class arkHelper extends Helper {
     public static int brickScale = 3;
     public static int capsuleScale = 5;
 
+    public static int timeTheCredit = 37;
+
     public static float ballSpeed = 2f;
     public static final int INIT_BRICKS_HEIGHT = screenHeight * 40 / 100;
     public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
@@ -75,9 +77,11 @@ public class arkHelper extends Helper {
     public static MP3Player[] backgroundGameSound;
     public static MP3Player lossSound;
     public static MP3Player winSound;
+    public static MP3Player creditSound;
 
     public static JLabel nextLevelImage;
     public static JLabel lossImage;
+    public static JLabel creditImage;
 
 
     public arkHelper() {
@@ -100,6 +104,7 @@ public class arkHelper extends Helper {
         setButtonBackgroundColor(new Color(0x543131));
         setForegroundColor(new Color(0xe3d3c3));
         setLoseAndWinImage();
+        setCredit();
     }
 
     public static void setLoseAndWinImage() {
@@ -110,6 +115,16 @@ public class arkHelper extends Helper {
         icon = new ImageIcon(pathImage + "sad.gif");
         lossImage = new JLabel(icon);
         lossImage.setBounds(screenWidth / 2 - icon.getImage().getWidth(null) / 2, screenHeight / 2 - icon.getImage().getHeight(null) / 2, icon.getImage().getWidth(null), icon.getImage().getHeight(null));
+
+
+    }
+    public void setCredit()
+    {
+        ImageIcon icon = new ImageIcon(pathImage+"credit.gif");
+        creditImage = new JLabel(icon);
+        creditImage.setBounds(0,0,screenWidth,screenHeight);
+        creditSound = Sound.setSound("src/Resources/Sounds/credit.mp3");
+
     }
 
     private void setSound() {

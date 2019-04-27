@@ -36,7 +36,6 @@ public class Bullet extends BaseObject {
 				((Enemy)o).reducePower();
 				handler.removeObject(bulletList,this);
 				break;
-
 			}
 	
 		}

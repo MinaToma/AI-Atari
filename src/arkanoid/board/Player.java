@@ -47,31 +47,45 @@ public class Player extends BaseObject {
 
     public void setLevel(int level) {
 
-        if(score>0 && !AIMode) {
-            Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
-            panel.add(arkHelper.nextLevelImage);
-            frame.setVisible(true);
-            if(sounds)
-            Sound.Play(arkHelper.winSound, true);
+        if(level>100)
+        {
+            arkFile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+            arkFile.sendPlayerScore(name, level);
+            Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
-            try {
-                TimeUnit.SECONDS.sleep(8);
-            } catch (Exception e) {
+            new arkanoid.creditScreen(arkHelper.timeTheCredit, arkHelper.creditImage, arkHelper.creditSound);
+        }
+        else {
 
+            if (score > 0 && !AIMode) {
+                Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
+                panel.add(arkHelper.nextLevelImage);
+                frame.setVisible(true);
+                if (sounds)
+                    Sound.Play(arkHelper.winSound, true);
+
+                try {
+                    TimeUnit.SECONDS.sleep(8);
+                } catch (Exception e) {
+
+                }
+
+                panel.remove(arkHelper.nextLevelImage);
+                frame.setVisible(true);
+
+                panel.requestFocusInWindow();
+                arkHelper.setLoseAndWinImage();
             }
+            this.level = level;
 
-            panel.remove(arkHelper.nextLevelImage);
-            frame.setVisible(true);
+            if (level % 10 == 1) {
+                Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
+            }
+            arkanoid.initializeLevels(level);
 
-            panel.requestFocusInWindow();
-            arkHelper.setLoseAndWinImage();
+
         }
-        this.level = level;
 
-        if (level % 10 == 1) {
-            Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
-        }
-        arkanoid.initializeLevels(level);
     }
 
     public boolean lostBall() {
@@ -95,6 +109,7 @@ public class Player extends BaseObject {
 
             Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
             frame.getContentPane().remove(panel);
+
             panel.add(arkHelper.lossImage);
             frame.getContentPane().add(panel);
             frame.setVisible(true);

@@ -311,6 +311,7 @@ public class Paddle extends BaseObject {
         ballList.clear();
         paddleList.clear();
         bulletList.clear();
+        enemyList.clear();
         player.setLevel(player.getLevel() + 1);
     }
 

@@ -219,7 +219,7 @@ public class Arkanoid extends atariCore.Game {
             speed = paddleSpeed;
         }
 
-        if (paddleIdx > -1) {
+        if (paddleIdx > -1 && paddleIdx < paddleList.size()) {
             paddleList.get(paddleIdx).setVelX(speed);
         } else {
             paddleList.forEach(p -> p.setVelX(0));

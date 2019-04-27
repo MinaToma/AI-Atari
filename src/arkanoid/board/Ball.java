@@ -98,9 +98,6 @@ public class Ball extends BaseObject {
         float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
         float hitUp = Math.abs(y + getImageHeight() - o.getY());
 
-        System.out.println(hitLeft + " " + hitLeft + " " + hitUp + " " + hitDown);
-        System.out.println(xOffset + " " + yOffset);
-        System.out.println(o.getVelX() + " " + o.getVelY());
 
         if ((hitLeft <= xOffset && velX > 0) || (hitRight <= xOffset && velX < 0)) {
             setVelX(velX * -1);

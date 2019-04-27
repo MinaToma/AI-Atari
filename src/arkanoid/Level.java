@@ -104,8 +104,7 @@ public class Level {
 
     public Capsule getCaps(int ID) {
 
-        return new Laser(0, 0, 5000, arkHelper.capsuleWeapon);
-        /*
+
         if (ID == 1) {
             return new Expand(0, 0, 5000, arkHelper.capsuleExpand);
         } else if (ID == 2) {
@@ -137,6 +136,6 @@ public class Level {
         } else if (ID == 15) {
             return new Fast(0, 0, 0, arkHelper.capsuleFast);
         } else
-            return new Slow(0, 0, 0, arkHelper.capsuleSlow);*/
+            return new Slow(0, 0, 0, arkHelper.capsuleSlow);
     }
 }
