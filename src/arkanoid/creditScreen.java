@@ -1,8 +1,9 @@
 package arkanoid;
 
+import arkanoid.menu.Splash;
 import atariCore.Helper;
 import atariCore.Sound;
-import atariCore.Splash;
+
 import jaco.mp3.player.MP3Player;
 
 import javax.swing.*;
@@ -37,6 +38,7 @@ public class creditScreen extends JPanel {
         add(screan);
         frame.getContentPane().add(this);
         Sound.Repeat(sound);
+        Sound.Play(sound,false);
         frame.setVisible(true);
         try {
             TimeUnit.SECONDS.sleep(timer);
@@ -44,7 +46,8 @@ public class creditScreen extends JPanel {
         {
 
         }
+        sound.setRepeat(false);
         Sound.Stop(sound);
-        new arkanoid.menu.Splash();
+        new Splash();
     }
 }

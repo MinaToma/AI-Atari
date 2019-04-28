@@ -24,7 +24,10 @@ public class Splash extends atariCore.Splash {
         arkHelper.setCursorImage(panel, pathCursor);
 
         for (int i = 0; i < 10; i++) {
-            arkHelper.backgroundGameSound[i].stop();
+            if(arkHelper.backgroundGameSound[i].isRepeat() )
+                arkHelper.backgroundGameSound[i].setRepeat(false);
+            Sound.Stop(arkHelper.backgroundGameSound[i]);
+
         }
 
         if(music) {
@@ -38,24 +41,32 @@ public class Splash extends atariCore.Splash {
         }
 
         newGameButton.addActionListener(e -> {
-
+            Sound.Play(arkHelper.clickSound,true);
             new SelectPlayer();
         });
 
         settingsButton.addActionListener(e -> {
 
             new Settings(music,sounds,mouse,keyboard);
+            Sound.Play(arkHelper.clickSound,true);
         });
         LeaderboardsButton.addActionListener(e -> {
             new Leaderboards("src/Resources/Files/Leaderboards.txt");
+            Sound.Play(arkHelper.clickSound,true);
         });
+        exitButton.addActionListener(e -> {
+                    frame.dispose();
+                    Sound.Play(arkHelper.clickSound,true);
+
+                }
+
+        );
 
         AIButton.addActionListener(e -> {
+            Sound.Play(arkHelper.clickSound,true);
             arkHelper.running = true;
             AIMode = true;
 
-            //setinput
-            //setouput
             try {
                 AIEngine.startAI();
             } catch (IOException ex) {

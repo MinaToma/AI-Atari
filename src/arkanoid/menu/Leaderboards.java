@@ -1,5 +1,8 @@
 package arkanoid.menu;
 
+import arkanoid.arkHelper;
+import atariCore.Sound;
+
 import java.awt.*;
 
 import static arkanoid.arkHelper.pathImage;
@@ -11,6 +14,7 @@ public class Leaderboards extends atariCore.Leaderboards {
         super(path);
 
         backButton.addActionListener(e -> {
+            Sound.Play(arkHelper.clickSound,true);
             new Splash();
         });
     }

@@ -78,6 +78,7 @@ public class arkHelper extends Helper {
     public static MP3Player lossSound;
     public static MP3Player winSound;
     public static MP3Player creditSound;
+    public static MP3Player clickSound;
 
     public static JLabel nextLevelImage;
     public static JLabel lossImage;
@@ -128,7 +129,7 @@ public class arkHelper extends Helper {
     }
 
     private void setSound() {
-
+        clickSound = Sound.setSound("src/Resources/Sounds/click.mp3");
         backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
         lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
         winSound = Sound.setSound("src/Resources/Sounds/nextLevel.mp3");

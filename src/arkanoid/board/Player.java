@@ -5,6 +5,7 @@ import arkanoid.arkAIEngine;
 import arkanoid.arkFile;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
+import atariCore.Handler;
 import atariCore.Sound;
 
 import javax.swing.*;
@@ -49,6 +50,7 @@ public class Player extends BaseObject {
 
         if(level>100)
         {
+
             arkFile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
             arkFile.sendPlayerScore(name, level);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
@@ -153,7 +155,7 @@ public class Player extends BaseObject {
 
     @Override
     public void tick() {
-        if (arkHelper.backgroundGameSound[(level - 1) / 10].isStopped() && music) {
+        if (arkHelper.backgroundGameSound[(level - 1) / 10].isStopped() && music && level<100) {
             Sound.Play(arkHelper.backgroundGameSound[(level - 1) / 10], false);
         }
     }

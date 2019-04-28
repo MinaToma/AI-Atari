@@ -35,6 +35,5 @@ import java.io.File;
     public static void Repeat(MP3Player p)
     {
         p.setRepeat(true);
-        Play(p,false);
     }
 }

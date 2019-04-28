@@ -17,6 +17,7 @@ public class Settings extends atariCore.Settings {
     {
         super(music,sounds,mouse,keyboard);
         backButton.addActionListener(e -> {
+            Sound.Play(arkHelper.clickSound,true);
             new Splash();
         });
     }

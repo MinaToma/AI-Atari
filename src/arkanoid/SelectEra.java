@@ -1,6 +1,7 @@
 package arkanoid;
 
 import atariCore.Helper;
+import atariCore.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,6 +52,7 @@ public class SelectEra extends JPanel {
 
             int finalI = i;
             eras[i].addActionListener(e -> {
+                Sound.Play(arkHelper.clickSound,true);
                 new SelectLevel(name, level, finalI);
             });
         }
@@ -58,6 +60,7 @@ public class SelectEra extends JPanel {
         setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 155);
 
         backButton.addActionListener(e->{
+            Sound.Play(arkHelper.clickSound,true);
             new SelectPlayer();
         });
 

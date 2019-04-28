@@ -64,6 +64,6 @@ public class Splash {
 
     protected void setExitButton(int x, int y, Dimension dim) {
         exitButton = Helper.buttonHelper("Exit", x, y, dim);
-        exitButton.addActionListener(e -> frame.dispose());
+
     }
 }

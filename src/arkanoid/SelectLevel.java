@@ -57,12 +57,14 @@ public class SelectLevel extends JPanel {
             levels[i].addActionListener(e -> {
                 arkHelper.running = true;
                 Sound.Stop(arkHelper.backgroundSplashSound);
+                Sound.Play(arkHelper.clickSound,true);
                 new Arkanoid(name , finalI + 1 + 10 * era);
             });
         }
 
         setBackButton(arkHelper.screenWidth/2-btnDim.width/2, arkHelper.screenHeight-btnDim.height - 115);
         backButton.addActionListener(e->{
+            Sound.Play(arkHelper.clickSound,true);
             new SelectEra(name, level);
         });
 

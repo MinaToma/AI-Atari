@@ -2,6 +2,7 @@ package arkanoid;
 
 import arkanoid.menu.Splash;
 import atariCore.Helper;
+import atariCore.Sound;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,6 +63,7 @@ public class SelectPlayer extends JPanel {
     private void setActions() {
 
         startButton.addActionListener(e -> {
+            Sound.Play(arkHelper.clickSound,true);
             if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                 String name = textName.getText();
                 int level = arkFile.getPlayerLevel(textName.getText());
@@ -70,6 +72,7 @@ public class SelectPlayer extends JPanel {
         });
 
         backButton.addActionListener(e->{
+            Sound.Play(arkHelper.clickSound,true);
             new Splash();
         });
     }
