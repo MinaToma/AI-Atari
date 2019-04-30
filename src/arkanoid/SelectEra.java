@@ -52,6 +52,7 @@ public class SelectEra extends JPanel {
 
             int finalI = i;
             eras[i].addActionListener(e -> {
+                if(sounds)
                 Sound.Play(arkHelper.clickSound,true);
                 new SelectLevel(name, level, finalI);
             });

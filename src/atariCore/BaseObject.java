@@ -1,8 +1,5 @@
 package atariCore;
 
-
-import javafx.scene.shape.Circle;
-
 import java.awt.*;
 
 abstract public class BaseObject {
@@ -101,8 +98,6 @@ abstract public class BaseObject {
     public Rectangle getRectangle() {
         return new Rectangle((int) x, (int) y, getImageWidth(), getImageHeight());
     }
-
-    public Circle getCircle(){return new Circle( (x+imageWidth)/2,(y+imageHeight)/2,imageHeight/2 );}
 
     public abstract void tick();
 

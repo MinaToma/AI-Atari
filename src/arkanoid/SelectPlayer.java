@@ -63,6 +63,7 @@ public class SelectPlayer extends JPanel {
     private void setActions() {
 
         startButton.addActionListener(e -> {
+            if(sounds)
             Sound.Play(arkHelper.clickSound,true);
             if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                 String name = textName.getText();
@@ -72,6 +73,7 @@ public class SelectPlayer extends JPanel {
         });
 
         backButton.addActionListener(e->{
+            if(sounds)
             Sound.Play(arkHelper.clickSound,true);
             new Splash();
         });

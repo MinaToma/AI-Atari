@@ -24,46 +24,48 @@ public class Splash extends atariCore.Splash {
         arkHelper.setCursorImage(panel, pathCursor);
 
         for (int i = 0; i < 10; i++) {
-            if(arkHelper.backgroundGameSound[i].isRepeat() )
+            if (arkHelper.backgroundGameSound[i].isRepeat())
                 arkHelper.backgroundGameSound[i].setRepeat(false);
             Sound.Stop(arkHelper.backgroundGameSound[i]);
 
         }
 
-        if(music) {
+        if (music) {
             if (arkHelper.backgroundSplashSound.isStopped())
                 Sound.Play(arkHelper.backgroundSplashSound, false);
             Sound.Repeat(arkHelper.backgroundSplashSound);
-        }
-        else
-        {
+        } else {
             Sound.Stop(arkHelper.backgroundSplashSound);
         }
 
         newGameButton.addActionListener(e -> {
-            Sound.Play(arkHelper.clickSound,true);
+            if (sounds)
+                Sound.Play(arkHelper.clickSound, true);
             new SelectPlayer();
         });
 
         settingsButton.addActionListener(e -> {
-
-            new Settings(music,sounds,mouse,keyboard);
-            Sound.Play(arkHelper.clickSound,true);
+                new Settings(music, sounds, mouse, keyboard);
+            if (sounds)
+                Sound.Play(arkHelper.clickSound, true);
         });
         LeaderboardsButton.addActionListener(e -> {
             new Leaderboards("src/Resources/Files/Leaderboards.txt");
-            Sound.Play(arkHelper.clickSound,true);
+            if (sounds)
+                Sound.Play(arkHelper.clickSound, true);
         });
         exitButton.addActionListener(e -> {
                     frame.dispose();
-                    Sound.Play(arkHelper.clickSound,true);
+            if(sounds)
+                Sound.Play(arkHelper.clickSound, true);
 
                 }
 
         );
 
         AIButton.addActionListener(e -> {
-            Sound.Play(arkHelper.clickSound,true);
+            if(sounds)
+                Sound.Play(arkHelper.clickSound, true);
             arkHelper.running = true;
             AIMode = true;
 
@@ -75,7 +77,7 @@ public class Splash extends atariCore.Splash {
                 ex.printStackTrace();
             }
 
-            new Arkanoid("AI-Player" , 1 );
+            new Arkanoid("AI-Player", 1);
         });
     }
 
@@ -84,8 +86,8 @@ public class Splash extends atariCore.Splash {
         new LoadingScreen();
         try {
             TimeUnit.SECONDS.sleep(5);
+        } catch (Exception e) {
         }
-        catch (Exception e) { }
 
         new arkHelper();
         new ObjectList();

@@ -7,6 +7,7 @@ import java.awt.*;
 
 import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.getImage;
+import static atariCore.Helper.sounds;
 
 public class Leaderboards extends atariCore.Leaderboards {
 
@@ -14,6 +15,7 @@ public class Leaderboards extends atariCore.Leaderboards {
         super(path);
 
         backButton.addActionListener(e -> {
+            if(sounds)
             Sound.Play(arkHelper.clickSound,true);
             new Splash();
         });
