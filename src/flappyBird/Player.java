@@ -2,17 +2,12 @@ package flappyBird;
 
 
 import atariCore.BaseObject;
-import atariCore.FileInOut;
-import atariCore.Sound;
+import atariCore.FileManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import static atariCore.Helper.*;
-import static flappyBird.ObjectList.*;
 import static flappyBird.flappyHelper.*;
 
 public class Player extends BaseObject {
@@ -43,7 +38,7 @@ public class Player extends BaseObject {
 
         if (!AIMode) {
 
-            FileInOut.addNewScoreToLeadboard(pathFile+"Leaderboards",name,score,0);
+            FileManager.addNewScoreToLeadboard(pathFile+"Leaderboards",name,score,0);
             new Splash();
         } else {
 

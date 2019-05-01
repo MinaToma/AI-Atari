@@ -3,44 +3,85 @@ package atariCore;
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * A singleton class which holds game objects and responsible to animate and render them.
+ */
 public class Handler {
 
-    public CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> object = new CopyOnWriteArrayList<>();
+    /**
+     * Class instance
+     */
+    private static final Handler mHandler = new Handler();
 
-    public void tick() {
+    /**
+     * Array list to hold the game's base objects.
+     * We used CopyOnWriteArrayList to manipulate the objects when running within a thread.
+     */
+    private CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> object = new CopyOnWriteArrayList<>();
 
-       for (CopyOnWriteArrayList<BaseObject> list : object)
+    private Handler() {
+    }
+
+    /**
+     * Updates game objects every frame.
+     */
+    protected void tick() {
+        for (CopyOnWriteArrayList<BaseObject> list : object)
             for (BaseObject o : list)
                 o.tick();
     }
 
-    public void render(Graphics g) {
-
+    /**
+     * Renders game objects every frame.
+     */
+    protected void render(Graphics g) {
         for (CopyOnWriteArrayList<BaseObject> list : object)
             for (BaseObject o : list)
                 o.render(g);
     }
 
+    /**
+     * Adds new object type to the handler.
+     * @param list Holds all game objects of specific type.
+     */
     public void addHandler(CopyOnWriteArrayList<BaseObject> list) {
         this.object.add(list);
     }
 
+    /**
+     * Removes existing object type from current handler.
+     * @param list Holds all game objects of specific type.
+     */
     public void removeHandler(CopyOnWriteArrayList<BaseObject> list) {
 
         this.object.remove(list);
     }
 
+    /**
+     * Removes object of specific type from its container.
+     * @param list Container of the object.
+     * @param o Object to be deleted.
+     */
     public void removeObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
 
         list.remove(o);
     }
 
+    /**
+     * Adds new object of specific type to its container.
+     * @param list Container of the object.
+     * @param o  Object to be added.
+     */
     public void addObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
 
         list.add(o);
     }
 
-    public CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> getObject() {
-        return object;
+    /**
+     * Returns the instance of the class.
+     * @return Handler which holds all game objects.
+     */
+    public static Handler getInstance() {
+        return mHandler;
     }
 }

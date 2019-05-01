@@ -1,10 +1,12 @@
 package arkanoid;
 
-import atariCore.FileInOut;
+import atariCore.FileManager;
 
 import java.util.ArrayList;
 
-public class arkFile extends FileInOut {
+import static atariCore.FileManager.readFile;
+
+public class arkFile {
 
     public static ArrayList<ArrayList<Integer>> getLevel(String level , String path)
     {

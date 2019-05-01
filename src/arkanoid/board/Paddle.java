@@ -2,13 +2,14 @@ package arkanoid.board;
 
 import arkanoid.capsule.*;
 import atariCore.BaseObject;
-import atariCore.Sound;
+import atariCore.Handler;
 
 import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
+import static atariCore.Helper.sounds;
 
 public class Paddle extends BaseObject {
 
@@ -22,7 +23,7 @@ public class Paddle extends BaseObject {
         super(xPosition, yPosition, image, velX, 0);
         currentCapsuleList = new CopyOnWriteArrayList<>();
         this.player = player;
-        handler.addHandler(currentCapsuleList);
+        Handler.getInstance().addHandler(currentCapsuleList);
     }
 
     public void tick() {
@@ -49,8 +50,8 @@ public class Paddle extends BaseObject {
                 Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), ballSpeed * (float)Math.cos(Math.PI * 45 / 180) , ball.getVelY(), player);
                 Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -ballSpeed * (float)Math.cos(Math.PI * 45 / 180) , ball.getVelY(), player);
 
-                handler.addObject(ballList, newBallL);
-                handler.addObject(ballList, newBallR);
+                Handler.getInstance().addObject(ballList, newBallL);
+                Handler.getInstance().addObject(ballList, newBallR);
 
                 numOfBall--;
             }
@@ -74,7 +75,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Shrink) {
-                handler.removeObject(currentCapsuleList, o);
+                Handler.getInstance().removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -88,8 +89,8 @@ public class Paddle extends BaseObject {
         Bullet bulletL = new Bullet(x, y, bullet);
         Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
 
-        handler.addObject(bulletList, bulletL);
-        handler.addObject(bulletList, bulletR);
+        Handler.getInstance().addObject(bulletList, bulletL);
+        Handler.getInstance().addObject(bulletList, bulletR);
         if(sounds)
         laserSound();
     }
@@ -111,7 +112,7 @@ public class Paddle extends BaseObject {
     private void setEnemy() {
 
         Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, enemy[0], player.getLevel()/5 );
-        handler.addObject(enemyList, e);
+        Handler.getInstance().addObject(enemyList, e);
     }
 
     private void collision() {
@@ -124,8 +125,8 @@ public class Paddle extends BaseObject {
 
                 ((Capsule) o).effect(this);
                 ((Capsule) o).active = true;
-                handler.addObject(currentCapsuleList, o);
-                handler.removeObject(capsuleList, o);
+                Handler.getInstance().addObject(currentCapsuleList, o);
+                Handler.getInstance().removeObject(capsuleList, o);
             }
         }
 
@@ -226,7 +227,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Fire) {
-                handler.removeObject(currentCapsuleList, o);
+                Handler.getInstance().removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -236,7 +237,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Expand) {
-                handler.removeObject(currentCapsuleList, o);
+                Handler.getInstance().removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -295,7 +296,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Acid) {
-                handler.removeObject(currentCapsuleList, o);
+                Handler.getInstance().removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -319,7 +320,7 @@ public class Paddle extends BaseObject {
         for (BaseObject o : currentCapsuleList) {
             if (((Capsule) o).life <= 0) {
                 ((Capsule) o).removeEffect(this);
-                handler.removeObject(currentCapsuleList, o);
+                Handler.getInstance().removeObject(currentCapsuleList, o);
             }
             else {
                 ((Capsule) o).effect(this);
@@ -348,7 +349,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             ((Capsule) o).removeEffect(this);
-            handler.removeObject(currentCapsuleList, o);
+            Handler.getInstance().removeObject(currentCapsuleList, o);
         }
     }
 }

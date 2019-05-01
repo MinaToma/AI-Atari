@@ -4,51 +4,184 @@ import jaco.mp3.player.MP3Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Helper class which holds main variables need to set game components.
+ */
 public class Helper {
 
-    public static int screenWidth = 1280, screenHeight = 720;
-    public static final int DELAY = 1000;
-    public static final int PERIOD = 5;
-    public static Font font;
-    public static int splashButtonFontSize;
+    /**
+     * Main game frame.
+     */
     public static JFrame frame = null;
+    /**
+     * Main game panel.
+     */
     public static JPanel panel;
-    public static boolean running = false;
-    public static boolean pause = false;
-    public static String fieldSeparator = "@@@";
-    public static boolean AIMode = false;
-    public static String controlsImages = "src/Resources/Atari Core/Images/controls/";
-    public static String splashBackgroundImagePath;
-    public static String pathCursor;
-    public static Image soundOnImage;
-    public static Image soundOffImage;
-    public static Image musicOnImage;
-    public static Image musicOffImage;
-    public static Image keyboardOnImage;
-    public static Image keyboardOffImage;
-    public static Image mouseOnImage;
-    public static Image mouseOffImage;
-
-    public static String soundPath = "src/Resources/Atari Core/Sounds/";
-    public static Image pausedImage;
+    /**
+     * Default screen width.
+     */
+    public static int screenWidth = 1280;
+    /**
+     * Default screen height.
+     */
+    public static int screenHeight = 720;
+    /**
+     * Default cursor image scale.
+     */
     public static int cursorScale = 3;
+    /**
+     * Default button dimensions.
+     */
     public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
-    public static String filesPath = "src/Resources/Arkanoid/Files/";
-
+    /**
+     * Default delay of game loop. (Delay before starting the timer)
+     */
+    public static final int DELAY = 1000;
+    /**
+     * Default period of game loop. (number of frames per every tick)
+     */
+    public static final int PERIOD = 5;
+    /**
+     * Default game font.
+     */
+    public static Font font;
+    /**
+     * Default font size for buttons.
+     */
+    public static int splashButtonFontSize;
+    /**
+     * Path of control menu images.
+     */
+    public static String controlsImages = "src/Resources/Atari Core/Images/controls/";
+    /**
+     * Sounds path.
+     */
+    public static String soundPath = "src/Resources/Atari Core/Sounds/";
+    /**
+     * Files path.
+     */
+    public static String filePath = "src/Resources/Arkanoid/Files/";
+    /**
+     * Image path.
+     */
+    public static String imagePath = "src/Resources/Arkanoid/Images/";
+    /**
+     * Splash screen background image path.
+     */
+    public static String splashBackgroundImagePath;
+    /**
+     * Path for default cursor image.
+     */
+    public static String pathCursor;
+    /**
+     * Enabled sounds image.
+     */
+    public static Image soundOnImage;
+    /**
+     * Disabled sounds image.
+     */
+    public static Image soundOffImage;
+    /**
+     * Enabled music image.
+     */
+    public static Image musicOnImage;
+    /**
+     * Disabled music image.
+     */
+    public static Image musicOffImage;
+    /**
+     * Enabled keyboard control image.
+     */
+    public static Image keyboardOnImage;
+    /**
+     * Disabled keyboard control image.
+     */
+    public static Image keyboardOffImage;
+    /**
+     * Enabled mouse control image.
+     */
+    public static Image mouseOnImage;
+    /**
+     * Disabled mouse control image.
+     */
+    public static Image mouseOffImage;
+    /**
+     * Paused background image.
+     */
+    public static Image pausedImage;
+    /**
+     * Holder for paused background image.
+     */
+    public static JLabel pausedBG = new JLabel();
+    /**
+     * Default game background color.
+     */
     public static Color backgroundColor;
+    /**
+     * Default game foreground color.
+     */
     public static Color foregroundColor;
+    /**
+     * Default game buttonBackground color.
+     */
     public static Color buttonBackgroundColor;
+    /**
+     * Default game HUD color.
+     */
     public static Color HUDColor;
+    /**
+     * Sound for button clicks.
+     */
     public static MP3Player clickSound;
 
-    public static boolean music = true, sounds = true, mouse = true, keyboard = true;
 
-    public Helper() {
+    /*******************************************************Flags******************************************************/
+
+
+    /**
+     * Flag used to start and stop game timer.
+     */
+    public static boolean running = false;
+    /**
+     * Flag used to pause the game.
+     */
+    public static boolean pause = false;
+    /**
+     * Flag used to start AI-Player.
+     */
+    public static boolean AIMode = false;
+    /**
+     * Flag states music option Enabled/Disabled.
+     */
+    public static boolean music = true;
+    /**
+     * Flag states sounds option Enabled/Disabled.
+     */
+    public static boolean sounds = true;
+    /**
+     * Flag states mouse control Enabled/Disabled.
+     */
+    public static boolean mouse = true;
+    /**
+     * Flag states keyboard control Enabled/Disabled.
+     */
+    public static boolean keyboard = true;
+
+
+    /*******************************************************Flags******************************************************/
+
+    /**
+     * Class instance
+     */
+    private static final Helper helper = new Helper();
+
+    /**
+     * Default Constructor to initialize main game design components paths for images and sounds.
+     */
+    private Helper() {
         if (frame == null) {
             frame = new JFrame();
 
@@ -66,15 +199,23 @@ public class Helper {
         setForegroundColor(new Color(165, 209, 77));
         setHUDColor(new Color(173, 173, 173));
 
-        loadImages();
-        setSound();
+        loadSettingsImages();
+        setButtonClickSound();
     }
 
-    private void setSound() {
+
+    /**
+     * sets button click sound.
+     */
+    private void setButtonClickSound() {
         clickSound = Sound.setSound(soundPath + "click.mp3");
     }
 
-    private void loadImages() {
+
+    /**
+     * Loads images for settings menu.
+     */
+    private void loadSettingsImages() {
 
         soundOnImage = getImage(controlsImages + "sound on.png", 1);
         soundOffImage = getImage(controlsImages + "sound off.png", 1);
@@ -82,16 +223,38 @@ public class Helper {
         musicOnImage = getImage(controlsImages + "music on.png", 1);
         musicOffImage = getImage(controlsImages + "music off.png", 1);
 
-        keyboardOnImage = getImage(controlsImages + "empty.png",1);
-        keyboardOffImage = getImage(controlsImages + "empty.png",1);
+        keyboardOnImage = getImage(controlsImages + "empty.png", 1);
+        keyboardOffImage = getImage(controlsImages + "empty.png", 1);
 
-        mouseOnImage = getImage(controlsImages + "empty.png",1);
-        mouseOffImage = getImage(controlsImages + "empty.png",1);
+        mouseOnImage = getImage(controlsImages + "empty.png", 1);
+        mouseOffImage = getImage(controlsImages + "empty.png", 1);
+    }
+
+    /**
+     * Sets and removes paused image from panel.
+     */
+    public static void setPausedBG() {
+        if (pause) {
+
+            pausedBG.setIcon(new ImageIcon(pausedImage));
+            pausedBG.setBounds(0, 0, screenWidth, screenHeight);
+            panel.add(pausedBG);
+            frame.setVisible(true);
+        } else {
+            panel.remove(pausedBG);
+            frame.setVisible(true);
+        }
     }
 
 
-    public static Font setFont(String fontPath, int fontSize)
-    {
+    /**
+     * Sets main font.
+     *
+     * @param fontPath Font path.
+     * @param fontSize Font Size.
+     * @return New font with specified size.
+     */
+    public static Font setFont(String fontPath, int fontSize) {
         Font font = new Font(null, Font.BOLD, fontSize);
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath)).deriveFont(Font.BOLD, fontSize);
@@ -103,10 +266,25 @@ public class Helper {
         return font;
     }
 
+
+    /**
+     * Sets splash buttons' font size.
+     *
+     * @param splashButtonFontSize New size for splash buttons font.
+     */
     public static void setSplashButtonFontSize(int splashButtonFontSize) {
         Helper.splashButtonFontSize = splashButtonFontSize;
     }
 
+    /**
+     * Sets main properties of the button and adds it to the main panel.
+     *
+     * @param txt Button label.
+     * @param x   x coordinate of the button.
+     * @param y   y coordinate of the button.
+     * @param dim Width and height of the button.
+     * @return Button with specified properties.
+     */
     public static JButton buttonHelper(String txt, int x, int y, Dimension dim) {
 
         JButton button = new JButton(txt);
@@ -121,25 +299,13 @@ public class Helper {
         return button;
     }
 
-    public static JButton buttonHelper(String txt) {
-        JButton button = new JButton(txt);
-        button.setFont(font);
-        button.setLayout(null);
-        button.setForeground(foregroundColor);
-        button.setBackground(buttonBackgroundColor);
-        button.setFocusPainted(false);
-        return button;
-    }
-
-    public static JLabel labelHelper(String txt)
-    {
-        JLabel label = new JLabel(txt);
-        label.setFont(font);
-        label.setLayout(null);
-        label.setForeground(buttonBackgroundColor);
-        return label;
-    }
-
+    /**
+     * Loads image from specified path and returns it scaled with specified factor.
+     *
+     * @param filename    Image path.
+     * @param scaleFactor Scale factor.
+     * @return Image with specified scale and path.
+     */
     public static Image getImage(String filename, int scaleFactor) {
 
         ImageIcon icon = new ImageIcon(filename);
@@ -149,28 +315,60 @@ public class Helper {
                 image.getHeight(null) / scaleFactor, Image.SCALE_SMOOTH))).getImage();
     }
 
-    public static void setCursorImage(JPanel mainPane, String filename) {
+    /**
+     * Sets cursor image.
+     *
+     * @param filename Cursor's image path.
+     */
+    public static void setCursorImage(String filename) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Image image = getImage(filename, cursorScale);
-        Cursor c = toolkit.createCustomCursor(image, new Point(mainPane.getX(),
-                mainPane.getY()), "cursor");
-        mainPane.setCursor(c);
+        Cursor c = toolkit.createCustomCursor(image, new Point(panel.getX(),
+                panel.getY()), "cursor");
+        panel.setCursor(c);
     }
 
+    /**
+     * Sets color of button background.
+     *
+     * @param buttonBackgroundColor Button background's new Color
+     */
     public static void setButtonBackgroundColor(Color buttonBackgroundColor) {
         Helper.buttonBackgroundColor = buttonBackgroundColor;
     }
 
+    /**
+     * Sets background color.
+     *
+     * @param backgroundColor Background color.
+     */
     public static void setBackgroundColor(Color backgroundColor) {
         Helper.backgroundColor = backgroundColor;
     }
 
+    /**
+     * Sets foreground color.
+     *
+     * @param foregroundColor Foreground color.
+     */
     public static void setForegroundColor(Color foregroundColor) {
         Helper.foregroundColor = foregroundColor;
     }
 
+    /**
+     * Sets HUD color.
+     *
+     * @param HUDColor HUD color.
+     */
     public static void setHUDColor(Color HUDColor) {
         Helper.HUDColor = HUDColor;
     }
 
+    /**
+     * Returns instance of the class.
+     * @return Helper instance.
+     */
+    public static Helper getInstance() {
+        return helper;
+    }
 }

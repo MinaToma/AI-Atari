@@ -5,15 +5,34 @@ import java.awt.*;
 
 import static atariCore.Helper.*;
 
+/**
+ * Atari core loading screen
+ */
 public class LoadingScreen extends JPanel {
 
-    private int initialAtariWidth, initialAtariHeight;
-    private JLabel atariLabel, loading;
+    /**
+     * Initial x coordinate of the screen.
+     */
+    private int initialAtariWidth;
+    /**
+     * Initial y coordinate of the screen.
+     */
+    private int initialAtariHeight;
+    /**
+     * AI atari logo.
+     */
+    private JLabel atariLabel;
+    /**
+     * Loading label.
+     */
+    private JLabel loading;
 
+    /**
+     * Initializes, creates and adds loading screen it to the panel.
+     */
     public LoadingScreen() {
 
-        new Helper();
-        if(panel != null) {
+        if (panel != null) {
             frame.getContentPane().remove(panel);
         }
 

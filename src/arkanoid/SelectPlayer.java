@@ -1,13 +1,13 @@
 package arkanoid;
 
 import arkanoid.menu.Splash;
+import atariCore.FileManager;
 import atariCore.Helper;
 import atariCore.Sound;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.*;
 
 public class SelectPlayer extends JPanel {
@@ -57,24 +57,24 @@ public class SelectPlayer extends JPanel {
         add(labelName);
         add(textName);
 
-        setCursorImage(panel, pathCursor);
+        setCursorImage(pathCursor);
     }
 
     private void setActions() {
 
         startButton.addActionListener(e -> {
             if(sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
             if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                 String name = textName.getText();
-                int level = arkFile.getPlayerLevel(textName.getText());
+                int level = FileManager.getPlayerLevel(textName.getText());
                 new SelectEra(name, level);
             }
         });
 
         backButton.addActionListener(e->{
             if(sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
             new Splash();
         });
     }
@@ -89,6 +89,6 @@ public class SelectPlayer extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/bgName.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(imagePath + "background/bgName.jpg", 1), 0, 0, null);
     }
 }

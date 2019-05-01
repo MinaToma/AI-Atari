@@ -1,23 +1,38 @@
 package atariCore;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Dictionary;
-import java.util.Hashtable;
-import java.util.Map;
 import java.util.TreeMap;
-import java.util.function.Consumer;
 
+/**
+ * An extended interface to handle keyboard fast input.
+ */
 public interface AtariKeyListener extends KeyListener {
 
-    TreeMap<Integer , Boolean> keys = new TreeMap<>();
-    
+    /**
+     * Holding current pressed keys.
+     */
+    TreeMap<Integer, Boolean> keys = new TreeMap<>();
+
+    /**
+     * Initializes the game's expected keys.
+     */
     void initKeys();
+
+    /**
+     * Iterates over the current keys in keys and checks if its value is true to be pressed.
+     */
     void pressKey();
 
     @Override
     default void keyTyped(KeyEvent keyEvent) {
+    }
 
+    @Override
+    default void keyPressed(KeyEvent keyEvent) {
+    }
+
+    @Override
+    default void keyReleased(KeyEvent keyEvent) {
     }
 }

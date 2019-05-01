@@ -5,9 +5,8 @@ import arkanoid.SelectPlayer;
 import arkanoid.ObjectList;
 import arkanoid.arkHelper;
 
-import static atariCore.Helper.panel;
-
 import atariCore.AIEngine;
+import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 
@@ -21,7 +20,7 @@ public class Splash extends atariCore.Splash {
     public Splash() {
 
         super("Arkanoid", "src/Resources/Atari Core/Fonts/joystix monospace.ttf");
-        arkHelper.setCursorImage(panel, pathCursor);
+        Helper.setCursorImage(pathCursor);
 
         for (int i = 0; i < 10; i++) {
             if (arkHelper.backgroundGameSound[i].isRepeat())
@@ -39,42 +38,41 @@ public class Splash extends atariCore.Splash {
 
         newGameButton.addActionListener(e -> {
             if (sounds)
-                Sound.Play(arkHelper.clickSound, true);
+                Sound.Play(Helper.clickSound, true);
             new SelectPlayer();
         });
 
         settingsButton.addActionListener(e -> {
                 new Settings(music, sounds, mouse, keyboard);
             if (sounds)
-                Sound.Play(arkHelper.clickSound, true);
+                Sound.Play(Helper.clickSound, true);
         });
         LeaderboardsButton.addActionListener(e -> {
             new Leaderboards("src/Resources/Files/Leaderboards.txt");
             if (sounds)
-                Sound.Play(arkHelper.clickSound, true);
+                Sound.Play(Helper.clickSound, true);
         });
         exitButton.addActionListener(e -> {
                     frame.dispose();
             if(sounds)
-                Sound.Play(arkHelper.clickSound, true);
+                Sound.Play(Helper.clickSound, true);
 
                 }
-
         );
 
         AIButton.addActionListener(e -> {
             if(sounds)
-                Sound.Play(arkHelper.clickSound, true);
-            arkHelper.running = true;
+                Sound.Play(Helper.clickSound, true);
+            Helper.running = true;
             AIMode = true;
 
-            try {
-                AIEngine.startAI();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            } catch (NullPointerException ex) {
-                ex.printStackTrace();
-            }
+//            try {
+//                AIEngine.startAI();
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            } catch (NullPointerException ex) {
+//                ex.printStackTrace();
+//            }
 
             new Arkanoid("AI-Player", 1);
         });

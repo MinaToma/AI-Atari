@@ -1,10 +1,10 @@
 package arkanoid.board;
 
 import arkanoid.Arkanoid;
-import arkanoid.arkAIEngine;
-import arkanoid.arkFile;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
+import atariCore.FileManager;
+import atariCore.Helper;
 import atariCore.Sound;
 
 import java.awt.*;
@@ -27,13 +27,10 @@ public class Player extends BaseObject {
     public Player(String Name, int lives, Paddle paddle, Arkanoid arkanoid) {
         super(10, 10, null);
         this.name = Name;
-//        this.lives = lives;
+        this.lives = lives;
         this.paddle = new ArrayList<>();
         this.paddle.add(paddle);
         this.arkanoid = arkanoid;
-        this.level = 1;
-
-        this.lives = 0;
 
         previousScore = 0;
         score = 0;
@@ -48,8 +45,8 @@ public class Player extends BaseObject {
 
         if (level > 100) {
 
-            arkFile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
-            arkFile.sendPlayerScore(name, level);
+            FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+            FileManager.sendPlayerScore(name, level);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
             new arkanoid.creditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
@@ -97,8 +94,8 @@ public class Player extends BaseObject {
     }
 
     public void die() {
-        arkFile.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
-        arkFile.sendPlayerScore(name, level);
+        FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+        FileManager.sendPlayerScore(name, level);
 
         if (!AIMode) {
 
@@ -113,11 +110,11 @@ public class Player extends BaseObject {
             } catch (Exception e) {
             }
 
-            arkHelper.running = false;
+            Helper.running = false;
             new arkanoid.menu.Splash();
         } else {
 
-            arkAIEngine.train();
+//            arkAIEngine.train();
             setScore(0);
             setPreviousScore(0);
             arkanoid.initializeLevels(1);

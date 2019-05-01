@@ -2,17 +2,16 @@ package flappyBird;
 
 
 import atariCore.BaseObject;
-import atariCore.BaseObjectList;
+import atariCore.Handler;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ObjectList extends BaseObjectList {
+public class ObjectList {
 
     public static CopyOnWriteArrayList<BaseObject> birdList;
     public static CopyOnWriteArrayList<BaseObject> pipeList;
     public static CopyOnWriteArrayList<BaseObject> playerList;
     public static CopyOnWriteArrayList<BaseObject> backgroundList;
-
-
 
     public ObjectList() {
 
@@ -21,10 +20,9 @@ public class ObjectList extends BaseObjectList {
         pipeList = new CopyOnWriteArrayList<>();
         backgroundList = new CopyOnWriteArrayList<>();
 
-        handler.addHandler(backgroundList);
-        handler.addHandler(pipeList);
-        handler.addHandler(birdList);
-        handler.addHandler(playerList);
-
+        Handler.getInstance().addHandler(backgroundList);
+        Handler.getInstance().addHandler(pipeList);
+        Handler.getInstance().addHandler(birdList);
+        Handler.getInstance().addHandler(playerList);
     }
 }

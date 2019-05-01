@@ -1,11 +1,12 @@
 package flappyBird;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import atariCore.AIEngine;
+import atariCore.Handler;
+
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import static atariCore.BaseObjectList.handler;
+import static atariCore.AIEngine.waitForPrediction;
 import static atariCore.Helper.screenHeight;
 import static atariCore.Helper.screenWidth;
 import static flappyBird.ObjectList.birdList;
@@ -17,6 +18,13 @@ public class FlappyAIEngine {
     private int numberOfBirds;
     private int currentFrameCount = 99;
     private int requireActionGap = 50;
+    private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts";
+    private static String interactionPath = "src/Resources/Atari Core/AI-Interaction/interaction.txt";
+
+    static void startEngine()
+    {
+        AIEngine.startEngine(scriptScript);
+    }
 
     public FlappyAIEngine(int numberOfBirds) {
 
@@ -26,13 +34,13 @@ public class FlappyAIEngine {
         for (int i = 0; i < numberOfBirds; i++) {
             myBirds.add(new Bird(screenWidth / 2f - birds[0].getWidth(null) / 2f,
                     screenHeight / 2f - birds[0].getHeight(null) / 2f, birds[1]));
-            handler.addObject(birdList, myBirds.get(i));
+            Handler.getInstance().addObject(birdList, myBirds.get(i));
         }
     }
 
     public void generateNewGeneration() {
         try {
-            PrintWriter writer = new PrintWriter("/home/mehisen/PycharmProjects/ML (copy)/interaction.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
             writer.println("training");
             writer.close();
         } catch (Exception e) {
@@ -41,7 +49,7 @@ public class FlappyAIEngine {
 
         String Data = new String();
         while (Data == null || !Data.equals("done"))
-            Data = waitForPrediciton(Data);
+            Data = waitForPrediction(Data);
     }
 
     public void getAction() {
@@ -60,7 +68,7 @@ public class FlappyAIEngine {
                     String Data = new String();
                     try {
 
-                        PrintWriter writer = new PrintWriter("/home/mehisen/PycharmProjects/ML (copy)/interaction.txt", "UTF-8");
+                        PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
 
                         writer.println("prediction");
 
@@ -78,8 +86,8 @@ public class FlappyAIEngine {
 
                         writer.close();
 
-                        while (Data == null || (!Data.equals("jump") && !Data.equals("stay") ))
-                            Data = waitForPrediciton(Data);
+                        while (Data == null || (!Data.equals("jump") && !Data.equals("stay")))
+                            Data = waitForPrediction(Data);
 
                         if (Data.equals("jump")) {
                             bird.speedUp();
@@ -91,20 +99,5 @@ public class FlappyAIEngine {
                 }
             }
         }
-    }
-
-    private static String waitForPrediciton(String Data) {
-        try {
-            FileReader fr = new FileReader("/home/mehisen/PycharmProjects/ML (copy)/interaction.txt");
-            BufferedReader br = new BufferedReader(fr);
-
-            Data = br.readLine();
-
-            br.close();
-            fr.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return Data;
     }
 }

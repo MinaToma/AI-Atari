@@ -7,7 +7,6 @@ import atariCore.Sound;
 import javax.swing.*;
 import java.awt.*;
 
-import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.*;
 
 public class Settings extends atariCore.Settings {
@@ -18,21 +17,21 @@ public class Settings extends atariCore.Settings {
         super(music,sounds,mouse,keyboard);
         backButton.addActionListener(e -> {
             if(Helper.sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
             new Splash();
         });
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
     @Override
     protected void switchSoundsState() {
         Helper.sounds = !Helper.sounds;
         soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
         if(sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
 
     }
     @Override
@@ -40,7 +39,7 @@ public class Settings extends atariCore.Settings {
         Helper.music = !Helper.music;
         musicButton.setIcon(new ImageIcon((Helper.music ? musicOnImage : musicOffImage)));
         if(sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
         if(!music)
             Sound.Stop(arkHelper.backgroundSplashSound);
         else

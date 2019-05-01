@@ -2,10 +2,11 @@ package arkanoid;
 
 
 import atariCore.BaseObject;
-import atariCore.BaseObjectList;
+import atariCore.Handler;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class ObjectList extends BaseObjectList {
+public class ObjectList {
 
     public static CopyOnWriteArrayList<BaseObject> brickList;
     public static CopyOnWriteArrayList<BaseObject> paddleList;
@@ -27,13 +28,13 @@ public class ObjectList extends BaseObjectList {
         brickList = new CopyOnWriteArrayList<>();
         backgroundList = new CopyOnWriteArrayList<>();
 
-        handler.addHandler(backgroundList);
-        handler.addHandler(enemyList);
-        handler.addHandler(capsuleList);
-        handler.addHandler(bulletList);
-        handler.addHandler(paddleList);
-        handler.addHandler(playerList);
-        handler.addHandler(ballList);
-        handler.addHandler(brickList);
+        Handler.getInstance().addHandler(backgroundList);
+        Handler.getInstance().addHandler(enemyList);
+        Handler.getInstance().addHandler(capsuleList);
+        Handler.getInstance().addHandler(bulletList);
+        Handler.getInstance().addHandler(paddleList);
+        Handler.getInstance().addHandler(playerList);
+        Handler.getInstance().addHandler(ballList);
+        Handler.getInstance().addHandler(brickList);
     }
 }

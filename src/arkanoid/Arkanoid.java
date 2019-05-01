@@ -1,24 +1,19 @@
 package arkanoid;
 
 import arkanoid.board.Ball;
-import arkanoid.board.Brick;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
-import atariCore.AIEngine;
-import atariCore.Background;
-import atariCore.BaseObject;
-import atariCore.Sound;
+import atariCore.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.security.interfaces.DSAPublicKey;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
+import static atariCore.Helper.*;
 
 public class Arkanoid extends atariCore.Game {
 
@@ -53,7 +48,7 @@ public class Arkanoid extends atariCore.Game {
         }
 
         initKeys();
-        arkHelper.setCursorImage(this, pathCursor);
+        Helper.setCursorImage(pathCursor);
         setPaddle();
         setPlayer(namePlayer, level);
 
@@ -74,8 +69,8 @@ public class Arkanoid extends atariCore.Game {
         p.reset();
         p.speedNormal();
 
-        handler.addObject(playerList, player);
-        handler.addObject(paddleList, p);
+        Handler.getInstance().addObject(playerList, player);
+        Handler.getInstance().addObject(paddleList, p);
         setBackGround();
         setBricks(level);
 
@@ -85,28 +80,28 @@ public class Arkanoid extends atariCore.Game {
         setEnemy();
 
         if (AIMode) {
-            p.setX(arkHelper.screenHeight * 0.1f);
+            p.setX(Helper.screenHeight * 0.1f);
             paddleClick();
         }
 
     }
 
     private void setBackGround() {
-        Background background = new Background(0, 0, backgroundImage[(player.getLevel() - 1) / 10]);
-        handler.addObject(backgroundList, background);
+        GameBackground gameBackground = new GameBackground(0, 0, backgroundImage[(player.getLevel() - 1) / 10]);
+        Handler.getInstance().addObject(backgroundList, gameBackground);
     }
 
     public void setBall() {
 
         b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
-        handler.addObject(ballList, b);
+        Handler.getInstance().addObject(ballList, b);
     }
 
     private void setPlayer(String namePlayer, int level) {
         player = new Player(namePlayer, (AIMode) ? 0 : 3, p, this);
         player.setLevel(level);
         p.setPlayer(player);
-        handler.addObject(playerList, player);
+        Handler.getInstance().addObject(playerList, player);
     }
 
     private void setEnemy() {
@@ -119,7 +114,7 @@ public class Arkanoid extends atariCore.Game {
 
     private void setPaddle() {
         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
-        handler.addObject(paddleList, p);
+        Handler.getInstance().addObject(paddleList, p);
     }
 
     public void keyTyped(KeyEvent keyEvent) {
@@ -163,7 +158,7 @@ public class Arkanoid extends atariCore.Game {
             }
         } else if (key == KeyEvent.VK_ESCAPE) {
 
-            AIMode = arkHelper.running = pause = false;
+            AIMode = Helper.running = pause = false;
             new arkanoid.menu.Splash();
         } else if (key == KeyEvent.VK_A) {
 
@@ -257,7 +252,7 @@ public class Arkanoid extends atariCore.Game {
     public void mouseMoved(MouseEvent mouseEvent) {
 
         if (pause || AIMode) return;
-        if (!AIMode && (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3))
+        if (!AIMode && (b.getX() != INIT_BALL_X && mouseEvent.getX() < Helper.screenWidth - p.getImageWidth() + 3))
             p.setX(mouseEvent.getX());
     }
 
@@ -275,7 +270,7 @@ public class Arkanoid extends atariCore.Game {
         if (player.getScore() == 0)
             player.setPreviousScore(0);
 
-        arkHelper.running = false;
+        Helper.running = false;
 
         Float R = 0f;
         Float L = 0f;
@@ -294,41 +289,26 @@ public class Arkanoid extends atariCore.Game {
         inputData.add(R);
         inputData.add(L);
 
-        AIEngine.initializeInput(inputData);
+//        AIEngine.initializeInput(inputData);
+//
+//        String dir = AIEngine.getDIR();
+//        if (dir.equals("right")) {
+//
+//            p.setVelX(arkHelper.paddleSpeed);
+//        } else if (dir.equals("left")) {
+//
+//            p.setVelX(-arkHelper.paddleSpeed);
+//        } else if (dir.equals("same")) {
+//            p.setVelX(0);
+//        }
+//
+//        if (player.getPreviousScore() - player.getScore() == 0)
+//            AIEngine.slack += 0.01;
+//        else
+//            AIEngine.slack = 0;
 
-        String dir = AIEngine.getDIR();
-        if (dir.equals("right")) {
+//        arkAIEngine.calculateReward(player, b, p);
 
-            p.setVelX(arkHelper.paddleSpeed);
-        } else if (dir.equals("left")) {
-
-            p.setVelX(-arkHelper.paddleSpeed);
-        } else if (dir.equals("same")) {
-            p.setVelX(0);
-        }
-
-        if (player.getPreviousScore() - player.getScore() == 0)
-            AIEngine.slack += 0.01;
-        else
-            AIEngine.slack = 0;
-
-        arkAIEngine.calculateReward(player, b, p);
-
-        arkHelper.running = true;
+        Helper.running = true;
     }
-
-    @Override
-    public void setPausedBG() {
-        if (pause) {
-
-            pausedBG.setIcon(new ImageIcon(pausedImage));
-            pausedBG.setBounds(0, 0, screenWidth, screenHeight);
-            add(pausedBG);
-            frame.setVisible(true);
-        } else {
-            remove(pausedBG);
-            frame.setVisible(true);
-        }
-    }
-
 }

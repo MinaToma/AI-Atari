@@ -1,10 +1,12 @@
 package flappyBird;
 
 import atariCore.BaseObject;
+import atariCore.Handler;
 import atariCore.Sound;
 
 import java.awt.*;
 
+import static atariCore.Helper.*;
 import static flappyBird.ObjectList.*;
 import static flappyBird.flappyHelper.*;
 
@@ -60,13 +62,13 @@ public class Bird extends BaseObject {
         boolean delete = false;
         for (BaseObject p : pipeList)
             if (!delete && p.getRectangle().intersects(getRectangle())) {
-                handler.removeObject(birdList, this);
+                Handler.getInstance().removeObject(birdList, this);
                 delete = true;
             }
 
         Rectangle rec = getRectangle();
         if (rec.y <= 0 || rec.y + rec.height >= screenHeight && !delete)
-            handler.removeObject(birdList, this);
+            Handler.getInstance().removeObject(birdList, this);
 
         if (birdList.size() == 0) {
             if (!AIMode && sounds)

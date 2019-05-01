@@ -6,6 +6,7 @@ import atariCore.Sound;
 import javax.swing.*;
 import java.awt.*;
 
+import static atariCore.Helper.*;
 import static arkanoid.arkHelper.*;
 
 public class SelectEra extends JPanel {
@@ -53,7 +54,7 @@ public class SelectEra extends JPanel {
             int finalI = i;
             eras[i].addActionListener(e -> {
                 if(sounds)
-                Sound.Play(arkHelper.clickSound,true);
+                Sound.Play(clickSound,true);
                 new SelectLevel(name, level, finalI);
             });
         }
@@ -61,11 +62,11 @@ public class SelectEra extends JPanel {
         setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 155);
 
         backButton.addActionListener(e->{
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(clickSound,true);
             new SelectPlayer();
         });
 
-        setCursorImage(panel, pathCursor);
+        setCursorImage(pathCursor);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
@@ -80,6 +81,6 @@ public class SelectEra extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 }

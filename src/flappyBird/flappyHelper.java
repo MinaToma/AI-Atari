@@ -6,7 +6,9 @@ import jaco.mp3.player.MP3Player;
 
 import java.awt.*;
 
-public class flappyHelper extends Helper {
+import static atariCore.Helper.*;
+
+public class flappyHelper {
 
     public static Image[] birds;
     public static Image background;

@@ -1,5 +1,6 @@
 package arkanoid;
 
+import atariCore.Helper;
 import atariCore.Sound;
 
 import javax.swing.*;
@@ -7,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import static arkanoid.arkHelper.lockImage;
-import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.*;
 
 /*
@@ -55,35 +55,35 @@ public class SelectLevel extends JPanel {
 
             int finalI = i;
             levels[i].addActionListener(e -> {
-                arkHelper.running = true;
+                Helper.running = true;
                 Sound.Stop(arkHelper.backgroundSplashSound);
                 if(sounds)
-                Sound.Play(arkHelper.clickSound,true);
+                Sound.Play(Helper.clickSound,true);
                 new Arkanoid(name , finalI + 1 + 10 * era);
             });
         }
 
-        setBackButton(arkHelper.screenWidth/2-btnDim.width/2, arkHelper.screenHeight-btnDim.height - 115);
+        setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 115);
         backButton.addActionListener(e->{
             if(sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
             new SelectEra(name, level);
         });
 
-        setCursorImage(this, pathCursor);
+        setCursorImage(pathCursor);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
     }
 
     private void setBackButton(int x, int y) {
-        backButton = arkHelper.buttonHelper("Back", x, y, btnDim);
+        backButton = Helper.buttonHelper("Back", x, y, btnDim);
         backButton.setBackground(new Color(0xEA2D1113));
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 }

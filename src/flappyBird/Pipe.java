@@ -1,11 +1,11 @@
 package flappyBird;
 
 import atariCore.BaseObject;
+import atariCore.Handler;
 
 import java.awt.*;
 import java.util.Random;
 
-import static atariCore.BaseObjectList.handler;
 import static flappyBird.ObjectList.pipeList;
 import static flappyBird.ObjectList.playerList;
 import static flappyBird.flappyHelper.*;
@@ -27,8 +27,8 @@ public class Pipe extends BaseObject {
     @Override
     public void tick() {
 
-        if(flappyHelper.startGame)
-        x+=velX;
+        if (flappyHelper.startGame)
+            x += velX;
 
         modfiyPipe();
     }
@@ -41,66 +41,56 @@ public class Pipe extends BaseObject {
         this.inTheBack = inTheBack;
     }
 
-    private void modfiyPipe()
-    {
+    private void modfiyPipe() {
         boolean needPipe = false;
-        float pos=0;
-        for(BaseObject o: pipeList)
-        {
-            if(o.getX()+ o.getImageWidth()<0) {
-                pos=o.getX();
-                handler.removeObject(pipeList, o);
+        float pos = 0;
+        for (BaseObject o : pipeList) {
+            if (o.getX() + o.getImageWidth() < 0) {
+                pos = o.getX();
+                Handler.getInstance().removeObject(pipeList, o);
                 needPipe = true;
                 break;
             }
         }
         float dist = 100;
-        if(needPipe)
-        {
+        if (needPipe) {
 
-            for(BaseObject o: pipeList)
-            {
-                if(Math.abs( o.getX() - pos)<dist) {
-                    dist = Math.abs( o.getX() - pos);
+            for (BaseObject o : pipeList) {
+                if (Math.abs(o.getX() - pos) < dist) {
+                    dist = Math.abs(o.getX() - pos);
                 }
 
             }
-            for(BaseObject o: pipeList)
-            {
-                if(Math.abs( o.getX() - pos)==dist) {
-                    handler.removeObject(pipeList, o);
+            for (BaseObject o : pipeList) {
+                if (Math.abs(o.getX() - pos) == dist) {
+                    Handler.getInstance().removeObject(pipeList, o);
                     break;
                 }
 
             }
-
-
         }
 
 
-
-        int lastPosPipe=0;
-        for(BaseObject o: pipeList)
-        {
-            lastPosPipe =  Math.max((int)o.getX(),lastPosPipe);
+        int lastPosPipe = 0;
+        for (BaseObject o : pipeList) {
+            lastPosPipe = Math.max((int) o.getX(), lastPosPipe);
         }
 
-        if(needPipe)
-        {
-            ((Player)playerList.get(0)).lastScore++;
-            Random rand  = new Random();
-            int initialY = rand.nextInt(maxHeight)+minHeight;
-            Pipe pipeD = new Pipe(lastPosPipe + widthGap ,initialY - pipeDown.getHeight(null), pipeDown,-1.5f,0);
-            Pipe pipeU = new Pipe(lastPosPipe + widthGap  ,initialY + heightGap, pipeUp,-1.5f,0);
+        if (needPipe) {
+            ((Player) playerList.get(0)).lastScore++;
+            Random rand = new Random();
+            int initialY = rand.nextInt(maxHeight) + minHeight;
+            Pipe pipeD = new Pipe(lastPosPipe + widthGap, initialY - pipeDown.getHeight(null), pipeDown, -1.5f, 0);
+            Pipe pipeU = new Pipe(lastPosPipe + widthGap, initialY + heightGap, pipeUp, -1.5f, 0);
 
-            handler.addObject(pipeList, pipeD);
-            handler.addObject(pipeList, pipeU);
+            Handler.getInstance().addObject(pipeList, pipeD);
+            Handler.getInstance().addObject(pipeList, pipeU);
         }
     }
 
     @Override
     public void render(Graphics g) {
-        if(flappyHelper.startGame)
-        g.drawImage(image,(int)x,(int)y,null);
+        if (flappyHelper.startGame)
+            g.drawImage(image, (int) x, (int) y, null);
     }
 }

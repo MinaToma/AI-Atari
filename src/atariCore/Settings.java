@@ -1,78 +1,50 @@
 package atariCore;
 
 import javax.swing.*;
-import java.awt.*;
 
-import static arkanoid.arkHelper.pathCursor;
 import static atariCore.Helper.*;
 
+/**
+ * Default Settings menu
+ */
 public class Settings extends JPanel {
 
-    protected JButton musicButton, soundButton, mouseButton, keyboardButton, backButton;
-    //private Dimension dim = new Dimension(screenWidth, screenHeight);
+    /**
+     * Toggles music state (On / Off).
+     */
+    protected JButton musicButton;
+    /**
+     * Toggles Sound state (On / Off).
+     */
+    protected JButton soundButton;
+    /**
+     * Toggles mouse controls (On / Off).
+     */
+    protected JButton mouseButton;
+    /**
+     * Toggles keyboard controls  X coordinates of the ball..
+     */
+    protected JButton keyboardButton;
+    /**
+     * Back to main menu.
+     */
+    protected JButton backButton;
 
-    protected void setMusicButton(int x, int y) {
-        musicButton = Helper.buttonHelper("Music", x, y, btnDim);
-    }
-
-    protected void setSoundButton(int x, int y) {
-        soundButton = Helper.buttonHelper("Sound", x, y, btnDim);
-    }
-
-    protected void setMouseButton(int x, int y) {
-        mouseButton = Helper.buttonHelper("Mouse", x, y, btnDim);
-    }
-
-    protected void setKeyboardButton(int x, int y) {
-        keyboardButton = Helper.buttonHelper("Keyboard", x, y, btnDim);
-    }
-
-    public void setBackButton(int x, int y) {
-        backButton = Helper.buttonHelper("Back", x, y, btnDim);
-    }
-
-    protected void switchSoundsState() {
-        Helper.sounds = !Helper.sounds;
-        soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
-
-    }
-
-    protected void switchMusicState() {
-        Helper.music = !Helper.music;
-        musicButton.setIcon(new ImageIcon((Helper.music ? musicOnImage : musicOffImage)));
-    }
-
-    protected void switchMouseState() {
-        Helper.mouse = !Helper.mouse;
-    }
-
-    protected void switchKeyboardState() {
-        Helper.keyboard = !Helper.keyboard;
-    }
-
+    /**
+     * Default constructor with all features on.
+     */
     public Settings() {
-
-        frame.getContentPane().remove(panel);
-        frame.setTitle("Settings");
-        panel = this;
-
-        Helper.music = true;
-        Helper.sounds = true;
-        Helper.mouse = true;
-        Helper.keyboard = true;
-
-        setDesign();
-        setActions();
-
-        add(musicButton);
-        add(soundButton);
-        add(mouseButton);
-        add(keyboardButton);
-
-        frame.getContentPane().add(panel);
-        frame.setVisible(true);
+        this(true, true, true, true);
     }
 
+    /**
+     * Parameterized constructor to set features on and off.
+     *
+     * @param music    Music flag.
+     * @param sounds   Sound flag.
+     * @param mouse    Mouse Control flag.
+     * @param keyboard Keyboard control flog.
+     */
     public Settings(boolean music, boolean sounds, boolean mouse, boolean keyboard) {
 
         frame.getContentPane().remove(panel);
@@ -96,6 +68,91 @@ public class Settings extends JPanel {
         frame.setVisible(true);
     }
 
+    /**
+     * Initializes music button into given position
+     *
+     * @param x x coordinates of the button.
+     * @param y y coordinates of the button.
+     */
+    protected void setMusicButton(int x, int y) {
+        musicButton = Helper.buttonHelper("Music", x, y, btnDim);
+    }
+
+    /**
+     * Initializes sound button into given position
+     *
+     * @param x x coordinates of the button.
+     * @param y y coordinates of the button.
+     */
+    protected void setSoundButton(int x, int y) {
+        soundButton = Helper.buttonHelper("Sound", x, y, btnDim);
+    }
+
+    /**
+     * Initializes mouse control button into given position
+     *
+     * @param x x coordinates of the button.
+     * @param y y coordinates of the button.
+     */
+    protected void setMouseButton(int x, int y) {
+        mouseButton = Helper.buttonHelper("Mouse", x, y, btnDim);
+    }
+
+    /**
+     * Initializes keyboard control button into given position
+     *
+     * @param x x coordinates of the button.
+     * @param y y coordinates of the button.
+     */
+    protected void setKeyboardButton(int x, int y) {
+        keyboardButton = Helper.buttonHelper("Keyboard", x, y, btnDim);
+    }
+
+    /**
+     * Initializes back button into given position
+     *
+     * @param x x coordinates of the button.
+     * @param y y coordinates of the button.
+     */
+    public void setBackButton(int x, int y) {
+        backButton = Helper.buttonHelper("Back", x, y, btnDim);
+    }
+
+    /**
+     * Toggles sound state.
+     */
+    protected void switchSoundsState() {
+        Helper.sounds = !Helper.sounds;
+        soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
+
+    }
+
+    /**
+     * Toggles music state.
+     */
+    protected void switchMusicState() {
+        Helper.music = !Helper.music;
+        musicButton.setIcon(new ImageIcon((Helper.music ? musicOnImage : musicOffImage)));
+    }
+
+    /**
+     * Toggles mouse control state.
+     */
+    protected void switchMouseState() {
+        Helper.mouse = !Helper.mouse;
+    }
+
+    /**
+     * Toggles keyboard control state.
+     */
+    protected void switchKeyboardState() {
+        Helper.keyboard = !Helper.keyboard;
+    }
+
+
+    /**
+     * Sets action listener for buttons.
+     */
     private void setActions() {
 
         musicButton.addActionListener(e -> {
@@ -115,6 +172,9 @@ public class Settings extends JPanel {
         });
     }
 
+    /**
+     * Sets main design and components of settings menu.
+     */
     private void setDesign() {
 
         int posX = (int) (screenWidth / 3.5), posY = 152, offset = 20;
@@ -139,7 +199,6 @@ public class Settings extends JPanel {
         keyboardButton.setSize(btnDim);
         backButton.setSize(btnDim);
 
-        setCursorImage(panel, pathCursor);
-
+        setCursorImage(pathCursor);
     }
 }

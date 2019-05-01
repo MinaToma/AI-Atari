@@ -2,6 +2,7 @@ package arkanoid;
 
 import arkanoid.board.*;
 import arkanoid.capsule.*;
+import atariCore.Handler;
 import atariCore.Helper;
 
 import java.util.*;
@@ -79,7 +80,7 @@ public class Level {
                     }
                     initialWidth += arkHelper.normalBricks[0].getWidth(null);
 
-                    handler.addObject(brickList, bricks[index]);
+                    Handler.getInstance().addObject(brickList, bricks[index]);
                     index++;
                 } else if (x >= 101) {
                     if (index == capsule.get(indexOfCapsule)) {
@@ -91,7 +92,7 @@ public class Level {
                     }
 
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);
-                    handler.addObject(brickList, bricks[index]);
+                    Handler.getInstance().addObject(brickList, bricks[index]);
                     index++;
                 } else {
                     initialWidth += arkHelper.smallSquares[0].getWidth(null);

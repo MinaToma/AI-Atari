@@ -1,21 +1,27 @@
 package atariCore;
 
-import arkanoid.Arkanoid;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.TimerTask;
 import java.util.Timer;
 
-import static atariCore.BaseObjectList.*;
 import static atariCore.Helper.*;
 
+/**
+ * Base game loop (Runnable Thread) with specified delay and period of the thread.
+ */
 abstract public class Game extends JPanel implements AtariKeyListener, MouseListener, MouseMotionListener {
 
+    /**
+     * Pre-specified java timer to handle the main game loop regardless of PC's speed.
+     */
     protected Timer timer;
-    protected JLabel pausedBG = new JLabel();
 
+    /**
+     * parameterized constructor takes game title and starts main game loop.
+     * @param title Game title.
+     */
     public Game(String title) {
 
         frame.getContentPane().remove(panel);
@@ -41,14 +47,14 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
                     return;
                 }
 
-                if (handler != null) {
+                if (Handler.getInstance() != null) {
                     if (!pause) {
                         if (AIMode) {
                             sendDataToAI();
                         } else {
                             pressKey();
                         }
-                        handler.tick();
+                        Handler.getInstance().tick();
                     }
                     revalidate();
                     repaint();
@@ -63,12 +69,18 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
         requestFocusInWindow();
     }
 
+    /**
+     * Responsible to interact with python scripts which are used to run AI-Engine.
+     */
     abstract protected void sendDataToAI();
 
+    /**
+     * Responsible to render the game where handler's objects are rendered.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        handler.render(g);
+        Handler.getInstance().render(g);
     }
 
     @Override
@@ -95,6 +107,4 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
     public void mouseDragged(MouseEvent mouseEvent) {
 
     }
-
-    public abstract void setPausedBG();
 }

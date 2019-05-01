@@ -1,12 +1,13 @@
 package arkanoid.menu;
 
 import arkanoid.arkHelper;
+import atariCore.Helper;
 import atariCore.Sound;
 
 import java.awt.*;
 
-import static arkanoid.arkHelper.pathImage;
 import static atariCore.Helper.getImage;
+import static atariCore.Helper.imagePath;
 import static atariCore.Helper.sounds;
 
 public class Leaderboards extends atariCore.Leaderboards {
@@ -16,7 +17,7 @@ public class Leaderboards extends atariCore.Leaderboards {
 
         backButton.addActionListener(e -> {
             if(sounds)
-            Sound.Play(arkHelper.clickSound,true);
+            Sound.Play(Helper.clickSound,true);
             new Splash();
         });
     }
@@ -24,6 +25,6 @@ public class Leaderboards extends atariCore.Leaderboards {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(pathImage + "leaderboards.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(imagePath + "leaderboards.jpg", 1), 0, 0, null);
     }
 }
