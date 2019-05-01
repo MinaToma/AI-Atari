@@ -66,6 +66,7 @@ public class arkHelper extends Helper {
     public static Image life;
     public static Image bullet;
     public static String pathImage = "src/Resources/Images/";
+    public static String soundPath = "src/Resources/Sounds/Arkanoid/";
     public static String pathLevel = "src/Resources/Files/levels.txt";
     public static String pathLeaderboards = "src/Resources/Files/Leaderboards.txt";
 
@@ -78,7 +79,6 @@ public class arkHelper extends Helper {
     public static MP3Player lossSound;
     public static MP3Player winSound;
     public static MP3Player creditSound;
-    public static MP3Player clickSound;
 
     public static JLabel nextLevelImage;
     public static JLabel lossImage;
@@ -119,34 +119,34 @@ public class arkHelper extends Helper {
 
 
     }
+
     public void setCredit()
     {
         ImageIcon icon = new ImageIcon(pathImage+"credit.gif");
         creditImage = new JLabel(icon);
         creditImage.setBounds(0,0,screenWidth,screenHeight);
-        creditSound = Sound.setSound("src/Resources/Sounds/credit.mp3");
+        creditSound = Sound.setSound("src/Resources/Sounds/Atari Core/credit.mp3");
 
     }
 
     private void setSound() {
-        clickSound = Sound.setSound("src/Resources/Sounds/click.mp3");
-        backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
-        lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
-        winSound = Sound.setSound("src/Resources/Sounds/nextLevel.mp3");
+        backgroundSplashSound = Sound.setSound(soundPath + "background.mp3");
+        lossSound = Sound.setSound(soundPath + "lay.mp3");
+        winSound = Sound.setSound(soundPath + "nextLevel.mp3");
         backgroundGameSound = new MP3Player[10];
 
         for (int i = 1; i <= 10; i++) {
-            backgroundGameSound[i - 1] = Sound.setSound("src/Resources/Sounds/BackgroundGame/" + i + ".mp3");
+            backgroundGameSound[i - 1] = Sound.setSound(soundPath + "BackgroundGame/" + i + ".mp3");
         }
     }
 
     public static void laserSound() {
-        MP3Player player = Sound.setSound("src/Resources/Sounds/laser.mp3");
+        MP3Player player = Sound.setSound(soundPath + "laser.mp3");
         Sound.Play(player, true);
     }
 
     public static void hitSound() {
-        MP3Player player = Sound.setSound("src/Resources/Sounds/hit.mp3");
+        MP3Player player = Sound.setSound(soundPath + "hit.mp3");
         Sound.Play(player, true);
     }
 
