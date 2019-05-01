@@ -52,7 +52,7 @@ public class Player extends BaseObject {
             arkFile.sendPlayerScore(name, level);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
-            new arkanoid.creditScreen(arkHelper.timeTheCredit, arkHelper.creditImage, arkHelper.creditSound);
+            new arkanoid.creditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
         } else {
 
             if (score > 0 && !AIMode) {

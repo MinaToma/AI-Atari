@@ -75,7 +75,7 @@ public class Leaderboards extends JPanel {
             else{
             String s =(i < 10 ? "0" + i : i) +"  .................... ........  ........";
             top10[i-1] = new JLabel(s);}
-            top10[i-1].setFont(Helper.setFont("src/Resources/Fonts/joystix monospace.ttf",35));
+            top10[i-1].setFont(Helper.setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf",35));
             top10[i-1].setForeground(buttonBackgroundColor);
                 top10[i-1].setBounds(xOffset,yOffest,Helper.screenWidth-40,35);
                 yOffest += 35;

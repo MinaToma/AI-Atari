@@ -32,7 +32,6 @@ public class arkHelper extends Helper {
     public static Font HUDFont;
     public static Image splashBackground;
     public static Image lockImage;
-    public static Image lockedEraImage;
     public static Image[] normalBricks;
     public static Image[] brokenBricks;
     public static Image[] smallSquares;
@@ -65,9 +64,10 @@ public class arkHelper extends Helper {
     public static Image star;
     public static Image life;
     public static Image bullet;
-    public static String pathImage = "src/Resources/Images/";
-    public static String pathLevel = "src/Resources/Files/levels.txt";
-    public static String pathLeaderboards = "src/Resources/Files/Leaderboards.txt";
+    public static String pathImage = "src/Resources/Arkanoid/Images/";
+    public static String soundPath = "src/Resources/Arkanoid/Sounds/";
+    public static String pathLevel = "src/Resources/Arkanoid/Files/levels.txt";
+    public static String pathLeaderboards = "src/Resources/Arkanoid/Files/Leaderboards.txt";
 
     public static Image[] backgroundImage;
     public static Image[] eraSelectionImage;
@@ -78,11 +78,10 @@ public class arkHelper extends Helper {
     public static MP3Player lossSound;
     public static MP3Player winSound;
     public static MP3Player creditSound;
-    public static MP3Player clickSound;
 
     public static JLabel nextLevelImage;
     public static JLabel lossImage;
-    public static JLabel creditImage;
+    public static JLabel creditsImage;
 
 
     public arkHelper() {
@@ -110,7 +109,7 @@ public class arkHelper extends Helper {
 
     public static void setLoseAndWinImage() {
         Random r = new Random();
-        ImageIcon icon = new ImageIcon("src/Resources/Images/dance/dance"+(Math.abs( r.nextInt())%8+1)+".gif");
+        ImageIcon icon = new ImageIcon(pathImage + "/dance/"+(Math.abs( r.nextInt())%8+1)+".gif");
         nextLevelImage = new JLabel(icon);
         nextLevelImage.setBounds(screenWidth / 2 - icon.getImage().getWidth(null) / 2, screenHeight / 2 - icon.getImage().getHeight(null) / 2, icon.getImage().getWidth(null), icon.getImage().getHeight(null));
         icon = new ImageIcon(pathImage + "sad.gif");
@@ -119,100 +118,96 @@ public class arkHelper extends Helper {
 
 
     }
+
     public void setCredit()
     {
-        ImageIcon icon = new ImageIcon(pathImage+"credit.gif");
-        creditImage = new JLabel(icon);
-        creditImage.setBounds(0,0,screenWidth,screenHeight);
-        creditSound = Sound.setSound("src/Resources/Sounds/credit.mp3");
+        ImageIcon icon = new ImageIcon(pathImage + "credits.gif");
+        creditsImage = new JLabel(icon);
+        creditsImage.setBounds(0,0,screenWidth,screenHeight);
+        creditSound = Sound.setSound("src/Resources/Atari Core/Sounds/credits.mp3");
 
     }
 
     private void setSound() {
-        clickSound = Sound.setSound("src/Resources/Sounds/click.mp3");
-        backgroundSplashSound = Sound.setSound("src/Resources/Sounds/background.mp3");
-        lossSound = Sound.setSound("src/Resources/Sounds/lay.mp3");
-        winSound = Sound.setSound("src/Resources/Sounds/nextLevel.mp3");
+        backgroundSplashSound = Sound.setSound(soundPath + "background.mp3");
+        lossSound = Sound.setSound(soundPath + "lay.mp3");
+        winSound = Sound.setSound(soundPath + "nextLevel.mp3");
         backgroundGameSound = new MP3Player[10];
 
         for (int i = 1; i <= 10; i++) {
-            backgroundGameSound[i - 1] = Sound.setSound("src/Resources/Sounds/BackgroundGame/" + i + ".mp3");
+            backgroundGameSound[i - 1] = Sound.setSound(soundPath + "BackgroundGame/" + i + ".mp3");
         }
     }
 
     public static void laserSound() {
-        MP3Player player = Sound.setSound("src/Resources/Sounds/laser.mp3");
+        MP3Player player = Sound.setSound(soundPath + "laser.mp3");
         Sound.Play(player, true);
     }
 
     public static void hitSound() {
-        MP3Player player = Sound.setSound("src/Resources/Sounds/hit.mp3");
+        MP3Player player = Sound.setSound(soundPath + "hit.mp3");
         Sound.Play(player, true);
     }
 
     private void loadImages() {
-        pathCursor = "src/Resources/Images/yellowc2.png";
-        splashBackground = getImage(backgroundImage + "splash.png", 1);
+        pathCursor = pathImage + "cursor/yellowCursor2.png";
+        splashBackgroundImagePath = pathImage + "background/splash.png";
+        splashBackground = getImage(splashBackgroundImagePath, 1);
 
         pausedImage = getImage( pathImage + "background/pausedBG.png",1);
 
-        lockImage = getImage(pathImage + "background/lock-1.png", 4);
-        lockedEraImage = getImage(pathImage + "background/locked.jpg", 7);
+        lockImage = getImage(pathImage + "background/lock.png", 4);
 
         for (int i = 1; i <= 14; i++) {
-            normalBricks[i - 1] = getImage(pathImage + "bricks/normal brick" + i + ".png", brickScale);
-        }
-
-        for (int i = 1; i <= 14; i++) {
-            brokenBricks[i - 1] = getImage(pathImage + "bricks/broken brick" + i + ".png", brickScale);
+            normalBricks[i - 1] = getImage(pathImage + "brick/normal brick" + i + ".png", brickScale);
         }
 
         for (int i = 1; i <= 14; i++) {
-            smallSquares[i - 1] = getImage(pathImage + "bricks/small brick" + i + ".png", brickScale);
+            brokenBricks[i - 1] = getImage(pathImage + "brick/broken brick" + i + ".png", brickScale);
         }
 
-        capsule50 = getImage(pathImage + "31-Breakout-Tiles.png", capsuleScale);
-
-        for (int i = 32; i <= 38; i++) {
-            capsule100[i - 32] = getImage(pathImage + i + "-Breakout-Tiles.png", capsuleScale);
+        for (int i = 1; i <= 14; i++) {
+            smallSquares[i - 1] = getImage(pathImage + "brick/small brick" + i + ".png", brickScale);
         }
 
-        capsule250 = getImage(pathImage + "39-Breakout-Tiles.png", capsuleScale);
-        capsule500 = getImage(pathImage + "40-Breakout-Tiles.png", capsuleScale);
-        capsuleSlow = getImage(pathImage + "41-Breakout-Tiles.png", capsuleScale);
-        capsuleFast = getImage(pathImage + "42-Breakout-Tiles.png", capsuleScale);
-        capsuleTripleBall = getImage(pathImage + "43-Breakout-Tiles.png", capsuleScale);
-        capsuleFireBall = getImage(pathImage + "44-Breakout-Tiles.png", capsuleScale);
-        capsuleAcidBall = getImage(pathImage + "45-Breakout-Tiles.png", capsuleScale);
-        capsuleShrink = getImage(pathImage + "46-Breakout-Tiles.png", capsuleScale);
-        capsuleExpand = getImage(pathImage + "47-Breakout-Tiles.png", capsuleScale);
-        capsuleWeapon = getImage(pathImage + "48-Breakout-Tiles.png", capsuleScale);
-        capsuleEmpty = getImage(pathImage + "49-Breakout-Tiles.png", capsuleScale);
+        capsule50 = getImage(pathImage + "capsule/50.png", capsuleScale);
 
-        for (int i = 50; i <= 52; i++) {
-            paddle[i - 50] = getImage(pathImage + i + "-Breakout-Tiles.png", paddleScale);
+        for (int i = 0; i < 7; i++) {
+            capsule100[i] = getImage(pathImage + "capsule/100-" + i + ".png", capsuleScale);
         }
 
-        for (int i = 53; i <= 55; i++) {
-            paddleWeapon[i - 53] = getImage(pathImage + i + "-Breakout-Tiles.png", paddleScale);
-        }
-        for(int i=1 ; i<=3 ;i++){
-            paddleExpanded[i-1] = getImage(pathImage + "56-"+i+"-Breakout-Tiles.png", paddleScale);
-        }
-        paddleShrunk = getImage(pathImage + "57-Breakout-Tiles.png", paddleScale);
-        paddleShrunkWeapon = getImage(pathImage + "65-Breakout-Tiles.png", paddleScale);
-        ball = getImage(pathImage + "58-Breakout-Tiles.png", ballScale);
-        star = getImage(pathImage + "59-Breakout-Tiles.png", ballScale);
-        life = getImage(pathImage + "60-Breakout-Tiles.png", ballScale);
-        bullet = getImage(pathImage + "61-Breakout-Tiles.png", brickScale);
+        capsule250 = getImage(pathImage + "capsule/250.png", capsuleScale);
+        capsule500 = getImage(pathImage + "capsule/500.png", capsuleScale);
+        capsuleSlow = getImage(pathImage + "capsule/slow.png", capsuleScale);
+        capsuleFast = getImage(pathImage + "capsule/fast.png", capsuleScale);
+        capsuleTripleBall = getImage(pathImage + "capsule/triple.png", capsuleScale);
+        capsuleFireBall = getImage(pathImage + "capsule/fire.png", capsuleScale);
+        capsuleAcidBall = getImage(pathImage + "capsule/acid.png", capsuleScale);
+        capsuleShrink = getImage(pathImage + "capsule/shrink.png", capsuleScale);
+        capsuleExpand = getImage(pathImage + "capsule/expand.png", capsuleScale);
+        capsuleWeapon = getImage(pathImage + "capsule/laser.png", capsuleScale);
+        capsuleEmpty = getImage(pathImage + "capsule/empty.png", capsuleScale);
+        capsuleCatch = getImage(pathImage + "capsule/catch.png", capsuleScale);
+        capsuleVaus = getImage(pathImage + "capsule/vaus.png", capsuleScale);
 
-        for(int i=1 ; i<=3 ; i++) {
-            paddleExpandedWeapon[i-1] = getImage(pathImage + "62-"+i+"-Breakout-Tiles.png", paddleScale);
+        star = getImage(pathImage + "capsule/star.png", ballScale);
+        life = getImage(pathImage + "capsule/life.png", ballScale);
+
+        for (int i = 0; i < 3; i++) {
+            paddle[i] = getImage(pathImage + "paddle/n-paddle"+ i + ".png", paddleScale);
+            paddleWeapon[i] = getImage(pathImage + "paddle/n-laser"+ i + ".png", paddleScale);
+            paddleExpanded[i] = getImage(pathImage + "paddle/e-paddle"+ i + ".png", paddleScale);
+            paddleExpandedWeapon[i] = getImage(pathImage + "paddle/e-laser"+ i + ".png", paddleScale);
         }
-        fireBall = getImage(pathImage + "63-Breakout-Tiles.png", ballScale);
-        acidBall = getImage(pathImage + "64-Breakout-Tiles.png", ballScale);
-        capsuleCatch = getImage(pathImage + "66-Breakout-Tiles.png", capsuleScale);
-        capsuleVaus = getImage(pathImage + "67-Breakout-Tiles.png", capsuleScale);
+
+        paddleShrunk = getImage(pathImage + "paddle/s-paddle.png", paddleScale);
+        paddleShrunkWeapon = getImage(pathImage + "paddle/s-laser.png", paddleScale);
+
+        bullet = getImage(pathImage + "bullet.png", brickScale);
+
+        ball = getImage(pathImage + "ball/ball.png", ballScale);
+        fireBall = getImage(pathImage + "ball/fire ball.png", ballScale);
+        acidBall = getImage(pathImage + "ball/acid ball.png", ballScale);
 
         for (int i = 1; i <= 10; i++) {
             backgroundImage[i - 1] = getImage(pathImage + "background/" + i + ".jpg", 1);
@@ -221,11 +216,11 @@ public class arkHelper extends Helper {
         }
 
         for (int i = 1; i <= 6; i++) {
-            enemy[i - 1] = getImage(pathImage +"Enemy/"+ i+".png", 1);
+            enemy[i - 1] = getImage(pathImage +"enemy/"+ i+".png", 1);
         }
     }
 
     public static void setHUDFont() {
-        HUDFont = setFont("src/Resources/Fonts/joystix monospace.ttf", 20);
+        HUDFont = setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf", 20);
     }
 }

@@ -1,5 +1,7 @@
 package atariCore;
 
+import jaco.mp3.player.MP3Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -20,7 +22,8 @@ public class Helper {
     public static boolean pause = false;
     public static String fieldSeparator = "@@@";
     public static boolean AIMode = false;
-    public static String controlsImages = "src/Resources/Images/controls/";
+    public static String controlsImages = "src/Resources/Atari Core/Images/controls/";
+    public static String splashBackgroundImagePath;
     public static String pathCursor;
     public static Image soundOnImage;
     public static Image soundOffImage;
@@ -30,16 +33,18 @@ public class Helper {
     public static Image keyboardOffImage;
     public static Image mouseOnImage;
     public static Image mouseOffImage;
+
+    public static String soundPath = "src/Resources/Atari Core/Sounds/";
     public static Image pausedImage;
     public static int cursorScale = 3;
     public static Dimension btnDim = new Dimension(screenWidth / 2, screenHeight / 10);
-    public static String filesPath = "src/Resources/Files/";
-    //game colors
+    public static String filesPath = "src/Resources/Arkanoid/Files/";
 
     public static Color backgroundColor;
     public static Color foregroundColor;
     public static Color buttonBackgroundColor;
     public static Color HUDColor;
+    public static MP3Player clickSound;
 
     public static boolean music = true, sounds = true, mouse = true, keyboard = true;
 
@@ -62,6 +67,11 @@ public class Helper {
         setHUDColor(new Color(173, 173, 173));
 
         loadImages();
+        setSound();
+    }
+
+    private void setSound() {
+        clickSound = Sound.setSound(soundPath + "click.mp3");
     }
 
     private void loadImages() {
@@ -120,6 +130,7 @@ public class Helper {
         button.setFocusPainted(false);
         return button;
     }
+
     public static JLabel labelHelper(String txt)
     {
         JLabel label = new JLabel(txt);
