@@ -1,8 +1,5 @@
 package atariCore;
 
-import java.awt.*;
-import java.util.Comparator;
-
 public class Score implements Comparable<Score>{
 
     private int score;

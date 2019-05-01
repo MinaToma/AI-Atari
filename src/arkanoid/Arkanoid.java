@@ -55,7 +55,7 @@ public class Arkanoid extends atariCore.Game {
         initKeys();
         arkHelper.setCursorImage(this, pathCursor);
         setPaddle();
-        setPlayer(namePlayer , level);
+        setPlayer(namePlayer, level);
 
         // /*FOR TESTING - to remove*/ player.setLevel(93);
         initializeLevels(player.getLevel());
@@ -74,13 +74,10 @@ public class Arkanoid extends atariCore.Game {
         p.reset();
         p.speedNormal();
 
-
-
         handler.addObject(playerList, player);
         handler.addObject(paddleList, p);
         setBackGround();
         setBricks(level);
-
 
 
         setSounds();
@@ -105,8 +102,8 @@ public class Arkanoid extends atariCore.Game {
         handler.addObject(ballList, b);
     }
 
-    private void setPlayer(String namePlayer , int level) {
-        player = new Player(namePlayer, (AIMode) ? 0 : 3, p, this, this);
+    private void setPlayer(String namePlayer, int level) {
+        player = new Player(namePlayer, (AIMode) ? 0 : 3, p, this);
         player.setLevel(level);
         p.setPlayer(player);
         handler.addObject(playerList, player);
@@ -134,7 +131,6 @@ public class Arkanoid extends atariCore.Game {
         if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped() && music) {
             Sound.Play(backgroundGameSound[(player.getLevel() - 1) / 10], false);
         }
-
     }
 
     @Override
@@ -155,7 +151,16 @@ public class Arkanoid extends atariCore.Game {
             paddleClick();
         } else if (key == KeyEvent.VK_P) {
 
-            pause = !pause;
+            boolean canPause = true;
+            for(Component c : this.getComponents())
+                if(c.equals(lossImage) || c.equals(nextLevelImage))
+                    canPause = false;
+
+            if(canPause) {
+
+                pause = !pause;
+                setPausedBG();
+            }
         } else if (key == KeyEvent.VK_ESCAPE) {
 
             AIMode = arkHelper.running = pause = false;
@@ -190,6 +195,9 @@ public class Arkanoid extends atariCore.Game {
     }
 
     public void pressKey() {
+
+        if (pause || AIMode) return;
+
         int paddleIdx = -1;
         float speed = -1f;
 
@@ -233,7 +241,7 @@ public class Arkanoid extends atariCore.Game {
         for (BaseObject o : ballList) {
             if (o.getVelX() == 0 && o.getVelY() == 0) {
                 p.sticky = false;
-                ((Ball)o).setSpeed(0 , ballSpeed);
+                ((Ball) o).setSpeed(0, ballSpeed);
             }
         }
     }
@@ -241,12 +249,14 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
+        if (pause || AIMode) return;
         paddleClick();
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
+        if (pause || AIMode) return;
         if (!AIMode && (b.getX() != INIT_BALL_X && mouseEvent.getX() < arkHelper.screenWidth - p.getImageWidth() + 3))
             p.setX(mouseEvent.getX());
     }
@@ -254,6 +264,7 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void keyReleased(KeyEvent e) {
 
+        if (pause || AIMode) return;
         int key = e.getKeyCode();
         keys.put(key, false);
     }
@@ -286,8 +297,6 @@ public class Arkanoid extends atariCore.Game {
         AIEngine.initializeInput(inputData);
 
         String dir = AIEngine.getDIR();
-
-        System.out.println("after");
         if (dir.equals("right")) {
 
             p.setVelX(arkHelper.paddleSpeed);
@@ -306,15 +315,20 @@ public class Arkanoid extends atariCore.Game {
         arkAIEngine.calculateReward(player, b, p);
 
         arkHelper.running = true;
-
     }
 
     @Override
     public void setPausedBG() {
-        pausedBG.setIcon(new ImageIcon(pausedImage));
-        pausedBG.setBounds(0,0, screenWidth, screenHeight);
-        add(pausedBG);
-        frame.setVisible(true);
+        if (pause) {
+
+            pausedBG.setIcon(new ImageIcon(pausedImage));
+            pausedBG.setBounds(0, 0, screenWidth, screenHeight);
+            add(pausedBG);
+            frame.setVisible(true);
+        } else {
+            remove(pausedBG);
+            frame.setVisible(true);
+        }
     }
 
 }

@@ -27,7 +27,6 @@ public class Splash extends atariCore.Splash {
             if (arkHelper.backgroundGameSound[i].isRepeat())
                 arkHelper.backgroundGameSound[i].setRepeat(false);
             Sound.Stop(arkHelper.backgroundGameSound[i]);
-
         }
 
         if (music) {

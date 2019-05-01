@@ -34,9 +34,9 @@ public class Ball extends BaseObject {
     @Override
     public void clamp() {
 
-        if (arkHelper.screenWidth <= x + getImageWidth()) velX = -getVelX();
-        if (x <= 0) velX = -getVelX();
-        if (y <= 0) velY *= -1;
+        if (arkHelper.screenWidth <= x + getImageWidth()) velX = -Math.abs(getVelX());
+        if (x <= 0) velX = Math.abs(getVelX());
+        if (y <= 0) velY = Math.abs(getVelY());
 
         if (y > arkHelper.screenHeight) {
             handler.removeObject(ballList, this);

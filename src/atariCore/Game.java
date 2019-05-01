@@ -15,15 +15,14 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
 
     protected Timer timer;
     protected JLabel pausedBG = new JLabel();
-    private int setVisibleCounter = 0;
 
     public Game(String title) {
 
         frame.getContentPane().remove(panel);
         frame.setTitle(title);
+        setLayout(new FlowLayout(FlowLayout.CENTER, 0, 0));
         panel = this;
 
-        setLayout(null);
         panel.setSize(screenWidth, screenHeight);
 
         addKeyListener(this);
@@ -42,30 +41,18 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
                     return;
                 }
 
-                if (handler != null && !pause) {
-
-                    if(setVisibleCounter == 1){
-                        panel.remove(pausedBG);
-                        frame.setVisible(true);
-                        setVisibleCounter = 0;
+                if (handler != null) {
+                    if (!pause) {
+                        if (AIMode) {
+                            sendDataToAI();
+                        } else {
+                            pressKey();
+                        }
+                        handler.tick();
                     }
-
-                    if (AIMode) {
-                        sendDataToAI();
-                    } else {
-                        pressKey();
-                    }
-                    handler.tick();
                     revalidate();
                     repaint();
                     Toolkit.getDefaultToolkit().sync();
-                }
-
-                if(pause){
-                    if(setVisibleCounter == 0){
-                        setPausedBG();
-                        setVisibleCounter = 1;
-                    }
                 }
             }
         }, Helper.DELAY, Helper.PERIOD);
