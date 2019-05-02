@@ -120,7 +120,6 @@ public class Bird extends BaseObject {
             if (o.getY() > 0 && o.getX() + o.getImageWidth() /2f <= x && !passedPips.contains(o)) {
                 passedPip = true;
                 passedPips.add(o);
-                ((Pipe) o).setInTheBack(true);
             }
 
         currentScore += passedPip ? 1 : 0;
