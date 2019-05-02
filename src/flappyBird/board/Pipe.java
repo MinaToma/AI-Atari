@@ -1,7 +1,8 @@
-package flappyBird;
+package flappyBird.board;
 
 import atariCore.BaseObject;
 import atariCore.Handler;
+import flappyBird.FlappyHelper;
 
 import java.awt.*;
 import java.util.Random;
@@ -12,7 +13,7 @@ import static flappyBird.FlappyHelper.*;
 
 public class Pipe extends BaseObject {
 
-    Pipe(float x, float y, Image image, float velX, float velY) {
+    public Pipe(float x, float y, Image image, float velX, float velY) {
         super(x, y, image, velX, velY);
     }
 

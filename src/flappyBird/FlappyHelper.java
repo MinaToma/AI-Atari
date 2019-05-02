@@ -9,28 +9,28 @@ import static atariCore.Helper.*;
 
 public class FlappyHelper {
 
-    static Image[] birds;
+    public static Image[] birds;
     private static Image background;
     static Image backgroundGame;
-    static Image pipeDown;
-    static Image pipeUp;
-    static String pathImages = "src/Resources/Flappy Bird/Images/";
+    public static Image pipeDown;
+    public static Image pipeUp;
+    public static String pathImages = "src/Resources/Flappy Bird/Images/";
     private static String pathSounds = "src/Resources/Flappy Bird/Sounds/";
-    static String pathFile = "src/Resources/Flappy Bird/Files/";
-    static float gravity = 0.01f;
+    public static String pathFile = "src/Resources/Flappy Bird/Files/";
+    public static float gravity = 0.01f;
     public static float pressSpeed = -1;
-    static boolean startGame = false;
+    public static boolean startGame = false;
 
 
-    static int widthGap = 450;
-    static int heightGap = 200;
-    static int maxHeight = 320;
-    static int minHeight = 30;
+    public static int widthGap = 450;
+    public static int heightGap = 200;
+    public static int maxHeight = 320;
+    public static int minHeight = 30;
 
 
-    static MP3Player hitSound;
-    static MP3Player wingSound;
-    static MP3Player pointSound;
+    public static MP3Player hitSound;
+    public static MP3Player wingSound;
+    public static MP3Player pointSound;
     public static MP3Player clickSound;
 
     static FlappyHelper flappyHelper = new FlappyHelper();
@@ -48,7 +48,7 @@ public class FlappyHelper {
         clickSound = Sound.setSound("src/Resources/Atari Core/Sounds/click.mp3");
     }
 
-    static void setImages() {
+    public static void setImages() {
 
         birds = new Image[4];
         for (int i = 1; i <= 4; i++)

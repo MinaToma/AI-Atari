@@ -1,6 +1,7 @@
 package arkanoid.board;
 
 import arkanoid.Arkanoid;
+import arkanoid.CreditScreen;
 import arkanoid.arkAIEngine;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
@@ -94,7 +95,7 @@ public class Player extends BaseObject {
             FileManager.sendPlayerScore(arkHelper.filePath, name, level);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
-            new arkanoid.creditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
+            new CreditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
         } else {
 
             if (score > 0 && !AIMode) {

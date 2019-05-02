@@ -8,9 +8,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ObjectList {
 
-    static CopyOnWriteArrayList<BaseObject> birdList;
-    static CopyOnWriteArrayList<BaseObject> pipeList;
-    static CopyOnWriteArrayList<BaseObject> playerList;
+    public static CopyOnWriteArrayList<BaseObject> birdList;
+    public static CopyOnWriteArrayList<BaseObject> pipeList;
+    public static CopyOnWriteArrayList<BaseObject> playerList;
     static CopyOnWriteArrayList<BaseObject> backgroundList;
 
     private static final ObjectList objectList = new ObjectList();

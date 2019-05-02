@@ -382,7 +382,6 @@ public class arkHelper {
      * Loads Arkanoid game images such as bricks, enemies, balls, backgrounds, capsules... etc.
      */
     public static void loadImages() {
-        Helper.pathCursor = imagePath + "cursor/yellowCursor2.png";
         splashBackgroundImagePath = imagePath + "background/splash.png";
         splashBackground = getImage(splashBackgroundImagePath, 1);
 

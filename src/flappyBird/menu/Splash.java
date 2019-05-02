@@ -1,7 +1,10 @@
-package flappyBird;
+package flappyBird.menu;
 
 import atariCore.LoadingScreen;
 import atariCore.Sound;
+import flappyBird.FlappyAIEngine;
+import flappyBird.FlappyBird;
+import flappyBird.FlappyHelper;
 
 import static atariCore.Helper.*;
 import static atariCore.Helper.clickSound;

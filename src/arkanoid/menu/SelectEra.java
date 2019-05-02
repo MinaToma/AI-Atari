@@ -1,7 +1,5 @@
 package arkanoid.menu;
 
-import arkanoid.menu.SelectLevel;
-import arkanoid.menu.SelectPlayer;
 import atariCore.Helper;
 import atariCore.Sound;
 
@@ -11,12 +9,21 @@ import java.awt.*;
 import static atariCore.Helper.*;
 import static arkanoid.arkHelper.*;
 
+/**
+ * Generates different Eras.
+ */
 public class SelectEra extends JPanel {
 
     private JButton[] eras;
 
     private JButton backButton;
 
+    /**
+     * Parameterised constructor takes name of the era and number of level.
+     *
+     * @param name  Name of the era.
+     * @param level Number of levels on the era.
+     */
     SelectEra(String name, int level) {
 
         frame.setTitle("Select Era");
@@ -74,11 +81,20 @@ public class SelectEra extends JPanel {
 
     }
 
+    /**
+     * Initializes Back button to return to select player menu.
+     *
+     * @param x X coordinates of the button.
+     * @param y Y coordinates of the button.
+     */
     private void setBackButton(int x, int y) {
         backButton = Helper.buttonHelper("Back", x, y, btnDim);
         backButton.setBackground(new Color(0xEA2D1113));
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

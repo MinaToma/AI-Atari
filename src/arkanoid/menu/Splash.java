@@ -7,7 +7,6 @@ import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 
-import java.io.IOException;
 
 import static atariCore.Helper.*;
 
@@ -73,6 +72,11 @@ public class Splash extends atariCore.Splash {
         });
     }
 
+    /**
+     * Initializes game loading screen, loads files and images and starts game splash.
+     *
+     * @param args An array of parameters.
+     */
     public static void main(String[] args) {
 
         new LoadingScreen();

@@ -82,7 +82,8 @@ public class Helper {
     /**
      * Path for default cursor image.
      */
-    public static String pathCursor;
+    public static String pathCursor = imagePath + "cursor/yellowCursor2.png";
+
 
     /****************************************************** Images *****************************************************/
 
@@ -128,6 +129,8 @@ public class Helper {
     public static JLabel pausedBG = new JLabel();
 
     /**************************************************** Colors *****************************************************/
+
+    /*****************************************************Colors******************************************************/
 
     /**
      * Default game background color.

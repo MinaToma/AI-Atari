@@ -4,8 +4,17 @@ import java.util.ArrayList;
 
 import static atariCore.FileManager.readFile;
 
+/**
+ * Main file manager for arkanoid.
+ */
 public class arkFile {
-
+    /**
+     * Returns level from file.
+     *
+     * @param level Level's name.
+     * @param path  Level's path.
+     * @return The generated level.
+     */
     public static ArrayList<ArrayList<Integer>> getLevel(String level, String path) {
         ArrayList<ArrayList<Integer>> dim = new ArrayList<>();
         ArrayList<String> records = readFile(path);

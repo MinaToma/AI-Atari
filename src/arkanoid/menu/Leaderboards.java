@@ -10,18 +10,29 @@ import static atariCore.Helper.getImage;
 import static atariCore.Helper.imagePath;
 import static atariCore.Helper.sounds;
 
+/**
+ * Arkanoid leaderboards.
+ */
 public class Leaderboards extends atariCore.Leaderboards {
 
+    /**
+     * Parameterised constructor takes the Leaderboards' file path.
+     *
+     * @param path The leaderboards' path.
+     */
     public Leaderboards(String path) {
         super(path);
 
         backButton.addActionListener(e -> {
-            if(sounds)
-            Sound.Play(Helper.clickSound,true);
+            if (sounds)
+                Sound.Play(Helper.clickSound, true);
             new Splash();
         });
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
