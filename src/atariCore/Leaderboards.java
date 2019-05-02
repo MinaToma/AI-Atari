@@ -26,7 +26,7 @@ public class Leaderboards extends JPanel {
     protected JLabel[] top10;
 
     /**
-     * parameterized constructor with leaderboards file path.
+     * Parameterised constructor with leaderboards file path.
      *
      * @param path Path of leaderboards file.
      */

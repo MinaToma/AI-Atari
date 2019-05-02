@@ -6,6 +6,9 @@ import java.awt.*;
 import static arkanoid.ObjectList.*;
 import static arkanoid.arkHelper.*;
 
+/**
+ * Score capsule increases player score with one of the following values: 50, 100, 250.
+ */
 public class Score extends Capsule {
     public int score;
     int changePhoto;
@@ -17,6 +20,9 @@ public class Score extends Capsule {
         timer=0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void effect(Paddle p) {
 
@@ -24,6 +30,9 @@ public class Score extends Capsule {
         capsuleList.remove(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void tick() {
 
@@ -31,12 +40,15 @@ public class Score extends Capsule {
         y += capsuleSpeed;
         if(score ==100 && timer>=25)
         {
-            chang();
+            change();
             timer=0;
         }
     }
 
-    public void chang() {
+    /**
+     * Updates the capsule image to add animated effect.
+     */
+    public void change() {
 
         this.image = arkHelper.capsule100[changePhoto++];
         changePhoto%=7;

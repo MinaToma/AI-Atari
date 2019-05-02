@@ -35,7 +35,7 @@ abstract public class BaseObject {
 
 
     /**
-     * Parameterized constructor takes X, Y coordinates and object image.
+     * Parameterised constructor takes X, Y coordinates and object image.
      * @param x X coordinates of the object.
      * @param y Y coordinates of the object.
      * @param image object image
@@ -55,7 +55,7 @@ abstract public class BaseObject {
 
 
     /**
-     * Parameterized constructor takes X, Y coordinates, x,y velocities and object image.
+     * Parameterised constructor takes X, Y coordinates, x,y velocities and object image.
      * @param x X coordinates of the object.
      * @param y Y coordinates of the object.
      * @param image object image

@@ -19,7 +19,7 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
     protected Timer timer;
 
     /**
-     * parameterized constructor takes game title and starts main game loop.
+     * Parameterised constructor takes game title and starts main game loop.
      *
      * @param title Game title.
      */
@@ -71,12 +71,12 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
     }
 
     /**
-     * Responsible to interact with python scripts which are used to run AI-Engine.
+     * Interacts with python scripts which are used to run AI-Engine.
      */
     abstract protected void sendDataToAI();
 
     /**
-     * Responsible to render the game where handler's objects are rendered.
+     * Renders the game where handler's objects are rendered.
      */
     @Override
     public void paintComponent(Graphics g) {

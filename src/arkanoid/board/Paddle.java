@@ -45,7 +45,7 @@ public class Paddle extends BaseObject {
     private CopyOnWriteArrayList<BaseObject> currentCapsuleList;
 
     /**
-     * Parameterized constructor takes  X, Y coordinates , paddle image ,x,y velocities and player object.
+     * Parameterised constructor takes  X, Y coordinates , paddle image ,x,y velocities and player object.
      *
      * @param xPosition X coordinates of the paddle.
      * @param yPosition Y coordinates of the paddle.

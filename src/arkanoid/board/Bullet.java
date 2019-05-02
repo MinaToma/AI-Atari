@@ -14,7 +14,7 @@ import static arkanoid.ObjectList.*;
  */
 public class Bullet extends BaseObject {
     /**
-     * Parameterized constructor takes  X, Y coordinates and  bullet image.
+     * Parameterised constructor takes  X, Y coordinates and  bullet image.
      *
      * @param x     X coordinates of the bullet.
      * @param y     Y coordinates of the bullet.
@@ -35,7 +35,7 @@ public class Bullet extends BaseObject {
     }
 
     /**
-     * Responsible for bullet's collision with bricks and enemies.
+     * sible for bullet's collision with bricks and enemies.
      */
     private void collision() {
 

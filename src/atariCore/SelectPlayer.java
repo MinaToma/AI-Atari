@@ -29,7 +29,7 @@ public abstract class SelectPlayer extends JPanel {
     }
 
     /**
-     * Responsible to initiate the frame and panel.
+     * Initializes the frame and panel.
      */
     protected void initFrame() {
         frame.setTitle("Select Player");
@@ -44,7 +44,7 @@ public abstract class SelectPlayer extends JPanel {
     }
 
     /**
-     * Responsible to set the main frame components and design.
+     * Sets the main frame components and design.
      */
     protected void setDesign() {
 
@@ -72,12 +72,12 @@ public abstract class SelectPlayer extends JPanel {
     }
 
     /**
-     * Responsible to set the actions of every button according to every game.
+     * Sets the actions of every button according to every game.
      */
     protected abstract void setActions();
 
     /**
-     * Responsible to initialize back button and positions it to given coordinates.
+     * Initializes back button and positions it to given coordinates.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.
@@ -87,7 +87,7 @@ public abstract class SelectPlayer extends JPanel {
     }
 
     /**
-     * Responsible to initialize start button and positions it to given coordinates.
+     * Initializes start button and positions it to given coordinates.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.

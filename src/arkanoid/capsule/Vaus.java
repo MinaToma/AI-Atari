@@ -9,12 +9,18 @@ import static arkanoid.ObjectList.paddleList;
 import static arkanoid.arkHelper.INIT_PADDLE_X;
 import static arkanoid.arkHelper.INIT_PADDLE_Y;
 
+/**
+ * Vaus capsule adds a new paddle.
+ */
 public class Vaus extends Capsule {
 
     public Vaus(int x, int y, int life, Image image) {
         super(x, y, life, image);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void effect(Paddle p) {
         if(paddleList.size() > 2) return;
@@ -22,6 +28,9 @@ public class Vaus extends Capsule {
         Handler.getInstance().addObject(paddleList, p);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void removeEffect(Paddle p) {
 
     }

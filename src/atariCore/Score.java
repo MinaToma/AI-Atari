@@ -10,7 +10,7 @@ public class Score implements Comparable<Score> {
     private int level;
 
     /**
-     * Parameterized constructor to initialize current player's score.
+     * Parameterised constructor to initialize current player's score.
      *
      * @param score Current player's score.
      * @param name  Player's name.

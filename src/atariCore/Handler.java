@@ -4,7 +4,7 @@ import java.awt.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * A singleton class which holds game objects and responsible to animate and render them.
+ * A singleton class which holds game objects, animates and renders them.
  */
 public class Handler {
 

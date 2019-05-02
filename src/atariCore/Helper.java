@@ -52,6 +52,9 @@ public class Helper {
      * Default font size for buttons.
      */
     public static int splashButtonFontSize;
+
+    /**************************************************Default Paths**************************************************/
+
     /**
      * Path of control menu images.
      */
@@ -69,6 +72,10 @@ public class Helper {
      */
     public static String imagePath = "src/Resources/Arkanoid/Images/";
     /**
+     * Font path.
+     */
+    public static String fontPath = "src/Resources/Atari Core/Fonts/";
+    /**
      * Splash screen background image path.
      */
     public static String splashBackgroundImagePath;
@@ -76,6 +83,9 @@ public class Helper {
      * Path for default cursor image.
      */
     public static String pathCursor;
+
+    /*******************************************************Images******************************************************/
+
     /**
      * Enabled sounds image.
      */
@@ -116,6 +126,9 @@ public class Helper {
      * Holder for paused background image.
      */
     public static JLabel pausedBG = new JLabel();
+
+    /*****************************************************Colors******************************************************/
+
     /**
      * Default game background color.
      */
@@ -162,7 +175,7 @@ public class Helper {
      */
     public static boolean sounds = true;
     /**
-     * Flag states mouse control Enabled/Disabled.
+     * Flag states sounds option Enabled/Disabled.
      */
     public static boolean mouse = true;
     /**
@@ -171,7 +184,7 @@ public class Helper {
     public static boolean keyboard = true;
 
 
-    /*******************************************************Flags******************************************************/
+    /***************************************************Functions***************************************************/
 
     /**
      * Class instance
@@ -366,6 +379,7 @@ public class Helper {
 
     /**
      * Returns instance of the class.
+     *
      * @return Helper instance.
      */
     public static Helper getInstance() {

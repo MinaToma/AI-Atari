@@ -38,7 +38,7 @@ public class Settings extends JPanel {
     }
 
     /**
-     * Parameterized constructor to set features on and off.
+     * Parameterised constructor to set features on and off.
      *
      * @param music    Music flag.
      * @param sounds   Sound flag.

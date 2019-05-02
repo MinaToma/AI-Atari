@@ -13,11 +13,11 @@ public class Settings extends atariCore.Settings {
 
 
     /**
-     *
-     * @param music
-     * @param sounds
-     * @param mouse
-     * @param keyboard
+     * parametrised constructor used to set the music, sounds, mouse and keyboard settings as specified in the previous run.
+     * @param music Flag states music option Enabled/Disabled.
+     * @param sounds Flag states sounds option Enabled/Disabled.
+     * @param mouse Flag states sounds option Enabled/Disabled.
+     * @param keyboard Flag states keyboard control Enabled/Disabled.
      */
     public Settings(boolean music, boolean sounds, boolean mouse, boolean keyboard)
     {
@@ -28,6 +28,10 @@ public class Settings extends atariCore.Settings {
             new Splash();
         });
     }
+
+    /**
+     * Sets settings panel background image.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

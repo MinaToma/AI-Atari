@@ -26,7 +26,7 @@ public class Enemy extends BaseObject {
     private int cnt;
 
     /**
-     * Parameterized constructor takes X, Y coordinates x,y velocities, enemy image and number of hits to destroy the enemy.
+     * Parameterised constructor takes X, Y coordinates x,y velocities, enemy image and number of hits to destroy the enemy.
      *
      * @param xPosition X coordinates of the enemy.
      * @param yPosition Y coordinates of the enemy.

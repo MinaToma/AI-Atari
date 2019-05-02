@@ -41,7 +41,7 @@ public class Brick extends BaseObject {
     private Player player;
 
     /**
-     * Parameterized constructor takes X, Y coordinates,  brick image ,power of brick ,color of brick and object of player.
+     * Parameterised constructor takes X, Y coordinates,  brick image ,power of brick ,color of brick and object of player.
      *
      * @param xPosition X coordinates of the brick.
      * @param yPosition Y coordinates of the brick.
@@ -64,7 +64,7 @@ public class Brick extends BaseObject {
     }
 
     /**
-     * Parameterized constructor takes X, Y coordinates,  brick image ,power of brick ,color of brick and object of player.
+     * Parameterised constructor takes X, Y coordinates,  brick image ,power of brick ,color of brick and object of player.
      *
      * @param xPostion X coordinates of the brick.
      * @param yPostion Y coordinates of the brick.

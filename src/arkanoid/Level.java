@@ -39,7 +39,7 @@ public class Level {
 
 
     /**
-     * Parameterized constructor takes dimensions, and player, paddle and and ball.
+     * Parameterised constructor takes dimensions, and player, paddle and and ball.
      *
      * @param dimensions Number of bricks.
      * @param player     Current player.

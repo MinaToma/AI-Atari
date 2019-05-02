@@ -44,12 +44,12 @@ public class Splash {
     protected JButton exitButton;
 
     /**
-     * Parameterized constructor which sets splash title and main used font.
+     * Parameterised constructor which sets splash title and main used font.
      *
      * @param title    Title of Splash screen.
-     * @param fontPath Font Path.
+     * @param fontFile Font file name with extension. ex: "joystix monospace.ttf"
      */
-    public Splash(String title, String fontPath) {
+    public Splash(String title, String fontFile) {
 
 
         frame.setTitle(title);
@@ -69,7 +69,7 @@ public class Splash {
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
         Helper.setSplashButtonFontSize(40);
-        Helper.font = Helper.setFont(fontPath, Helper.splashButtonFontSize);
+        Helper.font = Helper.setFont(Helper.fontPath + fontFile, Helper.splashButtonFontSize);
 
         setNewGameButton(xStart, yStart, Helper.btnDim);
         setAIButton(xStart, (yStart += bOffset), Helper.btnDim);

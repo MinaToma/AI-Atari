@@ -29,7 +29,7 @@ public class Ball extends BaseObject {
     private float yOffset = 5;
 
     /**
-     * Parameterized constructor takes X, Y coordinates, x,y velocities and ball image.
+     * Parameterised constructor takes X, Y coordinates, x,y velocities and ball image.
      *
      * @param xPosition X coordinates of the ball.
      * @param yPosition Y coordinates of the ball.
@@ -126,7 +126,7 @@ public class Ball extends BaseObject {
     }
 
     /**
-     * Responsible to reflect the ball and set its direction after brick or enemy collision.
+     * Reflects the ball and set its direction after brick or enemy collision.
      *
      * @param o : Brick or enemy object which hit the ball.
      */

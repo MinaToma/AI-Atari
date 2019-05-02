@@ -9,11 +9,17 @@ import atariCore.Sound;
 
 import static atariCore.Helper.*;
 
+/**
+ * Splash screen includes main menu buttons such as new game, leaderboards, settings, exit.
+ */
 public class Splash extends atariCore.Splash {
 
+    /**
+     * Default constructor to set music, sounds settings and main menu buttons action listeners.
+     */
     public Splash() {
 
-        super("Arkanoid", "src/Resources/Atari Core/Fonts/joystix monospace.ttf");
+        super("Arkanoid", "joystix monospace.ttf");
         Helper.setCursorImage(pathCursor);
 
         for (int i = 0; i < 10; i++) {
