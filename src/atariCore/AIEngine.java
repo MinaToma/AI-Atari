@@ -6,12 +6,12 @@ import java.io.FileReader;
 public interface AIEngine {
 
     String interpreterPath = "/home/mina/anaconda3/bin/python3";
-    String interactionPath = "src/Resources/Atari Core/AI-Interaction/interaction.txt";
+    String interactionPath = "src/Resources/Flappy Bird/AI-Scripts/interaction.txt";
 
     static void startEngine(String scriptPath) {
         try {
             String command = interpreterPath + " " + scriptPath;
-            Runtime.getRuntime().exec(command);
+            Process p = Runtime.getRuntime().exec(command);
         } catch (Exception e) {
             System.out.println(e);
         }

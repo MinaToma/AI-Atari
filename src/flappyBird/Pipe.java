@@ -8,15 +8,12 @@ import java.util.Random;
 
 import static flappyBird.ObjectList.pipeList;
 import static flappyBird.ObjectList.playerList;
-import static flappyBird.flappyHelper.*;
+import static flappyBird.FlappyHelper.*;
 
 public class Pipe extends BaseObject {
 
-    private boolean inTheBack;
-
-    public Pipe(float x, float y, Image image, float velX, float velY) {
+    Pipe(float x, float y, Image image, float velX, float velY) {
         super(x, y, image, velX, velY);
-        inTheBack = false;
     }
 
     public Pipe(float x, float y, Image image) {
@@ -27,18 +24,10 @@ public class Pipe extends BaseObject {
     @Override
     public void tick() {
 
-        if (flappyHelper.startGame)
+        if (FlappyHelper.startGame)
             x += velX;
 
         modfiyPipe();
-    }
-
-    public boolean isInTheBack() {
-        return inTheBack;
-    }
-
-    public void setInTheBack(boolean inTheBack) {
-        this.inTheBack = inTheBack;
     }
 
     private void modfiyPipe() {
@@ -70,7 +59,6 @@ public class Pipe extends BaseObject {
             }
         }
 
-
         int lastPosPipe = 0;
         for (BaseObject o : pipeList) {
             lastPosPipe = Math.max((int) o.getX(), lastPosPipe);
@@ -90,7 +78,7 @@ public class Pipe extends BaseObject {
 
     @Override
     public void render(Graphics g) {
-        if (flappyHelper.startGame)
+        if (FlappyHelper.startGame)
             g.drawImage(image, (int) x, (int) y, null);
     }
 }

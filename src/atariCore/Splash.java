@@ -51,7 +51,6 @@ public class Splash {
      */
     public Splash(String title, String fontFile) {
 
-
         frame.setTitle(title);
 
         if (panel != null) {

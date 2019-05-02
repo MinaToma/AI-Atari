@@ -3,12 +3,11 @@ package flappyBird;
 import atariCore.*;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 import java.util.Random;
 
 import static atariCore.Helper.*;
 import static flappyBird.ObjectList.*;
-import static flappyBird.flappyHelper.*;
+import static flappyBird.FlappyHelper.*;
 
 public class FlappyBird extends Game {
 

@@ -16,7 +16,6 @@ public class arkHelper {
     public static int paddleScale = 4;
     public static int brickScale = 3;
     public static int capsuleScale = 5;
-
     public static int timeTheCredit = 37;
 
     public static float ballSpeed = 2f;

@@ -131,51 +131,54 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void keyPressed(KeyEvent e) {
 
-        int key = e.getKeyCode();
+        if(keyboard) {
 
-        if (key == KeyEvent.VK_LEFT) {
+            int key = e.getKeyCode();
 
-            keys.put(KeyEvent.VK_LEFT, true);
-            keys.put(KeyEvent.VK_RIGHT, false);
-        } else if (key == KeyEvent.VK_RIGHT) {
+            if (key == KeyEvent.VK_LEFT) {
 
-            keys.put(KeyEvent.VK_LEFT, false);
-            keys.put(KeyEvent.VK_RIGHT, true);
-        } else if (key == KeyEvent.VK_SPACE) {
+                keys.put(KeyEvent.VK_LEFT, true);
+                keys.put(KeyEvent.VK_RIGHT, false);
+            } else if (key == KeyEvent.VK_RIGHT) {
 
-            paddleClick();
-        } else if (key == KeyEvent.VK_P) {
+                keys.put(KeyEvent.VK_LEFT, false);
+                keys.put(KeyEvent.VK_RIGHT, true);
+            } else if (key == KeyEvent.VK_SPACE) {
 
-            boolean canPause = true;
-            for(Component c : this.getComponents())
-                if(c.equals(lossImage) || c.equals(nextLevelImage))
-                    canPause = false;
+                paddleClick();
+            } else if (key == KeyEvent.VK_P) {
 
-            if(canPause) {
+                boolean canPause = true;
+                for(Component c : this.getComponents())
+                    if(c.equals(lossImage) || c.equals(nextLevelImage))
+                        canPause = false;
 
-                pause = !pause;
-                setPausedBG();
+                if(canPause) {
+
+                    pause = !pause;
+                    setPausedBG();
+                }
+            } else if (key == KeyEvent.VK_ESCAPE) {
+
+                AIMode = Helper.running = pause = false;
+                new arkanoid.menu.Splash();
+            } else if (key == KeyEvent.VK_A) {
+
+                keys.put(KeyEvent.VK_D, false);
+                keys.put(KeyEvent.VK_A, true);
+            } else if (key == KeyEvent.VK_D) {
+
+                keys.put(KeyEvent.VK_A, false);
+                keys.put(KeyEvent.VK_D, true);
+            } else if (key == KeyEvent.VK_NUMPAD4) {
+
+                keys.put(KeyEvent.VK_NUMPAD6, false);
+                keys.put(KeyEvent.VK_NUMPAD4, true);
+            } else if (key == KeyEvent.VK_NUMPAD6) {
+
+                keys.put(KeyEvent.VK_NUMPAD6, true);
+                keys.put(KeyEvent.VK_NUMPAD4, false);
             }
-        } else if (key == KeyEvent.VK_ESCAPE) {
-
-            AIMode = Helper.running = pause = false;
-            new arkanoid.menu.Splash();
-        } else if (key == KeyEvent.VK_A) {
-
-            keys.put(KeyEvent.VK_D, false);
-            keys.put(KeyEvent.VK_A, true);
-        } else if (key == KeyEvent.VK_D) {
-
-            keys.put(KeyEvent.VK_A, false);
-            keys.put(KeyEvent.VK_D, true);
-        } else if (key == KeyEvent.VK_NUMPAD4) {
-
-            keys.put(KeyEvent.VK_NUMPAD6, false);
-            keys.put(KeyEvent.VK_NUMPAD4, true);
-        } else if (key == KeyEvent.VK_NUMPAD6) {
-
-            keys.put(KeyEvent.VK_NUMPAD6, true);
-            keys.put(KeyEvent.VK_NUMPAD4, false);
         }
     }
 
@@ -236,7 +239,7 @@ public class Arkanoid extends atariCore.Game {
         for (BaseObject o : ballList) {
             if (o.getVelX() == 0 && o.getVelY() == 0) {
                 p.sticky = false;
-                ((Ball) o).setSpeed(0, ballSpeed);
+                ((Ball) o).setSpeed(0, -ballSpeed);
             }
         }
     }
@@ -244,22 +247,22 @@ public class Arkanoid extends atariCore.Game {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
-        if (pause || AIMode) return;
+        if (pause || AIMode || !mouse ) return;
         paddleClick();
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
-        if (pause || AIMode) return;
-        if (!AIMode && (b.getX() != INIT_BALL_X && mouseEvent.getX() < Helper.screenWidth - p.getImageWidth() + 3))
+        if (pause || AIMode || !mouse) return;
+        if ((b.getX() != INIT_BALL_X && mouseEvent.getX() < Helper.screenWidth - p.getImageWidth() + 3))
             p.setX(mouseEvent.getX());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
-        if (pause || AIMode) return;
+        if (pause || AIMode || !keyboard) return;
         int key = e.getKeyCode();
         keys.put(key, false);
     }

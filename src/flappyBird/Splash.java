@@ -5,9 +5,7 @@ import atariCore.Sound;
 
 import static atariCore.Helper.*;
 import static atariCore.Helper.clickSound;
-import static flappyBird.flappyHelper.*;
-
-import java.util.ArrayList;
+import static flappyBird.FlappyHelper.*;
 
 public class Splash extends atariCore.Splash {
 
@@ -49,8 +47,7 @@ public class Splash extends atariCore.Splash {
 
     public static void main(String... args) {
         new LoadingScreen();
-        new ObjectList();
-        new flappyHelper();
+        FlappyHelper.setImages();
         new Splash();
     }
 }

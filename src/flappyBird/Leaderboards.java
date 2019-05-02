@@ -14,7 +14,7 @@ public class Leaderboards extends atariCore.Leaderboards {
 
         backButton.addActionListener(e -> {
             if(sounds)
-            Sound.Play(flappyHelper.clickSound,true);
+            Sound.Play(FlappyHelper.clickSound,true);
             new Splash();
         });
     }
@@ -22,6 +22,6 @@ public class Leaderboards extends atariCore.Leaderboards {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(flappyHelper.pathImages + "Leaderboards.png", 1), 0, 0, null);
+        g.drawImage(getImage(FlappyHelper.pathImages + "Leaderboards.png", 1), 0, 0, null);
     }
 }

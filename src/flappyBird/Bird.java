@@ -5,27 +5,23 @@ import atariCore.Handler;
 import atariCore.Sound;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 import static atariCore.Helper.*;
 import static flappyBird.ObjectList.*;
-import static flappyBird.flappyHelper.*;
+import static flappyBird.FlappyHelper.*;
 
 public class Bird extends BaseObject {
 
     private int numOfPic;
-    private int previousScore ;
-    private int currentScore ;
+    public int previousScore;
+    public int currentScore;
+    public ArrayList<BaseObject> passedPips;
 
     public Bird(float x, float y, Image image) {
         super(x, y, image);
         numOfPic = 0;
-        previousScore = 0;
-        currentScore = 0;
-    }
-
-    public Bird(float x, float y, Image image, float velX, float velY) {
-        super(x, y, image, velX, velY);
-        numOfPic = 0;
+        passedPips = new ArrayList<>();
         previousScore = 0;
         currentScore = 0;
     }
@@ -34,7 +30,7 @@ public class Bird extends BaseObject {
     public void tick() {
 
         if (startGame) {
-            setImage(flappyHelper.birds[numOfPic++ / 20]);
+            setImage(birds[numOfPic++ / 20]);
             numOfPic %= 80;
 
             move();
@@ -53,22 +49,22 @@ public class Bird extends BaseObject {
 
     public void speedUp() {
 
-        velY = -1;
+        velY = pressSpeed;
         if (!AIMode && sounds)
             Sound.Play(wingSound, true);
     }
 
     private void collision() {
         boolean delete = false;
-        for (BaseObject p : pipeList)
+        for (BaseObject p : ObjectList.pipeList)
             if (!delete && p.getRectangle().intersects(getRectangle())) {
-                Handler.getInstance().removeObject(birdList, this);
+                Handler.removeObject(birdList, this);
                 delete = true;
             }
 
         Rectangle rec = getRectangle();
         if (rec.y <= 0 || rec.y + rec.height >= screenHeight && !delete)
-            Handler.getInstance().removeObject(birdList, this);
+            Handler.removeObject(birdList, this);
 
         if (birdList.size() == 0) {
             if (!AIMode && sounds)
@@ -76,11 +72,6 @@ public class Bird extends BaseObject {
 
             ((Player) playerList.get(0)).die();
         }
-    }
-
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(this.image, (int) x, (int) y, null);
     }
 
     public Float getDistFromPipe() {
@@ -123,21 +114,22 @@ public class Bird extends BaseObject {
     }
 
     public boolean getReward() {
-        boolean passedPipe = false;
+        boolean passedPip = false;
 
         for (BaseObject o : pipeList)
-            if (o.getY() > 0 && o.getX()+o.getImageWidth() - 20 < x && !((Pipe)o).isInTheBack() ) {
-                passedPipe = true;
-                ((Pipe)o).setInTheBack(true);
+            if (o.getY() > 0 && o.getX() + o.getImageWidth() /2f <= x && !passedPips.contains(o)) {
+                passedPip = true;
+                passedPips.add(o);
+                ((Pipe) o).setInTheBack(true);
             }
 
-        currentScore += passedPipe ? 1 : 0;
+        currentScore += passedPip ? 1 : 0;
 
         ((Player) playerList.get(0)).setScore(currentScore);
-        if (passedPipe && !AIMode && sounds)
+        if (passedPip && !AIMode && sounds)
             Sound.Play(pointSound, true);
 
-        return passedPipe;
+        return passedPip;
     }
 
     public int getScoreDifference() {
@@ -150,5 +142,12 @@ public class Bird extends BaseObject {
     public Rectangle getRectangle() {
         return new Rectangle((int) x + 10, (int) y + 5, imageWidth - 20, imageHeight - 10);
     }
+
+
+    @Override
+    public void render(Graphics g) {
+        g.drawImage(this.image, (int) x, (int) y, null);
+    }
+
 }
 

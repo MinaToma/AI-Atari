@@ -10,7 +10,7 @@ import static atariCore.AIEngine.waitForPrediction;
 import static atariCore.Helper.screenHeight;
 import static atariCore.Helper.screenWidth;
 import static flappyBird.ObjectList.birdList;
-import static flappyBird.flappyHelper.birds;
+import static flappyBird.FlappyHelper.birds;
 
 public class FlappyAIEngine {
 
@@ -18,7 +18,7 @@ public class FlappyAIEngine {
     private int numberOfBirds;
     private int currentFrameCount = 99;
     private int requireActionGap = 50;
-    private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts";
+    private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts/flappy.py";
 
     static void startEngine()
     {

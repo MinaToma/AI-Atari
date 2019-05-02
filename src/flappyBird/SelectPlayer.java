@@ -5,7 +5,7 @@ import atariCore.Sound;
 import java.awt.*;
 
 import static atariCore.Helper.*;
-import static flappyBird.flappyHelper.clickSound;
+import static flappyBird.FlappyHelper.clickSound;
 
 public class SelectPlayer extends atariCore.SelectPlayer {
 
@@ -35,6 +35,6 @@ public class SelectPlayer extends atariCore.SelectPlayer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(flappyHelper.pathImages + "background.png", 1), 0, 0, null);
+        g.drawImage(getImage(FlappyHelper.pathImages + "background.png", 1), 0, 0, null);
     }
 }

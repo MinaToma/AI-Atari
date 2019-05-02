@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import static atariCore.Helper.*;
-import static flappyBird.flappyHelper.*;
+import static flappyBird.FlappyHelper.*;
 
 public class Player extends BaseObject {
 

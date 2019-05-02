@@ -62,7 +62,7 @@ public class Handler {
      * @param list Container of the object.
      * @param o Object to be deleted.
      */
-    public void removeObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
+    public static void removeObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
 
         list.remove(o);
     }

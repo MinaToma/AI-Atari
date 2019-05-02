@@ -1,26 +1,20 @@
 package arkanoid;
 
-import atariCore.FileManager;
-
 import java.util.ArrayList;
 
 import static atariCore.FileManager.readFile;
 
 public class arkFile {
 
-    public static ArrayList<ArrayList<Integer>> getLevel(String level , String path)
-    {
+    public static ArrayList<ArrayList<Integer>> getLevel(String level, String path) {
         ArrayList<ArrayList<Integer>> dim = new ArrayList<>();
         ArrayList<String> records = readFile(path);
 
         boolean checkLevel = false;
-        for(String str :records)
-        {
-            if (checkLevel==false && str.equals(level))
-            {
-                checkLevel=true;
-            }
-            else if(checkLevel==true && !str.equals("end")) {
+        for (String str : records) {
+            if (checkLevel == false && str.equals(level)) {
+                checkLevel = true;
+            } else if (checkLevel == true && !str.equals("end")) {
 
                 String[] field = str.split(" ");
 
@@ -36,9 +30,7 @@ public class arkFile {
                     }
                 }
                 dim.add(di);
-            }
-            else if(checkLevel == true && str.equals("end"))
-            {
+            } else if (checkLevel == true && str.equals("end")) {
                 break;
             }
         }

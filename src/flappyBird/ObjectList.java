@@ -8,12 +8,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ObjectList {
 
-    public static CopyOnWriteArrayList<BaseObject> birdList;
-    public static CopyOnWriteArrayList<BaseObject> pipeList;
-    public static CopyOnWriteArrayList<BaseObject> playerList;
-    public static CopyOnWriteArrayList<BaseObject> backgroundList;
+    static CopyOnWriteArrayList<BaseObject> birdList;
+    static CopyOnWriteArrayList<BaseObject> pipeList;
+    static CopyOnWriteArrayList<BaseObject> playerList;
+    static CopyOnWriteArrayList<BaseObject> backgroundList;
 
-    public ObjectList() {
+    private static final ObjectList objectList = new ObjectList();
+
+    private ObjectList() {
 
         birdList = new CopyOnWriteArrayList<>();
         playerList = new CopyOnWriteArrayList<>();
@@ -24,5 +26,9 @@ public class ObjectList {
         Handler.getInstance().addHandler(pipeList);
         Handler.getInstance().addHandler(birdList);
         Handler.getInstance().addHandler(playerList);
+    }
+
+    static ObjectList getInstance() {
+        return objectList;
     }
 }
