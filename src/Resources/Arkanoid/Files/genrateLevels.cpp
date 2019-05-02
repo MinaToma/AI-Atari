@@ -325,7 +325,7 @@ int main() {
 
         }
         cout<<"end"<<endl;
-        numOfBricks+= rand()%2+2;
+        numOfBricks+= rand()%2;
 
 
 
