@@ -41,13 +41,6 @@ public class Splash extends atariCore.Splash {
                 Sound.Play(clickSound, false);
             new Settings(sounds);
         });
-
-        exitButton.addActionListener(e -> {
-                    frame.dispose();
-                    if (sounds)
-                        Sound.Play(clickSound, false);
-                }
-        );
     }
 
     public static void main(String... args) {
