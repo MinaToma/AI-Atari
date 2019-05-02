@@ -137,7 +137,7 @@ public class Level {
      * Returns the Capsule by it's ID.
      *
      * @param ID ID of the Capsule.
-     * @return  Capsule which carries the specified capsule.
+     * @return Capsule which carries the specified capsule.
      */
     public Capsule getCaps(int ID) {
 

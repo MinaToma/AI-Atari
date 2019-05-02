@@ -17,17 +17,16 @@ public class creditScreen extends JPanel {
     private int timer;
     private JLabel screan;
     private MP3Player sound;
-    public creditScreen(int timer, JLabel screan , MP3Player sound )  {
+
+    public creditScreen(int timer, JLabel screan, MP3Player sound) {
         this.timer = timer;
         this.screan = screan;
         this.sound = sound;
         showScreen();
     }
 
-    private void showScreen()
-    {
-        if(Helper.panel != null)
-        {
+    private void showScreen() {
+        if (Helper.panel != null) {
             Helper.frame.getContentPane().remove(Helper.panel);
         }
 
@@ -38,12 +37,11 @@ public class creditScreen extends JPanel {
         add(screan);
         frame.getContentPane().add(this);
         Sound.Repeat(sound);
-        Sound.Play(sound,false);
+        Sound.Play(sound, false);
         frame.setVisible(true);
         try {
             TimeUnit.SECONDS.sleep(timer);
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
 
         }
         sound.setRepeat(false);

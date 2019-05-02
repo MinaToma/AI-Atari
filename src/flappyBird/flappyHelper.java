@@ -35,7 +35,6 @@ public class flappyHelper {
     public static MP3Player selectSound;
     public static MP3Player clickSound;
 
-
     public flappyHelper() {
 
         setImages();

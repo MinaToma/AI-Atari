@@ -19,7 +19,6 @@ public class FlappyAIEngine {
     private int currentFrameCount = 99;
     private int requireActionGap = 50;
     private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts";
-    private static String interactionPath = "src/Resources/Atari Core/AI-Interaction/interaction.txt";
 
     static void startEngine()
     {
@@ -40,7 +39,7 @@ public class FlappyAIEngine {
 
     public void generateNewGeneration() {
         try {
-            PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
+            PrintWriter writer = new PrintWriter(AIEngine.interactionPath, "UTF-8");
             writer.println("training");
             writer.close();
         } catch (Exception e) {
@@ -68,7 +67,7 @@ public class FlappyAIEngine {
                     String Data = new String();
                     try {
 
-                        PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
+                        PrintWriter writer = new PrintWriter(AIEngine.interactionPath, "UTF-8");
 
                         writer.println("prediction");
 

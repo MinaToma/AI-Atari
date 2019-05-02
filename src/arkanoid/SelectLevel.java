@@ -10,10 +10,6 @@ import java.awt.*;
 import static arkanoid.arkHelper.lockImage;
 import static atariCore.Helper.*;
 
-/*
- * this code hasn't been tested, need an updated code to run -Mr.Complex.
- */
-
 public class SelectLevel extends JPanel {
 
     private JButton[] levels;
@@ -29,16 +25,15 @@ public class SelectLevel extends JPanel {
         panel.setBackground(backgroundColor);
 
         levels = new JButton[10];
-        int posX = (int)(screenWidth / 11.7), posY = screenHeight / 5, xoffset = 60, yoffset = 210;
+        int posX = (int) (screenWidth / 11.7), posY = screenHeight / 5, xoffset = 60, yoffset = 210;
         Dimension dim = new Dimension(150, 150);
 
         for (int i = 0; i < 10; i++) {
-            if(i <= level % 10  || era < level / 10 ){
+            if (i <= level % 10 || era < level / 10) {
                 levels[i] = buttonHelper("" + (i + 1), posX, posY, dim);
                 levels[i].setBackground(new Color(0xEA2D1113));
                 levels[i].setForeground(new Color(0xB0E6D6C4));
-            }
-            else{
+            } else {
                 levels[i] = buttonHelper(null, posX, posY, dim);
                 levels[i].setBackground(new Color(0x232323));
                 levels[i].setIcon(new ImageIcon(lockImage));
@@ -57,16 +52,16 @@ public class SelectLevel extends JPanel {
             levels[i].addActionListener(e -> {
                 Helper.running = true;
                 Sound.Stop(arkHelper.backgroundSplashSound);
-                if(sounds)
-                Sound.Play(Helper.clickSound,true);
-                new Arkanoid(name , finalI + 1 + 10 * era);
+                if (sounds)
+                    Sound.Play(Helper.clickSound, true);
+                new Arkanoid(name, finalI + 1 + 10 * era);
             });
         }
 
-        setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 115);
-        backButton.addActionListener(e->{
-            if(sounds)
-            Sound.Play(Helper.clickSound,true);
+        setBackButton(Helper.screenWidth / 2 - btnDim.width / 2, Helper.screenHeight - btnDim.height - 115);
+        backButton.addActionListener(e -> {
+            if (sounds)
+                Sound.Play(Helper.clickSound, true);
             new SelectEra(name, level);
         });
 

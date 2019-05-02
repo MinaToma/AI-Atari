@@ -1,5 +1,6 @@
 package arkanoid;
 
+import atariCore.Helper;
 import atariCore.Sound;
 import jaco.mp3.player.MP3Player;
 
@@ -84,10 +85,12 @@ public class arkHelper {
     public static JLabel creditsImage;
 
 
+    private static final arkHelper mArkHelper = new arkHelper();
+
     /**
      *
      */
-    public arkHelper() {
+    private arkHelper() {
 
         paddle = new Image[3];
         capsule100 = new Image[7];
@@ -121,14 +124,12 @@ public class arkHelper {
         icon = new ImageIcon(imagePath + "sad.gif");
         lossImage = new JLabel(icon);
         lossImage.setBounds(screenWidth / 2 - icon.getImage().getWidth(null) / 2, screenHeight / 2 - icon.getImage().getHeight(null) / 2, icon.getImage().getWidth(null), icon.getImage().getHeight(null));
-
-
     }
 
     /**
      *
      */
-    public void setCredit()
+    private void setCredit()
     {
         ImageIcon icon = new ImageIcon(imagePath + "credits.gif");
         creditsImage = new JLabel(icon);
@@ -170,8 +171,8 @@ public class arkHelper {
     /**
      *
      */
-    private void loadImages() {
-        pathCursor = imagePath + "cursor/yellowCursor2.png";
+    public static void loadImages() {
+        Helper.pathCursor = imagePath + "cursor/yellowCursor2.png";
         splashBackgroundImagePath = imagePath + "background/splash.png";
         splashBackground = getImage(splashBackgroundImagePath, 1);
 
@@ -246,5 +247,9 @@ public class arkHelper {
      */
     public static void setHUDFont() {
         HUDFont = setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf", 20);
+    }
+
+    public static arkHelper getInstance() {
+        return mArkHelper;
     }
 }

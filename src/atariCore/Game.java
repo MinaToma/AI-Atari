@@ -20,6 +20,7 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
 
     /**
      * parameterized constructor takes game title and starts main game loop.
+     *
      * @param title Game title.
      */
     public Game(String title) {
@@ -105,6 +106,41 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void initKeys() {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void pressKey() {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
 
     }
 }

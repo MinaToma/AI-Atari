@@ -17,7 +17,9 @@ public class ObjectList {
     public static CopyOnWriteArrayList<BaseObject> enemyList;
     public static CopyOnWriteArrayList<BaseObject> backgroundList;
 
-    public ObjectList() {
+    private static final ObjectList objectList = new ObjectList();
+
+    private ObjectList() {
 
         paddleList = new CopyOnWriteArrayList<>();
         playerList = new CopyOnWriteArrayList<>();
@@ -36,5 +38,9 @@ public class ObjectList {
         Handler.getInstance().addHandler(playerList);
         Handler.getInstance().addHandler(ballList);
         Handler.getInstance().addHandler(brickList);
+    }
+
+    public static ObjectList getInstance() {
+        return objectList;
     }
 }

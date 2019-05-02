@@ -25,7 +25,7 @@ public class SelectEra extends JPanel {
         panel.setBackground(backgroundColor);
         eras = new JButton[10];
 
-        int posX = (int)(screenWidth / 11.7), posY = (int)(screenHeight / 3.5), xoffset = 40, yoffset = 140;
+        int posX = (int) (screenWidth / 11.7), posY = (int) (screenHeight / 3.5), xoffset = 40, yoffset = 140;
         Dimension dim = new Dimension(183, 103);
 
         for (int i = 0; i < 10; i++) {
@@ -36,13 +36,12 @@ public class SelectEra extends JPanel {
 
             if (i == 4) {
                 posY += yoffset;
-                posX = (int)(screenWidth / 11.5);
+                posX = (int) (screenWidth / 11.5);
             }
 
-            if(i <= level / 10)
+            if (i <= level / 10)
                 eras[i].setIcon(new ImageIcon(eraSelectionImage[i]));
-            else
-            {
+            else {
                 eras[i].setBackground(new Color(0x232323));
                 eras[i].setIcon(new ImageIcon(lockImage));
 
@@ -53,16 +52,16 @@ public class SelectEra extends JPanel {
 
             int finalI = i;
             eras[i].addActionListener(e -> {
-                if(sounds)
-                Sound.Play(clickSound,true);
+                if (sounds)
+                    Sound.Play(clickSound, true);
                 new SelectLevel(name, level, finalI);
             });
         }
 
-        setBackButton(Helper.screenWidth/2-btnDim.width/2, Helper.screenHeight-btnDim.height - 155);
+        setBackButton(Helper.screenWidth / 2 - btnDim.width / 2, Helper.screenHeight - btnDim.height - 155);
 
-        backButton.addActionListener(e->{
-            Sound.Play(clickSound,true);
+        backButton.addActionListener(e -> {
+            Sound.Play(clickSound, true);
             new SelectPlayer();
         });
 

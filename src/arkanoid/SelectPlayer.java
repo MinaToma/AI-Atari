@@ -63,8 +63,8 @@ public class SelectPlayer extends JPanel {
     private void setActions() {
 
         startButton.addActionListener(e -> {
-            if(sounds)
-            Sound.Play(Helper.clickSound,true);
+            if (sounds)
+                Sound.Play(Helper.clickSound, true);
             if (textName.getText().length() > 0 && textName.getText().length() <= 20) {
                 String name = textName.getText();
                 int level = FileManager.getPlayerLevel(textName.getText());
@@ -72,12 +72,13 @@ public class SelectPlayer extends JPanel {
             }
         });
 
-        backButton.addActionListener(e->{
-            if(sounds)
-            Sound.Play(Helper.clickSound,true);
+        backButton.addActionListener(e -> {
+            if (sounds)
+                Sound.Play(Helper.clickSound, true);
             new Splash();
         });
     }
+
     private void setBackButton(int x, int y) {
         backButton = Helper.buttonHelper("Back", x, y, new Dimension(250, 100));
     }

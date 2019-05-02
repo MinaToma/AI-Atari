@@ -2,14 +2,11 @@ package atariCore;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public interface AIEngine {
 
     String interpreterPath = "/home/mina/anaconda3/bin/python3";
+    String interactionPath = "src/Resources/Atari Core/AI-Interaction/interaction.txt";
 
     static void startEngine(String scriptPath) {
         try {
@@ -22,7 +19,7 @@ public interface AIEngine {
 
     static String waitForPrediction(String Data) {
         try {
-            FileReader fr = new FileReader("/home/mehisen/PycharmProjects/ML (copy)/interaction.txt");
+            FileReader fr = new FileReader(interactionPath);
             BufferedReader br = new BufferedReader(fr);
 
             Data = br.readLine();

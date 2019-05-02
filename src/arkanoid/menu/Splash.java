@@ -2,16 +2,11 @@ package arkanoid.menu;
 
 import arkanoid.*;
 import arkanoid.SelectPlayer;
-import arkanoid.ObjectList;
 import arkanoid.arkHelper;
 
-import atariCore.AIEngine;
 import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import static atariCore.Helper.*;
 
@@ -43,25 +38,25 @@ public class Splash extends atariCore.Splash {
         });
 
         settingsButton.addActionListener(e -> {
-                new Settings(music, sounds, mouse, keyboard);
+            new Settings(music, sounds, mouse, keyboard);
             if (sounds)
                 Sound.Play(Helper.clickSound, true);
         });
         LeaderboardsButton.addActionListener(e -> {
-            new Leaderboards( filePath+"Leaderboards.txt");
+            new Leaderboards(filePath + "Leaderboards.txt");
             if (sounds)
                 Sound.Play(Helper.clickSound, true);
         });
         exitButton.addActionListener(e -> {
                     frame.dispose();
-            if(sounds)
-                Sound.Play(Helper.clickSound, true);
+                    if (sounds)
+                        Sound.Play(Helper.clickSound, true);
 
                 }
         );
 
         AIButton.addActionListener(e -> {
-            if(sounds)
+            if (sounds)
                 Sound.Play(Helper.clickSound, true);
             Helper.running = true;
             AIMode = true;
@@ -81,13 +76,7 @@ public class Splash extends atariCore.Splash {
     public static void main(String[] args) {
 
         new LoadingScreen();
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (Exception e) {
-        }
-
-        new arkHelper();
-        new ObjectList();
+        arkHelper.loadImages();
         new Splash();
     }
 }

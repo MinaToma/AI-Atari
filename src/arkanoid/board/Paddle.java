@@ -11,13 +11,49 @@ import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
 import static atariCore.Helper.sounds;
 
+/**
+ * Paddle Class.
+ */
 public class Paddle extends BaseObject {
-
-    public boolean sticky, laser, shrink, expand;
+    /**
+     * Flag to check if the ball sticks to the paddle.
+     */
+    public boolean sticky;
+    /**
+     * Flag to check if the paddle has laser capsule.
+     */
+    public boolean laser;
+    /**
+     * Flag to check if the paddle has shrink capsule.
+     */
+    public boolean shrink;
+    /**
+     * Flag to check if the paddle has expand capsule.
+     */
+    public boolean expand;
+    /**
+     * Counter of current paddle image.
+     */
     private int normalImageIdx = 0;
+    /**
+     * Player object.
+     */
     private Player player;
+    /**
+     * Holds active capsules.
+     */
     private CopyOnWriteArrayList<BaseObject> currentCapsuleList;
 
+    /**
+     * Parameterized constructor takes  X, Y coordinates , paddle image ,x,y velocities and player object.
+     *
+     * @param xPosition X coordinates of the paddle.
+     * @param yPosition Y coordinates of the paddle.
+     * @param image     Paddle image.
+     * @param velX      X Velocity of the paddle.
+     * @param velY      Y Velocity of the paddle.
+     * @param player    Player object
+     */
     public Paddle(int xPosition, int yPosition, Image image, float velX, float velY, Player player) {
 
         super(xPosition, yPosition, image, velX, 0);
@@ -26,6 +62,9 @@ public class Paddle extends BaseObject {
         Handler.getInstance().addHandler(currentCapsuleList);
     }
 
+    /**
+     * Updates paddle's position.
+     */
     public void tick() {
 
         x += velX;
@@ -36,85 +75,18 @@ public class Paddle extends BaseObject {
         updateCapsule();
     }
 
-    public void splitBall() {
-
-        int numOfBall = ballList.size();
-
-        for (BaseObject o : ballList) {
-
-            if (o instanceof Ball) {
-
-                Ball ball = (Ball) o;
-                ball.setVelX(0);
-
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), ballSpeed * (float)Math.cos(Math.PI * 45 / 180) , ball.getVelY(), player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -ballSpeed * (float)Math.cos(Math.PI * 45 / 180) , ball.getVelY(), player);
-
-                Handler.getInstance().addObject(ballList, newBallL);
-                Handler.getInstance().addObject(ballList, newBallR);
-
-                numOfBall--;
-            }
-            if (numOfBall == 0) {
-                break;
-            }
-        }
-    }
-
-    public void runLaser() {
-
-        laser = true;
-    }
-
-    public void stopLaser() {
-        laser = false;
-    }
-
-
-    public void expand() {
-
-        for (BaseObject o : currentCapsuleList) {
-            if (o instanceof Shrink) {
-                Handler.getInstance().removeObject(currentCapsuleList, o);
-                break;
-            }
-        }
-        expand = true;
-        shrink = false;
-    }
-
-
-    public void hitLaser() {
-
-        Bullet bulletL = new Bullet(x, y, bullet);
-        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
-
-        Handler.getInstance().addObject(bulletList, bulletL);
-        Handler.getInstance().addObject(bulletList, bulletR);
-        if(sounds)
-        laserSound();
-    }
-
-    public void speedUp() {
-        ballSpeed = Math.min(ballSpeed + 0.1f , 4);
-
-    }
-
-    public void speedDown() {
-
-        ballSpeed = Math.max(ballSpeed - 0.1f , 1);
-    }
-
-    public void speedNormal() {
-        ballSpeed = 2;
-    }
-
+    /**
+     * Generates enemy on the screen.
+     */
     private void setEnemy() {
 
-        Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, enemy[0], player.getLevel()/5 );
+        Enemy e = new Enemy(50, 50, baseEnemyXSpeed, baseEnemyYSpeed, enemy[0], player.getLevel() / 5);
         Handler.getInstance().addObject(enemyList, e);
     }
 
+    /**
+     * Responsible for paddle collision with ball, capsules, enemy and bricks.
+     */
     private void collision() {
 
         boolean checkIfBricksHeight1 = false, checkIfBricksHeight2 = false;
@@ -134,7 +106,7 @@ public class Paddle extends BaseObject {
 
             if (o.getRectangle().intersects(getRectangle())) {
 
-                if(y >= o.getY()) {
+                if (y >= o.getY()) {
 
                     if (sticky) {
 
@@ -159,8 +131,8 @@ public class Paddle extends BaseObject {
             }
             if (o.getY() + o.getImageHeight() >= this.getY()) {
 
-               player.die();
-               break;
+                player.die();
+                break;
             }
         }
 
@@ -190,6 +162,11 @@ public class Paddle extends BaseObject {
         }
     }
 
+    /**
+     * Sets ball's speed and direction on collision with paddle.
+     *
+     * @param o Ball object
+     */
     private void setBallSpeed(BaseObject o) {
 
         float _x = o.getX();
@@ -198,25 +175,271 @@ public class Paddle extends BaseObject {
         float distFromCenter = (x + getImageWidth() / 2 - _x);
         distFromCenter /= getImageWidth() / 2;
 
-        float newVX = ballSpeed * (float)Math.sin(Math.abs(distFromCenter));
-        float newVY = ballSpeed * (float)Math.cos(Math.abs(distFromCenter));
+        float newVX = ballSpeed * (float) Math.sin(Math.abs(distFromCenter));
+        float newVY = ballSpeed * (float) Math.cos(Math.abs(distFromCenter));
 
-        ((Ball)o).setSpeed(dir * newVX , -newVY);
+        ((Ball) o).setSpeed(dir * newVX, -newVY);
     }
 
+    /**
+     * Returns player object.
+     *
+     * @return PLayer object.
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * Sets player of the paddle.
+     *
+     * @param player Player object.
+     */
     public void setPlayer(Player player) {
         this.player = player;
     }
 
+    /**
+     * Renders paddle on screen.
+     */
     public void render(Graphics g) {
 
         g.drawImage(super.image, (int) super.x, (int) super.y, null);
     }
 
+
+    /**
+     * Updates paddle image.
+     */
+    private void updateImage() {
+
+        if (laser) {
+
+            if (expand) {
+
+                setImage(paddleExpandedWeapon[normalImageIdx++]);
+                normalImageIdx %= 3;
+            } else if (shrink) {
+
+                setImage(paddleShrunk);
+            } else {
+
+                setImage(paddleWeapon[normalImageIdx++]);
+                normalImageIdx %= 3;
+            }
+        } else if (expand) {
+
+            setImage(paddleExpanded[normalImageIdx++]);
+            normalImageIdx %= 3;
+        } else if (shrink) {
+
+            setImage(paddleShrunk);
+        } else {
+
+            setImage(paddle[normalImageIdx++]);
+            normalImageIdx %= 3;
+        }
+        setSize();
+    }
+
+    /**
+     * Resize the paddle's image size.
+     */
+    private void setSize() {
+
+        setImageWidth(image.getWidth(null));
+        setImageHeight(image.getHeight(null));
+    }
+
+
+    /**
+     * Returns the paddle to its normal state when time of capsule ends.
+     */
+    public void paddleNormal() {
+        expand = false;
+        shrink = false;
+    }
+
+    /**
+     * Returns the ball to its normal state when time of capsule ends.
+     */
+    public void makeNormalBall() {
+        for (BaseObject o : ballList) {
+
+            ((Ball) o).makeNormal();
+        }
+    }
+
+    /**
+     * Resets the paddle into default one.
+     */
+    public void reset() {
+        speedNormal();
+        sticky = false;
+        laser = false;
+        shrink = false;
+        expand = false;
+
+        for (BaseObject o : currentCapsuleList) {
+            ((Capsule) o).removeEffect(this);
+            Handler.getInstance().removeObject(currentCapsuleList, o);
+        }
+    }
+
+
+    /****************************************************CAPSULES******************************************************/
+
+
+    /**
+     * Activates sticky capsule.
+     */
+    public void sticky() {
+
+        sticky = true;
+    }
+
+    /**
+     * Activates fire ball.
+     */
+    public void makeFireBall() {
+
+        for (BaseObject o : currentCapsuleList) {
+            if (o instanceof Acid) {
+                Handler.getInstance().removeObject(currentCapsuleList, o);
+                break;
+            }
+        }
+
+        for (BaseObject o : ballList) {
+
+            ((Ball) o).makeFire();
+        }
+    }
+
+    /**
+     * Moves player to next level and clears current handlers.
+     */
+    public void breakToNextLevel() {
+
+        ballList.clear();
+        paddleList.clear();
+        bulletList.clear();
+        enemyList.clear();
+        player.setLevel(player.getLevel() + 1);
+    }
+
+    /**
+     * Removes capsule effect if it expired.
+     */
+    private void updateCapsule() {
+        for (BaseObject o : currentCapsuleList) {
+            if (((Capsule) o).life <= 0) {
+                ((Capsule) o).removeEffect(this);
+                Handler.getInstance().removeObject(currentCapsuleList, o);
+            } else {
+                ((Capsule) o).effect(this);
+            }
+        }
+    }
+
+    /**
+     * Increase numbers of balls by two.
+     */
+    public void splitBall() {
+
+        int numOfBall = ballList.size();
+
+        for (BaseObject o : ballList) {
+
+            if (o instanceof Ball) {
+
+                Ball ball = (Ball) o;
+                ball.setVelX(0);
+
+                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), ballSpeed * (float) Math.cos(Math.PI * 45 / 180), ball.getVelY(), player);
+                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -ballSpeed * (float) Math.cos(Math.PI * 45 / 180), ball.getVelY(), player);
+
+                Handler.getInstance().addObject(ballList, newBallL);
+                Handler.getInstance().addObject(ballList, newBallR);
+
+                numOfBall--;
+            }
+            if (numOfBall == 0) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Activates laser capsule and its effect on paddle.
+     */
+    public void runLaser() {
+
+        laser = true;
+    }
+
+    /**
+     * Deactivates laser capsule.
+     */
+    public void stopLaser() {
+        laser = false;
+    }
+
+    /**
+     * Activates expand capsule.
+     */
+    public void expand() {
+
+        for (BaseObject o : currentCapsuleList) {
+            if (o instanceof Shrink) {
+                Handler.getInstance().removeObject(currentCapsuleList, o);
+                break;
+            }
+        }
+        expand = true;
+        shrink = false;
+    }
+
+    /**
+     * Fires a laser bullet.
+     */
+    public void hitLaser() {
+
+        Bullet bulletL = new Bullet(x, y, bullet);
+        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
+
+        Handler.getInstance().addObject(bulletList, bulletL);
+        Handler.getInstance().addObject(bulletList, bulletR);
+        if (sounds)
+            laserSound();
+    }
+
+    /**
+     * Increases paddle's speed.
+     */
+    public void speedUp() {
+        ballSpeed = Math.min(ballSpeed + 0.1f, 4);
+
+    }
+
+    /**
+     * Decreases paddle's speed.
+     */
+    public void speedDown() {
+
+        ballSpeed = Math.max(ballSpeed - 0.1f, 1);
+    }
+
+    /**
+     * Returns the paddle to its normal speed.
+     */
+    public void speedNormal() {
+        ballSpeed = 2;
+    }
+
+    /**
+     * Activates acid ball.
+     */
     public void makeAcidBall() {
 
 
@@ -233,6 +456,9 @@ public class Paddle extends BaseObject {
         }
     }
 
+    /**
+     * Updates paddle's image to shrink paddle.
+     */
     public void shrink() {
 
         for (BaseObject o : currentCapsuleList) {
@@ -245,113 +471,16 @@ public class Paddle extends BaseObject {
         shrink = true;
     }
 
+    /**
+     * Increments player's life.
+     */
     public void increaseLife() {
 
         player.setLives(player.getLives() + 1);
     }
 
-    private void updateImage() {
 
-        if (laser) {
-
-            if (expand) {
-
-                setImage(paddleExpandedWeapon[normalImageIdx++]);
-                normalImageIdx %=3;
-            } else if (shrink) {
-
-                setImage(paddleShrunk);
-            } else {
-
-                setImage(paddleWeapon[normalImageIdx++]);
-                normalImageIdx %= 3;
-            }
-        } else if (expand) {
-
-            setImage(paddleExpanded[normalImageIdx++]);
-            normalImageIdx %=3;
-        } else if (shrink) {
-
-            setImage(paddleShrunk);
-        } else {
-
-            setImage(paddle[normalImageIdx++]);
-            normalImageIdx %= 3;
-        }
-        setSize();
-    }
-
-    private void setSize() {
-
-        setImageWidth(image.getWidth(null));
-        setImageHeight(image.getHeight(null));
-    }
-
-    public void sticky() {
-
-        sticky = true;
-    }
-
-    public void makeFireBall() {
-
-        for (BaseObject o : currentCapsuleList) {
-            if (o instanceof Acid) {
-                Handler.getInstance().removeObject(currentCapsuleList, o);
-                break;
-            }
-        }
-
-        for (BaseObject o : ballList) {
-
-            ((Ball) o).makeFire();
-        }
-    }
-
-    public void breakToNextLevel() {
-
-        ballList.clear();
-        paddleList.clear();
-        bulletList.clear();
-        enemyList.clear();
-        player.setLevel(player.getLevel() + 1);
-    }
-
-    private void updateCapsule() {
-        for (BaseObject o : currentCapsuleList) {
-            if (((Capsule) o).life <= 0) {
-                ((Capsule) o).removeEffect(this);
-                Handler.getInstance().removeObject(currentCapsuleList, o);
-            }
-            else {
-                ((Capsule) o).effect(this);
-            }
-        }
-    }
-
-    public void paddleNormal() {
-        expand = false;
-        shrink = false;
-    }
-
-    public void makeNormalBall() {
-        for (BaseObject o : ballList) {
-
-            ((Ball) o).makeNormal();
-        }
-    }
-
-    public void reset() {
-        speedNormal();
-        sticky = false;
-        laser = false;
-        shrink = false;
-        expand = false;
-
-        for (BaseObject o : currentCapsuleList) {
-            ((Capsule) o).removeEffect(this);
-            Handler.getInstance().removeObject(currentCapsuleList, o);
-        }
-    }
+    /******************************************************************************************************************/
 }
 
 
