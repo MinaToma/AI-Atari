@@ -140,7 +140,6 @@ public class Level {
      * @return Capsule which carries the specified capsule.
      */
     public Capsule getCaps(int ID) {
-
         if (ID == 1) {
             return new Expand(0, 0, 5000, arkHelper.capsuleExpand);
         } else if (ID == 2) {

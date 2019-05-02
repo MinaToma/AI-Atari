@@ -1,5 +1,6 @@
 package arkanoid.board;
 
+import arkanoid.Arkanoid;
 import arkanoid.capsule.*;
 import atariCore.BaseObject;
 import atariCore.Handler;
@@ -325,6 +326,7 @@ public class Paddle extends BaseObject {
         brickList.clear();
         bulletList.clear();
         enemyList.clear();
+        ((Player)(playerList.get(0))).arkanoid.refresh();
         player.setLevel(player.getLevel() + 1);
     }
 

@@ -57,9 +57,7 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
                         }
                         Handler.getInstance().tick();
                     }
-                    revalidate();
-                    repaint();
-                    Toolkit.getDefaultToolkit().sync();
+                    refresh();
                 }
             }
         }, Helper.DELAY, Helper.PERIOD);
@@ -82,6 +80,15 @@ abstract public class Game extends JPanel implements AtariKeyListener, MouseList
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Handler.getInstance().render(g);
+    }
+
+    /**
+     * Refreshed the game and redraws game objects.
+     */
+    public void refresh() {
+        revalidate();
+        repaint();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     @Override
