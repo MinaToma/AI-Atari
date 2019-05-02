@@ -46,7 +46,7 @@ public class Player extends BaseObject {
         if (level > 100) {
 
             FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
-            FileManager.sendPlayerScore(name, level);
+            FileManager.sendPlayerScore(arkHelper.filePath, name, level);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
             new arkanoid.creditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
@@ -95,7 +95,7 @@ public class Player extends BaseObject {
 
     public void die() {
         FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
-        FileManager.sendPlayerScore(name, level);
+        FileManager.sendPlayerScore(arkHelper.filePath, name, level);
 
         if (!AIMode) {
 

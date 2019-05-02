@@ -1,5 +1,7 @@
-package arkanoid;
+package arkanoid.menu;
 
+import arkanoid.Arkanoid;
+import arkanoid.arkHelper;
 import atariCore.Helper;
 import atariCore.Sound;
 

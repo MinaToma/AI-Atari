@@ -1,5 +1,7 @@
-package arkanoid;
+package arkanoid.menu;
 
+import arkanoid.menu.SelectLevel;
+import arkanoid.menu.SelectPlayer;
 import atariCore.Helper;
 import atariCore.Sound;
 

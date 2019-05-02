@@ -12,6 +12,13 @@ import static atariCore.Helper.*;
 public class Settings extends atariCore.Settings {
 
 
+    /**
+     *
+     * @param music
+     * @param sounds
+     * @param mouse
+     * @param keyboard
+     */
     public Settings(boolean music, boolean sounds, boolean mouse, boolean keyboard)
     {
         super(music,sounds,mouse,keyboard);
@@ -26,14 +33,15 @@ public class Settings extends atariCore.Settings {
         super.paintComponent(g);
         g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
+
     @Override
     protected void switchSoundsState() {
         Helper.sounds = !Helper.sounds;
         soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
         if(sounds)
             Sound.Play(Helper.clickSound,true);
-
     }
+
     @Override
     protected void switchMusicState() {
         Helper.music = !Helper.music;

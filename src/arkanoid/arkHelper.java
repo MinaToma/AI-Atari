@@ -66,6 +66,7 @@ public class arkHelper {
     public static Image star;
     public static Image life;
     public static Image bullet;
+    public static String filePath = "src/Resources/Arkanoid/Files/";
     public static String soundPath = "src/Resources/Arkanoid/Sounds/";
     public static String pathLevel = "src/Resources/Arkanoid/Files/levels.txt";
     public static String pathLeaderboards = "src/Resources/Arkanoid/Files/Leaderboards.txt";
@@ -118,7 +119,7 @@ public class arkHelper {
      */
     public static void setLoseAndWinImage() {
         Random r = new Random();
-        ImageIcon icon = new ImageIcon(imagePath + "/dance/"+(Math.abs( r.nextInt())%8+1)+".gif");
+        ImageIcon icon = new ImageIcon(imagePath + "/dance/" + (Math.abs(r.nextInt()) % 8 + 1) + ".gif");
         nextLevelImage = new JLabel(icon);
         nextLevelImage.setBounds(screenWidth / 2 - icon.getImage().getWidth(null) / 2, screenHeight / 2 - icon.getImage().getHeight(null) / 2, icon.getImage().getWidth(null), icon.getImage().getHeight(null));
         icon = new ImageIcon(imagePath + "sad.gif");
@@ -129,11 +130,10 @@ public class arkHelper {
     /**
      *
      */
-    private void setCredit()
-    {
+    private void setCredit() {
         ImageIcon icon = new ImageIcon(imagePath + "credits.gif");
         creditsImage = new JLabel(icon);
-        creditsImage.setBounds(0,0,screenWidth,screenHeight);
+        creditsImage.setBounds(0, 0, screenWidth, screenHeight);
         creditSound = Sound.setSound("src/Resources/Atari Core/Sounds/credits.mp3");
 
     }
@@ -176,7 +176,7 @@ public class arkHelper {
         splashBackgroundImagePath = imagePath + "background/splash.png";
         splashBackground = getImage(splashBackgroundImagePath, 1);
 
-        pausedImage = getImage( imagePath + "background/pausedBG.png",1);
+        pausedImage = getImage(imagePath + "background/pausedBG.png", 1);
 
         lockImage = getImage(imagePath + "background/lock.png", 4);
 
@@ -216,10 +216,10 @@ public class arkHelper {
         life = getImage(imagePath + "capsule/life.png", ballScale);
 
         for (int i = 0; i < 3; i++) {
-            paddle[i] = getImage(imagePath + "paddle/n-paddle"+ i + ".png", paddleScale);
-            paddleWeapon[i] = getImage(imagePath + "paddle/n-laser"+ i + ".png", paddleScale);
-            paddleExpanded[i] = getImage(imagePath + "paddle/e-paddle"+ i + ".png", paddleScale);
-            paddleExpandedWeapon[i] = getImage(imagePath + "paddle/e-laser"+ i + ".png", paddleScale);
+            paddle[i] = getImage(imagePath + "paddle/n-paddle" + i + ".png", paddleScale);
+            paddleWeapon[i] = getImage(imagePath + "paddle/n-laser" + i + ".png", paddleScale);
+            paddleExpanded[i] = getImage(imagePath + "paddle/e-paddle" + i + ".png", paddleScale);
+            paddleExpandedWeapon[i] = getImage(imagePath + "paddle/e-laser" + i + ".png", paddleScale);
         }
 
         paddleShrunk = getImage(imagePath + "paddle/s-paddle.png", paddleScale);
@@ -233,12 +233,12 @@ public class arkHelper {
 
         for (int i = 1; i <= 10; i++) {
             backgroundImage[i - 1] = getImage(imagePath + "background/" + i + ".jpg", 1);
-            eraSelectionImage[i - 1] = getImage(imagePath +  "background/era" + i + ".jpg", 7);
+            eraSelectionImage[i - 1] = getImage(imagePath + "background/era" + i + ".jpg", 7);
 
         }
 
         for (int i = 1; i <= 6; i++) {
-            enemy[i - 1] = getImage(imagePath +"enemy/"+ i+".png", 1);
+            enemy[i - 1] = getImage(imagePath + "enemy/" + i + ".png", 1);
         }
     }
 
@@ -249,6 +249,10 @@ public class arkHelper {
         HUDFont = setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf", 20);
     }
 
+    /**
+     *
+     * @return
+     */
     public static arkHelper getInstance() {
         return mArkHelper;
     }

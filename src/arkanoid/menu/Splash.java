@@ -1,7 +1,6 @@
 package arkanoid.menu;
 
 import arkanoid.*;
-import arkanoid.SelectPlayer;
 import arkanoid.arkHelper;
 
 import atariCore.Helper;
