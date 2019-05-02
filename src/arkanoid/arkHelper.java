@@ -340,7 +340,7 @@ public class arkHelper {
      * Loads arkHelper and fills all variables.
      */
     public static void Load() {
-        if (mArkHelper == null) {
+        if(mArkHelper == null) {
             mArkHelper = new arkHelper();
         }
     }

@@ -122,6 +122,7 @@ public class Arkanoid extends atariCore.Game {
     }
 
     /**
+     *
      * @param namePlayer
      * @param level
      */
@@ -134,7 +135,6 @@ public class Arkanoid extends atariCore.Game {
 
     /**
      * Sets level's bricks.
-     *
      * @param lvl Level to be displayed.
      */
     private void setBricks(int lvl) {

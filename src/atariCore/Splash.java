@@ -81,7 +81,6 @@ public class Splash {
                     new welcome.Splash();
                     if (sounds)
                         Sound.Play(Helper.clickSound, true);
-
                 }
         );
 
