@@ -42,7 +42,7 @@ public class Player extends BaseObject {
     /**
      * Object of arkanoid.
      */
-    private Arkanoid arkanoid;
+    Arkanoid arkanoid;
     /**
      * Level number.
      */

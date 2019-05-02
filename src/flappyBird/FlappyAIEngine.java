@@ -22,8 +22,7 @@ public class FlappyAIEngine {
     private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts/flappy.py";
     private static String interactionPath = "src/Resources/Flappy Bird/AI-Scripts/interaction.txt";
 
-    public static void startEngine()
-    {
+    public static void startEngine() {
         AIEngine.startEngine(scriptScript);
     }
 

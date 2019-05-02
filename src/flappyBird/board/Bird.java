@@ -118,7 +118,7 @@ public class Bird extends BaseObject {
         boolean passedPip = false;
 
         for (BaseObject o : pipeList)
-            if (o.getY() > 0 && o.getX() + o.getImageWidth() /2f <= x && !passedPips.contains(o)) {
+            if (o.getY() > 0 && o.getX() + o.getImageWidth() / 2f <= x && !passedPips.contains(o)) {
                 passedPip = true;
                 passedPips.add(o);
             }
