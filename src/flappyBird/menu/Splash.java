@@ -15,6 +15,11 @@ public class Splash extends atariCore.Splash {
 
     public Splash() {
         super("Flappy Bird", "joystix monospace.ttf");
+        if(backgroundSound.isStopped())
+        {
+            Sound.Repeat(backgroundSound);
+            Sound.Play(backgroundSound,false);
+        }
 
         newGameButton.addActionListener(e -> {
             if (sounds)
@@ -40,6 +45,9 @@ public class Splash extends atariCore.Splash {
             if (sounds)
                 Sound.Play(clickSound, false);
             new Settings(sounds);
+        });
+        backButton.addActionListener(e -> {
+            Sound.Stop(backgroundSound);
         });
     }
 

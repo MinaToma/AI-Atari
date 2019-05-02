@@ -77,7 +77,7 @@ public class SelectLevel extends JPanel {
             new SelectEra(name, level);
         });
 
-        setCursorImage(pathCursor);
+        setCursorImage(arkHelper.pathCursor);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);

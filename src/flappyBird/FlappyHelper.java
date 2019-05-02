@@ -42,6 +42,7 @@ public class FlappyHelper {
     public static MP3Player wingSound;
     public static MP3Player pointSound;
     public static MP3Player clickSound;
+    public static MP3Player backgroundSound;
 
     private static FlappyHelper flappyHelper;
 
@@ -62,6 +63,7 @@ public class FlappyHelper {
         wingSound = Sound.setSound(soundPath + "wing.mp3");
         pointSound = Sound.setSound(soundPath + "point.mp3");
         clickSound = Sound.setSound("src/Resources/Atari Core/Sounds/click.mp3");
+        backgroundSound = Sound.setSound(soundPath + "background.mp3");
     }
 
     public static void setImages() {

@@ -3,6 +3,7 @@ package welcome;
 import arkanoid.arkHelper;
 import atariCore.LoadingScreen;
 import atariCore.Helper;
+import atariCore.Sound;
 import flappyBird.FlappyHelper;
 
 import java.awt.*;
@@ -20,6 +21,11 @@ public class Splash extends JPanel {
         if (panel != null) {
             frame.getContentPane().remove(panel);
         }
+        if(welcomeSound.isStopped())
+        {
+            Sound.Repeat(welcomeSound);
+            Sound.Play(welcomeSound,false);
+        }
 
         panel = this;
         panel.setLayout(new GridLayout(0,1));
@@ -29,9 +35,9 @@ public class Splash extends JPanel {
         ImageIcon icon = new ImageIcon("src/Resources/Atari Core/Images/loading/atari.gif");
         atariLabel = new JLabel(icon);
 
-        icon = new ImageIcon("src/Resources/Flappy Bird/Images/bird.gif");
+        icon = new ImageIcon("src/Resources/Atari Core/Images/bird.gif");
         Flappy = new JButton(icon);
-        icon = new ImageIcon("src/Resources/Arkanoid/Images/splash.gif");
+        icon = new ImageIcon("src/Resources/Atari Core/Images/paddle.gif");
         Arkanoid = new JButton(icon);
 
         panel.add(atariLabel);
@@ -45,9 +51,11 @@ public class Splash extends JPanel {
 
         Flappy.addActionListener(e -> {
             flappyBird.menu.Splash.main(null);
+            Sound.Stop(welcomeSound);
         });
         Arkanoid.addActionListener(e -> {
             arkanoid.menu.Splash.main(null);
+            Sound.Stop(welcomeSound);
         });
     }
 

@@ -55,5 +55,7 @@ public class LoadingScreen extends JPanel {
         panel.add(atariLabel);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
+        Sound.Repeat(welcomeSound);
+        Sound.Play(welcomeSound,false);
     }
 }

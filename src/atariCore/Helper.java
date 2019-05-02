@@ -152,7 +152,10 @@ public class Helper {
      * Sound for button clicks.
      */
     public static MP3Player clickSound;
-
+    /**
+     * Sound for background welcome window and loading screen
+     */
+    public static MP3Player welcomeSound;
 
     /****************************************************** Flags *****************************************************/
 
@@ -233,6 +236,7 @@ public class Helper {
      */
     private void setButtonClickSound() {
         clickSound = Sound.setSound(soundPath + "click.mp3");
+        welcomeSound = Sound.setSound(soundPath +"background.mp3");
     }
 
 
