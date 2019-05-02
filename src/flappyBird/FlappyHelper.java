@@ -52,8 +52,8 @@ public class FlappyHelper {
     }
 
     public static void Load() {
-        if(flappyHelper== null) {
-            flappyHelper= new FlappyHelper();
+        if (flappyHelper == null) {
+            flappyHelper = new FlappyHelper();
         }
     }
 
