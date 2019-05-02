@@ -9,24 +9,50 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
+/**
+ * Main Arkanoid AI-Mode manager.
+ */
 public class arkAIEngine {
 
+    /**
+     * Array list to hold rewards for every action taken by AI-Player.
+     */
     static CopyOnWriteArrayList<Double> rewards = new CopyOnWriteArrayList<>();
     private static ArrayList<Float> AIInput;
+    /**
+     * Needed for reward calculations.
+     */
     static double slack = 0;
-    private static String scriptScript = "src/Resources/Arkanoid/AI-Scripts/arkanoid.py";
+    /**
+     * Path of Arkanoid AI-Engine.
+     */
+    static String scriptScript = "src/Resources/Arkanoid/AI-Scripts/arkanoid.py";
+    /**
+     * Path of interaction file used to communicate with python script.
+     */
     static String interactionPath = "src/Resources/Arkanoid/AI-Scripts/interactions.txt";
 
     private static arkAIEngine engine = new arkAIEngine();
 
-    public static void startEngine()
-    {
+    /**
+     * Starts AI-Engine.
+     */
+    public static void startEngine() {
         AIEngine.startEngine(scriptScript);
     }
 
     private arkAIEngine() {
     }
 
+    /**
+     * Calculates reward for every action.
+     *
+     * @param player Current player object.
+     * @param ball   Current ball object.
+     * @param paddle Current paddle object.
+     * @return
+     */
     static public int calculateReward(Player player, Ball ball, Paddle paddle) {
 
         double reward;
@@ -49,10 +75,20 @@ public class arkAIEngine {
         return 0;
     }
 
+    /**
+     * Initializes the input to be sent to AI script.
+     *
+     * @param input Array list of inputs.
+     */
     static void initializeInput(ArrayList<Float> input) {
         AIInput = input;
     }
 
+    /**
+     * Sends input to python script and waits for AI response.
+     *
+     * @return Action to be carried out.
+     */
     static String getDIR() {
 
         String Data = new String();
@@ -78,6 +114,9 @@ public class arkAIEngine {
         return Data;
     }
 
+    /**
+     * Initiates training process for AI-Player.
+     */
     static public void train() {
         try {
             PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
@@ -108,6 +147,11 @@ public class arkAIEngine {
         rewards.clear();
     }
 
+    /**
+     * Returns instance of the class.
+     *
+     * @return Arkanoid AI-Engine instance.
+     */
     static arkAIEngine getInstance() {
         return engine;
     }

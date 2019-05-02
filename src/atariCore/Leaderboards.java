@@ -67,7 +67,9 @@ public class Leaderboards extends JPanel {
     }
 
     /**
-     * Initialises leaderboards with top 10 player.
+     * Initialises leaderboards with top 10 player with or without level.
+     *
+     * @param hasLevel Indicates if the game has levels.
      */
     public void setINILabel(boolean hasLevel) {
         top10 = new JLabel[10];
