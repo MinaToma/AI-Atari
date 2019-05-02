@@ -12,8 +12,8 @@ import static atariCore.Helper.*;
 
 public class Splash extends JPanel {
 
-    private static Image[] image;
-    private static int imageCounter = 0;
+    private JLabel atariLabel;
+    private JButton Flappy, Arkanoid;
 
     public Splash() {
 
@@ -22,48 +22,33 @@ public class Splash extends JPanel {
         }
 
         panel = this;
-        panel.setLayout(null);
+        panel.setLayout(new GridLayout(0,1));
+        panel.setBackground(new Color(24,24,24));
 
-        JButton Game_Choice = new JButton();
-        Game_Choice.setLayout(null);
-        Game_Choice.setBorder(BorderFactory.createEmptyBorder());
-        Game_Choice.setIcon(new ImageIcon(image[0]));
-        Game_Choice.setBounds(0, 0, screenWidth, screenHeight);
-        Game_Choice.addActionListener(event -> {
-            if (imageCounter == 1) {
-                arkanoid.menu.Splash.main(null);
-            } else if (imageCounter == 2) {
-                flappyBird.menu.Splash.main(null);
-            }
-        });
+        JPanel aiAtari = new JPanel(new GridLayout(0,2));
+        ImageIcon icon = new ImageIcon("src/Resources/Atari Core/Images/loading/atari.gif");
+        atariLabel = new JLabel(icon);
 
-        JButton back = new JButton("Back");
-        back.setBounds(screenWidth * 10 / 100, screenHeight * 80 / 100, 200, 50);
-        back.addActionListener(event -> {
-            imageCounter = (imageCounter - 1 + 3) % 3;
-            Game_Choice.setIcon(new ImageIcon(image[imageCounter]));
-        });
+        icon = new ImageIcon("/home/mehisen/IdeaProjects/AI-Atari/src/Resources/Flappy Bird/Images/bird.gif");
+        Flappy = new JButton(icon);
+        icon = new ImageIcon("/home/mehisen/IdeaProjects/AI-Atari/src/Resources/Arkanoid/Images/splash.gif");
+        Arkanoid = new JButton(icon);
 
-        JButton next = new JButton("Next");
-        next.setBounds(screenWidth * 75 / 100, screenHeight * 80 / 100, 200, 50);
-        next.addActionListener(event -> {
-            imageCounter = (imageCounter + 1) % 3;
-            Game_Choice.setIcon(new ImageIcon(image[imageCounter]));
-        });
+        panel.add(atariLabel);
+        aiAtari.add(Arkanoid);
+        aiAtari.add(Flappy);
+        panel.add(aiAtari);
 
-        Game_Choice.add(next);
-        Game_Choice.add(back);
-        panel.add(Game_Choice);
         frame.add(panel);
         frame.setVisible(true);
         panel.requestFocusInWindow();
-    }
 
-    private static void loadImages() {
-        image = new Image[3];
-        image[0] = Helper.getImage("src/Resources/Arkanoid/Images/background/1.jpg", 1);
-        image[1] = Helper.getImage("src/Resources/Arkanoid/Images/background/2.jpg", 1);
-        image[2] = Helper.getImage("src/Resources/Arkanoid/Images/background/3.jpg", 1);
+        Flappy.addActionListener(e -> {
+            flappyBird.menu.Splash.main(null);
+        });
+        Arkanoid.addActionListener(e -> {
+            arkanoid.menu.Splash.main(null);
+        });
     }
 
     public static void main(String[] args) {
@@ -71,7 +56,6 @@ public class Splash extends JPanel {
         Helper.Load();
         new LoadingScreen();
         arkHelper.Load();
-        loadImages();
         FlappyHelper.Load();
 
         new Splash();

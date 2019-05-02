@@ -53,7 +53,7 @@ public class LoadingScreen extends JPanel {
         atariLabel.setBounds(initialAtariWidth, initialAtariHeight, atariLabel.getWidth(), atariLabel.getHeight());
 
         panel.add(atariLabel);
-        panel.add(loading);
+        //panel.add(loading);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
