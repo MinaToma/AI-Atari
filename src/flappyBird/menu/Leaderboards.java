@@ -2,7 +2,6 @@ package flappyBird.menu;
 
 import atariCore.Sound;
 import flappyBird.FlappyHelper;
-import flappyBird.menu.Splash;
 
 import java.awt.*;
 
@@ -15,8 +14,8 @@ public class Leaderboards extends atariCore.Leaderboards {
         super(path);
 
         backButton.addActionListener(e -> {
-            if(sounds)
-            Sound.Play(FlappyHelper.clickSound,true);
+            if (sounds)
+                Sound.Play(FlappyHelper.clickSound, true);
             new Splash();
         });
     }
@@ -24,6 +23,6 @@ public class Leaderboards extends atariCore.Leaderboards {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(FlappyHelper.pathImages + "Leaderboards.png", 1), 0, 0, null);
+        g.drawImage(getImage(FlappyHelper.imagePath + "Leaderboards.png", 1), 0, 0, null);
     }
 }

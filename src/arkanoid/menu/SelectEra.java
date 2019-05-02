@@ -1,5 +1,6 @@
 package arkanoid.menu;
 
+import arkanoid.arkHelper;
 import atariCore.Helper;
 import atariCore.Sound;
 
@@ -74,7 +75,7 @@ public class SelectEra extends JPanel {
             new SelectPlayer();
         });
 
-        setCursorImage(pathCursor);
+        setCursorImage(arkHelper.pathCursor);
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
@@ -98,6 +99,6 @@ public class SelectEra extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(arkHelper.imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 }

@@ -47,7 +47,7 @@ public class Arkanoid extends atariCore.Game {
         }
 
         initKeys();
-        Helper.setCursorImage(pathCursor);
+        Helper.setCursorImage(arkHelper.pathCursor);
         setPaddle();
         setPlayer(namePlayer, level);
 

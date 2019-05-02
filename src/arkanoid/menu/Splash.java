@@ -21,7 +21,7 @@ public class Splash extends atariCore.Splash {
     public Splash() {
 
         super("Arkanoid", "src/Resources/Atari Core/Fonts/joystix monospace.ttf");
-        Helper.setCursorImage(pathCursor);
+        Helper.setCursorImage(arkHelper.pathCursor);
 
         for (int i = 0; i < 10; i++) {
             if (arkHelper.backgroundGameSound[i].isRepeat())
@@ -78,9 +78,7 @@ public class Splash extends atariCore.Splash {
      * @param args An array of parameters.
      */
     public static void main(String[] args) {
-
-        new LoadingScreen();
-        arkHelper.loadImages();
+        splashBackgroundImagePath = arkHelper.splashBackgroundImagePath;
         new Splash();
     }
 }

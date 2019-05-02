@@ -1,6 +1,5 @@
 package arkanoid;
 
-import atariCore.Helper;
 import atariCore.Sound;
 import jaco.mp3.player.MP3Player;
 
@@ -267,6 +266,19 @@ public class arkHelper {
      * Leaderboards path.
      */
     public static String pathLeaderboards = "src/Resources/Arkanoid/Files/Leaderboards.txt";
+    /**
+     * Font path.
+     */
+    public static String fontPath = "src/Resources/Atari Core/Fonts/";
+    /**
+     * Splash screen background image path.
+     */
+    public static String splashBackgroundImagePath;
+    /**
+     * Path for default cursor image.
+     */
+    public static String pathCursor = imagePath + "cursor/yellowCursor2.png";
+
 
     /************************************************* MP3 Players **************************************************/
 
@@ -296,7 +308,7 @@ public class arkHelper {
     /**
      * Class instance
      */
-    private static final arkHelper mArkHelper = new arkHelper();
+    private static arkHelper mArkHelper;
 
     /**
      * Default constructor to initialise image arrays, set sounds, fonts, colors and load images.
@@ -325,6 +337,15 @@ public class arkHelper {
     }
 
     /**
+     * Loads arkHelper and fills all variables.
+     */
+    public static void Load() {
+        if (mArkHelper == null) {
+            mArkHelper = new arkHelper();
+        }
+    }
+
+    /**
      * Loads winning and losing GIFs.
      */
     public static void setLoseAndWinImage() {
@@ -345,7 +366,6 @@ public class arkHelper {
         creditsImage = new JLabel(icon);
         creditsImage.setBounds(0, 0, screenWidth, screenHeight);
         creditSound = Sound.setSound("src/Resources/Atari Core/Sounds/credits.mp3");
-
     }
 
     /**
@@ -382,6 +402,7 @@ public class arkHelper {
      * Loads Arkanoid game images such as bricks, enemies, balls, backgrounds, capsules... etc.
      */
     public static void loadImages() {
+
         splashBackgroundImagePath = imagePath + "background/splash.png";
         splashBackground = getImage(splashBackgroundImagePath, 1);
 

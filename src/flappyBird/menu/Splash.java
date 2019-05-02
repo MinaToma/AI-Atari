@@ -1,5 +1,6 @@
 package flappyBird.menu;
 
+import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 import flappyBird.FlappyAIEngine;
@@ -50,8 +51,7 @@ public class Splash extends atariCore.Splash {
     }
 
     public static void main(String... args) {
-        new LoadingScreen();
-        FlappyHelper.setImages();
+        Helper.splashBackgroundImagePath = FlappyHelper.splashBackgroundImagePath;
         new Splash();
     }
 }

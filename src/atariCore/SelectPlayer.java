@@ -1,5 +1,7 @@
 package atariCore;
 
+import flappyBird.FlappyHelper;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -68,7 +70,7 @@ public abstract class SelectPlayer extends JPanel {
         add(labelName);
         add(textName);
 
-        setCursorImage(pathCursor);
+        setCursorImage(FlappyHelper.pathCursor);
     }
 
     /**

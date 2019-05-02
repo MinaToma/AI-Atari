@@ -1,5 +1,6 @@
 package atariCore;
 
+import flappyBird.FlappyHelper;
 import jaco.mp3.player.MP3Player;
 
 import javax.swing.*;
@@ -66,11 +67,11 @@ public class Helper {
     /**
      * Files path.
      */
-    public static String filePath = "src/Resources/Arkanoid/Files/";
+    public static String filePath = "src/Resources/Atari Core/Files/";
     /**
      * Image path.
      */
-    public static String imagePath = "src/Resources/Arkanoid/Images/";
+    public static String imagePath = "src/Resources/Atari Core/Images/";
     /**
      * Font path.
      */
@@ -192,7 +193,7 @@ public class Helper {
     /**
      * Class instance
      */
-    private static final Helper helper = new Helper();
+    private static Helper helper;
 
     /**
      * Default constructor to initialise main game design components paths for images and sounds.
@@ -219,6 +220,14 @@ public class Helper {
         setButtonClickSound();
     }
 
+    /**
+     * Loads Helper and fills all variables.
+     */
+    public static void Load() {
+        if (helper == null) {
+            helper = new Helper();
+        }
+    }
 
     /**
      * sets button click sound.

@@ -85,8 +85,8 @@ public class Splash {
     /**
      * initialised start new game button.
      *
-     * @param x X coordinates of the button.
-     * @param y Y coordinates of the button.
+     * @param x   X coordinates of the button.
+     * @param y   Y coordinates of the button.
      * @param dim Dimension of the button.
      */
     protected void setNewGameButton(int x, int y, Dimension dim) {
@@ -96,8 +96,8 @@ public class Splash {
     /**
      * initialised AI-Mode button.
      *
-     * @param x X coordinates of the button.
-     * @param y Y coordinates of the button.
+     * @param x   X coordinates of the button.
+     * @param y   Y coordinates of the button.
      * @param dim Dimension of the button.
      */
     protected void setAIButton(int x, int y, Dimension dim) {
@@ -107,8 +107,8 @@ public class Splash {
     /**
      * initialised leaderboard button.
      *
-     * @param x X coordinates of the button.
-     * @param y Y coordinates of the button.
+     * @param x   X coordinates of the button.
+     * @param y   Y coordinates of the button.
      * @param dim Dimension of the button.
      */
     protected void setLeaderboardsButton(int x, int y, Dimension dim) {
@@ -118,8 +118,8 @@ public class Splash {
     /**
      * initialised settings button.
      *
-     * @param x X coordinates of the button.
-     * @param y Y coordinates of the button.
+     * @param x   X coordinates of the button.
+     * @param y   Y coordinates of the button.
      * @param dim Dimension of the button.
      */
     protected void setSettingsButton(int x, int y, Dimension dim) {
@@ -129,12 +129,11 @@ public class Splash {
     /**
      * initialised Exit button.
      *
-     * @param x X coordinates of the button.
-     * @param y Y coordinates of the button.
+     * @param x   X coordinates of the button.
+     * @param y   Y coordinates of the button.
      * @param dim Dimension of the button.
      */
     protected void setExitButton(int x, int y, Dimension dim) {
         exitButton = Helper.buttonHelper("Exit", x, y, dim);
-
     }
 }
