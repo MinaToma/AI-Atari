@@ -9,16 +9,43 @@ import java.util.*;
 
 import static arkanoid.ObjectList.*;
 
+/**
+ * Level class to generate level's bricks and capsules.
+ */
 public class Level {
-
+    /**
+     * ArrayList has the number of bricks.
+     * 0 for empty space.
+     * from 1 to 100 id of normal bricks.
+     * from 101 to 200 id of square bricks.
+     */
     public ArrayList<ArrayList<Integer>> dimensions;
+    /**
+     * Player object
+     */
     public Player player;
+    /**
+     * Array of Bricks.
+     */
     public Brick[] bricks;
+    /**
+     * Paddle object.
+     */
     public Paddle paddle;
+    /**
+     * Ball object.
+     */
     public Ball ball;
-    public Enemy enemy;
 
 
+    /**
+     * Parameterized constructor takes dimensions, and player, paddle and and ball.
+     *
+     * @param dimensions Number of bricks.
+     * @param player     Current player.
+     * @param paddle     Current paddle.
+     * @param ball       Current ball.
+     */
     public Level(ArrayList<ArrayList<Integer>> dimensions, Player player, Paddle paddle, Ball ball) {
 
         this.dimensions = dimensions;
@@ -30,6 +57,9 @@ public class Level {
         setBricks();
     }
 
+    /**
+     * Sets all bricks at their position and carried capsules.
+     */
     public void setBricks() {
 
         int initialHeight = arkHelper.INIT_BRICKS_HEIGHT;
@@ -103,6 +133,12 @@ public class Level {
         }
     }
 
+    /**
+     * Returns the Capsule by it's ID.
+     *
+     * @param ID ID of the Capsule.
+     * @return  Capsule which carries the specified capsule.
+     */
     public Capsule getCaps(int ID) {
 
 
@@ -112,7 +148,7 @@ public class Level {
             return new Disrupt(0, 0, 0, arkHelper.capsuleTripleBall);
         } else if (ID == 3) {
             return new Laser(0, 0, 5000, arkHelper.capsuleWeapon);
-        } else if (ID == 4 && player.getLevel()%5!=0) {
+        } else if (ID == 4 && player.getLevel() % 5 != 0) {
             return new Break(0, 0, 0, arkHelper.star);
         } else if (ID == 5) {
             return new Score(0, 0, 0, arkHelper.capsule50, 50);

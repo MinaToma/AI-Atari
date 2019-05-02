@@ -80,8 +80,6 @@ public class Score implements Comparable<Score> {
 
     @Override
     public int compareTo(Score o) {
-        if (o.getLevel() != getLevel())
-            return o.getLevel() - getLevel();
         return o.getScore() - score;
     }
 }
