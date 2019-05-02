@@ -2,6 +2,7 @@ package flappyBird;
 
 import atariCore.AIEngine;
 import atariCore.Handler;
+import flappyBird.board.Bird;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class FlappyAIEngine {
     private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts/flappy.py";
     private static String interactionPath = "src/Resources/Flappy Bird/AI-Scripts/interaction.txt";
 
-    static void startEngine()
+    public static void startEngine()
     {
         AIEngine.startEngine(scriptScript);
     }

@@ -11,16 +11,25 @@ import java.util.concurrent.TimeUnit;
 
 import static atariCore.Helper.frame;
 
-
-public class creditScreen extends JPanel {
+/**
+ * Generates Credit Screen at the end of the game.
+ */
+public class CreditScreen extends JPanel {
 
     private int timer;
-    private JLabel screan;
+    private JLabel screen;
     private MP3Player sound;
 
-    public creditScreen(int timer, JLabel screan, MP3Player sound) {
+    /**
+     * Parameterised constructor takes timer,label to write on it and MP3 music.
+     *
+     * @param timer  Timer of credit screen.
+     * @param screen Screen to show within credits.
+     * @param sound  Sound for this frame.
+     */
+    public CreditScreen(int timer, JLabel screen, MP3Player sound) {
         this.timer = timer;
-        this.screan = screan;
+        this.screen = screen;
         this.sound = sound;
         showScreen();
     }
@@ -34,7 +43,7 @@ public class creditScreen extends JPanel {
         Helper.frame.setTitle("Credits");
         Helper.panel.setLayout(null);
 
-        add(screan);
+        add(screen);
         frame.getContentPane().add(this);
         Sound.Repeat(sound);
         Sound.Play(sound, false);

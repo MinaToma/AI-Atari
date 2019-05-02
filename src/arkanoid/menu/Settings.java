@@ -9,22 +9,25 @@ import java.awt.*;
 
 import static atariCore.Helper.*;
 
+/**
+ * Makes a settings window for the game.
+ */
 public class Settings extends atariCore.Settings {
 
 
     /**
-     * parametrised constructor used to set the music, sounds, mouse and keyboard settings as specified in the previous run.
-     * @param music Flag states music option Enabled/Disabled.
-     * @param sounds Flag states sounds option Enabled/Disabled.
-     * @param mouse Flag states sounds option Enabled/Disabled.
+     * Parametrised constructor used to set the music, sounds, mouse and keyboard settings as specified in the previous run.
+     *
+     * @param music    Flag states music option Enabled/Disabled.
+     * @param sounds   Flag states sounds option Enabled/Disabled.
+     * @param mouse    Flag states sounds option Enabled/Disabled.
      * @param keyboard Flag states keyboard control Enabled/Disabled.
      */
-    public Settings(boolean music, boolean sounds, boolean mouse, boolean keyboard)
-    {
-        super(music,sounds,mouse,keyboard);
+    public Settings(boolean music, boolean sounds, boolean mouse, boolean keyboard) {
+        super(music, sounds, mouse, keyboard);
         backButton.addActionListener(e -> {
-            if(Helper.sounds)
-            Sound.Play(Helper.clickSound,true);
+            if (Helper.sounds)
+                Sound.Play(Helper.clickSound, true);
             new Splash();
         });
     }
@@ -38,24 +41,29 @@ public class Settings extends atariCore.Settings {
         g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void switchSoundsState() {
         Helper.sounds = !Helper.sounds;
         soundButton.setIcon(new ImageIcon((Helper.sounds ? soundOnImage : soundOffImage)));
-        if(sounds)
-            Sound.Play(Helper.clickSound,true);
+        if (sounds)
+            Sound.Play(Helper.clickSound, true);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void switchMusicState() {
         Helper.music = !Helper.music;
         musicButton.setIcon(new ImageIcon((Helper.music ? musicOnImage : musicOffImage)));
-        if(sounds)
-            Sound.Play(Helper.clickSound,true);
-        if(!music)
+        if (sounds)
+            Sound.Play(Helper.clickSound, true);
+        if (!music)
             Sound.Stop(arkHelper.backgroundSplashSound);
-        else
-        {
+        else {
             Sound.Play(arkHelper.backgroundSplashSound, false);
             Sound.Repeat(arkHelper.backgroundSplashSound);
         }

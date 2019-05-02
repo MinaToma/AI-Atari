@@ -53,7 +53,9 @@ public class Helper {
      */
     public static int splashButtonFontSize;
 
+
     /**************************************************Default Paths**************************************************/
+
 
     /**
      * Path of control menu images.
@@ -82,9 +84,11 @@ public class Helper {
     /**
      * Path for default cursor image.
      */
-    public static String pathCursor;
+    public static String pathCursor = imagePath + "cursor/yellowCursor2.png";
+
 
     /*******************************************************Images******************************************************/
+
 
     /**
      * Enabled sounds image.
@@ -127,7 +131,9 @@ public class Helper {
      */
     public static JLabel pausedBG = new JLabel();
 
+
     /*****************************************************Colors******************************************************/
+
 
     /**
      * Default game background color.
@@ -185,6 +191,7 @@ public class Helper {
 
 
     /***************************************************Functions***************************************************/
+
 
     /**
      * Class instance

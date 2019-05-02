@@ -9,13 +9,21 @@ import java.awt.*;
 
 import static atariCore.Helper.*;
 
+/**
+ * Responsible to fill and select player profile.
+ */
 public class SelectPlayer extends atariCore.SelectPlayer {
 
-
+    /**
+     * Default constructor.
+     */
     public SelectPlayer() {
         setActions();
     }
 
+    /**
+     * Initializes buttons' action and takes player's name and moves to the game window.
+     */
     protected void setActions() {
 
         startButton.addActionListener(e -> {
@@ -35,6 +43,9 @@ public class SelectPlayer extends atariCore.SelectPlayer {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

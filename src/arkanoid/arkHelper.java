@@ -171,7 +171,6 @@ public class arkHelper {
      *
      */
     public static void loadImages() {
-        Helper.pathCursor = imagePath + "cursor/yellowCursor2.png";
         splashBackgroundImagePath = imagePath + "background/splash.png";
         splashBackground = getImage(splashBackgroundImagePath, 1);
 

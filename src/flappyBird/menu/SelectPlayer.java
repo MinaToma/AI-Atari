@@ -1,6 +1,8 @@
-package flappyBird;
+package flappyBird.menu;
 
 import atariCore.Sound;
+import flappyBird.FlappyBird;
+import flappyBird.FlappyHelper;
 
 import java.awt.*;
 

@@ -1,6 +1,10 @@
 package flappyBird;
 
 import atariCore.*;
+import flappyBird.board.Bird;
+import flappyBird.board.Pipe;
+import flappyBird.board.Player;
+import flappyBird.menu.Splash;
 
 import java.awt.event.KeyEvent;
 import java.util.Random;

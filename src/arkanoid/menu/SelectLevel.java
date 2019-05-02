@@ -12,12 +12,22 @@ import java.awt.*;
 import static arkanoid.arkHelper.lockImage;
 import static atariCore.Helper.*;
 
+/**
+ * Holds levels and player chooses from it.
+ */
 public class SelectLevel extends JPanel {
 
     private JButton[] levels;
 
     private JButton backButton;
 
+    /**
+     * parametrised constructor takes player's name, level number and era.
+     *
+     * @param name  PLayer's name.
+     * @param level Level number.
+     * @param era   era number.
+     */
     SelectLevel(String name, int level, int era) {
         frame.setTitle("Select Level");
         frame.getContentPane().remove(panel);
@@ -73,11 +83,20 @@ public class SelectLevel extends JPanel {
         frame.setVisible(true);
     }
 
+    /**
+     * Back button back to previous frame.
+     *
+     * @param x X coordinate.
+     * @param y Y coordinate.
+     */
     private void setBackButton(int x, int y) {
         backButton = Helper.buttonHelper("Back", x, y, btnDim);
         backButton.setBackground(new Color(0xEA2D1113));
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

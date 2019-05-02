@@ -1,8 +1,10 @@
-package flappyBird;
+package flappyBird.board;
 
 
 import atariCore.BaseObject;
 import atariCore.FileManager;
+import flappyBird.FlappyBird;
+import flappyBird.menu.Splash;
 
 import javax.swing.*;
 import java.awt.*;

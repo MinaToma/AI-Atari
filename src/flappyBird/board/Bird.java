@@ -1,8 +1,9 @@
-package flappyBird;
+package flappyBird.board;
 
 import atariCore.BaseObject;
 import atariCore.Handler;
 import atariCore.Sound;
+import flappyBird.ObjectList;
 
 import java.awt.*;
 import java.util.ArrayList;
