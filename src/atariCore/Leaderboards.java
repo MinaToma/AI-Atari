@@ -30,11 +30,11 @@ public class Leaderboards extends JPanel {
      *
      * @param path Path of leaderboards file.
      */
-    public Leaderboards(String path) {
+    public Leaderboards(String path, boolean hasLevel) {
 
         getDataFromFile(path);
         Arrays.sort(record);
-        setDesign();
+        setDesign(hasLevel);
     }
 
     /**
@@ -69,12 +69,13 @@ public class Leaderboards extends JPanel {
     /**
      * Initialises leaderboards with top 10 player.
      */
-    public void setINILabel() {
+    public void setINILabel(boolean hasLevel) {
         top10 = new JLabel[10];
-        int xOffset = 10, yOffest = 190;
+        int xOffset = 10, yOffset = 190;
         for (int i = 1; i <= 10; i++) {
             if (record.length > i) {
                 String rec, tmp;
+
                 if (i < 10)
                     rec = "0" + i + "   ";
                 else
@@ -82,25 +83,41 @@ public class Leaderboards extends JPanel {
 
                 tmp = record[i - 1].getName();
                 rec += tmp;
+
                 for (int j = tmp.length(); j <= 21; j++)
                     rec += ' ';
-                tmp = String.valueOf(record[i - 1].getScore());
 
-                rec += tmp;
-                for (int j = tmp.length(); j <= 9; j++)
-                    rec += ' ';
-                tmp = String.valueOf(record[i - 1].getLevel());
+                if (hasLevel) {
+                    tmp = String.valueOf(record[i - 1].getScore());
 
-                rec += tmp;
+                    rec += tmp;
+                    for (int j = tmp.length(); j <= 9; j++)
+                        rec += ' ';
+                    tmp = String.valueOf(record[i - 1].getLevel());
+
+                    rec += tmp;
+                } else {
+                    for (int j = 0; j <= 6; j++)
+                        rec += ' ';
+
+                    tmp = String.valueOf(record[i - 1].getScore());
+
+                    rec += tmp;
+                }
                 top10[i - 1] = new JLabel(rec);
             } else {
-                String s = (i < 10 ? "0" + i : i) + "  .................... ........  ........";
-                top10[i - 1] = new JLabel(s);
+                if (hasLevel) {
+                    String s = (i < 10 ? "0" + i : i) + "  ....................  ........  ........";
+                    top10[i - 1] = new JLabel(s);
+                } else {
+                    String s = (i < 10 ? "0" + i : i) + "  ........................................";
+                    top10[i - 1] = new JLabel(s);
+                }
             }
             top10[i - 1].setFont(Helper.setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf", 35));
             top10[i - 1].setForeground(buttonBackgroundColor);
-            top10[i - 1].setBounds(xOffset, yOffest, Helper.screenWidth - 40, 35);
-            yOffest += 35;
+            top10[i - 1].setBounds(xOffset, yOffset, Helper.screenWidth - 40, 35);
+            yOffset += 35;
 
             add(top10[i - 1]);
         }
@@ -109,13 +126,13 @@ public class Leaderboards extends JPanel {
     /**
      * Initialised frame and panel and sets main design for leaderboards screen.
      */
-    private void setDesign() {
+    private void setDesign(boolean hasLevel) {
         Helper.frame.getContentPane().remove(Helper.panel);
         Helper.panel = this;
         setLayout(null);
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
         setBackButton(Helper.screenWidth / 2 - btnDim.width / 2, Helper.screenHeight - btnDim.height - 55);
-        setINILabel();
+        setINILabel(hasLevel);
         add(backButton);
         Helper.frame.getContentPane().add(this);
         Helper.frame.setVisible(true);

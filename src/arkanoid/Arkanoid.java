@@ -74,7 +74,6 @@ public class Arkanoid extends atariCore.Game {
 
         setSounds();
         setBall();
-        setEnemy();
 
         if (AIMode) {
             p.setX(Helper.screenHeight * 0.1f);
@@ -88,8 +87,8 @@ public class Arkanoid extends atariCore.Game {
     }
 
     public void setBall() {
-
-        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
+        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2 - 5, INIT_BALL_Y,
+                arkHelper.ball, 0, 0, player);
         Handler.getInstance().addObject(ballList, b);
     }
 
@@ -100,10 +99,6 @@ public class Arkanoid extends atariCore.Game {
         Handler.getInstance().addObject(playerList, player);
     }
 
-    private void setEnemy() {
-
-    }
-
     private void setBricks(int lvl) {
         new Level(arkFile.getLevel("Level" + lvl, pathLevel), player, p, b);
     }
@@ -111,10 +106,6 @@ public class Arkanoid extends atariCore.Game {
     private void setPaddle() {
         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
         Handler.getInstance().addObject(paddleList, p);
-    }
-
-    public void keyTyped(KeyEvent keyEvent) {
-
     }
 
     public void setSounds() {

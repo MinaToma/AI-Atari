@@ -40,7 +40,7 @@ public class Player extends BaseObject {
 
         if (!AIMode) {
 
-            FileManager.addNewScoreToLeadboard(pathFile+"Leaderboards",name,score,0);
+            FileManager.addNewScoreToLeaderboards(pathFile + "Leaderboards.txt", name, score, 0);
             new Splash();
         } else {
 
@@ -54,7 +54,7 @@ public class Player extends BaseObject {
     }
 
     public void setScore(int score) {
-        this.score = score ;
+        this.score = score;
     }
 
     public void increaseScore(int add) {
@@ -66,14 +66,15 @@ public class Player extends BaseObject {
     }
 
     @Override
-    public void tick() { }
+    public void tick() {
+    }
 
     public void render(Graphics g) {
         g.setColor(Color.white);
         g.setFont(font);
         String strScore = String.valueOf(score);
-        g.drawString(name,10,40);
-        g.drawString(strScore,10,80);
+        g.drawString(name, 10, 40);
+        g.drawString(strScore, 10, 80);
     }
 }
 

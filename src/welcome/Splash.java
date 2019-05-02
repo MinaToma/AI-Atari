@@ -27,7 +27,7 @@ public class Splash extends JPanel {
         JButton Game_Choice = new JButton();
         Game_Choice.setLayout(null);
         Game_Choice.setBorder(BorderFactory.createEmptyBorder());
-        Game_Choice.setIcon(new ImageIcon(image[0]));
+        Game_Choice.setIcon(new ImageIcon(image[imageCounter]));
         Game_Choice.setBounds(0, 0, screenWidth, screenHeight);
         Game_Choice.addActionListener(event -> {
             if (imageCounter == 1) {
