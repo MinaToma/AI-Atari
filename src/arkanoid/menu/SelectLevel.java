@@ -100,6 +100,6 @@ public class SelectLevel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(arkHelper.imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 }

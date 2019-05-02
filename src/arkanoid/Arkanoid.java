@@ -122,7 +122,6 @@ public class Arkanoid extends atariCore.Game {
     }
 
     /**
-     *
      * @param namePlayer
      * @param level
      */
@@ -135,6 +134,7 @@ public class Arkanoid extends atariCore.Game {
 
     /**
      * Sets level's bricks.
+     *
      * @param lvl Level to be displayed.
      */
     private void setBricks(int lvl) {
@@ -188,6 +188,13 @@ public class Arkanoid extends atariCore.Game {
                 setPausedBG();
             }
         } else if (key == KeyEvent.VK_ESCAPE) {
+
+            boolean canEscape = true;
+            for (Component c : this.getComponents())
+                if (c.equals(lossImage) || c.equals(nextLevelImage))
+                    canEscape = false;
+
+            if (!canEscape) return;
 
             AIMode = Helper.running = pause = false;
             new arkanoid.menu.Splash();

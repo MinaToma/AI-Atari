@@ -9,6 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
+import static atariCore.Helper.panel;
 import static atariCore.Helper.sounds;
 
 /**
@@ -98,7 +99,7 @@ public class Paddle extends BaseObject {
                 ((Capsule) o).effect(this);
                 ((Capsule) o).active = true;
                 Handler.getInstance().addObject(currentCapsuleList, o);
-                Handler.getInstance().removeObject(capsuleList, o);
+                Handler.removeObject(capsuleList, o);
             }
         }
 
@@ -131,12 +132,15 @@ public class Paddle extends BaseObject {
             }
             if (o.getY() + o.getImageHeight() >= this.getY()) {
 
-                player.die();
+                paddleList.remove(this);
+
+                if (paddleList.size() == 0)
+                    player.die();
                 break;
             }
         }
 
-        if (checkIfBricksHeight1 == false && checkIfBricksHeight2 == true) {
+        if (!checkIfBricksHeight1 && checkIfBricksHeight2) {
 
             for (BaseObject o : brickList) {
 
@@ -144,22 +148,18 @@ public class Paddle extends BaseObject {
             }
         }
 
-        if (enemyList.isEmpty())
-            if (brickList.isEmpty()) {
-                if (player.getLevel() % 5 == 0) {
+        if (brickList.isEmpty()) {
+            if (player.getLevel() % 5 == 0) {
+                if (enemyList.isEmpty())
                     setEnemy();
-                } else {
-
-                    breakToNextLevel();
-                }
-            }
-
-        for (BaseObject o : enemyList) {
-
-            if (o.getRectangle().intersects(getRectangle())) {
-                player.die();
+            } else {
+                breakToNextLevel();
             }
         }
+
+        for (BaseObject o : enemyList)
+            if (o.getRectangle().intersects(getRectangle()))
+                player.die();
     }
 
     /**
@@ -251,7 +251,6 @@ public class Paddle extends BaseObject {
         setImageHeight(image.getHeight(null));
     }
 
-
     /**
      * Returns the paddle to its normal state when time of capsule ends.
      */
@@ -282,7 +281,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             ((Capsule) o).removeEffect(this);
-            Handler.getInstance().removeObject(currentCapsuleList, o);
+            Handler.removeObject(currentCapsuleList, o);
         }
     }
 
@@ -305,7 +304,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Acid) {
-                Handler.getInstance().removeObject(currentCapsuleList, o);
+                Handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -320,9 +319,10 @@ public class Paddle extends BaseObject {
      * Moves player to next level and clears current handlers.
      */
     public void breakToNextLevel() {
-
         ballList.clear();
         paddleList.clear();
+        capsuleList.clear();
+        brickList.clear();
         bulletList.clear();
         enemyList.clear();
         player.setLevel(player.getLevel() + 1);
@@ -335,7 +335,7 @@ public class Paddle extends BaseObject {
         for (BaseObject o : currentCapsuleList) {
             if (((Capsule) o).life <= 0) {
                 ((Capsule) o).removeEffect(this);
-                Handler.getInstance().removeObject(currentCapsuleList, o);
+                Handler.removeObject(currentCapsuleList, o);
             } else {
                 ((Capsule) o).effect(this);
             }
@@ -392,7 +392,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Shrink) {
-                Handler.getInstance().removeObject(currentCapsuleList, o);
+                Handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -406,7 +406,7 @@ public class Paddle extends BaseObject {
     public void hitLaser() {
 
         Bullet bulletL = new Bullet(x, y, bullet);
-        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100, y, bullet);
+        Bullet bulletR = new Bullet(x + getImageWidth() - getImageWidth() * 3 / 100f, y, bullet);
 
         Handler.getInstance().addObject(bulletList, bulletL);
         Handler.getInstance().addObject(bulletList, bulletR);
@@ -450,7 +450,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Fire) {
-                Handler.getInstance().removeObject(currentCapsuleList, o);
+                Handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }
@@ -463,7 +463,7 @@ public class Paddle extends BaseObject {
 
         for (BaseObject o : currentCapsuleList) {
             if (o instanceof Expand) {
-                Handler.getInstance().removeObject(currentCapsuleList, o);
+                Handler.removeObject(currentCapsuleList, o);
                 break;
             }
         }

@@ -100,9 +100,8 @@ public class Enemy extends BaseObject {
     public void reducePower() {
 
         --power;
-        if (power == 0) {
+        if (power == 0)
             ((Paddle) (ObjectList.paddleList.get(0))).breakToNextLevel();
-        }
     }
 
     /**
