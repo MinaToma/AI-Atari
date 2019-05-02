@@ -20,7 +20,7 @@ public class Leaderboards extends atariCore.Leaderboards {
      * @param path The leaderboards' path.
      */
     public Leaderboards(String path) {
-        super(path);
+        super(path , true);
 
         backButton.addActionListener(e -> {
             if (sounds)

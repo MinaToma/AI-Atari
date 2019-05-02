@@ -73,7 +73,7 @@ public interface FileManager {
      * @param Score      Holds player's score.
      * @param lvl        Holds player's scored level.
      */
-    static void addNewScoreToLeadboard(String path, String playerName, int Score, int lvl) {
+    static void addNewScoreToLeaderboards(String path, String playerName, int Score, int lvl) {
 
         try (FileWriter fw = new FileWriter(path, true);
              BufferedWriter bw = new BufferedWriter(fw)) {

@@ -14,12 +14,30 @@ import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
 import static atariCore.Helper.*;
 
+/**
+ * Arkanoid main game class.
+ */
 public class Arkanoid extends atariCore.Game {
 
+    /**
+     * Main ball object.
+     */
     Ball b;
+    /**
+     * Main paddle object.
+     */
     Paddle p;
+    /**
+     * Main player object.
+     */
     Player player;
 
+    /**
+     * Parameterised constructor takes player name and its level to start the game.
+     *
+     * @param namePlayer Player name.
+     * @param level      Level to start the game at.
+     */
     public Arkanoid(String namePlayer, int level) {
 
         /*
@@ -54,6 +72,11 @@ public class Arkanoid extends atariCore.Game {
         initializeLevels(player.getLevel());
     }
 
+    /**
+     * Initialized main neede game objects and components.
+     *
+     * @param level Level to be initiated.
+     */
     public void initializeLevels(int level) {
 
         paddleList.clear();
@@ -74,7 +97,6 @@ public class Arkanoid extends atariCore.Game {
 
         setSounds();
         setBall();
-        setEnemy();
 
         if (AIMode) {
             p.setX(Helper.screenHeight * 0.1f);
@@ -82,17 +104,27 @@ public class Arkanoid extends atariCore.Game {
         }
     }
 
+    /**
+     * Sets main background image.
+     */
     private void setBackGround() {
         GameBackground gameBackground = new GameBackground(0, 0, backgroundImage[(player.getLevel() - 1) / 10]);
         Handler.getInstance().addObject(backgroundList, gameBackground);
     }
 
-    public void setBall() {
-
-        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
+    /**
+     * Sets Main ball object.
+     */
+    private void setBall() {
+        b = new Ball(player.paddle.get(0).getX() + player.paddle.get(0).getImageWidth() / 2 - 5, INIT_BALL_Y,
+                arkHelper.ball, 0, 0, player);
         Handler.getInstance().addObject(ballList, b);
     }
 
+    /**
+     * @param namePlayer
+     * @param level
+     */
     private void setPlayer(String namePlayer, int level) {
         player = new Player(namePlayer, (AIMode) ? 0 : 3, p, this);
         player.setLevel(level);
@@ -100,23 +132,26 @@ public class Arkanoid extends atariCore.Game {
         Handler.getInstance().addObject(playerList, player);
     }
 
-    private void setEnemy() {
-
-    }
-
+    /**
+     * Sets level's bricks.
+     *
+     * @param lvl Level to be displayed.
+     */
     private void setBricks(int lvl) {
         new Level(arkFile.getLevel("Level" + lvl, pathLevel), player, p, b);
     }
 
+    /**
+     * Sets main paddle.
+     */
     private void setPaddle() {
         p = new Paddle(INIT_PADDLE_X, INIT_PADDLE_Y, arkHelper.paddle[0], 0, 0, player);
         Handler.getInstance().addObject(paddleList, p);
     }
 
-    public void keyTyped(KeyEvent keyEvent) {
-
-    }
-
+    /**
+     * Sets main game sounds.
+     */
     public void setSounds() {
 
         if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped() && music) {
@@ -175,6 +210,9 @@ public class Arkanoid extends atariCore.Game {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initKeys() {
         keys.put(KeyEvent.VK_NUMPAD4, false);
@@ -185,6 +223,10 @@ public class Arkanoid extends atariCore.Game {
         keys.put(KeyEvent.VK_RIGHT, false);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void pressKey() {
 
         if (pause || AIMode || !keyboard) return;
@@ -225,6 +267,9 @@ public class Arkanoid extends atariCore.Game {
         }
     }
 
+    /**
+     * Performs a ball or bullets launches.
+     */
     public void paddleClick() {
         if (p.laser) {
             p.hitLaser();
@@ -260,6 +305,9 @@ public class Arkanoid extends atariCore.Game {
         keys.put(key, false);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void sendDataToAI() {
 

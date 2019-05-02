@@ -11,7 +11,7 @@ import static atariCore.Helper.sounds;
 public class Leaderboards extends atariCore.Leaderboards {
 
     public Leaderboards(String path) {
-        super(path);
+        super(path , false);
 
         backButton.addActionListener(e -> {
             if (sounds)

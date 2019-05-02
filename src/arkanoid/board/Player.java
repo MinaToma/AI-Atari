@@ -91,7 +91,7 @@ public class Player extends BaseObject {
 
         if (level > 100) {
 
-            FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+            FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
             FileManager.sendPlayerScore(arkHelper.filePath, name, level);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
@@ -148,7 +148,7 @@ public class Player extends BaseObject {
      * Checks if the player lost all lives, player will die.
      */
     public void die() {
-        FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
+        FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
         FileManager.sendPlayerScore(arkHelper.filePath, name, level);
 
         if (!AIMode) {
