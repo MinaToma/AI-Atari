@@ -7,7 +7,6 @@ import atariCore.Sound;
 import java.awt.*;
 
 import static atariCore.Helper.getImage;
-import static atariCore.Helper.imagePath;
 import static atariCore.Helper.sounds;
 
 /**
@@ -36,6 +35,6 @@ public class Leaderboards extends atariCore.Leaderboards {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(imagePath + "leaderboards.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(arkHelper.imagePath + "leaderboards.jpg", 1), 0, 0, null);
     }
 }

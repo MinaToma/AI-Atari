@@ -34,7 +34,7 @@ public class Splash extends atariCore.Splash {
         LeaderboardsButton.addActionListener(e -> {
             if (sounds)
                 Sound.Play(clickSound, false);
-            new Leaderboards(pathFile + "Leaderboards.txt");
+            new Leaderboards(FlappyHelper.pathFile + "Leaderboards.txt");
         });
         settingsButton.addActionListener(e -> {
             if (sounds)

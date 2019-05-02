@@ -107,7 +107,7 @@ public class Leaderboards extends JPanel {
     }
 
     /**
-     * initialised frame and panel and sets main design for leaderboards screen.
+     * Initialised frame and panel and sets main design for leaderboards screen.
      */
     private void setDesign() {
         Helper.frame.getContentPane().remove(Helper.panel);
