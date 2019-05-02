@@ -36,11 +36,11 @@ public class Player extends BaseObject {
     }
 
     public void die() {
+        FileManager.addNewScoreToLeaderboards(pathFile + "Leaderboards.txt", name, score, 0);
         running = false;
 
         if (!AIMode) {
 
-            FileManager.addNewScoreToLeaderboards(pathFile + "Leaderboards.txt", name, score, 0);
             new Splash();
         } else {
 

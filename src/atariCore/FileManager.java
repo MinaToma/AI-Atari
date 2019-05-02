@@ -89,7 +89,7 @@ public interface FileManager {
      * Gets player's current level. (if needed)
      *
      * @param filePath Path of leaderboards file.
-     * @param name Name of required player used to load current player's profile.
+     * @param name     Name of required player used to load current player's profile.
      * @return Player's current level.
      */
     static int getPlayerLevel(String filePath, String name) {
@@ -106,21 +106,14 @@ public interface FileManager {
      * Sends player's score to be recorded in leaderboards file.
      *
      * @param filePath Path of leaderboards file.
-     * @param name  Player's name.
-     * @param level Player's level.
+     * @param name     Player's name.
+     * @param level    Player's level.
      */
     static void sendPlayerScore(String filePath, String name, int level) {
 
         level--;
         name = filePath + name + ".txt";
         ArrayList<String> ret = readFile(name);
-
-        FileWriter file = null;
-        try {
-            file = new FileWriter(name, false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         if (ret.size() != 0)
             level = Math.max(level, Integer.parseInt(ret.get(0)));

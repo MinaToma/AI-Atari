@@ -55,8 +55,6 @@ public class SelectEra extends JPanel {
                 eras[i].setBackground(new Color(0x232323));
                 eras[i].setIcon(new ImageIcon(lockImage));
 
-                //eras[i].setIcon(new ImageIcon(lockedEraImage));
-
                 eras[i].setEnabled(false);
             }
 
