@@ -24,6 +24,7 @@ public class Splash extends atariCore.Splash {
             startGame = true;
             if (sounds)
                 Sound.Play(clickSound, false);
+            FlappyAIEngine.startEngine();
             new FlappyBird("Flappy Bird", "AI-Player");
         });
         LeaderboardsButton.addActionListener(e -> {

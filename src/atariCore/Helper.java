@@ -43,7 +43,7 @@ public class Helper {
     /**
      * Default period of game loop. (number of frames per every tick)
      */
-    public static final int PERIOD = 5;
+    public static int PERIOD = 5;
     /**
      * Default game font.
      */
@@ -236,11 +236,11 @@ public class Helper {
         musicOnImage = getImage(controlsImages + "music on.png", 1);
         musicOffImage = getImage(controlsImages + "music off.png", 1);
 
-        keyboardOnImage = getImage(controlsImages + "empty.png", 1);
-        keyboardOffImage = getImage(controlsImages + "empty.png", 1);
+        keyboardOnImage = getImage(controlsImages + "keyboard on.png", 1);
+        keyboardOffImage = getImage(controlsImages + "keyboard off.png", 1);
 
-        mouseOnImage = getImage(controlsImages + "empty.png", 1);
-        mouseOffImage = getImage(controlsImages + "empty.png", 1);
+        mouseOnImage = getImage(controlsImages + "mouse on.png", 1);
+        mouseOffImage = getImage(controlsImages + "mouse off.png", 1);
     }
 
     /**

@@ -6,18 +6,18 @@ import java.io.FileReader;
 public interface AIEngine {
 
     String interpreterPath = "/home/mina/anaconda3/bin/python3";
-    String interactionPath = "src/Resources/Flappy Bird/AI-Scripts/interaction.txt";
 
     static void startEngine(String scriptPath) {
-        try {
+        Helper.PERIOD = 2;
+        /*try {
             String command = interpreterPath + " " + scriptPath;
             Process p = Runtime.getRuntime().exec(command);
         } catch (Exception e) {
             System.out.println(e);
-        }
+        }*/
     }
 
-    static String waitForPrediction(String Data) {
+    static String waitForPrediction(String interactionPath, String Data) {
         try {
             FileReader fr = new FileReader(interactionPath);
             BufferedReader br = new BufferedReader(fr);

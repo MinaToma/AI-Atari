@@ -140,6 +140,7 @@ public class Settings extends JPanel {
      */
     protected void switchMouseState() {
         Helper.mouse = !Helper.mouse;
+        mouseButton.setIcon(new ImageIcon((mouse ? mouseOnImage : mouseOffImage)));
     }
 
     /**
@@ -147,6 +148,7 @@ public class Settings extends JPanel {
      */
     protected void switchKeyboardState() {
         Helper.keyboard = !Helper.keyboard;
+        keyboardButton.setIcon(new ImageIcon((keyboard ? keyboardOnImage : keyboardOffImage)));
     }
 
 

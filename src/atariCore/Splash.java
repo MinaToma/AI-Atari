@@ -2,6 +2,7 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.Period;
 
 import static atariCore.Helper.*;
 
@@ -51,6 +52,7 @@ public class Splash {
      */
     public Splash(String title, String fontFile) {
 
+        Helper.PERIOD = 5;
         frame.setTitle(title);
 
         if (panel != null) {

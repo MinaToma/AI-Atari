@@ -7,6 +7,8 @@ import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
 
+import java.io.IOException;
+
 import static atariCore.Helper.*;
 
 /**
@@ -19,7 +21,7 @@ public class Splash extends atariCore.Splash {
      */
     public Splash() {
 
-        super("Arkanoid", "joystix monospace.ttf");
+        super("Arkanoid", "src/Resources/Atari Core/Fonts/joystix monospace.ttf");
         Helper.setCursorImage(pathCursor);
 
         for (int i = 0; i < 10; i++) {
@@ -66,14 +68,7 @@ public class Splash extends atariCore.Splash {
             Helper.running = true;
             AIMode = true;
 
-//            try {
-//                AIEngine.startAI();
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            } catch (NullPointerException ex) {
-//                ex.printStackTrace();
-//            }
-
+            arkAIEngine.startEngine();
             new Arkanoid("AI-Player", 1);
         });
     }

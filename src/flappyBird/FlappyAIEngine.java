@@ -19,6 +19,7 @@ public class FlappyAIEngine {
     private int currentFrameCount = 99;
     private int requireActionGap = 50;
     private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts/flappy.py";
+    private static String interactionPath = "src/Resources/Flappy Bird/AI-Scripts/interaction.txt";
 
     static void startEngine()
     {
@@ -39,7 +40,7 @@ public class FlappyAIEngine {
 
     public void generateNewGeneration() {
         try {
-            PrintWriter writer = new PrintWriter(AIEngine.interactionPath, "UTF-8");
+            PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
             writer.println("training");
             writer.close();
         } catch (Exception e) {
@@ -48,7 +49,7 @@ public class FlappyAIEngine {
 
         String Data = new String();
         while (Data == null || !Data.equals("done"))
-            Data = waitForPrediction(Data);
+            Data = waitForPrediction(interactionPath, Data);
     }
 
     public void getAction() {
@@ -67,7 +68,7 @@ public class FlappyAIEngine {
                     String Data = new String();
                     try {
 
-                        PrintWriter writer = new PrintWriter(AIEngine.interactionPath, "UTF-8");
+                        PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
 
                         writer.println("prediction");
 
@@ -86,7 +87,7 @@ public class FlappyAIEngine {
                         writer.close();
 
                         while (Data == null || (!Data.equals("jump") && !Data.equals("stay")))
-                            Data = waitForPrediction(Data);
+                            Data = waitForPrediction(interactionPath, Data);
 
                         if (Data.equals("jump")) {
                             bird.speedUp();

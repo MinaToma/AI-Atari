@@ -1,6 +1,7 @@
 package arkanoid.board;
 
 import arkanoid.Arkanoid;
+import arkanoid.arkAIEngine;
 import arkanoid.arkHelper;
 import atariCore.BaseObject;
 import atariCore.FileManager;
@@ -13,17 +14,51 @@ import java.util.concurrent.TimeUnit;
 
 import static atariCore.Helper.*;
 
+/**
+ * Player class which generates player.
+ */
 public class Player extends BaseObject {
-
+    /**
+     * Player's score.
+     */
     private int score;
+    /**
+     * Player's name.
+     */
     private String name;
+    /**
+     * Player's lives.
+     */
     private int lives;
+    /**
+     * Player's paddles.
+     */
     public ArrayList<Paddle> paddle;
+    /**
+     * Flag to check if the player is at the beginning of the game.
+     */
     public boolean start;
+    /**
+     * Object of arkanoid.
+     */
     private Arkanoid arkanoid;
+    /**
+     * Level number.
+     */
     private int level;
+    /**
+     * Last score the player reached need for AI-Mode.
+     */
     private int previousScore;
 
+    /**
+     * Parameterised constructor takes player's name, his/her lives, paddle, arkanoid.
+     *
+     * @param Name     PLayer's name.
+     * @param lives    Player's lives.
+     * @param paddle   Object of player's paddle.
+     * @param arkanoid Object of arkanoid.
+     */
     public Player(String Name, int lives, Paddle paddle, Arkanoid arkanoid) {
         super(10, 10, null);
         this.name = Name;
@@ -37,10 +72,20 @@ public class Player extends BaseObject {
         start = true;
     }
 
+    /**
+     * Returns current player's level.
+     *
+     * @return Level of the player.
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * Sets new level for the player.
+     *
+     * @param level Player's level to play.
+     */
     public void setLevel(int level) {
 
         if (level > 100) {
@@ -82,6 +127,11 @@ public class Player extends BaseObject {
         }
     }
 
+    /**
+     * Checks if player lost the ball or not and decrements his lives by 1.
+     *
+     * @return Flag to check if the player ran out of lives.
+     */
     public boolean lostBall() {
         lives--;
 
@@ -93,6 +143,9 @@ public class Player extends BaseObject {
         return lives >= 0;
     }
 
+    /**
+     * Checks if the player lost all lives, player will die.
+     */
     public void die() {
         FileManager.addNewScoreToLeadboard(arkHelper.pathLeaderboards, name, score, level);
         FileManager.sendPlayerScore(arkHelper.filePath, name, level);
@@ -114,33 +167,61 @@ public class Player extends BaseObject {
             new arkanoid.menu.Splash();
         } else {
 
-//            arkAIEngine.train();
+            arkAIEngine.train();
             setScore(0);
             setPreviousScore(0);
             arkanoid.initializeLevels(1);
         }
     }
 
+    /**
+     * Sets player's lives.
+     *
+     * @param lives Lives of the player.
+     */
     public void setLives(int lives) {
         this.lives = lives;
     }
 
+    /**
+     * Returns player's lives.
+     *
+     * @return Number of lives of the player.
+     */
     public int getLives() {
         return lives;
     }
 
+    /**
+     * Sets the player's score.
+     *
+     * @param score Score of the player.
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     * Increments the player's score when brick is destroyed.
+     *
+     * @param add The factor of incrementation.
+     */
     public void increaseScore(int add) {
         score += add;
     }
 
+    /**
+     * Returns the player's score.
+     *
+     * @return The score of the player.
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Updates the game's background music.
+     */
     @Override
     public void tick() {
         if (arkHelper.backgroundGameSound[(level - 1) / 10].isStopped() && music && level < 100) {
@@ -148,6 +229,9 @@ public class Player extends BaseObject {
         }
     }
 
+    /**
+     * Renders player on the screen.
+     */
     public void render(Graphics g) {
 
         g.setFont(arkHelper.HUDFont);
@@ -179,6 +263,11 @@ public class Player extends BaseObject {
         drawLives(g);
     }
 
+    /**
+     * Checks the era of the player.
+     *
+     * @return Current player's era.
+     */
     private String era() {
         switch (level / 10) {
             case 0:
@@ -213,6 +302,11 @@ public class Player extends BaseObject {
         }
     }
 
+    /**
+     * Returns the color of the player's level.
+     *
+     * @return The color of words.
+     */
     private Color getLevelHUDColor() {
         Color color;
         if (level < 11) {
@@ -239,6 +333,11 @@ public class Player extends BaseObject {
         return color;
     }
 
+    /**
+     * Returns the color of the player's name.
+     *
+     * @return The color of name.
+     */
     private Color getNameHUDColor() {
         Color color;
         if (level < 11) {
@@ -265,6 +364,9 @@ public class Player extends BaseObject {
         return color;
     }
 
+    /**
+     * Renders lives of the player on the screen and updates it.
+     */
     public void drawLives(Graphics g) {
         int numOfLives = lives;
         int initialHeight = 80;
@@ -281,10 +383,20 @@ public class Player extends BaseObject {
         }
     }
 
+    /**
+     * Returns player's previous score.
+     *
+     * @return Player's previous score.
+     */
     public int getPreviousScore() {
         return previousScore;
     }
 
+    /**
+     * Sets the player's previous score.
+     *
+     * @param previousScore PLayer's previous score.
+     */
     public void setPreviousScore(int previousScore) {
         this.previousScore = previousScore;
     }
