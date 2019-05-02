@@ -29,9 +29,9 @@ public class Splash extends JPanel {
         ImageIcon icon = new ImageIcon("src/Resources/Atari Core/Images/loading/atari.gif");
         atariLabel = new JLabel(icon);
 
-        icon = new ImageIcon("/home/mehisen/IdeaProjects/AI-Atari/src/Resources/Flappy Bird/Images/bird.gif");
+        icon = new ImageIcon("src/Resources/Flappy Bird/Images/bird.gif");
         Flappy = new JButton(icon);
-        icon = new ImageIcon("/home/mehisen/IdeaProjects/AI-Atari/src/Resources/Arkanoid/Images/splash.gif");
+        icon = new ImageIcon("src/Resources/Arkanoid/Images/splash.gif");
         Arkanoid = new JButton(icon);
 
         panel.add(atariLabel);

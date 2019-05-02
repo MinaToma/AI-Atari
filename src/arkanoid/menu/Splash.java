@@ -63,6 +63,9 @@ public class Splash extends atariCore.Splash {
             arkAIEngine.startEngine();
             new Arkanoid("AI-Player", 1);
         });
+        backButton.addActionListener(e -> {
+            Sound.Stop(arkHelper.backgroundSplashSound);
+        });
     }
 
     /**
