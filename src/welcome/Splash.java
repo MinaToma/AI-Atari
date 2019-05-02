@@ -15,24 +15,14 @@ public class Splash extends JPanel {
     private static Image[] image;
     private static int imageCounter = 0;
 
-    public static void main(String[] args) {
-
-        Helper.Load();
-        new LoadingScreen();
-        arkHelper.Load();
-        FlappyHelper.Load();
+    public Splash() {
 
         if (panel != null) {
             frame.getContentPane().remove(panel);
         }
-        panel = new Splash();
+
+        panel = this;
         panel.setLayout(null);
-
-
-        image = new Image[3];
-        image[0] = Helper.getImage("src/Resources/Arkanoid/Images/background/1.jpg", 1);
-        image[1] = Helper.getImage("src/Resources/Arkanoid/Images/background/2.jpg", 1);
-        image[2] = Helper.getImage("src/Resources/Arkanoid/Images/background/3.jpg", 1);
 
         JButton Game_Choice = new JButton();
         Game_Choice.setLayout(null);
@@ -46,7 +36,6 @@ public class Splash extends JPanel {
                 flappyBird.menu.Splash.main(null);
             }
         });
-
 
         JButton back = new JButton("Back");
         back.setBounds(screenWidth * 10 / 100, screenHeight * 80 / 100, 200, 50);
@@ -62,13 +51,30 @@ public class Splash extends JPanel {
             Game_Choice.setIcon(new ImageIcon(image[imageCounter]));
         });
 
-
         Game_Choice.add(next);
         Game_Choice.add(back);
         panel.add(Game_Choice);
         frame.add(panel);
         frame.setVisible(true);
         panel.requestFocusInWindow();
+    }
+
+    private static void loadImages() {
+        image = new Image[3];
+        image[0] = Helper.getImage("src/Resources/Arkanoid/Images/background/1.jpg", 1);
+        image[1] = Helper.getImage("src/Resources/Arkanoid/Images/background/2.jpg", 1);
+        image[2] = Helper.getImage("src/Resources/Arkanoid/Images/background/3.jpg", 1);
+    }
+
+    public static void main(String[] args) {
+
+        Helper.Load();
+        new LoadingScreen();
+        arkHelper.Load();
+        loadImages();
+        FlappyHelper.Load();
+
+        new Splash();
     }
 }
 

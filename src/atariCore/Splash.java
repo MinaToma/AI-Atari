@@ -2,7 +2,6 @@ package atariCore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.Period;
 
 import static atariCore.Helper.*;
 
@@ -40,9 +39,9 @@ public class Splash {
      */
     protected JButton settingsButton;
     /**
-     * Exit game button.
+     * Returns to welcome screen.
      */
-    protected JButton exitButton;
+    protected JButton backButton;
 
     /**
      * Parameterised constructor which sets splash title and main used font.
@@ -76,7 +75,15 @@ public class Splash {
         setAIButton(xStart, (yStart += bOffset), Helper.btnDim);
         setLeaderboardsButton(xStart, (yStart += bOffset), Helper.btnDim);
         setSettingsButton(xStart, (yStart += bOffset), Helper.btnDim);
-        setExitButton(xStart, (yStart += bOffset), Helper.btnDim);
+        setBackButton(xStart, (yStart += bOffset), Helper.btnDim);
+
+        backButton.addActionListener(e -> {
+                    new welcome.Splash();
+                    if (sounds)
+                        Sound.Play(Helper.clickSound, true);
+
+                }
+        );
 
         frame.getContentPane().add(panel);
         frame.setVisible(true);
@@ -133,7 +140,7 @@ public class Splash {
      * @param y   Y coordinates of the button.
      * @param dim Dimension of the button.
      */
-    protected void setExitButton(int x, int y, Dimension dim) {
-        exitButton = Helper.buttonHelper("Exit", x, y, dim);
+    protected void setBackButton(int x, int y, Dimension dim) {
+        backButton = Helper.buttonHelper("Back", x, y, dim);
     }
 }

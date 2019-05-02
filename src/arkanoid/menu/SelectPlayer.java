@@ -49,6 +49,6 @@ public class SelectPlayer extends atariCore.SelectPlayer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(imagePath + "background/bgName.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(arkHelper.imagePath + "background/bgName.jpg", 1), 0, 0, null);
     }
 }
