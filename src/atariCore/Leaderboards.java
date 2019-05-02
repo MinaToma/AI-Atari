@@ -75,7 +75,7 @@ public class Leaderboards extends JPanel {
         top10 = new JLabel[10];
         int xOffset = 10, yOffset = 190;
         for (int i = 1; i <= 10; i++) {
-            if (record.length > i) {
+            if (record.length >= i) {
                 String rec, tmp;
 
                 if (i < 10)
