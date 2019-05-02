@@ -25,6 +25,7 @@ public class Settings extends atariCore.Settings {
      */
     public Settings(boolean music, boolean sounds, boolean mouse, boolean keyboard) {
         super(music, sounds, mouse, keyboard);
+        setCursorImage(arkHelper.pathCursor);
         backButton.addActionListener(e -> {
             if (Helper.sounds)
                 Sound.Play(Helper.clickSound, true);
@@ -38,7 +39,7 @@ public class Settings extends atariCore.Settings {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(imagePath + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(getImage(arkHelper.imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 
     /**

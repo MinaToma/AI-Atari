@@ -20,7 +20,7 @@ public class Splash extends atariCore.Splash {
      */
     public Splash() {
 
-        super("Arkanoid", "src/Resources/Atari Core/Fonts/joystix monospace.ttf");
+        super("Arkanoid", "joystix monospace.ttf");
         Helper.setCursorImage(arkHelper.pathCursor);
 
         for (int i = 0; i < 10; i++) {

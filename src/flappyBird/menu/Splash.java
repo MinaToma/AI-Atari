@@ -14,7 +14,7 @@ import static flappyBird.FlappyHelper.*;
 public class Splash extends atariCore.Splash {
 
     public Splash() {
-        super("Flappy Bird", "src/Resources/Atari Core/Fonts/joystix monospace.ttf");
+        super("Flappy Bird", "joystix monospace.ttf");
 
         newGameButton.addActionListener(e -> {
             if (sounds)

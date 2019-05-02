@@ -14,6 +14,7 @@ public class Settings extends atariCore.Settings {
 
     public Settings(boolean sounds) {
         super(false, sounds, false, false);
+        setCursorImage(FlappyHelper.pathCursor);
         backButton.addActionListener(e -> {
             if (Helper.sounds)
                 Sound.Play(FlappyHelper.clickSound, true);

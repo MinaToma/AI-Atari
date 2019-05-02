@@ -179,7 +179,7 @@ public class Settings extends JPanel {
      */
     private void setDesign() {
 
-        int posX = (int) (screenWidth / 3.5), posY = 152, offset = 20;
+        int posX = (screenWidth * 25 / 100), posY = 152, offset = 20;
         setLayout(null);
         setBackground(backgroundColor);
         setForeground(foregroundColor);
@@ -200,7 +200,5 @@ public class Settings extends JPanel {
         mouseButton.setSize(btnDim);
         keyboardButton.setSize(btnDim);
         backButton.setSize(btnDim);
-
-        setCursorImage(pathCursor);
     }
 }

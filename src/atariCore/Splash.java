@@ -70,7 +70,7 @@ public class Splash {
         panel.setSize(Helper.screenWidth, Helper.screenHeight);
 
         Helper.setSplashButtonFontSize(40);
-        Helper.font = Helper.setFont(fontFile, Helper.splashButtonFontSize);
+        Helper.font = Helper.setFont(fontPath + fontFile, Helper.splashButtonFontSize);
 
         setNewGameButton(xStart, yStart, Helper.btnDim);
         setAIButton(xStart, (yStart += bOffset), Helper.btnDim);
