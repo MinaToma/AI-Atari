@@ -28,7 +28,7 @@ public class LoadingScreen extends JPanel {
     private JLabel loading;
 
     /**
-     * Initializes, creates and adds loading screen it to the panel.
+     * initialises, creates and adds loading screen it to the panel.
      */
     public LoadingScreen() {
 

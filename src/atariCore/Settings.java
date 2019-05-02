@@ -69,7 +69,7 @@ public class Settings extends JPanel {
     }
 
     /**
-     * Initializes music button into given position
+     * initialises music button into given position
      *
      * @param x x coordinates of the button.
      * @param y y coordinates of the button.
@@ -79,7 +79,7 @@ public class Settings extends JPanel {
     }
 
     /**
-     * Initializes sound button into given position
+     * initialises sound button into given position
      *
      * @param x x coordinates of the button.
      * @param y y coordinates of the button.
@@ -89,7 +89,7 @@ public class Settings extends JPanel {
     }
 
     /**
-     * Initializes mouse control button into given position
+     * initialises mouse control button into given position
      *
      * @param x x coordinates of the button.
      * @param y y coordinates of the button.
@@ -99,7 +99,7 @@ public class Settings extends JPanel {
     }
 
     /**
-     * Initializes keyboard control button into given position
+     * initialises keyboard control button into given position
      *
      * @param x x coordinates of the button.
      * @param y y coordinates of the button.
@@ -109,7 +109,7 @@ public class Settings extends JPanel {
     }
 
     /**
-     * Initializes back button into given position
+     * initialises back button into given position
      *
      * @param x x coordinates of the button.
      * @param y y coordinates of the button.

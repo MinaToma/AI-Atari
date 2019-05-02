@@ -53,7 +53,7 @@ public class Helper {
      */
     public static int splashButtonFontSize;
 
-    /**************************************************Default Paths**************************************************/
+    /************************************************* Default Paths *************************************************/
 
     /**
      * Path of control menu images.
@@ -84,7 +84,7 @@ public class Helper {
      */
     public static String pathCursor;
 
-    /*******************************************************Images******************************************************/
+    /****************************************************** Images *****************************************************/
 
     /**
      * Enabled sounds image.
@@ -127,7 +127,7 @@ public class Helper {
      */
     public static JLabel pausedBG = new JLabel();
 
-    /*****************************************************Colors******************************************************/
+    /**************************************************** Colors *****************************************************/
 
     /**
      * Default game background color.
@@ -151,7 +151,7 @@ public class Helper {
     public static MP3Player clickSound;
 
 
-    /*******************************************************Flags******************************************************/
+    /****************************************************** Flags *****************************************************/
 
 
     /**
@@ -184,7 +184,7 @@ public class Helper {
     public static boolean keyboard = true;
 
 
-    /***************************************************Functions***************************************************/
+    /************************************************** Functions **************************************************/
 
     /**
      * Class instance
@@ -192,7 +192,7 @@ public class Helper {
     private static final Helper helper = new Helper();
 
     /**
-     * Default Constructor to initialize main game design components paths for images and sounds.
+     * Default constructor to initialise main game design components paths for images and sounds.
      */
     private Helper() {
         if (frame == null) {

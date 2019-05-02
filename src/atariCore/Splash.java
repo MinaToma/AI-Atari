@@ -83,7 +83,7 @@ public class Splash {
     }
 
     /**
-     * Initialized start new game button.
+     * initialised start new game button.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.
@@ -94,7 +94,7 @@ public class Splash {
     }
 
     /**
-     * Initialized AI-Mode button.
+     * initialised AI-Mode button.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.
@@ -105,7 +105,7 @@ public class Splash {
     }
 
     /**
-     * Initialized leaderboard button.
+     * initialised leaderboard button.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.
@@ -116,7 +116,7 @@ public class Splash {
     }
 
     /**
-     * Initialized settings button.
+     * initialised settings button.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.
@@ -127,7 +127,7 @@ public class Splash {
     }
 
     /**
-     * Initialized Exit button.
+     * initialised Exit button.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.

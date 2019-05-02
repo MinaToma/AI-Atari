@@ -12,83 +12,294 @@ import static atariCore.Helper.*;
 
 public class arkHelper {
 
+    /************************************************** Scale Factors *************************************************/
+
+    /**
+     * Ball image scale factor.
+     */
     public static int ballScale = 6;
+    /**
+     * Paddle image scale factor.
+     */
     public static int paddleScale = 4;
+    /**
+     * Brick image scale factor.
+     */
     public static int brickScale = 3;
+    /**
+     * Capsule image scale factor.
+     */
     public static int capsuleScale = 5;
-    public static int timeTheCredit = 37;
 
-    public static float ballSpeed = 2f;
+    /******************************************* Initial Board Items' Values ******************************************/
+
+
+    /**
+     * Initial bricks pattern height to start from.
+     */
     public static final int INIT_BRICKS_HEIGHT = screenHeight * 40 / 100;
+    /**
+     * Initial paddle x-coordinate position.
+     */
     public static final int INIT_PADDLE_X = screenWidth * 40 / 100;
+    /**
+     * Initial paddle y-coordinate position.
+     */
     public static final int INIT_PADDLE_Y = screenHeight * 85 / 100;
+    /**
+     * Initial ball x-coordinate position.
+     */
     public static final int INIT_BALL_X = screenWidth * 43 / 100;
+    /**
+     * Initial ball y-coordinate position.
+     */
     public static final int INIT_BALL_Y = screenHeight * 82 / 100;
+    /**
+     * Reward value when ball hits a brick.
+     */
     public static int BRICKHITREWARD = 10;
+    /**
+     * Initial credits timer value.
+     */
+    public static int timeTheCredit = 37;
+    /**
+     * Initial ball speed value.
+     */
+    public static float ballSpeed = 2f;
+    /**
+     * Initial paddle speed value.
+     */
     public static float paddleSpeed = 5;
+    /**
+     * Initial capsule speed value.
+     */
     public static float capsuleSpeed = 1;
+    /**
+     * Initial base enemy x velocity value.
+     */
     public static float baseEnemyXSpeed = .1f;
+    /**
+     * Initial base enemy y velocity value.
+     */
     public static float baseEnemyYSpeed = .1f;
+    /**
+     * Number of bricks in current level, used to identify when to break to next level.
+     */
+    public static int numberOfBricks;
 
+    /****************************************************** Fonts *****************************************************/
+
+    /**
+     * Heads Up Display Font
+     */
     public static Font HUDFont;
-    public static Image splashBackground;
-    public static Image lockImage;
-    public static Image[] normalBricks;
-    public static Image[] brokenBricks;
-    public static Image[] smallSquares;
-    public static Image[] paddle;
-    public static Image[] paddleWeapon;
-    public static Image paddleShrunkWeapon;
-    public static Image paddleShrunk;
-    public static Image[] paddleExpanded;
-    public static Image[] paddleExpandedWeapon;
-    public static Image capsuleEmpty;
-    public static Image capsule50;
-    public static Image[] capsule100;
-    public static Image capsule250;
-    public static Image capsule500;
-    public static Image capsuleSlow;
-    public static Image capsuleFast;
-    public static Image capsuleShrink;
-    public static Image capsuleExpand;
-    public static Image capsuleWeapon;
-    public static Image capsuleFireBall;
-    public static Image capsuleAcidBall;
-    public static Image capsuleTripleBall;
-    public static Image capsuleVaus;
-    public static Image capsuleCatch;
-    public static Image[] enemy;
 
-    public static Image fireBall;
-    public static Image acidBall;
-    public static Image ball;
+    /****************************************************** Images *****************************************************/
+
+    /**
+     * Next level dance GIF.
+     */
+    public static JLabel nextLevelImage;
+    /**
+     * Loss cry GIF.
+     */
+    public static JLabel lossImage;
+    /**
+     * Credits GIF.
+     */
+    public static JLabel creditsImage;
+    /**
+     * Splash screen background image.
+     */
+    public static Image splashBackground;
+    /**
+     * Game background images array.
+     */
+    public static Image[] backgroundImage;
+    /**
+     * Level selection image icons array.
+     */
+    public static Image[] eraSelectionImage;
+    /**
+     * Locked levels/eras image.
+     */
+    public static Image lockImage;
+    /**
+     * Normal bricks images array.
+     */
+    public static Image[] normalBricks;
+    /**
+     * Broken bricks images array.
+     */
+    public static Image[] brokenBricks;
+    /**
+     * Small bricks images array.
+     */
+    public static Image[] smallSquares;
+    /**
+     * Normal paddle images array.
+     */
+    public static Image[] paddle;
+    /**
+     * Normal paddle with weapon images array.
+     */
+    public static Image[] paddleWeapon;
+    /**
+     * Shrunk paddle image.
+     */
+    public static Image paddleShrunk;
+    /**
+     * Shrunk paddle with weapon image.
+     */
+    public static Image paddleShrunkWeapon;
+    /**
+     * Expanded paddle images array.
+     */
+    public static Image[] paddleExpanded;
+    /**
+     * Expanded paddle with weapon images array.
+     */
+    public static Image[] paddleExpandedWeapon;
+    /**
+     * +50 points score capsule image.
+     */
+    public static Image capsule50;
+    /**
+     * +100 points score capsule images array.
+     */
+    public static Image[] capsule100;
+    /**
+     * +250 points score capsule image.
+     */
+    public static Image capsule250;
+    /**
+     * +500 points score capsule image.
+     */
+    public static Image capsule500;
+    /**
+     * Slow capsule image.
+     */
+    public static Image capsuleSlow;
+    /**
+     * Fast capsule image.
+     */
+    public static Image capsuleFast;
+    /**
+     * Shrink capsule image.
+     */
+    public static Image capsuleShrink;
+    /**
+     * Expand capsule image.
+     */
+    public static Image capsuleExpand;
+    /**
+     * Laser capsule image.
+     */
+    public static Image capsuleWeapon;
+    /**
+     * Fire ball capsule image.
+     */
+    public static Image capsuleFireBall;
+    /**
+     * Acid ball capsule image.
+     */
+    public static Image capsuleAcidBall;
+    /**
+     * Disrupt capsule image.
+     */
+    public static Image capsuleTripleBall;
+    /**
+     * Extra Vaus capsule image.
+     */
+    public static Image capsuleVaus;
+    /**
+     * Catch capsule image.
+     */
+    public static Image capsuleCatch;
+    /**
+     * Break capsule image.
+     */
     public static Image star;
+    /**
+     * Enemy images array.
+     */
+    public static Image[] enemy;
+    /**
+     * Fire ball image.
+     */
+    public static Image fireBall;
+    /**
+     * Acid ball image.
+     */
+    public static Image acidBall;
+    /**
+     * Normal ball image.
+     */
+    public static Image ball;
+    /**
+     * Life image.
+     */
     public static Image life;
+    /**
+     * Bullet image.
+     */
     public static Image bullet;
+
+    /************************************************* Default Paths *************************************************/
+
+    /**
+     * Files path.
+     */
     public static String filePath = "src/Resources/Arkanoid/Files/";
+    /**
+     * Image path.
+     */
+    public static String imagePath = "src/Resources/Arkanoid/Images/";
+    /**
+     * Sounds path.
+     */
     public static String soundPath = "src/Resources/Arkanoid/Sounds/";
+    /**
+     * Levels builder path.
+     */
     public static String pathLevel = "src/Resources/Arkanoid/Files/levels.txt";
+    /**
+     * Leaderboards path.
+     */
     public static String pathLeaderboards = "src/Resources/Arkanoid/Files/Leaderboards.txt";
 
-    public static Image[] backgroundImage;
-    public static Image[] eraSelectionImage;
-    public static int numberOfBricks = 2;
+    /************************************************* MP3 Players **************************************************/
 
+    /**
+     * Splash background sound
+     */
     public static MP3Player backgroundSplashSound;
+    /**
+     * Game background sound
+     */
     public static MP3Player[] backgroundGameSound;
+    /**
+     * Loss sound
+     */
     public static MP3Player lossSound;
+    /**
+     * Win sound
+     */
     public static MP3Player winSound;
+    /**
+     * Credits sound
+     */
     public static MP3Player creditSound;
 
-    public static JLabel nextLevelImage;
-    public static JLabel lossImage;
-    public static JLabel creditsImage;
+    /************************************************** Functions **************************************************/
 
-
+    /**
+     * Class instance
+     */
     private static final arkHelper mArkHelper = new arkHelper();
 
     /**
-     *
+     * Default constructor to initialise image arrays, set sounds, fonts, colors and load images.
      */
     private arkHelper() {
 
@@ -114,7 +325,7 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads winning and losing GIFs.
      */
     public static void setLoseAndWinImage() {
         Random r = new Random();
@@ -127,7 +338,7 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads credits GIF.
      */
     private void setCredit() {
         ImageIcon icon = new ImageIcon(imagePath + "credits.gif");
@@ -138,7 +349,7 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads background sounds and other sound effects.
      */
     private void setSound() {
         backgroundSplashSound = Sound.setSound(soundPath + "background.mp3");
@@ -152,7 +363,7 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads laser sound.
      */
     public static void laserSound() {
         MP3Player player = Sound.setSound(soundPath + "laser.mp3");
@@ -160,7 +371,7 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads hit sound.
      */
     public static void hitSound() {
         MP3Player player = Sound.setSound(soundPath + "hit.mp3");
@@ -168,7 +379,7 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads Arkanoid game images such as bricks, enemies, balls, backgrounds, capsules... etc.
      */
     public static void loadImages() {
         Helper.pathCursor = imagePath + "cursor/yellowCursor2.png";
@@ -207,7 +418,6 @@ public class arkHelper {
         capsuleShrink = getImage(imagePath + "capsule/shrink.png", capsuleScale);
         capsuleExpand = getImage(imagePath + "capsule/expand.png", capsuleScale);
         capsuleWeapon = getImage(imagePath + "capsule/laser.png", capsuleScale);
-        capsuleEmpty = getImage(imagePath + "capsule/empty.png", capsuleScale);
         capsuleCatch = getImage(imagePath + "capsule/catch.png", capsuleScale);
         capsuleVaus = getImage(imagePath + "capsule/vaus.png", capsuleScale);
 
@@ -242,15 +452,16 @@ public class arkHelper {
     }
 
     /**
-     *
+     * Loads Heads Up Display font.
      */
     public static void setHUDFont() {
         HUDFont = setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf", 20);
     }
 
     /**
+     * Returns instance of the class.
      *
-     * @return
+     * @return arkHelper instance.
      */
     public static arkHelper getInstance() {
         return mArkHelper;

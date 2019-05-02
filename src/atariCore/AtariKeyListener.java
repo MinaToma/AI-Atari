@@ -15,7 +15,7 @@ public interface AtariKeyListener extends KeyListener {
     TreeMap<Integer, Boolean> keys = new TreeMap<>();
 
     /**
-     * Initializes the game's expected keys.
+     * initialises the game's expected keys.
      */
     void initKeys();
 
