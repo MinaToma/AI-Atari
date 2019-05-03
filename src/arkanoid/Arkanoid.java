@@ -95,13 +95,14 @@ public class Arkanoid extends atariCore.Game {
         setBackGround();
         setBricks(level);
 
+        if (AIMode)
+            p.setX(Helper.screenHeight * 0.1f);
+
         setSounds();
         setBall();
 
-        if (AIMode) {
-            p.setX(Helper.screenHeight * 0.1f);
+        if (AIMode)
             paddleClick();
-        }
     }
 
     /**
