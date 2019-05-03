@@ -13,13 +13,34 @@ import static atariCore.Helper.*;
 import static flappyBird.ObjectList.*;
 import static flappyBird.FlappyHelper.*;
 
+/**
+ * Flappy bird main game class.
+ */
 public class FlappyBird extends Game {
 
+    /**
+     * Main player object.
+     */
     Player player;
+    /**
+     * Main bird object.
+     */
     Bird bird;
+    /**
+     * Flappy AI-Engine object.
+     */
     public FlappyAIEngine myGeneration;
+    /**
+     * Number of birds of each generation (needed for AI-Mode).
+     */
     int numberOfBirds = 50;
 
+    /**
+     * Parameterised constructor takes game title and player name.
+     *
+     * @param title      Game tilte.
+     * @param playerName Player's name.
+     */
     public FlappyBird(String title, String playerName) {
         super(title);
 
@@ -30,6 +51,9 @@ public class FlappyBird extends Game {
         initialize();
     }
 
+    /**
+     * Initializes and sets game components.
+     */
     public void initialize() {
         birdList.clear();
         pipeList.clear();
@@ -46,6 +70,9 @@ public class FlappyBird extends Game {
         running = true;
     }
 
+    /**
+     * Sets main bird object.
+     */
     private void setBird() {
         bird = new Bird(screenWidth / 2f - birds[0].getWidth(null) / 2f,
                 screenHeight / 2f - birds[0].getHeight(null) / 2f, birds[1]);
@@ -53,11 +80,19 @@ public class FlappyBird extends Game {
         Handler.getInstance().addObject(birdList, bird);
     }
 
+    /**
+     * Sets main player object.
+     *
+     * @param namePlayer Player's name.
+     */
     private void setPlayer(String namePlayer) {
-        player = new Player(namePlayer, panel, this);
+        player = new Player(namePlayer, this);
         Handler.getInstance().addObject(playerList, player);
     }
 
+    /**
+     * Sets game pipes.
+     */
     private void setPipe() {
         Random rand = new Random();
         int initialX = screenWidth + 10;
@@ -75,6 +110,9 @@ public class FlappyBird extends Game {
         }
     }
 
+    /**
+     * Sets game background image.
+     */
     private void setBackground() {
         GameBackground back = new GameBackground(0, 0, backgroundGame);
         Handler.getInstance().addObject(backgroundList, back);
@@ -99,6 +137,9 @@ public class FlappyBird extends Game {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void sendDataToAI() {
         myGeneration.getAction();

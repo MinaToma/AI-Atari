@@ -8,8 +8,16 @@ import java.awt.*;
 import static atariCore.Helper.getImage;
 import static atariCore.Helper.sounds;
 
+/**
+ * Flappy Bird's leaderboards.
+ */
 public class Leaderboards extends atariCore.Leaderboards {
 
+    /**
+     * Parameterised constructor takes leaderboards' path.
+     *
+     * @param path Leaderboards' file path.
+     */
     public Leaderboards(String path) {
         super(path, false);
 

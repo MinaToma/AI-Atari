@@ -9,9 +9,13 @@ import java.util.Random;
 
 import static atariCore.Helper.*;
 
+/**
+ * Helper class which holds main variables need to set game components.
+ */
 public class arkHelper {
 
     /************************************************** Scale Factors *************************************************/
+
 
     /**
      * Ball image scale factor.
@@ -29,6 +33,7 @@ public class arkHelper {
      * Capsule image scale factor.
      */
     public static int capsuleScale = 5;
+
 
     /******************************************* Initial Board Items' Values ******************************************/
 
@@ -282,6 +287,7 @@ public class arkHelper {
 
     /************************************************* MP3 Players **************************************************/
 
+
     /**
      * Splash background sound
      */
@@ -303,7 +309,9 @@ public class arkHelper {
      */
     public static MP3Player creditSound;
 
+
     /************************************************** Functions **************************************************/
+
 
     /**
      * Class instance

@@ -12,29 +12,54 @@ import java.awt.*;
 import static atariCore.Helper.*;
 import static flappyBird.FlappyHelper.*;
 
+/**
+ * Player class.
+ */
 public class Player extends BaseObject {
 
+    /**
+     * Players's score.
+     */
     private int score;
+    /**
+     * Player's name.
+     */
     private String name;
-    public int lastScore;
+    /**
+     * Flag to check if the game started or not.
+     */
     public boolean start;
-    private JPanel panel;
+    /**
+     * Flappy Bird object.
+     */
     FlappyBird flappyBird;
 
-    public Player(String Name, JPanel panel, FlappyBird flappyBird) {
+    /**
+     * Parameterised constructor takes player's name, flappyBird object.
+     *
+     * @param Name       Player's name.
+     * @param flappyBird FlappyBird object.
+     */
+    public Player(String Name, FlappyBird flappyBird) {
         super(10, 10, null);
         this.name = Name;
-        this.panel = panel;
         this.flappyBird = flappyBird;
-        lastScore = 0;
         score = 0;
         start = true;
     }
 
+    /**
+     * Returns player's name.
+     *
+     * @return Player's name.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Checks if the player lost all lives, player will die.
+     */
     public void die() {
         FileManager.addNewScoreToLeaderboards(pathFile + "Leaderboards.txt", name, score, 0);
         running = false;
@@ -44,7 +69,6 @@ public class Player extends BaseObject {
             new Splash();
         } else {
 
-            lastScore = 0;
             setScore(0);
 
             flappyBird.myGeneration.generateNewGeneration();
@@ -53,22 +77,26 @@ public class Player extends BaseObject {
         }
     }
 
+    /**
+     * Sets player's score.
+     *
+     * @param score player's new score.
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
-    public void increaseScore(int add) {
-        score += add;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void tick() {
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void render(Graphics g) {
         g.setColor(Color.white);
         g.setFont(font);

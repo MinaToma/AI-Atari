@@ -7,7 +7,7 @@ import atariCore.Handler;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Object list Class which generates objects.
+ * Object list Class which Holds game objects.
  */
 public class ObjectList {
     /**

@@ -69,9 +69,7 @@ public class Splash extends atariCore.Splash {
     }
 
     /**
-     * Initializes game loading screen, loads files and images and starts game splash.
-     *
-     * @param args An array of parameters.
+     * Arkanoid splash entry function.
      */
     public static void main(String[] args) {
         splashBackgroundImagePath = arkHelper.splashBackgroundImagePath;

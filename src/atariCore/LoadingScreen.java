@@ -56,6 +56,6 @@ public class LoadingScreen extends JPanel {
         frame.getContentPane().add(panel);
         frame.setVisible(true);
         Sound.Repeat(welcomeSound);
-        Sound.Play(welcomeSound,false);
+        Sound.Play(welcomeSound, false);
     }
 }

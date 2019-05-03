@@ -11,11 +11,17 @@ import javax.swing.*;
 
 import static atariCore.Helper.*;
 
+/**
+ * Main splash for welcome screen.
+ */
 public class Splash extends JPanel {
 
     private JLabel atariLabel;
     private JButton Flappy, Arkanoid;
 
+    /**
+     * Default constructor.
+     */
     public Splash() {
 
         if (panel != null) {
@@ -59,6 +65,9 @@ public class Splash extends JPanel {
         });
     }
 
+    /**
+     * Main entrance for AI-Atari.
+     */
     public static void main(String[] args) {
 
         Helper.Load();

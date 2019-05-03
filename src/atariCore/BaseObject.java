@@ -16,11 +16,11 @@ abstract public class BaseObject {
      */
     protected float y;
     /**
-     *X Velocity of the object.
+     * X Velocity of the object.
      */
     protected float velX;
     /**
-     *Y Velocity of the object.
+     * Y Velocity of the object.
      */
     protected float velY;
     /**
@@ -36,8 +36,9 @@ abstract public class BaseObject {
 
     /**
      * Parameterised constructor takes X, Y coordinates and object image.
-     * @param x X coordinates of the object.
-     * @param y Y coordinates of the object.
+     *
+     * @param x     X coordinates of the object.
+     * @param y     Y coordinates of the object.
      * @param image object image
      */
     public BaseObject(float x, float y, Image image) {
@@ -56,11 +57,12 @@ abstract public class BaseObject {
 
     /**
      * Parameterised constructor takes X, Y coordinates, x,y velocities and object image.
-     * @param x X coordinates of the object.
-     * @param y Y coordinates of the object.
+     *
+     * @param x     X coordinates of the object.
+     * @param y     Y coordinates of the object.
      * @param image object image
-     * @param velX X Velocity of the object.
-     * @param velY Y Velocity of the object.
+     * @param velX  X Velocity of the object.
+     * @param velY  Y Velocity of the object.
      */
     public BaseObject(float x, float y, Image image, float velX, float velY) {
         this(x, y, image);
@@ -70,7 +72,7 @@ abstract public class BaseObject {
 
 
     /**
-     *  Clamps the object within frame bounds.
+     * Clamps the object within frame bounds.
      */
     protected void clamp() {
         x = Math.min(x, Helper.screenWidth - imageWidth);
@@ -83,13 +85,16 @@ abstract public class BaseObject {
 
     /**
      * Returns the x coordinate of the object.
+     *
      * @return x coordinate of the object.
      */
     public float getX() {
         return x;
     }
+
     /**
      * Sets the x coordinates of the object.
+     *
      * @param x the x coordinates of the object.
      */
     public void setX(float x) {
@@ -99,6 +104,7 @@ abstract public class BaseObject {
 
     /**
      * Returns the y coordinate of the object.
+     *
      * @return y coordinate of the object.
      */
     public float getY() {
@@ -107,6 +113,7 @@ abstract public class BaseObject {
 
     /**
      * Sets the y coordinates of the object.
+     *
      * @param y the y coordinates of the object.
      */
     public void setY(float y) {
@@ -116,13 +123,16 @@ abstract public class BaseObject {
 
     /**
      * Returns the x velocity of the object.
+     *
      * @return x velocity of the object.
      */
     public float getVelX() {
         return velX;
     }
+
     /**
      * Sets the x velocity of the object.
+     *
      * @param velX the x velocity of the object.
      */
     public void setVelX(float velX) {
@@ -132,13 +142,16 @@ abstract public class BaseObject {
 
     /**
      * Returns the y velocity of the object.
+     *
      * @return y velocity of the object.
      */
     public float getVelY() {
         return velY;
     }
+
     /**
      * Sets the y velocity of the object.
+     *
      * @param velY the y velocity of the object.
      */
     public void setVelY(float velY) {
@@ -148,13 +161,16 @@ abstract public class BaseObject {
 
     /**
      * Returns the object's image.
+     *
      * @return image of the object.
      */
     public Image getImage() {
         return image;
     }
+
     /**
      * Sets the object's image.
+     *
      * @param image object's image.
      */
     public void setImage(Image image) {
@@ -164,13 +180,16 @@ abstract public class BaseObject {
 
     /**
      * Returns the width of the object's image.
+     *
      * @return width of the object'image.
      */
     public int getImageWidth() {
         return imageWidth;
     }
+
     /**
      * Sets the width of object's image.
+     *
      * @param imageWidth width of object's image.
      */
     public void setImageWidth(int imageWidth) {
@@ -180,13 +199,16 @@ abstract public class BaseObject {
 
     /**
      * Returns the height of the object's image.
+     *
      * @return height of the object'image.
      */
     public int getImageHeight() {
         return imageHeight;
     }
+
     /**
      * Sets the height of object's image.
+     *
      * @param imageHeight height of object's image.
      */
     public void setImageHeight(int imageHeight) {
@@ -196,11 +218,13 @@ abstract public class BaseObject {
 
     /**
      * Returns the a rectangle which represents the bounds of the object.
+     *
      * @return rectangle which represents the bounds of the object.
      */
     public Rectangle getRectangle() {
         return new Rectangle((int) x, (int) y, getImageWidth(), getImageHeight());
     }
+
     /**
      * Updates object over time
      */
@@ -208,6 +232,7 @@ abstract public class BaseObject {
 
     /**
      * Renders the objects on the frame.
+     *
      * @param g Graphics object inside a runnable thread
      */
     protected abstract void render(Graphics g);

@@ -11,17 +11,27 @@ import static flappyBird.ObjectList.pipeList;
 import static flappyBird.ObjectList.playerList;
 import static flappyBird.FlappyHelper.*;
 
+/**
+ * Pipe class.
+ */
 public class Pipe extends BaseObject {
 
+    /**
+     * Parameterised constructor take x,y coordinates of the pipe, pipe image and x,y velocities of the pipe.
+     *
+     * @param x     X coordinate of the pipe.
+     * @param y     Y coordinate of the pipe.
+     * @param image image of the pipe.
+     * @param velX  X velocity of the pipe.
+     * @param velY  Y velocity of the pipe.
+     */
     public Pipe(float x, float y, Image image, float velX, float velY) {
         super(x, y, image, velX, velY);
     }
 
-    public Pipe(float x, float y, Image image) {
-        super(x, y, image);
-
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void tick() {
 
@@ -31,6 +41,9 @@ public class Pipe extends BaseObject {
         modfiyPipe();
     }
 
+    /**
+     * Update the pipe if it went out of screen and adds new pipe.
+     */
     private void modfiyPipe() {
         boolean needPipe = false;
         float pos = 0;
@@ -66,7 +79,6 @@ public class Pipe extends BaseObject {
         }
 
         if (needPipe) {
-            ((Player) playerList.get(0)).lastScore++;
             Random rand = new Random();
             int initialY = rand.nextInt(maxHeight) + minHeight;
             Pipe pipeD = new Pipe(lastPosPipe + widthGap, initialY - pipeDown.getHeight(null), pipeDown, -1.5f, 0);
@@ -77,6 +89,9 @@ public class Pipe extends BaseObject {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render(Graphics g) {
         if (FlappyHelper.startGame)

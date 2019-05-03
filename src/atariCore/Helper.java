@@ -1,6 +1,5 @@
 package atariCore;
 
-import flappyBird.FlappyHelper;
 import jaco.mp3.player.MP3Player;
 
 import javax.swing.*;
@@ -236,7 +235,7 @@ public class Helper {
      */
     private void setButtonClickSound() {
         clickSound = Sound.setSound(soundPath + "click.mp3");
-        welcomeSound = Sound.setSound(soundPath +"background.mp3");
+        welcomeSound = Sound.setSound(soundPath + "background.mp3");
     }
 
 

@@ -1,6 +1,5 @@
 package arkanoid.board;
 
-import arkanoid.Arkanoid;
 import arkanoid.capsule.*;
 import atariCore.BaseObject;
 import atariCore.Handler;
@@ -10,7 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
 import static arkanoid.ObjectList.*;
-import static atariCore.Helper.panel;
 import static atariCore.Helper.sounds;
 
 /**
@@ -326,7 +324,7 @@ public class Paddle extends BaseObject {
         brickList.clear();
         bulletList.clear();
         enemyList.clear();
-        ((Player)(playerList.get(0))).arkanoid.refresh();
+        ((Player) (playerList.get(0))).arkanoid.refresh();
         player.setLevel(player.getLevel() + 1);
     }
 

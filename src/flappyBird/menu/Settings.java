@@ -1,7 +1,6 @@
 package flappyBird.menu;
 
 
-
 import atariCore.Helper;
 import atariCore.Sound;
 import flappyBird.FlappyHelper;
@@ -11,8 +10,14 @@ import java.awt.*;
 
 import static atariCore.Helper.*;
 
+/**
+ * Flappy birds settings menu.
+ */
 public class Settings extends atariCore.Settings {
 
+    /**
+     * Default constructor.
+     */
     public Settings() {
         super(music, sounds, false, keyboard);
         setCursorImage(FlappyHelper.pathCursor);
@@ -23,6 +28,9 @@ public class Settings extends atariCore.Settings {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void switchSoundsState() {
         Helper.sounds = !Helper.sounds;
@@ -30,6 +38,10 @@ public class Settings extends atariCore.Settings {
         if (sounds)
             Sound.Play(FlappyHelper.clickSound, true);
     }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void switchMusicState() {
         Helper.music = !Helper.music;
@@ -42,6 +54,9 @@ public class Settings extends atariCore.Settings {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void switchKeyboardState() {
         Helper.keyboard = !Helper.keyboard;

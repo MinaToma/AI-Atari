@@ -10,7 +10,7 @@ import java.awt.*;
 import static atariCore.Helper.*;
 
 /**
- * Responsible to fill and select player profile.
+ * {@inheritDoc}
  */
 public class SelectPlayer extends atariCore.SelectPlayer {
 

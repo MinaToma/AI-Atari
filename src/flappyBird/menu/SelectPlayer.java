@@ -9,13 +9,23 @@ import java.awt.*;
 import static atariCore.Helper.*;
 import static flappyBird.FlappyHelper.clickSound;
 
+/**
+ * {@inheritDoc}
+ */
 public class SelectPlayer extends atariCore.SelectPlayer {
 
+    /**
+     * Default constructor.
+     */
     public SelectPlayer() {
 
         setActions();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void setActions() {
 
         startButton.addActionListener(e -> {

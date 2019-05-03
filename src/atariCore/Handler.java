@@ -42,6 +42,7 @@ public class Handler {
 
     /**
      * Adds new object type to the handler.
+     *
      * @param list Holds all game objects of specific type.
      */
     public void addHandler(CopyOnWriteArrayList<BaseObject> list) {
@@ -50,6 +51,7 @@ public class Handler {
 
     /**
      * Removes existing object type from current handler.
+     *
      * @param list Holds all game objects of specific type.
      */
     public void removeHandler(CopyOnWriteArrayList<BaseObject> list) {
@@ -59,8 +61,9 @@ public class Handler {
 
     /**
      * Removes object of specific type from its container.
+     *
      * @param list Container of the object.
-     * @param o Object to be deleted.
+     * @param o    Object to be deleted.
      */
     public static void removeObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
 
@@ -69,8 +72,9 @@ public class Handler {
 
     /**
      * Adds new object of specific type to its container.
+     *
      * @param list Container of the object.
-     * @param o  Object to be added.
+     * @param o    Object to be added.
      */
     public void addObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
 
@@ -79,6 +83,7 @@ public class Handler {
 
     /**
      * Returns the instance of the class.
+     *
      * @return Handler which holds all game objects.
      */
     public static Handler getInstance() {

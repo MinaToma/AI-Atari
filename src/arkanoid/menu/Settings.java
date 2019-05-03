@@ -10,7 +10,7 @@ import java.awt.*;
 import static atariCore.Helper.*;
 
 /**
- * Makes a settings window for the game.
+ * Makes settings window for the game.
  */
 public class Settings extends atariCore.Settings {
 

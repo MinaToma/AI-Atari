@@ -11,14 +11,19 @@ import static atariCore.Helper.*;
 import static atariCore.Helper.clickSound;
 import static flappyBird.FlappyHelper.*;
 
+/**
+ * Flappy birds main splash window.
+ */
 public class Splash extends atariCore.Splash {
 
+    /**
+     * Default constructor.
+     */
     public Splash() {
         super("Flappy Bird", "joystix monospace.ttf");
-        if(music && backgroundSound.isStopped())
-        {
+        if (music && backgroundSound.isStopped()) {
             Sound.Repeat(backgroundSound);
-            Sound.Play(backgroundSound,false);
+            Sound.Play(backgroundSound, false);
         }
 
         newGameButton.addActionListener(e -> {
@@ -51,6 +56,9 @@ public class Splash extends atariCore.Splash {
         });
     }
 
+    /**
+     * Flappy birds splash entry function.
+     */
     public static void main(String... args) {
         Helper.splashBackgroundImagePath = FlappyHelper.splashBackgroundImagePath;
         new Splash();

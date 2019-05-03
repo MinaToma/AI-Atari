@@ -7,6 +7,9 @@ import java.awt.*;
 
 import static atariCore.Helper.*;
 
+/**
+ * Responsible to fill and select player profile.
+ */
 public abstract class SelectPlayer extends JPanel {
 
     /**
