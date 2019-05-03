@@ -166,12 +166,12 @@ public class Paddle extends BaseObject {
      *
      * @param o Ball object
      */
-    private void setBallSpeed(BaseObject o) {
+    public void setBallSpeed(BaseObject o) {
 
         float _x = o.getX();
         int dir = (o.getX() >= getX() + getImageWidth() / 2f) ? 1 : -1;
 
-        float distFromCenter = (x + getImageWidth() / 2 - _x);
+        float distFromCenter = (x + getImageWidth() / 2f - _x);
         distFromCenter /= getImageWidth() / 2;
 
         float newVX = ballSpeed * (float) Math.sin(Math.abs(distFromCenter));

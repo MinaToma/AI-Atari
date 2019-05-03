@@ -95,13 +95,14 @@ public class Arkanoid extends atariCore.Game {
         setBackGround();
         setBricks(level);
 
+        if (AIMode)
+            p.setX(Helper.screenHeight * 0.1f);
+
         setSounds();
         setBall();
 
-        if (AIMode) {
-            p.setX(Helper.screenHeight * 0.1f);
+        if (AIMode)
             paddleClick();
-        }
     }
 
     /**
@@ -284,7 +285,7 @@ public class Arkanoid extends atariCore.Game {
         for (BaseObject o : ballList) {
             if (o.getVelX() == 0 && o.getVelY() == 0) {
                 p.sticky = false;
-                ((Ball) o).setSpeed(0, -ballSpeed);
+                p.setBallSpeed(o);
             }
         }
     }
