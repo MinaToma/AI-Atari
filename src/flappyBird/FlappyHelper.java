@@ -142,9 +142,10 @@ public class FlappyHelper {
      * Sets game colors.
      */
     public static void setColors(){
+
         setButtonBackgroundColor(new Color(0x171C28));
-        setForegroundColor(new Color(165, 209, 77));
-        setHUDColor(new Color(173, 173, 173));
+        setForegroundColor(new Color(0xA5D14D));
+        setHUDColor(new Color(0xE1E1E1));
     }
 
     /**

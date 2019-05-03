@@ -98,11 +98,14 @@ public class Player extends BaseObject {
      */
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.white);
+        g.setColor(HUDColor);
         g.setFont(font);
         String strScore = String.valueOf(score);
         g.drawString(name, 10, 40);
         g.drawString(strScore, 10, 80);
+        g.setColor(buttonBackgroundColor);
+        g.drawString("Press P to Pause/Resume", 1100, 670);
+        g.drawString("Press Esc to return to  Main Menu", 1100, 680);
     }
 }
 
