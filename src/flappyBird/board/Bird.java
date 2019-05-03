@@ -61,7 +61,8 @@ public class Bird extends BaseObject {
             move();
             collision();
 
-            getReward();
+            if (playerList.size() != 0)
+                getReward();
         }
     }
 

@@ -74,4 +74,15 @@ public class ObjectList {
     public static ObjectList getInstance() {
         return objectList;
     }
+
+    public static void clear() {
+        paddleList.clear();
+        playerList.clear();
+        capsuleList.clear();
+        bulletList.clear();
+        enemyList.clear();
+        backgroundList.clear();
+        bulletList.clear();
+        brickList.clear();
+    }
 }

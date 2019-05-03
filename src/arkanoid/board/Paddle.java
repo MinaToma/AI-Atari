@@ -318,6 +318,9 @@ public class Paddle extends BaseObject {
      * Moves player to next level and clears current handlers.
      */
     public void breakToNextLevel() {
+
+        if (paddleList.size() == 0) return;
+
         ballList.clear();
         paddleList.clear();
         capsuleList.clear();

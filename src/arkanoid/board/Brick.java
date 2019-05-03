@@ -105,7 +105,7 @@ public class Brick extends BaseObject {
         super.y += 0;
         timer++;
 
-        if (timer >= Math.max(1000, 10000 - 10 * player.getLevel())) {
+        if (timer >= Math.min(1000, 10000 - 10 * player.getLevel())) {
             moveDown();
         }
     }
@@ -145,7 +145,7 @@ public class Brick extends BaseObject {
                     Handler.getInstance().addObject(capsuleList, capsule);
                 }
                 arkHelper.numberOfBricks--;
-                Handler.getInstance().removeObject(brickList, this);
+                Handler.removeObject(brickList, this);
 
             }
         }
