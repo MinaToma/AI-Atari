@@ -105,6 +105,7 @@ public class Player extends BaseObject {
         String strScore = String.valueOf(score);
         g.drawString(name, 10, 40);
         g.drawString(strScore, 10, 80);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
         g.setColor(buttonBackgroundColor);
         g.drawString("Press P to Pause/Resume", 1100, 670);
         g.drawString("Press Esc to return to  Main Menu", 1100, 680);
