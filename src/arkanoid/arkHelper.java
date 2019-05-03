@@ -338,8 +338,6 @@ public class arkHelper {
         setSound();
         loadImages();
         setHUDFont();
-        setButtonBackgroundColor(new Color(0x543131));
-        setForegroundColor(new Color(0xe3d3c3));
         setLoseAndWinImage();
         setCredit();
     }
@@ -351,6 +349,14 @@ public class arkHelper {
         if(mArkHelper == null) {
             mArkHelper = new arkHelper();
         }
+    }
+
+    /**
+     * Sets game colors.
+     */
+    public static void setColors(){
+        setButtonBackgroundColor(new Color(0x543131));
+        setForegroundColor(new Color(0xe3d3c3));
     }
 
     /**

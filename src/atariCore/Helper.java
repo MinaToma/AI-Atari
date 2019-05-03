@@ -147,6 +147,10 @@ public class Helper {
      * Default game HUD color.
      */
     public static Color HUDColor;
+
+
+    /************************************************* MP3 Players **************************************************/
+
     /**
      * Sound for button clicks.
      */

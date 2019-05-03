@@ -81,7 +81,7 @@ public class SelectEra extends JPanel {
     }
 
     /**
-     * Initializes Back button to return to select player menu.
+     * initialises Back button to return to select player menu.
      *
      * @param x X coordinates of the button.
      * @param y Y coordinates of the button.

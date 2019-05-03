@@ -124,7 +124,7 @@ public class Player extends BaseObject {
             if (level % 10 == 1) {
                 Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
             }
-            arkanoid.initializeLevels(level);
+            arkanoid.initialiseLevels(level);
         }
     }
 
@@ -171,7 +171,7 @@ public class Player extends BaseObject {
             arkAIEngine.train();
             setScore(0);
             setPreviousScore(0);
-            arkanoid.initializeLevels(1);
+            arkanoid.initialiseLevels(1);
         }
     }
 

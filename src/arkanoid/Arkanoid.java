@@ -69,15 +69,15 @@ public class Arkanoid extends atariCore.Game {
         setPaddle();
         setPlayer(namePlayer, level);
 
-        initializeLevels(player.getLevel());
+        initialiseLevels(player.getLevel());
     }
 
     /**
-     * Initialized main neede game objects and components.
+     * initialised main neede game objects and components.
      *
      * @param level Level to be initiated.
      */
-    public void initializeLevels(int level) {
+    public void initialiseLevels(int level) {
 
         paddleList.clear();
         ballList.clear();
@@ -341,7 +341,7 @@ public class Arkanoid extends atariCore.Game {
         if (b.getVelY() > 0) inputData.add(1f);
         else inputData.add(0f);
 
-        arkAIEngine.initializeInput(inputData);
+        arkAIEngine.initialiseInput(inputData);
 
         String dir = arkAIEngine.getDIR();
 

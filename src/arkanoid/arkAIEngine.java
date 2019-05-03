@@ -74,11 +74,11 @@ public class arkAIEngine {
     }
 
     /**
-     * Initializes the input to be sent to AI script.
+     * initialises the input to be sent to AI script.
      *
      * @param input Array list of inputs.
      */
-    static void initializeInput(ArrayList<Float> input) {
+    static void initialiseInput(ArrayList<Float> input) {
         AIInput = input;
     }
 

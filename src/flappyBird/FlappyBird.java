@@ -48,13 +48,13 @@ public class FlappyBird extends Game {
         setBackground();
         setPlayer(playerName);
         setPipe();
-        initialize();
+        initialise();
     }
 
     /**
-     * Initializes and sets game components.
+     * initialises and sets game components.
      */
-    public void initialize() {
+    public void initialise() {
         birdList.clear();
         pipeList.clear();
         backgroundList.clear();

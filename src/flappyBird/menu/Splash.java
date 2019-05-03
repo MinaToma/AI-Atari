@@ -61,6 +61,7 @@ public class Splash extends atariCore.Splash {
      */
     public static void main(String... args) {
         Helper.splashBackgroundImagePath = FlappyHelper.splashBackgroundImagePath;
+        setColors();
         new Splash();
     }
 }

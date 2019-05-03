@@ -22,7 +22,7 @@ public class SelectPlayer extends atariCore.SelectPlayer {
     }
 
     /**
-     * Initializes buttons' action and takes player's name and moves to the game window.
+     * Initialises buttons' action and takes player's name and moves to the game window.
      */
     protected void setActions() {
 

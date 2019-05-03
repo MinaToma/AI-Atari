@@ -18,7 +18,7 @@ maxXDist = 0
 total_models = 50
 generation = 1
 
-# Initialize all models
+# initialise all models
 for i in range(total_models):
     model = Sequential()
     model.add(Dense(output_dim=7, input_dim=3))

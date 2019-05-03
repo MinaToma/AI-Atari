@@ -72,7 +72,7 @@ public class Player extends BaseObject {
             setScore(0);
 
             flappyBird.myGeneration.generateNewGeneration();
-            flappyBird.initialize();
+            flappyBird.initialise();
 
         }
     }
