@@ -65,7 +65,7 @@ public class Ball extends BaseObject {
     private void collision() {
 
         for (BaseObject o : brickList)
-            if (o.getRectangle().intersects(getRectangle())) {
+            if (o.getRectangle().intersects(getRectangle()) && getVelX() != 0 && getVelY() != 0) {
                 if (image == fireBall)
                     ((Brick) o).setPower(0);
 
@@ -78,7 +78,7 @@ public class Ball extends BaseObject {
             }
 
         for (BaseObject o : enemyList)
-            if (o.getRectangle().intersects(getRectangle())) {
+            if (o.getRectangle().intersects(getRectangle()) && getVelX() != 0 && getVelY() != 0) {
                 ((Enemy) o).reducePower();
 
                 setBallDirectionAfterCollision(o);
@@ -99,13 +99,13 @@ public class Ball extends BaseObject {
         if (y <= 0) velY = Math.abs(getVelY());
 
         if (y > Helper.screenHeight) {
-            Handler.getInstance().removeObject(ballList, this);
+            Handler.removeObject(ballList, this);
             Paddle currPaddle = player.paddle.get(0);
 
             if (ballList.isEmpty()) {
                 if (player.lostBall()) {
                     for (BaseObject o : capsuleList)
-                        Handler.getInstance().removeObject(capsuleList, o);
+                        Handler.removeObject(capsuleList, o);
 
                     Ball b = new Ball(currPaddle.getX() + currPaddle.getImageWidth() / 2 - 5, INIT_BALL_Y, arkHelper.ball, 0, 0, player);
 
@@ -137,9 +137,9 @@ public class Ball extends BaseObject {
         float hitDown = Math.abs(y - (o.getY() + o.getImageHeight()));
         float hitUp = Math.abs(y + getImageHeight() - o.getY());
 
-        if ((hitLeft <= xOffset && velX > 0) || (hitRight <= xOffset && velX < 0)){
+        if ((hitLeft <= xOffset && velX > 0) || (hitRight <= xOffset && velX < 0)) {
             setVelX(velX * -1);
-        } else if ((hitUp <= yOffset && velY > 0) || (hitDown <= yOffset && velY < 0)){
+        } else if ((hitUp <= yOffset && velY > 0) || (hitDown <= yOffset && velY < 0)) {
             setVelY(velY * -1);
         }
     }

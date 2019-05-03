@@ -23,6 +23,7 @@ public class Splash extends atariCore.Splash {
     public Splash() {
 
         super("Arkanoid", "joystix monospace.ttf");
+
         Helper.setCursorImage(arkHelper.pathCursor);
 
         for (int i = 0; i < 10; i++) {
@@ -75,7 +76,6 @@ public class Splash extends atariCore.Splash {
      */
     public static void main(String[] args) {
         splashBackgroundImagePath = arkHelper.splashBackgroundImagePath;
-        Handler.clear();
         setColors();
         new Splash();
     }

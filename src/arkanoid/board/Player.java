@@ -1,9 +1,6 @@
 package arkanoid.board;
 
-import arkanoid.Arkanoid;
-import arkanoid.CreditScreen;
-import arkanoid.arkAIEngine;
-import arkanoid.arkHelper;
+import arkanoid.*;
 import atariCore.BaseObject;
 import atariCore.FileManager;
 import atariCore.Helper;
@@ -92,7 +89,7 @@ public class Player extends BaseObject {
         if (level > 100) {
 
             FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
-            FileManager.sendPlayerScore(arkHelper.filePath, name, level);
+            FileManager.sendPlayerScore(arkHelper.filePath, name, level-1);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
             new CreditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
@@ -165,6 +162,8 @@ public class Player extends BaseObject {
             }
 
             Helper.running = false;
+            ObjectList.clear();
+
             new arkanoid.menu.Splash();
         } else {
 

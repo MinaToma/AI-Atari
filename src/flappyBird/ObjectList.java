@@ -12,19 +12,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ObjectList {
 
     /**
-     *Creates list of birds.
+     * Creates list of birds.
      */
     public static CopyOnWriteArrayList<BaseObject> birdList;
     /**
-     *Creates list of pipes.
+     * Creates list of pipes.
      */
     public static CopyOnWriteArrayList<BaseObject> pipeList;
     /**
-     *Creates list of players.
+     * Creates list of players.
      */
     public static CopyOnWriteArrayList<BaseObject> playerList;
     /**
-     *Creates list of background images.
+     * Creates list of background images.
      */
     static CopyOnWriteArrayList<BaseObject> backgroundList;
 
@@ -50,5 +50,12 @@ public class ObjectList {
      */
     static ObjectList getInstance() {
         return objectList;
+    }
+
+    public static void clear() {
+        birdList.clear();
+        playerList.clear();
+        pipeList.clear();
+        backgroundList.clear();
     }
 }

@@ -43,8 +43,8 @@ public class FlappyBird extends Game {
      */
     public FlappyBird(String title, String playerName) {
         super(title);
+        ObjectList.clear();
 
-        playerList.clear();
         setBackground();
         setPlayer(playerName);
         setPipe();

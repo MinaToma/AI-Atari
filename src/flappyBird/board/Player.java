@@ -4,6 +4,7 @@ package flappyBird.board;
 import atariCore.BaseObject;
 import atariCore.FileManager;
 import flappyBird.FlappyBird;
+import flappyBird.ObjectList;
 import flappyBird.menu.Splash;
 
 import javax.swing.*;
@@ -66,6 +67,7 @@ public class Player extends BaseObject {
 
         if (!AIMode) {
 
+            ObjectList.clear();
             new Splash();
         } else {
 

@@ -7,6 +7,7 @@ import atariCore.Sound;
 import flappyBird.FlappyAIEngine;
 import flappyBird.FlappyBird;
 import flappyBird.FlappyHelper;
+import flappyBird.ObjectList;
 
 import static atariCore.Helper.*;
 import static atariCore.Helper.clickSound;
@@ -62,7 +63,6 @@ public class Splash extends atariCore.Splash {
      */
     public static void main(String... args) {
         Helper.splashBackgroundImagePath = FlappyHelper.splashBackgroundImagePath;
-        Handler.clear();
         setColors();
         new Splash();
     }
