@@ -120,20 +120,20 @@ public class FlappyBird extends Game {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if (!AIMode) {
-            int key = e.getKeyCode();
 
-            if (key == KeyEvent.VK_P) {
+        int key = e.getKeyCode();
 
-                setPausedBG();
-            } else if (key == KeyEvent.VK_ESCAPE) {
+        if (key == KeyEvent.VK_P) {
+            pause = !pause;
 
-                new Splash();
-            } else if (key == KeyEvent.VK_SPACE && !startGame)
-                startGame = true;
-            else if (key == KeyEvent.VK_SPACE) {
-                bird.speedUp();
-            }
+            setPausedBG();
+        } else if (key == KeyEvent.VK_ESCAPE) {
+
+            new Splash();
+        } else if (key == KeyEvent.VK_SPACE && !startGame && !AIMode && !pause)
+            startGame = true;
+        else if (key == KeyEvent.VK_SPACE && !AIMode && !pause) {
+            bird.speedUp();
         }
     }
 

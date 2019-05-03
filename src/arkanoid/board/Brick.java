@@ -105,7 +105,7 @@ public class Brick extends BaseObject {
         super.y += 0;
         timer++;
 
-        if (timer >= Math.min(1000, 10000 - 10 * player.getLevel())) {
+        if (timer >= Math.max(1000, 10000 - 10 * player.getLevel())) {
             moveDown();
         }
     }
