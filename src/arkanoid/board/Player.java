@@ -89,7 +89,7 @@ public class Player extends BaseObject {
         if (level > 100) {
 
             FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
-            FileManager.sendPlayerScore(arkHelper.filePath, name, level);
+            FileManager.sendPlayerScore(arkHelper.filePath, name, level-1);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
 
             new CreditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
