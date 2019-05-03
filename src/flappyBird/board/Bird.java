@@ -2,7 +2,9 @@ package flappyBird.board;
 
 import atariCore.BaseObject;
 import atariCore.Handler;
+
 import atariCore.Sound;
+
 import flappyBird.ObjectList;
 
 import java.awt.*;
@@ -50,9 +52,11 @@ public class Bird extends BaseObject {
 
     public void speedUp() {
 
-        velY = pressSpeed;
-        if (!AIMode && sounds)
-            Sound.Play(wingSound, true);
+        if(keyboard || AIMode) {
+            velY = pressSpeed;
+            if (!AIMode && sounds)
+                Sound.Play(wingSound, true);
+        }
     }
 
     private void collision() {

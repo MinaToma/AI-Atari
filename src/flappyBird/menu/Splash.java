@@ -1,7 +1,7 @@
 package flappyBird.menu;
 
 import atariCore.Helper;
-import atariCore.LoadingScreen;
+
 import atariCore.Sound;
 import flappyBird.FlappyAIEngine;
 import flappyBird.FlappyBird;
@@ -15,7 +15,7 @@ public class Splash extends atariCore.Splash {
 
     public Splash() {
         super("Flappy Bird", "joystix monospace.ttf");
-        if(backgroundSound.isStopped())
+        if(music && backgroundSound.isStopped())
         {
             Sound.Repeat(backgroundSound);
             Sound.Play(backgroundSound,false);
@@ -44,7 +44,7 @@ public class Splash extends atariCore.Splash {
         settingsButton.addActionListener(e -> {
             if (sounds)
                 Sound.Play(clickSound, false);
-            new Settings(sounds);
+            new Settings();
         });
         backButton.addActionListener(e -> {
             Sound.Stop(backgroundSound);
