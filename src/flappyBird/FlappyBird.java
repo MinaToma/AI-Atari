@@ -129,6 +129,7 @@ public class FlappyBird extends Game {
             setPausedBG();
         } else if (key == KeyEvent.VK_ESCAPE) {
 
+            pause = startGame = AIMode = false;
             new Splash();
         } else if (key == KeyEvent.VK_SPACE && !startGame && !AIMode && !pause)
             startGame = true;

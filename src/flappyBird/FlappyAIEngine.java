@@ -33,7 +33,7 @@ public class FlappyAIEngine {
     /**
      * Gap between every frame to send AI Data.
      */
-    private int requireActionGap = 50;
+    private int requireActionGap = 25;
     /**
      * Flappy birds script path.
      */
