@@ -1,5 +1,6 @@
 package flappyBird.menu;
 
+import atariCore.Handler;
 import atariCore.Helper;
 
 import atariCore.Sound;
@@ -61,6 +62,7 @@ public class Splash extends atariCore.Splash {
      */
     public static void main(String... args) {
         Helper.splashBackgroundImagePath = FlappyHelper.splashBackgroundImagePath;
+        Handler.clear();
         setColors();
         new Splash();
     }

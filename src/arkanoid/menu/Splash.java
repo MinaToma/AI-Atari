@@ -3,6 +3,7 @@ package arkanoid.menu;
 import arkanoid.*;
 import arkanoid.arkHelper;
 
+import atariCore.Handler;
 import atariCore.Helper;
 import atariCore.LoadingScreen;
 import atariCore.Sound;
@@ -74,6 +75,7 @@ public class Splash extends atariCore.Splash {
      */
     public static void main(String[] args) {
         splashBackgroundImagePath = arkHelper.splashBackgroundImagePath;
+        Handler.clear();
         setColors();
         new Splash();
     }

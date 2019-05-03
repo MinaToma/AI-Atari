@@ -17,7 +17,7 @@ public class Handler {
      * Array list to hold the game's base objects.
      * We used CopyOnWriteArrayList to manipulate the objects when running within a thread.
      */
-    private CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> object = new CopyOnWriteArrayList<>();
+    private static CopyOnWriteArrayList<CopyOnWriteArrayList<BaseObject>> object = new CopyOnWriteArrayList<>();
 
     private Handler() {
     }
@@ -79,6 +79,13 @@ public class Handler {
     public void addObject(CopyOnWriteArrayList<BaseObject> list, BaseObject o) {
 
         list.add(o);
+    }
+
+    /**
+     * Clears the handler.
+     */
+    public static void clear() {
+        object.clear();
     }
 
     /**
