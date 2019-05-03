@@ -51,9 +51,8 @@ public class arkAIEngine {
      * @param player Current player object.
      * @param ball   Current ball object.
      * @param paddle Current paddle object.
-     * @return
      */
-    static public int calculateReward(Player player, Ball ball, Paddle paddle) {
+    static public void calculateReward(Player player, Ball ball, Paddle paddle) {
 
         double reward;
         reward = -(Math.sqrt(Math.abs((ball.getX() - (paddle.getX() + (paddle.getImageWidth() / 2f))))));
@@ -72,7 +71,6 @@ public class arkAIEngine {
 
         player.setPreviousScore(player.getScore());
 
-        return 0;
     }
 
     /**

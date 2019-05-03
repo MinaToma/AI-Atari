@@ -247,7 +247,7 @@ public class Player extends BaseObject {
 
         for (int i = 0; i < 10; i++) {
 
-            if (i < level % 10 || level%10 == 0)
+            if (i < level % 10 || level % 10 == 0)
                 g.setColor(Color.green);
             else
                 g.setColor(Color.red);
@@ -366,7 +366,7 @@ public class Player extends BaseObject {
     }
 
     /**
-     * Renders lives of the player on the screen and updates it.
+     * {@inheritDoc}
      */
     public void drawLives(Graphics g) {
         int numOfLives = lives;

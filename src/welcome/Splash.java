@@ -27,17 +27,16 @@ public class Splash extends JPanel {
         if (panel != null) {
             frame.getContentPane().remove(panel);
         }
-        if(welcomeSound.isStopped())
-        {
+        if (welcomeSound.isStopped()) {
             Sound.Repeat(welcomeSound);
-            Sound.Play(welcomeSound,false);
+            Sound.Play(welcomeSound, false);
         }
 
         panel = this;
-        panel.setLayout(new GridLayout(0,1));
-        panel.setBackground(new Color(24,24,24));
+        panel.setLayout(new GridLayout(0, 1));
+        panel.setBackground(new Color(24, 24, 24));
 
-        JPanel aiAtari = new JPanel(new GridLayout(0,2));
+        JPanel aiAtari = new JPanel(new GridLayout(0, 2));
         ImageIcon icon = new ImageIcon("src/Resources/Atari Core/Images/loading/atari.gif");
         atariLabel = new JLabel(icon);
 

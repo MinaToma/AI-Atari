@@ -32,7 +32,7 @@ public class Handler {
     }
 
     /**
-     * Renders game objects every frame.
+     * {@inheritDoc}
      */
     protected void render(Graphics g) {
         for (CopyOnWriteArrayList<BaseObject> list : object)

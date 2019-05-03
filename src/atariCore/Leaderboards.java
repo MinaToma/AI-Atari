@@ -28,7 +28,8 @@ public class Leaderboards extends JPanel {
     /**
      * Parameterised constructor with leaderboards file path.
      *
-     * @param path Path of leaderboards file.
+     * @param path     Path of leaderboards file.
+     * @param hasLevel Whether the game has levels or not.
      */
     public Leaderboards(String path, boolean hasLevel) {
 
