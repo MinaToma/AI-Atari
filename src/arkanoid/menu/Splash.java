@@ -2,12 +2,8 @@ package arkanoid.menu;
 
 import arkanoid.*;
 import arkanoid.arkHelper;
-
-import atariCore.Handler;
 import atariCore.Helper;
-import atariCore.LoadingScreen;
 import atariCore.Sound;
-
 
 import static arkanoid.arkHelper.backgroundSplashSound;
 import static arkanoid.arkHelper.setColors;
@@ -34,11 +30,11 @@ public class Splash extends atariCore.Splash {
         }
 
         if (music) {
-            if (arkHelper.backgroundSplashSound.isStopped())
-                Sound.Play(arkHelper.backgroundSplashSound, false);
-            Sound.Repeat(arkHelper.backgroundSplashSound);
+            if (backgroundSplashSound.isStopped())
+                Sound.Play(backgroundSplashSound, false);
+            Sound.Repeat(backgroundSplashSound);
         } else {
-            Sound.Stop(arkHelper.backgroundSplashSound);
+            Sound.Stop(backgroundSplashSound);
         }
 
         newGameButton.addActionListener(e -> {
@@ -69,7 +65,7 @@ public class Splash extends atariCore.Splash {
             new Arkanoid("AI-Player", 1);
         });
         backButton.addActionListener(e -> {
-            Sound.Stop(arkHelper.backgroundSplashSound);
+            Sound.Stop(backgroundSplashSound);
         });
     }
 

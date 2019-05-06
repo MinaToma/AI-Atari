@@ -176,21 +176,21 @@ public class Bird extends BaseObject {
      * @return Whether the bird passed a pipe or not.
      */
     public boolean getReward() {
-        boolean passedPip = false;
+        boolean passedPipe = false;
 
         for (BaseObject o : pipeList)
             if (o.getY() > 0 && o.getX() + o.getImageWidth() / 2f <= x && !passedPips.contains(o)) {
-                passedPip = true;
+                passedPipe = true;
                 passedPips.add(o);
             }
 
-        currentScore += passedPip ? 1 : 0;
+        currentScore += passedPipe ? 1 : 0;
 
         ((Player) playerList.get(0)).setScore(currentScore);
-        if (passedPip && !AIMode && sounds)
+        if (passedPipe && !AIMode && sounds)
             Sound.Play(pointSound, true);
 
-        return passedPip;
+        return passedPipe;
     }
 
     /**

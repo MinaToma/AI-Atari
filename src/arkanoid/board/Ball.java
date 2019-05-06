@@ -65,7 +65,7 @@ public class Ball extends BaseObject {
     private void collision() {
 
         for (BaseObject o : brickList)
-            if (o.getRectangle().intersects(getRectangle()) && getVelX() != 0 && getVelY() != 0) {
+            if (o.getRectangle().intersects(getRectangle()) && (getVelX() != 0 || getVelY() != 0) ) {
                 if (image == fireBall)
                     ((Brick) o).setPower(0);
 
@@ -78,7 +78,7 @@ public class Ball extends BaseObject {
             }
 
         for (BaseObject o : enemyList)
-            if (o.getRectangle().intersects(getRectangle()) && getVelX() != 0 && getVelY() != 0) {
+            if (o.getRectangle().intersects(getRectangle()) && (getVelX() != 0 || getVelY() != 0) ) {
                 ((Enemy) o).reducePower();
 
                 setBallDirectionAfterCollision(o);

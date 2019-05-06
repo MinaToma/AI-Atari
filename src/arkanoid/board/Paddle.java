@@ -5,6 +5,7 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;
@@ -354,26 +355,19 @@ public class Paddle extends BaseObject {
      */
     public void splitBall() {
 
-        int numOfBall = ballList.size();
+        CopyOnWriteArrayList<BaseObject> balls = new CopyOnWriteArrayList<>(ballList);
+        for (BaseObject o : balls) {
 
-        for (BaseObject o : ballList) {
+            Ball ball = (Ball) o;
+            int dir = ball.getVelY() < 0 ? -1 : 1;
+            ball.setVelX(0);
+            ball.setVelY(dir * ballSpeed);
 
-            if (o instanceof Ball) {
+            Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), ballSpeed * (float) Math.cos(Math.PI * 45 / 180), dir * ballSpeed * (float) Math.cos(Math.PI * 45 / 180), player);
+            Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -ballSpeed * (float) Math.cos(Math.PI * 45 / 180), dir * ballSpeed * (float) Math.cos(Math.PI * 45 / 180), player);
 
-                Ball ball = (Ball) o;
-                ball.setVelX(0);
-
-                Ball newBallL = new Ball(ball.getX(), ball.getY(), ball.getImage(), ballSpeed * (float) Math.cos(Math.PI * 45 / 180), ball.getVelY(), player);
-                Ball newBallR = new Ball(ball.getX(), ball.getY(), ball.getImage(), -ballSpeed * (float) Math.cos(Math.PI * 45 / 180), ball.getVelY(), player);
-
-                Handler.getInstance().addObject(ballList, newBallL);
-                Handler.getInstance().addObject(ballList, newBallR);
-
-                numOfBall--;
-            }
-            if (numOfBall == 0) {
-                break;
-            }
+            Handler.getInstance().addObject(ballList, newBallL);
+            Handler.getInstance().addObject(ballList, newBallR);
         }
     }
 
