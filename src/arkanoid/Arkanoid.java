@@ -94,7 +94,7 @@ public class Arkanoid extends atariCore.Game {
         Handler.getInstance().addObject(playerList, player);
         Handler.getInstance().addObject(paddleList, p);
         setBackGround();
-        //setBricks(level);
+        setBricks(level);
 
         if (AIMode)
             p.setX(Helper.screenHeight * 0.1f);
