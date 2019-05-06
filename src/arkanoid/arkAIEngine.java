@@ -101,7 +101,7 @@ public class arkAIEngine {
 
             writer.close();
 
-            while (Data == null || (!Data.equals("same") && !Data.equals("right") && !Data.equals("left")))
+            while (Data == null || (!Data.equals("space") && !Data.equals("right") && !Data.equals("left")))
                 Data = AIEngine.waitForPrediction(interactionPath, Data);
 
             System.out.println(Data);

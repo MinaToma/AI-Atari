@@ -340,8 +340,11 @@ public class Arkanoid extends atariCore.Game {
         inputData.add(R);
         inputData.add(L);
 
+
         if (b.getVelY() > 0) inputData.add(1f);
         else inputData.add(0f);
+        inputData.add(Float.valueOf( Paddle.capsuleID));
+        Paddle.capsuleID = 0;
 
         arkAIEngine.initialiseInput(inputData);
 
@@ -353,8 +356,15 @@ public class Arkanoid extends atariCore.Game {
         } else if (dir.equals("left")) {
 
             p.setVelX(-arkHelper.paddleSpeed);
-        } else if (dir.equals("same")) {
-            p.setVelX(0);
+        } else if (dir.equals("space")) {
+            if(p.sticky)
+            {
+                p.sticky = false;
+            }
+            if(p.laser)
+            {
+                p.hitLaser();
+            }
         }
 
         if (player.getPreviousScore() - player.getScore() == 0)

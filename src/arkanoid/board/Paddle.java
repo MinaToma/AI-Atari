@@ -43,6 +43,10 @@ public class Paddle extends BaseObject {
      * Holds active capsules.
      */
     private CopyOnWriteArrayList<BaseObject> currentCapsuleList;
+    /**
+     * ID of The current collision Capsule
+     */
+    public static int capsuleID = 0;
 
     /**
      * Parameterised constructor takes  X, Y coordinates , paddle image ,x,y velocities and player object.
@@ -94,7 +98,7 @@ public class Paddle extends BaseObject {
         for (BaseObject o : capsuleList) {
 
             if (o.getRectangle().intersects(getRectangle())) {
-
+                capsuleID = setCapsuleID(((Capsule) o));
                 ((Capsule) o).effect(this);
                 ((Capsule) o).active = true;
                 Handler.getInstance().addObject(currentCapsuleList, o);
@@ -480,6 +484,43 @@ public class Paddle extends BaseObject {
     public void increaseLife() {
 
         player.setLives(player.getLives() + 1);
+    }
+
+    /**
+     * Return the ID of Capsule
+     */
+    public int setCapsuleID(Capsule c) {
+
+        if (c instanceof Acid)
+            return 1;
+        if (c instanceof Break)
+            return 2;
+        if (c instanceof Catch)
+            return 3;
+        if (c instanceof Disrupt)
+            return 4;
+        if (c instanceof Expand)
+            return 5;
+        if (c instanceof Fast)
+            return 6;
+        if (c instanceof Fire)
+            return 7;
+        if (c instanceof Laser)
+            return 8;
+        if (c instanceof Life)
+            return 9;
+        if (c instanceof Score)
+            return 10;
+        if (c instanceof Shrink)
+            return 11;
+        if (c instanceof Slow)
+            return 12;
+        if (c instanceof Vaus)
+            return 13;
+
+        return 0;
+
+
     }
 
 
