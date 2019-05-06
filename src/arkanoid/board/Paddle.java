@@ -419,7 +419,7 @@ public class Paddle extends BaseObject {
      * Increases paddle's speed.
      */
     public void speedUp() {
-        ballSpeed = Math.min(ballSpeed + 0.1f, 4);
+        ballSpeed = Math.min(ballSpeed + 0.2f, 4);
 
     }
 
@@ -428,7 +428,7 @@ public class Paddle extends BaseObject {
      */
     public void speedDown() {
 
-        ballSpeed = Math.max(ballSpeed - 0.1f, 1);
+        ballSpeed = Math.max(ballSpeed - 0.2f, 1);
     }
 
     /**
