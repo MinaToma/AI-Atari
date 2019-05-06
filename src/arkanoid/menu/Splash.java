@@ -9,6 +9,7 @@ import atariCore.LoadingScreen;
 import atariCore.Sound;
 
 
+import static arkanoid.arkHelper.backgroundSplashSound;
 import static arkanoid.arkHelper.setColors;
 import static atariCore.Helper.*;
 
@@ -60,6 +61,7 @@ public class Splash extends atariCore.Splash {
         AIButton.addActionListener(e -> {
             if (sounds)
                 Sound.Play(Helper.clickSound, true);
+            Sound.Stop(backgroundSplashSound);
             Helper.running = true;
             AIMode = true;
 

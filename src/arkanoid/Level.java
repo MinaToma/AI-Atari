@@ -164,9 +164,9 @@ public class Level {
             return new Life(0, 0, 0, arkHelper.life);
         } else if (ID == 12) {
             return new Shrink(0, 0, 5000, arkHelper.capsuleShrink);
-        } else if (ID == 13) {
+        } else if (ID == 13 && !Helper.AIMode) {
             return new Catch(0, 0, 0, arkHelper.capsuleCatch);
-        } else if (ID == 14 && paddleList.size()<2) {
+        } else if (ID == 14 && paddleList.size()<3) {
             return new Vaus(0, 0, 0, arkHelper.capsuleVaus);
         } else if (ID == 15) {
             return new Fast(0, 0, 0, arkHelper.capsuleFast);
