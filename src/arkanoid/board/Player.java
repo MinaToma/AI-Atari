@@ -96,7 +96,7 @@ public class Player extends BaseObject {
         } else {
 
             if (score > 0 && !AIMode) {
-                Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
+                Sound.Stop(arkHelper.backgroundGameSound[(this.level - 1) / 10]);
                 arkHelper.setLoseAndWinImage();
                 panel.add(arkHelper.nextLevelImage);
                 frame.setVisible(true);
@@ -116,11 +116,12 @@ public class Player extends BaseObject {
 
                 panel.requestFocusInWindow();
             }
-            this.level = level;
-
             if (level % 10 == 1) {
                 Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
             }
+            this.level = level;
+
+
             arkanoid.initialiseLevels(level);
         }
     }

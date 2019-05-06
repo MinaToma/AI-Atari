@@ -156,6 +156,10 @@ public class Arkanoid extends atariCore.Game {
      */
     public void setSounds() {
 
+        if(player.getLevel()%10==1 && player.getLevel()>1)
+        {
+            Sound.Stop(backgroundGameSound[(player.getLevel() - 1) / 10]);
+        }
         if (arkHelper.backgroundGameSound[(player.getLevel() - 1) / 10].isStopped() && music) {
             Sound.Play(backgroundGameSound[(player.getLevel() - 1) / 10], false);
         }
@@ -343,8 +347,7 @@ public class Arkanoid extends atariCore.Game {
 
         if (b.getVelY() > 0) inputData.add(1f);
         else inputData.add(0f);
-        inputData.add(Float.valueOf( Paddle.capsuleID));
-        Paddle.capsuleID = 0;
+
 
         arkAIEngine.initialiseInput(inputData);
 
