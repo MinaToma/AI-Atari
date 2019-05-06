@@ -144,7 +144,7 @@ public class Level {
             return new Expand(0, 0, 5000, arkHelper.capsuleExpand);
         } else if (ID == 2) {
             return new Disrupt(0, 0, 0, arkHelper.capsuleTripleBall);
-        } else if (ID == 3) {
+        } else if (ID == 3 && !Helper.AIMode) {
             return new Laser(0, 0, 5000, arkHelper.capsuleWeapon);
         } else if (ID == 4 && player.getLevel() % 5 != 0) {
             return new Break(0, 0, 0, arkHelper.star);
@@ -160,7 +160,7 @@ public class Level {
             return new Acid(0, 0, 5000, arkHelper.capsuleAcidBall);
         } else if (ID == 10) {
             return new Fire(0, 0, 5000, arkHelper.capsuleFireBall);
-        } else if (ID == 11) {
+        } else if (ID == 11 && !Helper.AIMode) {
             return new Life(0, 0, 0, arkHelper.life);
         } else if (ID == 12) {
             return new Shrink(0, 0, 5000, arkHelper.capsuleShrink);

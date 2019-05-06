@@ -94,7 +94,7 @@ public class Arkanoid extends atariCore.Game {
         Handler.getInstance().addObject(playerList, player);
         Handler.getInstance().addObject(paddleList, p);
         setBackGround();
-        setBricks(level);
+        //setBricks(level);
 
         if (AIMode)
             p.setX(Helper.screenHeight * 0.1f);
@@ -335,6 +335,13 @@ public class Arkanoid extends atariCore.Game {
                 R++;
             else
                 L++;
+        }
+        if(enemyList.size()>1)
+        {
+            if(enemyList.get(0).getX()>(p.getX() + p.getImageWidth() / 2f))
+                R+=3;
+            else
+                L+=3;
         }
 
         ArrayList<Float> inputData = new ArrayList<>();

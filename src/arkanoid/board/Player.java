@@ -91,8 +91,16 @@ public class Player extends BaseObject {
             FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
             FileManager.sendPlayerScore(arkHelper.filePath, name, level-1);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
-
+            if(!AIMode)
             new CreditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
+            else
+            {
+                arkAIEngine.train();
+                setScore(0);
+                setPreviousScore(0);
+                setLevel(1);
+                arkanoid.initialiseLevels(1);
+            }
         } else {
 
             if (score > 0 && !AIMode) {
@@ -171,6 +179,7 @@ public class Player extends BaseObject {
             arkAIEngine.train();
             setScore(0);
             setPreviousScore(0);
+            setLevel(1);
             arkanoid.initialiseLevels(1);
         }
     }
