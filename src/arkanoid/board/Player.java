@@ -237,11 +237,10 @@ public class Player extends BaseObject {
 
         g.setFont(arkHelper.HUDFont);
 
-        g.setColor(getNameHUDColor());
+        g.setColor(getHUDColor());
         g.drawString(name, 10, 30);
         g.drawString(Integer.toString(score), 10, 60);
 
-        g.setColor(getLevelHUDColor());
         String era = era();
         g.drawString(era, 1100, 30);
 
@@ -257,7 +256,7 @@ public class Player extends BaseObject {
 
 
         g.setFont(new Font("TimesRoman", Font.PLAIN, 10));
-        g.setColor(getLevelHUDColor());
+        g.setColor(getHUDColor());
         g.drawString("Press P to Pause/Resume", 1100, 670);
         g.drawString("Press Esc to return to  Main Menu", 1100, 680);
 
@@ -299,16 +298,16 @@ public class Player extends BaseObject {
                 return " Medieval ";
 
             default:
-                return " Arabian  ";
+                return "  Arabian ";
         }
     }
 
     /**
-     * Returns the color of the player's level.
+     * Returns the color of the game's heads up display.
      *
      * @return The color of words.
      */
-    private Color getLevelHUDColor() {
+    private Color getHUDColor() {
         Color color;
         if (level < 11) {
             color = new Color(0xCDBF67);
@@ -319,51 +318,21 @@ public class Player extends BaseObject {
         } else if (level < 41) {
             color = new Color(0xC6BE9E);
         } else if (level < 51) {
-            color = new Color(0x402C2C);
+            color = new Color(0xCAB344);
         } else if (level < 61) {
-            color = new Color(0x53311B);
+            color = new Color(0xC6BE9E);
         } else if (level < 71) {
-            color = new Color(0x1C3837);
+            color = new Color(0xAEAEAE);
         } else if (level < 81) {
             color = new Color(0xAEAEAE);
         } else if (level < 91) {
-            color = new Color(0x595959);
+            color = new Color(0xD2D370);
         } else {
-            color = new Color(0x98994D);
+            color = new Color(0xCAB344);
         }
         return color;
     }
 
-    /**
-     * Returns the color of the player's name.
-     *
-     * @return The color of name.
-     */
-    private Color getNameHUDColor() {
-        Color color;
-        if (level < 11) {
-            color = new Color(0xCDBF67);
-        } else if (level < 21) {
-            color = new Color(0xCAB344);
-        } else if (level < 31) {
-            color = new Color(0xCAB344);
-        } else if (level < 41) {
-            color = new Color(0x24353B);
-        } else if (level < 51) {
-            color = new Color(0x402C2C);
-        } else if (level < 61) {
-            color = new Color(0x172F1B);
-        } else if (level < 71) {
-            color = new Color(0x1C3837);
-        } else if (level < 81) {
-            color = new Color(0xD58384);
-        } else if (level < 91) {
-            color = new Color(0xD2D370);
-        } else {
-            color = new Color(0x98994D);
-        }
-        return color;
-    }
 
     /**
      * {@inheritDoc}
