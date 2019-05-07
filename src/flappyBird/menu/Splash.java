@@ -7,7 +7,7 @@ import atariCore.Sound;
 import flappyBird.FlappyAIEngine;
 import flappyBird.FlappyBird;
 import flappyBird.FlappyHelper;
-import flappyBird.ObjectList;
+
 
 import static atariCore.Helper.*;
 import static atariCore.Helper.clickSound;
@@ -24,7 +24,7 @@ public class Splash extends atariCore.Splash {
     public Splash() {
         super("Flappy Bird", "joystix monospace.ttf");
         startGame = false;
-
+        Handler.clear();
         if (music && backgroundSound.isStopped()) {
             Sound.Repeat(backgroundSound);
             Sound.Play(backgroundSound, false);
