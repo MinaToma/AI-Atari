@@ -6,8 +6,7 @@ import atariCore.Sound;
 
 import java.awt.*;
 
-import static atariCore.Helper.getImage;
-import static atariCore.Helper.sounds;
+import static atariCore.Helper.*;
 
 /**
  * Arkanoid leaderboards.
@@ -21,7 +20,7 @@ public class Leaderboards extends atariCore.Leaderboards {
      */
     public Leaderboards(String path) {
         super(path , true);
-
+        setCursorImage(arkHelper.pathCursor);
         backButton.addActionListener(e -> {
             if (sounds)
                 Sound.Play(Helper.clickSound, true);

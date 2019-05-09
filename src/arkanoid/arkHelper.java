@@ -90,6 +90,11 @@ public class arkHelper {
      * Number of bricks in current level, used to identify when to break to next level.
      */
     public static int numberOfBricks;
+    /**
+     * Game Eras
+     */
+    public static String[] eras = {"Stone Age "," Pharaohs ","   Aztec  ","   Greek  ", "   Roman ", "  Indian ",
+                                    "  Viking  ", "  Chinese ", " Medieval ", "  Arabian "};
 
     /****************************************************** Fonts *****************************************************/
 
