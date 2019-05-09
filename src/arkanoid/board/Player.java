@@ -278,37 +278,7 @@ public class Player extends BaseObject {
      * @return Current player's era.
      */
     private String era() {
-        switch (level / 10) {
-            case 0:
-                return "Stone Age ";
-
-            case 1:
-                return " Pharaohs ";
-
-            case 2:
-                return "   Aztec  ";
-
-            case 3:
-                return "   Greek  ";
-
-            case 4:
-                return "   Roman ";
-
-            case 5:
-                return "  Indian ";
-
-            case 6:
-                return "  Viking  ";
-
-            case 7:
-                return "  Chinese ";
-
-            case 8:
-                return " Medieval ";
-
-            default:
-                return "  Arabian ";
-        }
+        return arkHelper.eras[(this.level - 1) / 10];
     }
 
     /**
