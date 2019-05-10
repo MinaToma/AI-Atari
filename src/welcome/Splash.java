@@ -27,7 +27,7 @@ public class Splash extends JPanel {
         if (panel != null) {
             frame.getContentPane().remove(panel);
         }
-        if (welcomeSound.isStopped()) {
+        if (welcomeSound.isStopped() && music) {
             Sound.Repeat(welcomeSound);
             Sound.Play(welcomeSound, false);
         }
