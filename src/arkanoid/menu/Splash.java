@@ -2,6 +2,7 @@ package arkanoid.menu;
 
 import arkanoid.*;
 import arkanoid.arkHelper;
+import atariCore.Handler;
 import atariCore.Helper;
 import atariCore.Sound;
 
@@ -66,6 +67,7 @@ public class Splash extends atariCore.Splash {
         });
         backButton.addActionListener(e -> {
             Sound.Stop(backgroundSplashSound);
+            Handler.clear();
         });
     }
 

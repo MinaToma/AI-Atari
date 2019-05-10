@@ -1,10 +1,7 @@
 package arkanoid.board;
 
 import arkanoid.*;
-import atariCore.BaseObject;
-import atariCore.FileManager;
-import atariCore.Helper;
-import atariCore.Sound;
+import atariCore.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -171,7 +168,7 @@ public class Player extends BaseObject {
             }
 
             Helper.running = false;
-            ObjectList.clear();
+            Handler.clear();
 
             new arkanoid.menu.Splash();
         } else {
