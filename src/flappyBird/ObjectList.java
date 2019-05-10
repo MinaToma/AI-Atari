@@ -52,10 +52,4 @@ public class ObjectList {
         return objectList;
     }
 
-    public static void clear() {
-        birdList.clear();
-        playerList.clear();
-        pipeList.clear();
-        backgroundList.clear();
-    }
 }

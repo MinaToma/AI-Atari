@@ -85,7 +85,7 @@ public class Handler {
      * Clears the handler.
      */
     public static void clear() {
-        object.clear();
+        object.forEach(CopyOnWriteArrayList::clear);
     }
 
     /**

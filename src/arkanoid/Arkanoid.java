@@ -56,7 +56,7 @@ public class Arkanoid extends atariCore.Game {
          * */
 
         super("Arkanoid");
-        ObjectList.clear();
+        Handler.clear();
 
         try {
             Robot r = new Robot();
