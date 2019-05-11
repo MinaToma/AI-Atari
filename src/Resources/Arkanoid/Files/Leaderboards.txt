@@ -314,3 +314,5 @@ AI-Player@@@90@@@20
 AI-Player@@@90@@@20
 AI-Player@@@140@@@25
 mm@@@650@@@6
+gazra@@@730@@@3
+gazra@@@390@@@4

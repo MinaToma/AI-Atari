@@ -120,6 +120,6 @@ public interface FileManager {
 
         ret.clear();
         ret.add(String.valueOf(level));
-        writeFile(name, ret, true);
+        writeFile(name, ret, false);
     }
 }

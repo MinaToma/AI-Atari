@@ -86,12 +86,11 @@ public class Player extends BaseObject {
         if (level > 100) {
 
             FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
-            FileManager.sendPlayerScore(arkHelper.filePath, name, level-1);
+            FileManager.sendPlayerScore(arkHelper.filePath, name, level - 1);
             Sound.Stop(arkHelper.backgroundGameSound[(level - 2) / 10]);
-            if(!AIMode)
-            new CreditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
-            else
-            {
+            if (!AIMode)
+                new CreditScreen(arkHelper.timeTheCredit, arkHelper.creditsImage, arkHelper.creditSound);
+            else {
                 arkAIEngine.train();
                 setScore(0);
                 setPreviousScore(0);
@@ -160,7 +159,8 @@ public class Player extends BaseObject {
             arkHelper.setLoseAndWinImage();
             panel.add(arkHelper.lossImage);
             frame.setVisible(true);
-            Sound.Play(arkHelper.lossSound, true);
+            if (music)
+                Sound.Play(arkHelper.lossSound, true);
 
             try {
                 TimeUnit.SECONDS.sleep(10);

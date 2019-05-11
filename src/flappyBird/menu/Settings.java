@@ -19,7 +19,7 @@ public class Settings extends atariCore.Settings {
      * Default constructor.
      */
     public Settings() {
-        super(music, sounds, false, keyboard);
+        super(music, sounds, mouse, keyboard);
         setCursorImage(FlappyHelper.pathCursor);
         backButton.addActionListener(e -> {
             if (Helper.sounds)
