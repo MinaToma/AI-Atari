@@ -98,6 +98,8 @@ public class Player extends BaseObject {
                 arkanoid.initialiseLevels(1);
             }
         } else {
+            if(level>this.level)
+                FileManager.sendPlayerScore(arkHelper.filePath, name, level);
 
             if (score > 0 && !AIMode) {
                 Sound.Stop(arkHelper.backgroundGameSound[(this.level - 1) / 10]);
@@ -151,7 +153,7 @@ public class Player extends BaseObject {
      */
     public void die() {
         FileManager.addNewScoreToLeaderboards(arkHelper.pathLeaderboards, name, score, level);
-        FileManager.sendPlayerScore(arkHelper.filePath, name, level);
+
 
         if (!AIMode) {
 
@@ -159,7 +161,7 @@ public class Player extends BaseObject {
             arkHelper.setLoseAndWinImage();
             panel.add(arkHelper.lossImage);
             frame.setVisible(true);
-            if (music)
+            if (sounds)
                 Sound.Play(arkHelper.lossSound, true);
 
             try {
