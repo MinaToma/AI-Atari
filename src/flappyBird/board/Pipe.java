@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.Random;
 
 import static flappyBird.ObjectList.pipeList;
-import static flappyBird.ObjectList.playerList;
 import static flappyBird.FlappyHelper.*;
 
 /**

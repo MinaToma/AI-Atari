@@ -1,7 +1,5 @@
 package atariCore;
 
-import flappyBird.FlappyHelper;
-
 import javax.swing.*;
 import java.awt.*;
 

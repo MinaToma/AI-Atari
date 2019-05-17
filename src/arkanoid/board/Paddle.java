@@ -5,7 +5,6 @@ import atariCore.BaseObject;
 import atariCore.Handler;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static arkanoid.arkHelper.*;

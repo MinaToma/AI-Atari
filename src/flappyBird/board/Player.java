@@ -5,10 +5,8 @@ import atariCore.BaseObject;
 import atariCore.FileManager;
 import atariCore.Handler;
 import flappyBird.FlappyBird;
-import flappyBird.ObjectList;
 import flappyBird.menu.Splash;
 
-import javax.swing.*;
 import java.awt.*;
 
 import static atariCore.Helper.*;

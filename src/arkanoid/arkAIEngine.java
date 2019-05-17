@@ -6,7 +6,6 @@ import arkanoid.board.Player;
 import atariCore.AIEngine;
 import atariCore.FileManager;
 
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
