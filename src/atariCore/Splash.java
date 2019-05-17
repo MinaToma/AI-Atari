@@ -1,7 +1,5 @@
 package atariCore;
 
-import org.w3c.dom.html.HTMLLegendElement;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -64,7 +62,7 @@ public class Splash {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(getImage(splashBackgroundImagePath, 1), 0, 0, null);
+                g.drawImage(FileManager.loadImage(splashBackgroundImagePath, 1), 0, 0, null);
             }
         };
 

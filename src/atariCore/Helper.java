@@ -58,23 +58,23 @@ public class Helper {
     /**
      * Path of control menu images.
      */
-    public static String controlsImages = "src/Resources/Atari Core/Images/controls/";
+    public static String controlsImages = "res/Atari Core/Images/controls/";
     /**
      * Sounds path.
      */
-    public static String soundPath = "src/Resources/Atari Core/Sounds/";
+    public static String soundPath = "res/Atari Core/Sounds/";
     /**
      * Files path.
      */
-    public static String filePath = "src/Resources/Atari Core/Files/";
+    public static String filePath = "res/Atari Core/Files/";
     /**
      * Image path.
      */
-    public static String imagePath = "src/Resources/Atari Core/Images/";
+    public static String imagePath = "res/Atari Core/Images/";
     /**
      * Font path.
      */
-    public static String fontPath = "src/Resources/Atari Core/Fonts/";
+    public static String fontPath = "res/Atari Core/Fonts/";
     /**
      * Splash screen background image path.
      */
@@ -248,17 +248,17 @@ public class Helper {
      */
     private void loadSettingsImages() {
 
-        soundOnImage = getImage(controlsImages + "sound on.png", 1);
-        soundOffImage = getImage(controlsImages + "sound off.png", 1);
+        soundOnImage = FileManager.loadImage(controlsImages + "sound on.png", 1);
+        soundOffImage = FileManager.loadImage(controlsImages + "sound off.png", 1);
 
-        musicOnImage = getImage(controlsImages + "music on.png", 1);
-        musicOffImage = getImage(controlsImages + "music off.png", 1);
+        musicOnImage = FileManager.loadImage(controlsImages + "music on.png", 1);
+        musicOffImage = FileManager.loadImage(controlsImages + "music off.png", 1);
 
-        keyboardOnImage = getImage(controlsImages + "keyboard on.png", 1);
-        keyboardOffImage = getImage(controlsImages + "keyboard off.png", 1);
+        keyboardOnImage = FileManager.loadImage(controlsImages + "keyboard on.png", 1);
+        keyboardOffImage = FileManager.loadImage(controlsImages + "keyboard off.png", 1);
 
-        mouseOnImage = getImage(controlsImages + "mouse on.png", 1);
-        mouseOffImage = getImage(controlsImages + "mouse off.png", 1);
+        mouseOnImage = FileManager.loadImage(controlsImages + "mouse on.png", 1);
+        mouseOffImage = FileManager.loadImage(controlsImages + "mouse off.png", 1);
     }
 
     /**
@@ -331,29 +331,13 @@ public class Helper {
     }
 
     /**
-     * Loads image from specified path and returns it scaled with specified factor.
-     *
-     * @param filename    Image path.
-     * @param scaleFactor Scale factor.
-     * @return Image with specified scale and path.
-     */
-    public static Image getImage(String filename, int scaleFactor) {
-
-        ImageIcon icon = new ImageIcon(filename);
-        Image image = icon.getImage();
-
-        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / scaleFactor,
-                image.getHeight(null) / scaleFactor, Image.SCALE_SMOOTH))).getImage();
-    }
-
-    /**
      * Sets cursor image.
      *
      * @param filename Cursor's image path.
      */
     public static void setCursorImage(String filename) {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image image = getImage(filename, cursorScale);
+        Image image = FileManager.loadImage(filename, cursorScale);
         Cursor c = toolkit.createCustomCursor(image, new Point(panel.getX(),
                 panel.getY()), "cursor");
         panel.setCursor(c);

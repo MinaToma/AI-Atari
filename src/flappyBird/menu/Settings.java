@@ -1,6 +1,7 @@
 package flappyBird.menu;
 
 
+import atariCore.FileManager;
 import atariCore.Helper;
 import atariCore.Sound;
 import flappyBird.FlappyHelper;
@@ -66,6 +67,6 @@ public class Settings extends atariCore.Settings {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(FlappyHelper.imagePath + "background.png", 1), 0, 0, null);
+        g.drawImage(FileManager.loadImage(FlappyHelper.imagePath + "background.png", 1), 0, 0, null);
     }
 }

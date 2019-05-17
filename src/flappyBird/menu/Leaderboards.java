@@ -1,11 +1,11 @@
 package flappyBird.menu;
 
+import atariCore.FileManager;
 import atariCore.Sound;
 import flappyBird.FlappyHelper;
 
 import java.awt.*;
 
-import static atariCore.Helper.getImage;
 import static atariCore.Helper.sounds;
 
 /**
@@ -31,6 +31,6 @@ public class Leaderboards extends atariCore.Leaderboards {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(FlappyHelper.imagePath + "Leaderboards.png", 1), 0, 0, null);
+        g.drawImage(FileManager.loadImage(FlappyHelper.imagePath + "Leaderboards.png", 1), 0, 0, null);
     }
 }

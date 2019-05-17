@@ -1,6 +1,7 @@
 package arkanoid.menu;
 
 import arkanoid.arkHelper;
+import atariCore.FileManager;
 import atariCore.Helper;
 import atariCore.Sound;
 
@@ -97,6 +98,6 @@ public class SelectEra extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(arkHelper.imagePath + "background/bg.jpg", 1), 0, 0, null);
+        g.drawImage(FileManager.loadImage(arkHelper.imagePath + "background/bg.jpg", 1), 0, 0, null);
     }
 }

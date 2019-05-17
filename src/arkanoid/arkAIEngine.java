@@ -28,11 +28,11 @@ public class arkAIEngine {
     /**
      * Path of Arkanoid AI-Engine.
      */
-    static String scriptScript = "src/Resources/Arkanoid/AI-Scripts/arkanoid.py";
+    static String scriptScript = "res/Arkanoid/AI-Scripts/arkanoid.py";
     /**
      * Path of interaction file used to communicate with python script.
      */
-    static String interactionPath = "src/Resources/Arkanoid/AI-Scripts/interactions.txt";
+    static String interactionPath = "res/Arkanoid/AI-Scripts/interactions.txt";
 
     private static arkAIEngine engine = new arkAIEngine();
 

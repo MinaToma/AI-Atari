@@ -1,5 +1,6 @@
 package flappyBird;
 
+import atariCore.FileManager;
 import atariCore.Sound;
 import jaco.mp3.player.MP3Player;
 
@@ -40,15 +41,15 @@ public class FlappyHelper {
     /**
      * Image path.
      */
-    public static String imagePath = "src/Resources/Flappy Bird/Images/";
+    public static String imagePath = "res/Flappy Bird/Images/";
     /**
      * Sound path.
      */
-    private static String soundPath = "src/Resources/Flappy Bird/Sounds/";
+    private static String soundPath = "res/Flappy Bird/Sounds/";
     /**
      * Files path.
      */
-    public static String pathFile = "src/Resources/Flappy Bird/Files/";
+    public static String pathFile = "res/Flappy Bird/Files/";
     /**
      * Splash screen background image path.
      */
@@ -155,7 +156,7 @@ public class FlappyHelper {
         hitSound = Sound.setSound(soundPath + "hit.mp3");
         wingSound = Sound.setSound(soundPath + "wing.mp3");
         pointSound = Sound.setSound(soundPath + "point.mp3");
-        clickSound = Sound.setSound("src/Resources/Atari Core/Sounds/click.mp3");
+        clickSound = Sound.setSound("res/Atari Core/Sounds/click.mp3");
         backgroundSound = Sound.setSound(soundPath + "background.mp3");
     }
 
@@ -166,17 +167,17 @@ public class FlappyHelper {
 
         birds = new Image[4];
         for (int i = 1; i <= 4; i++)
-            birds[i - 1] = getImage(imagePath + "bird/" + i + ".png", 9);
+            birds[i - 1] = FileManager.loadImage(imagePath + "bird/" + i + ".png", 9);
 
         heightGap = birds[0].getHeight(null) * 4;
 
         splashBackgroundImagePath = imagePath + "background.png";
 
-        pipeDown = getImage(imagePath + "pipeDOWN.png", 2);
+        pipeDown = FileManager.loadImage(imagePath + "pipeDOWN.png", 2);
 
-        pipeUp = getImage(imagePath + "pipeUP.png", 2);
+        pipeUp = FileManager.loadImage(imagePath + "pipeUP.png", 2);
 
-        backgroundGame = getImage(imagePath + "flappy.png", 1);
+        backgroundGame = FileManager.loadImage(imagePath + "flappy.png", 1);
     }
 
     /**

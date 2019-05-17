@@ -1,5 +1,6 @@
 package flappyBird.menu;
 
+import atariCore.FileManager;
 import atariCore.Sound;
 import flappyBird.FlappyBird;
 import flappyBird.FlappyHelper;
@@ -47,6 +48,6 @@ public class SelectPlayer extends atariCore.SelectPlayer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(FlappyHelper.imagePath + "background.png", 1), 0, 0, null);
+        g.drawImage(FileManager.loadImage(FlappyHelper.imagePath + "background.png", 1), 0, 0, null);
     }
 }

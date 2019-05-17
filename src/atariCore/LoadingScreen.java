@@ -42,9 +42,9 @@ public class LoadingScreen extends JPanel {
         panel.setLayout(new GridLayout(0, 1));
         panel.setBackground(new Color(24, 24, 24));
 
-        ImageIcon icon = new ImageIcon("src/Resources/Atari Core/Images/loading/loading.gif");
+        ImageIcon icon = new ImageIcon("res/Atari Core/Images/loading/loading.gif");
         loading = new JLabel(icon);
-        icon = new ImageIcon("src/Resources/Atari Core/Images/loading/atari.gif");
+        icon = new ImageIcon("res/Atari Core/Images/loading/atari.gif");
         atariLabel = new JLabel(icon);
 
         initialAtariHeight = screenHeight / 3;

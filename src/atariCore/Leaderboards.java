@@ -117,7 +117,7 @@ public class Leaderboards extends JPanel {
                     top10[i - 1] = new JLabel(s);
                 }
             }
-            top10[i - 1].setFont(Helper.setFont("src/Resources/Atari Core/Fonts/joystix monospace.ttf", 35));
+            top10[i - 1].setFont(Helper.setFont("res/Atari Core/Fonts/joystix monospace.ttf", 35));
             top10[i - 1].setForeground(buttonBackgroundColor);
             top10[i - 1].setBounds(xOffset, yOffset, Helper.screenWidth - 40, 35);
             yOffset += 35;

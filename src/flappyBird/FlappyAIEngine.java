@@ -38,11 +38,11 @@ public class FlappyAIEngine {
     /**
      * Flappy birds script path.
      */
-    private static String scriptScript = "src/Resources/Flappy Bird/AI-Scripts/flappy.py";
+    private static String scriptScript = "res/Flappy Bird/AI-Scripts/flappy.py";
     /**
      * Path of interaction file used to communicate with python script.
      */
-    static String interactionPath = "src/Resources/Flappy Bird/AI-Scripts/interaction.txt";
+    static String interactionPath = "res/Flappy Bird/AI-Scripts/interaction.txt";
 
     /**
      * Starts AI-Engine.

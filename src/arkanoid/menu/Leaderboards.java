@@ -1,6 +1,7 @@
 package arkanoid.menu;
 
 import arkanoid.arkHelper;
+import atariCore.FileManager;
 import atariCore.Helper;
 import atariCore.Sound;
 
@@ -34,6 +35,6 @@ public class Leaderboards extends atariCore.Leaderboards {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawImage(getImage(arkHelper.imagePath + "leaderboards.jpg", 1), 0, 0, null);
+        g.drawImage(FileManager.loadImage(arkHelper.imagePath + "leaderboards.jpg", 1), 0, 0, null);
     }
 }

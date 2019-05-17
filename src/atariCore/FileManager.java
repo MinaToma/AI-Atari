@@ -1,9 +1,9 @@
 package atariCore;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-
-import static atariCore.Helper.filePath;
 
 /**
  * Handles needed file streams.
@@ -66,9 +66,9 @@ public interface FileManager {
     }
 
     /**
-     * Adds new score to the leaderboard.
+     * Adds new score to the leaderboards.
      *
-     * @param path       The path of leaderboard file.
+     * @param path       The path of leaderboards file.
      * @param playerName Holds player's name.
      * @param Score      Holds player's score.
      * @param lvl        Holds player's scored level.
@@ -121,5 +121,21 @@ public interface FileManager {
         ret.clear();
         ret.add(String.valueOf(level));
         writeFile(name, ret, false);
+    }
+
+    /**
+     * Loads image from specified path and returns it scaled with specified factor.
+     *
+     * @param filename    Image path.
+     * @param scaleFactor Scale factor.
+     * @return Image with specified scale and path.
+     */
+    public static Image loadImage(String filename, int scaleFactor) {
+
+        ImageIcon icon = new ImageIcon(filename);
+        Image image = icon.getImage();
+
+        return (new ImageIcon(image.getScaledInstance(image.getWidth(null) / scaleFactor,
+                image.getHeight(null) / scaleFactor, Image.SCALE_SMOOTH))).getImage();
     }
 }
