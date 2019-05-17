@@ -4,6 +4,7 @@ import arkanoid.board.Ball;
 import arkanoid.board.Paddle;
 import arkanoid.board.Player;
 import atariCore.AIEngine;
+import atariCore.FileManager;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ public class arkAIEngine {
      * Array list to hold rewards for every action taken by AI-Player.
      */
     static CopyOnWriteArrayList<Double> rewards = new CopyOnWriteArrayList<>();
-    private static ArrayList<Float> AIInput;
+    private static ArrayList<String> AIInput;
     /**
      * Needed for reward calculations.
      */
@@ -70,7 +71,6 @@ public class arkAIEngine {
         System.out.println("the reward is " + (reward));
 
         player.setPreviousScore(player.getScore());
-
     }
 
     /**
@@ -78,7 +78,7 @@ public class arkAIEngine {
      *
      * @param input Array list of inputs.
      */
-    static void initialiseInput(ArrayList<Float> input) {
+    static void initialiseInput(ArrayList<String> input) {
         AIInput = input;
     }
 
@@ -91,23 +91,13 @@ public class arkAIEngine {
 
         String Data = new String();
 
-        try {
-            PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
+        AIInput.add(0 , "prediction");
+        FileManager.writeFile(interactionPath , AIInput , false);
 
-            writer.println("prediction");
+        while (Data == null || (!Data.equals("space") && !Data.equals("right") && !Data.equals("left")))
+            Data = AIEngine.waitForPrediction(interactionPath, Data);
 
-            for (Float val : AIInput)
-                writer.println(val);
-
-            writer.close();
-
-            while (Data == null || (!Data.equals("space") && !Data.equals("right") && !Data.equals("left")))
-                Data = AIEngine.waitForPrediction(interactionPath, Data);
-
-            System.out.println(Data);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        System.out.println(Data);
 
         return Data;
     }
@@ -116,32 +106,22 @@ public class arkAIEngine {
      * Initiates training process for AI-Player.
      */
     static public void train() {
-        try {
-            PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
-            writer.println("training");
-            writer.println(rewards.size());
 
-            for (int i = 0; i < rewards.size(); i++) {
-                writer.println(rewards.get(i));
-            }
+        ArrayList<String> data = new ArrayList<>();
+        data.add("training");
+        data.add(String.valueOf(rewards.size()));
 
-            writer.close();
-        } catch (Exception e) {
-            System.out.println(e);
+        for (Double reward : rewards) {
+            data.add(String.valueOf(reward));
         }
+
+        FileManager.writeFile(interactionPath , data , false);
 
         String Data = new String();
 
         while (Data == null || !Data.equals("done"))
             Data = AIEngine.waitForPrediction(interactionPath, Data);
 
-        try {
-            PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
-            writer.println("");
-            writer.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
         rewards.clear();
     }
 

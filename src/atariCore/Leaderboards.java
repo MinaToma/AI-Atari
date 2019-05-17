@@ -21,7 +21,7 @@ public class Leaderboards extends JPanel {
      */
     protected JButton backButton;
     /**
-     *
+     * Labels of top 10 scores.
      */
     protected JLabel[] top10;
 

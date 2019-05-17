@@ -13,7 +13,7 @@ class Model:
     def __init__(self, actionSize):
         self.actionSize = actionSize
         self.my_model = self.Model()
-        self.my_model.load_weights('nice.h5')
+        self.my_model.load_weights('bestResult.h5')
         self.my_model.summary()
 
     def Model(self):

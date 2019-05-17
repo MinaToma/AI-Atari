@@ -1,5 +1,7 @@
 package atariCore;
 
+import org.w3c.dom.html.HTMLLegendElement;
+
 import javax.swing.*;
 import java.awt.*;
 

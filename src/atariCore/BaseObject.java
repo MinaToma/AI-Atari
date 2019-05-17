@@ -70,7 +70,6 @@ abstract public class BaseObject {
         this.velY = velY;
     }
 
-
     /**
      * Clamps the object within frame bounds.
      */
@@ -81,7 +80,6 @@ abstract public class BaseObject {
         y = Math.min(y, Helper.screenHeight - imageHeight);
         y = Math.max(y, 0);
     }
-
 
     /**
      * Returns the x coordinate of the object.
@@ -214,7 +212,6 @@ abstract public class BaseObject {
     public void setImageHeight(int imageHeight) {
         this.imageHeight = imageHeight;
     }
-
 
     /**
      * Returns the a rectangle which represents the bounds of the object.

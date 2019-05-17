@@ -100,12 +100,12 @@ class Connection:
         y = np.zeros((numOfFrame, self.actionSize))
 
         for i in range(numOfFrame):
-            rkm=file.readline()
-            # print(rkm)
+            numberOfFrames=file.readline()
+            # print(numberOfFrames)
             try:
-                ground_truth[i] = float(rkm)
+                ground_truth[i] = float(numberOfFrames)
             except:
-                print("erorr")
+                print("error")
 
         for i in range(numOfFrame-1, 1, -1):
             j = np.argmax(self.allY[i-1])

@@ -1,6 +1,7 @@
 package flappyBird;
 
 import atariCore.AIEngine;
+import atariCore.FileManager;
 import atariCore.Handler;
 import flappyBird.board.Bird;
 
@@ -33,7 +34,7 @@ public class FlappyAIEngine {
     /**
      * Gap between every frame to send AI Data.
      */
-    private int requireActionGap = 25;
+    private int requireActionGap = 1;
     /**
      * Flappy birds script path.
      */
@@ -93,44 +94,41 @@ public class FlappyAIEngine {
         currentFrameCount %= requireActionGap;
 
         if (currentFrameCount == 0) {
+
+            ArrayList<Integer> birdIdx = new ArrayList<>();
+            ArrayList<String> data = new ArrayList<>();
+            data.add("prediction");
+
             for (int i = 0; i < numberOfBirds; i++) {
 
                 Bird bird = myBirds.get(i);
 
                 if (birdList.contains(bird)) {
-
-                    String Data = new String();
-                    try {
-
-                        PrintWriter writer = new PrintWriter(interactionPath, "UTF-8");
-
-                        writer.println("prediction");
-
-                        //player height
-                        writer.println(bird.getY() + bird.getImageWidth() / 2f);
-                        //distance from pipe
-                        writer.println(bird.getDistFromPipe());
-                        //y coordinate of center of hole
-                        writer.println(bird.getCenterOfNextHole());
-                        //bird index
-                        writer.println(i);
-
-                        //if the bird passed a pipe
-                        writer.println(bird.getScoreDifference());
-
-                        writer.close();
-
-                        while (Data == null || (!Data.equals("jump") && !Data.equals("stay")))
-                            Data = waitForPrediction(interactionPath, Data);
-
-                        if (Data.equals("jump")) {
-                            bird.speedUp();
-                        }
-
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
+                    birdIdx.add(i);
+                    //player height
+                    data.add(String.valueOf(bird.getY() + bird.getImageWidth() / 2f));
+                    //distance from pipe
+                    data.add(String.valueOf(bird.getDistFromPipe()));
+                    //y coordinate of center of hole
+                    data.add(String.valueOf(bird.getCenterOfNextHole()));
+                    //bird index
+                    data.add(String.valueOf(i));
+                    //if the bird passed a pipe
+                    data.add(String.valueOf(bird.getScoreDifference()));
                 }
+            }
+
+            data.add(1, String.valueOf(birdIdx.size()));
+            FileManager.writeFile(interactionPath, data, false);
+
+            String Data = null;
+            while (Data == null || !Data.equals("allDone"))
+                Data = AIEngine.waitForPrediction(interactionPath, Data);
+
+            data = FileManager.readFile(interactionPath);
+            for (int i = 0; i < birdIdx.size(); i++) {
+                if (data.get(i + 1).equals("jump"))
+                    myBirds.get(birdIdx.get(i)).speedUp();
             }
         }
     }

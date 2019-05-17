@@ -22,7 +22,6 @@ public class Score implements Comparable<Score> {
         this.name = name;
     }
 
-
     /**
      * Returns player's score.
      *

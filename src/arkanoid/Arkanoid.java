@@ -344,17 +344,16 @@ public class Arkanoid extends atariCore.Game {
                 L+=3;
         }
 
-        ArrayList<Float> inputData = new ArrayList<>();
-        inputData.add(p.getX());
-        inputData.add(b.getX());
-        inputData.add(b.getY());
-        inputData.add(R);
-        inputData.add(L);
+        ArrayList<String> inputData = new ArrayList<>();
+        inputData.add(String.valueOf(p.getX()) );
+        inputData.add(String.valueOf(b.getX()) );
+        inputData.add(String.valueOf(b.getY()) );
+        inputData.add(String.valueOf(R) );
+        inputData.add(String.valueOf(L));
 
 
-        if (b.getVelY() > 0) inputData.add(1f);
-        else inputData.add(0f);
-
+        if (b.getVelY() > 0) inputData.add(String.valueOf(1f));
+        else inputData.add(String.valueOf(0f));
 
         arkAIEngine.initialiseInput(inputData);
 

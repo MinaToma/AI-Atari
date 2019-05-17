@@ -11,7 +11,7 @@ SCREENHEIGHT = 720.0
 PIPEGAPSIZE = 450
 BASEY = SCREENHEIGHT
 load_saved_pool = 1
-save_current_pool = 1
+save_current_pool = 0
 current_pool = []
 fitness = []
 maxXDist = 0
@@ -131,50 +131,56 @@ def train():
 
 def getReadyForPrediction(file):
     print("get Ready to predict")
-    height = float(file.readline())
-    dist = float(file.readline())
-    center = float(file.readline())
-    idx = int(file.readline())
-    passed = int(file.readline())
+    numberOfBirds = (int)(file.readline());
 
-    fitness[idx] += 1
-    print(passed, idx,
-          "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS")
-    if passed == 1:
-        fitness[idx] += 25
+    list = []
+    list.append("allDone")
 
-    action = predict_action(height, dist, center, idx)
+    for i in range(numberOfBirds):
+        height = float(file.readline())
+        dist = float(file.readline())
+        center = float(file.readline())
+        idx = int(file.readline())
+        passed = int(file.readline())
 
-    if action == 1:
-        write("jump", "prediction")
-    else:
-        write("stay", "prediction")
+        fitness[idx] += 1
+        if passed == 1:
+            fitness[idx] += 25
+
+        action = predict_action(height, dist, center, idx)
+
+        if action == 1:
+            list.append("jump")
+        else:
+            list.append("stay")
+    writeListofActions(list)
 
 
 def connect():
     while True:
         with open(interactionsPath) as file:
             mode = file.readline()
-
+            
             if mode[0:10] == 'prediction':
                 print("in Prediction")
                 getReadyForPrediction(file)
 
             if mode[0:8] == 'training':
                 train()
-                write("", "done")
+                writeDone()
 
 
-def write(action, mode):
+def writeDone():
     file = open(interactionsPath, "w")
     file.truncate()
+    file.write("done")
+    file.close()
 
-    if mode[0:10] == "prediction":
-        file.write(action)
-
-    if mode == "done":
-        file.write("done")
-
+def writeListofActions(list):
+    file = open(interactionsPath, "w")
+    file.truncate()
+    for item in list:
+        file.write(item + '\n')
     file.close()
 
 
