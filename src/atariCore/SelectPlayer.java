@@ -72,8 +72,6 @@ public abstract class SelectPlayer extends JPanel {
 
         add(labelName);
         add(textName);
-
-        setCursorImage(FlappyHelper.pathCursor);
     }
 
     /**
