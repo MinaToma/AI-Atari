@@ -49,6 +49,7 @@ public class Splash extends atariCore.Splash {
             if (sounds)
                 Sound.Play(Helper.clickSound, true);
         });
+
         LeaderboardsButton.addActionListener(e -> {
             new Leaderboards(arkHelper.filePath + "Leaderboards.txt");
             if (sounds)
@@ -65,6 +66,7 @@ public class Splash extends atariCore.Splash {
             arkAIEngine.startEngine();
             new Arkanoid("AI-Player", 1);
         });
+
         backButton.addActionListener(e -> {
             Sound.Stop(backgroundSplashSound);
             Handler.clear();

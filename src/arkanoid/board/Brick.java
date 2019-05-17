@@ -124,7 +124,6 @@ public class Brick extends BaseObject {
     public void render(Graphics g) {
         if (y > 0)
             g.drawImage(this.image, (int) this.x, (int) this.y, null);
-
     }
 
     /**

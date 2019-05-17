@@ -142,6 +142,22 @@ public class FlappyBird extends Game {
      * {@inheritDoc}
      */
     @Override
+    public void pressKey() {
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void initKeys() {
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     protected void sendDataToAI() {
         myGeneration.getAction();
     }

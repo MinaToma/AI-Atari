@@ -33,7 +33,6 @@ abstract public class BaseObject {
      */
     protected int imageWidth, imageHeight;
 
-
     /**
      * Parameterised constructor takes X, Y coordinates and object image.
      *
