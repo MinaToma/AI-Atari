@@ -19,6 +19,7 @@ public class SelectPlayer extends atariCore.SelectPlayer {
      */
     public SelectPlayer() {
         setActions();
+        setCursorImage(arkHelper.pathCursor);
     }
 
     /**
