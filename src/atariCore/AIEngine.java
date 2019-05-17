@@ -19,7 +19,7 @@ public interface AIEngine {
      * @param scriptPath Path of python script.
      */
     static void startEngine(String scriptPath) {
-        Helper.PERIOD = 1;
+        Helper.PERIOD = 2;
         /*try {
             String command = interpreterPath + " " + scriptPath;
             Process p = Runtime.getRuntime().exec(command);
