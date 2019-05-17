@@ -98,7 +98,7 @@ public class Player extends BaseObject {
                 arkanoid.initialiseLevels(1);
             }
         } else {
-            if(level>this.level)
+            if (level > this.level)
                 FileManager.sendPlayerScore(arkHelper.filePath, name, level);
 
             if (score > 0 && !AIMode) {
@@ -126,7 +126,6 @@ public class Player extends BaseObject {
                 Sound.Stop(arkHelper.backgroundGameSound[(level - 1) / 10]);
             }
             this.level = level;
-
 
             arkanoid.initialiseLevels(level);
         }
